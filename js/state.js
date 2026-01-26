@@ -4,6 +4,8 @@
 
 import { STORAGE_KEY, POSITIONS } from './utils/constants.js';
 
+const SAVED_TEAMS_KEY = 'lol-viewer-helper-saved-teams';
+
 /**
  * 기본 선수 목록 생성
  * @returns {Array}
@@ -38,8 +40,10 @@ function createDefaultState() {
 class State {
   constructor() {
     this.data = createDefaultState();
+    this.savedTeams = [];
     this.listeners = [];
     this.load();
+    this.loadSavedTeams();
   }
 
   /**
@@ -165,6 +169,103 @@ class State {
    */
   reset() {
     this.data = createDefaultState();
+    this.save();
+    this.notify();
+  }
+
+  /**
+   * 저장된 팀 목록 로드
+   */
+  loadSavedTeams() {
+    try {
+      const saved = localStorage.getItem(SAVED_TEAMS_KEY);
+      if (saved) {
+        this.savedTeams = JSON.parse(saved);
+      }
+    } catch (e) {
+      console.warn('저장된 팀 로드 실패:', e);
+      this.savedTeams = [];
+    }
+  }
+
+  /**
+   * 저장된 팀 목록 저장
+   */
+  saveSavedTeams() {
+    try {
+      localStorage.setItem(SAVED_TEAMS_KEY, JSON.stringify(this.savedTeams));
+    } catch (e) {
+      console.warn('팀 저장 실패:', e);
+    }
+  }
+
+  /**
+   * 저장된 팀 목록 가져오기
+   * @returns {Array}
+   */
+  getSavedTeams() {
+    return this.savedTeams;
+  }
+
+  /**
+   * 현재 팀 정보를 저장된 팀 목록에 추가/업데이트
+   * @param {'blueTeam'|'redTeam'} teamKey
+   */
+  saveTeamToList(teamKey) {
+    const team = this.data[teamKey];
+    if (!team.name.trim()) return false;
+
+    const teamData = {
+      id: Date.now(),
+      name: team.name,
+      players: team.players.map(p => ({ position: p.position, name: p.name }))
+    };
+
+    // 같은 이름의 팀이 있으면 업데이트
+    const existingIndex = this.savedTeams.findIndex(t => t.name === team.name);
+    if (existingIndex !== -1) {
+      teamData.id = this.savedTeams[existingIndex].id;
+      this.savedTeams[existingIndex] = teamData;
+    } else {
+      this.savedTeams.push(teamData);
+    }
+
+    this.saveSavedTeams();
+    return true;
+  }
+
+  /**
+   * 저장된 팀 삭제
+   * @param {number} teamId
+   */
+  deleteSavedTeam(teamId) {
+    this.savedTeams = this.savedTeams.filter(t => t.id !== teamId);
+    this.saveSavedTeams();
+  }
+
+  /**
+   * 저장된 팀 정보를 현재 팀에 적용
+   * @param {number} teamId
+   * @param {'blueTeam'|'redTeam'} targetTeamKey
+   */
+  applySavedTeam(teamId, targetTeamKey) {
+    const savedTeam = this.savedTeams.find(t => t.id === teamId);
+    if (!savedTeam) return;
+
+    const players = POSITIONS.map(position => {
+      const savedPlayer = savedTeam.players.find(p => p.position === position);
+      return {
+        position,
+        name: savedPlayer?.name || '',
+        champion: null
+      };
+    });
+
+    this.data[targetTeamKey] = {
+      name: savedTeam.name,
+      players
+    };
+
     this.save();
     this.notify();
   }
