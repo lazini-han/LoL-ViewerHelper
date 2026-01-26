@@ -1,0 +1,193 @@
+/* 챔피언 픽 페이지 */
+.champion-pick {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  height: calc(100vh - 120px);
+}
+
+/* 검색 영역 */
+.champion-pick__search {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+}
+
+.champion-pick__search-input {
+  max-width: 300px;
+}
+
+/* 챔피언 그리드 영역 */
+.champion-grid-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+}
+
+.champion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+/* 챔피언 아이템 */
+.champion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-md);
+  cursor: grab;
+  transition: all var(--transition-fast);
+}
+
+.champion-item:hover {
+  background-color: var(--color-bg-card);
+}
+
+.champion-item--selected-blue {
+  background-color: var(--color-blue-team-bg);
+}
+
+.champion-item--selected-red {
+  background-color: var(--color-red-team-bg);
+}
+
+.champion-item--selected-blue,
+.champion-item--selected-red {
+  cursor: not-allowed;
+}
+
+.champion-item__icon {
+  width: var(--champion-icon-md);
+  height: var(--champion-icon-md);
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+
+.champion-item__name {
+  font-size: var(--font-size-xs);
+  text-align: center;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* 팀 슬롯 영역 */
+.team-slots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-lg);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+}
+
+.team-slots {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.team-slots--blue {
+  flex-direction: row;
+}
+
+.team-slots--red {
+  flex-direction: row;
+}
+
+/* VS 마크 */
+.vs-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-lg);
+}
+
+.vs-mark__text {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.vs-mark__teams {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+/* 챔피언 슬롯 */
+.champion-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  width: 90px;
+  min-height: 120px;
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: 2px dashed var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+.champion-slot--blue {
+  border-color: var(--color-blue-team-border);
+}
+
+.champion-slot--red {
+  border-color: var(--color-red-team-border);
+}
+
+.champion-slot--filled {
+  border-style: solid;
+}
+
+.champion-slot--drag-over {
+  background-color: var(--color-bg);
+  border-color: var(--color-accent);
+}
+
+.champion-slot__icon-area {
+  width: var(--champion-icon-md);
+  height: var(--champion-icon-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  border-radius: var(--radius-sm);
+}
+
+.champion-slot__icon-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.champion-slot__position {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.champion-slot__player {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text);
+  text-align: center;
+  word-break: keep-all;
+}
+
+.champion-slot__champion {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  text-align: center;
+}

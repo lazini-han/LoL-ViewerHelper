@@ -1,0 +1,146 @@
+/* 버튼 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.btn--primary {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.btn--primary:hover {
+  background-color: #d13a52;
+}
+
+.btn--secondary {
+  background-color: var(--color-bg-card);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn--secondary:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.btn--blue {
+  background-color: var(--color-blue-team);
+  color: white;
+}
+
+.btn--red {
+  background-color: var(--color-red-team);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 입력 필드 */
+.input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text);
+  transition: border-color var(--transition-fast);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* 카드 */
+.card {
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.card__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+/* 챔피언 아이콘 */
+.champion-icon {
+  width: var(--champion-icon-md);
+  height: var(--champion-icon-md);
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  border: 2px solid transparent;
+  transition: all var(--transition-fast);
+}
+
+.champion-icon--sm {
+  width: var(--champion-icon-sm);
+  height: var(--champion-icon-sm);
+}
+
+.champion-icon--lg {
+  width: var(--champion-icon-lg);
+  height: var(--champion-icon-lg);
+}
+
+.champion-icon--blue {
+  border-color: var(--color-blue-team);
+  box-shadow: 0 0 8px var(--color-blue-team-border);
+}
+
+.champion-icon--red {
+  border-color: var(--color-red-team);
+  box-shadow: 0 0 8px var(--color-red-team-border);
+}
+
+/* 포지션 배지 */
+.position-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+}
+
+/* 팀 구분 */
+.team-section--blue {
+  border-left: 3px solid var(--color-blue-team);
+}
+
+.team-section--red {
+  border-left: 3px solid var(--color-red-team);
+}
+
+/* 숨김 */
+.hidden {
+  display: none !important;
+}
+
+/* 드래그 상태 */
+.dragging {
+  opacity: 0.5;
+}
+
+.drag-over {
+  outline: 2px dashed var(--color-accent);
+  outline-offset: 2px;
+}

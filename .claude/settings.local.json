@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ConvertTo-Json -Depth 10)",
+      "Bash(__NEW_LINE_788f2706531152d2__ $json)",
+      "Bash(powershell.exe:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

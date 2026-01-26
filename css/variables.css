@@ -1,0 +1,53 @@
+:root {
+  /* 팀 색상 */
+  --color-blue-team: #1e90ff;
+  --color-blue-team-bg: rgba(30, 144, 255, 0.15);
+  --color-blue-team-border: rgba(30, 144, 255, 0.5);
+  --color-red-team: #ff4444;
+  --color-red-team-bg: rgba(255, 68, 68, 0.15);
+  --color-red-team-border: rgba(255, 68, 68, 0.5);
+
+  /* 기본 색상 */
+  --color-bg: #1a1a2e;
+  --color-bg-secondary: #16213e;
+  --color-bg-card: #0f3460;
+  --color-text: #eaeaea;
+  --color-text-secondary: #a0a0a0;
+  --color-border: #333;
+  --color-accent: #e94560;
+
+  /* 폰트 */
+  --font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+
+  /* 간격 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  /* 챔피언 아이콘 크기 */
+  --champion-icon-sm: 40px;
+  --champion-icon-md: 56px;
+  --champion-icon-lg: 72px;
+
+  /* 둥근 모서리 */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  /* 그림자 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+
+  /* 트랜지션 */
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms ease;
+}
