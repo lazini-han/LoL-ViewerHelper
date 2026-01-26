@@ -5,7 +5,10 @@
       "Bash(__NEW_LINE_788f2706531152d2__ $json)",
       "Bash(powershell.exe:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nInitial commit: LoL Viewer Helper 프로젝트\n\n- 팀 설정, 챔피언 픽, 경기 화면 기능 구현\n- GitHub 연동 가이드 문서 추가\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git mv:*)",
+      "Bash(git commit:*)"
     ]
   }
 }

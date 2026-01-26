@@ -4,16 +4,36 @@
 
 
 ## ISSUE-007: Git 활용과 GitHub 연동
-Git을 현재 활용하고 있지 않습니다. 가장 먼저 깃을 사용해야 안전합니다.
 
-그리고 GitHub에 연동하는 것을 실행해야 합니다. 필요한 절차를 설명하는 가이드가 필요합니다.
+**상태**: ✅ 해결 완료
 
-그리고 GitHub Pages 기능으로 서비스도 해야합니다. 역시 절차적 가이드가 필요합니다. 
+### 해결 내용
+- Git 저장소 초기화 완료
+- .gitignore 파일 생성
+- 첫 번째 커밋 생성
+- GitHub 연동 및 GitHub Pages 배포 가이드 작성
+
+### 관련 문서
+- [GitHub 연동 가이드](GITHUB_GUIDE.md) 
 
 ## ISSUE-006: 문서들의 이름 규칙 통일화 및 문서 위치 정돈
-현재 대문자로만 사용하는 문서, 앞글자만 대문자인 문서, 모두 소문자인 문서가 혼용되어 있습니다. 이를 통일해야 합니다. 
 
-그리고 문서가 현재 분산되어 있습니다. docs 폴더가 있으니 여기에 모든 문서를 모아두는 것이 좋을 것 같습니다.
+**상태**: ✅ 해결 완료
+
+### 해결 내용
+
+- 모든 문서를 대문자_스네이크케이스로 통일
+- 문서들을 docs 폴더로 이동
+- 문서 내 경로 참조 업데이트
+
+### 변경된 파일
+
+- `idea.md` → `docs/IDEA.md`
+- `issue.md` → `docs/ISSUES.md`
+- `lessons_learned.md` → `docs/LESSONS_LEARNED.md`
+- `Project_Structure.md` → `docs/PROJECT_STRUCTURE.md`
+- `PLAN.md` → `docs/PLAN.md`
+- `DEV_GUIDELINES.md` → `docs/DEV_GUIDELINES.md`
 
 ## ISSUE-005: 경기 시작 화면 포지션 표시 변경
 챔피언 아이콘 사이에 현재는 포지션 이름을 텍스트로 표시하고 있는데, 이를 이미지 아이콘으로 표시하도록 변경이 필요함. 챔피언 아이콘과 같은 사이즈 이미지를 활용. `data/positionicons/` 폴더를 확인해서 이미지를 찾을 것. 
@@ -59,7 +79,7 @@ npx serve
 
 ### 관련 문서
 
-- 분석 보고서: [docs/issues/ISSUE-001-CORS.md](docs/issues/ISSUE-001-CORS.md)
-- 시행착오 기록: [lessons_learned.md](lessons_learned.md)
+- 분석 보고서: [issues/ISSUE-001-CORS.md](issues/ISSUE-001-CORS.md)
+- 시행착오 기록: [LESSONS_LEARNED.md](LESSONS_LEARNED.md)
 
 ---
