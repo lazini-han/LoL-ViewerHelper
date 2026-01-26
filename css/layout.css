@@ -7,15 +7,16 @@
 
 /* 헤더 */
 .header {
+  display: flex;
+  align-items: center;
   background-color: var(--color-bg-secondary);
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-xs) var(--spacing-md);
 }
 
 .header__title {
-  font-size: var(--font-size-lg);
-  font-weight: 600;
-  color: var(--color-text);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-text-secondary);
 }
 
 /* 상단 네비게이션 */

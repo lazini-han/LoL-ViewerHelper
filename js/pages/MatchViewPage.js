@@ -2,8 +2,8 @@
  * 경기 상황 페이지
  */
 
-import { $, createElement, clearElement } from '../utils/dom.js';
-import { POSITIONS, POSITION_NAMES, POSITION_ICONS, ROUTES } from '../utils/constants.js';
+import { createElement, clearElement } from '../utils/dom.js';
+import { POSITIONS, POSITION_NAMES, POSITION_ICONS } from '../utils/constants.js';
 import { state } from '../state.js';
 
 export class MatchViewPage {
@@ -22,12 +22,10 @@ export class MatchViewPage {
 
     const page = createElement('div', { className: 'page page--narrow match-view' }, [
       this.createHeader(currentState),
-      this.createPositionRows(currentState),
-      this.createNavButtons()
+      this.createPositionRows(currentState)
     ]);
 
     container.appendChild(page);
-    this.attachEvents();
   }
 
   /**
@@ -101,35 +99,14 @@ export class MatchViewPage {
           style: 'background-color: var(--color-bg-card);'
         });
 
-    return createElement('div', { className: `player-card player-card--${team}` }, [
-      iconEl,
+    const infoEl = createElement('div', { className: 'player-card__info' }, [
       createElement('span', { className: 'player-card__champion' }, champion?.nameKr || '-'),
       createElement('span', { className: 'player-card__player' }, player?.name || '-')
     ]);
-  }
 
-  /**
-   * 네비게이션 버튼 생성
-   * @returns {Element}
-   */
-  createNavButtons() {
-    return createElement('div', { className: 'match-view__nav' }, [
-      createElement('button', {
-        className: 'btn btn--secondary',
-        id: 'btn-prev'
-      }, '← 챔피언 변경')
+    return createElement('div', { className: `player-card player-card--${team}` }, [
+      iconEl,
+      infoEl
     ]);
-  }
-
-  /**
-   * 이벤트 연결
-   */
-  attachEvents() {
-    const btnPrev = $('#btn-prev');
-    if (btnPrev) {
-      btnPrev.addEventListener('click', () => {
-        this.router.navigate(ROUTES.CHAMPION_PICK);
-      });
-    }
   }
 }

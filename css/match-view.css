@@ -1,8 +1,8 @@
-/* 경기 상황 페이지 - 좁은 가로폭 최적화 */
+/* 경기 상황 페이지 - 컴팩트 레이아웃 */
 .match-view {
-  max-width: 360px;
+  max-width: 400px;
   margin: 0 auto;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-xs);
 }
 
 /* 팀 헤더 */
@@ -10,14 +10,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-lg);
-  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-xs);
 }
 
 .match-view__team-name {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   font-weight: 700;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .match-view__vs {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
   font-weight: 600;
 }
@@ -39,17 +39,17 @@
 .position-rows {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
 }
 
 .position-row {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
   align-items: center;
-  padding: var(--spacing-sm);
+  padding: var(--spacing-xs);
   background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
 }
 
 /* 포지션 아이콘 (중앙) */
@@ -57,8 +57,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--champion-icon-md);
-  height: var(--champion-icon-md);
+  width: 40px;
+  height: 40px;
 }
 
 .position-row__icon-img {
@@ -70,27 +70,26 @@
 /* 선수 카드 */
 .player-card {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: var(--spacing-xs);
-  padding: var(--spacing-sm);
 }
 
 .player-card--blue {
-  align-items: center;
-  text-align: center;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
 }
 
 .player-card--red {
-  align-items: center;
-  text-align: center;
+  flex-direction: row;
+  justify-content: flex-start;
 }
 
 .player-card__icon {
-  width: var(--champion-icon-md);
-  height: var(--champion-icon-md);
+  width: 40px;
+  height: 40px;
   border-radius: var(--radius-sm);
   object-fit: cover;
+  flex-shrink: 0;
 }
 
 .player-card--blue .player-card__icon {
@@ -101,20 +100,35 @@
   border: 2px solid var(--color-red-team);
 }
 
+.player-card__info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.player-card--blue .player-card__info {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.player-card--red .player-card__info {
+  align-items: flex-start;
+  text-align: left;
+}
+
 .player-card__champion {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 600;
   color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .player-card__player {
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   color: var(--color-text-secondary);
-}
-
-/* 하단 네비게이션 */
-.match-view__nav {
-  margin-top: var(--spacing-lg);
-  display: flex;
-  justify-content: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

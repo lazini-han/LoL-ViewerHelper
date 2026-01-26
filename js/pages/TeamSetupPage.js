@@ -3,7 +3,7 @@
  */
 
 import { $, createElement, clearElement } from '../utils/dom.js';
-import { POSITIONS, POSITION_NAMES, ROUTES } from '../utils/constants.js';
+import { POSITIONS, POSITION_NAMES } from '../utils/constants.js';
 import { state } from '../state.js';
 
 export class TeamSetupPage {
@@ -22,8 +22,7 @@ export class TeamSetupPage {
 
     const page = createElement('div', { className: 'page team-setup' }, [
       createElement('h2', { className: 'page__title' }, '팀 설정'),
-      this.createForm(currentState),
-      this.createNavButtons()
+      this.createForm(currentState)
     ]);
 
     container.appendChild(page);
@@ -109,19 +108,6 @@ export class TeamSetupPage {
   }
 
   /**
-   * 네비게이션 버튼 생성
-   * @returns {Element}
-   */
-  createNavButtons() {
-    return createElement('div', { className: 'nav-buttons nav-buttons--end' }, [
-      createElement('button', {
-        className: 'btn btn--primary',
-        id: 'btn-next'
-      }, '다음 단계 →')
-    ]);
-  }
-
-  /**
    * 이벤트 연결
    */
   attachEvents() {
@@ -156,14 +142,6 @@ export class TeamSetupPage {
       btnSwap.addEventListener('click', () => {
         state.swapTeams();
         this.render(document.querySelector('.main'));
-      });
-    }
-
-    // 다음 단계 버튼
-    const btnNext = $('#btn-next');
-    if (btnNext) {
-      btnNext.addEventListener('click', () => {
-        this.router.navigate(ROUTES.CHAMPION_PICK);
       });
     }
   }

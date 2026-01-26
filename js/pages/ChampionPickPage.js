@@ -3,7 +3,7 @@
  */
 
 import { $, createElement, clearElement } from '../utils/dom.js';
-import { BLUE_SLOT_ORDER, RED_SLOT_ORDER, POSITION_NAMES, ROUTES } from '../utils/constants.js';
+import { BLUE_SLOT_ORDER, RED_SLOT_ORDER, POSITION_NAMES } from '../utils/constants.js';
 import { state } from '../state.js';
 import { championService } from '../services/ChampionService.js';
 
@@ -28,8 +28,7 @@ export class ChampionPickPage {
     const page = createElement('div', { className: 'page champion-pick' }, [
       this.createSearchArea(),
       this.createChampionGrid(),
-      this.createTeamSlots(currentState),
-      this.createNavButtons()
+      this.createTeamSlots(currentState)
     ]);
 
     container.appendChild(page);
@@ -170,23 +169,6 @@ export class ChampionPickPage {
   }
 
   /**
-   * 네비게이션 버튼 생성
-   * @returns {Element}
-   */
-  createNavButtons() {
-    return createElement('div', { className: 'nav-buttons' }, [
-      createElement('button', {
-        className: 'btn btn--secondary',
-        id: 'btn-prev'
-      }, '← 팀 설정'),
-      createElement('button', {
-        className: 'btn btn--primary',
-        id: 'btn-next'
-      }, '경기 시작 →')
-    ]);
-  }
-
-  /**
    * 이벤트 연결
    */
   attachEvents() {
@@ -200,21 +182,6 @@ export class ChampionPickPage {
 
     // 드래그 앤 드롭 이벤트
     this.attachDragEvents();
-
-    // 네비게이션 버튼
-    const btnPrev = $('#btn-prev');
-    if (btnPrev) {
-      btnPrev.addEventListener('click', () => {
-        this.router.navigate(ROUTES.TEAM_SETUP);
-      });
-    }
-
-    const btnNext = $('#btn-next');
-    if (btnNext) {
-      btnNext.addEventListener('click', () => {
-        this.router.navigate(ROUTES.MATCH_VIEW);
-      });
-    }
   }
 
   /**
