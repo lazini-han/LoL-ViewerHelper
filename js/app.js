@@ -51,10 +51,27 @@ class Router {
 
     if (page && this.container) {
       page.render(this.container);
+      this.updateNavigation(hash);
     } else {
       // 기본 페이지로 이동
       this.navigate(ROUTES.TEAM_SETUP);
     }
+  }
+
+  /**
+   * 네비게이션 활성 상태 업데이트
+   * @param {string} currentRoute
+   */
+  updateNavigation(currentRoute) {
+    const navItems = document.querySelectorAll('.nav__item');
+    navItems.forEach(item => {
+      const route = item.dataset.route;
+      if (route === currentRoute) {
+        item.classList.add('nav__item--active');
+      } else {
+        item.classList.remove('nav__item--active');
+      }
+    });
   }
 
   /**
