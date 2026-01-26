@@ -14,6 +14,15 @@ export const POSITION_NAMES = {
   SUP: '서포터'
 };
 
+// 포지션 아이콘 경로
+export const POSITION_ICONS = {
+  TOP: 'assets/icons/Top.webp',
+  JG: 'assets/icons/Jungle.webp',
+  MID: 'assets/icons/Mid.webp',
+  ADC: 'assets/icons/ADC.webp',
+  SUP: 'assets/icons/Support.webp'
+};
+
 // 챔피언 픽 페이지의 슬롯 순서
 // 블루팀: 왼쪽부터 SUP(5), ADC(4), MID(3), JG(2), TOP(1)
 export const BLUE_SLOT_ORDER = ['SUP', 'ADC', 'MID', 'JG', 'TOP'];

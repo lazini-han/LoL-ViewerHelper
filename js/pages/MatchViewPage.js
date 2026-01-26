@@ -3,7 +3,7 @@
  */
 
 import { $, createElement, clearElement } from '../utils/dom.js';
-import { POSITIONS, POSITION_NAMES, ROUTES } from '../utils/constants.js';
+import { POSITIONS, POSITION_NAMES, POSITION_ICONS, ROUTES } from '../utils/constants.js';
 import { state } from '../state.js';
 
 export class MatchViewPage {
@@ -70,7 +70,13 @@ export class MatchViewPage {
 
     return createElement('div', { className: 'position-row' }, [
       this.createPlayerCard(bluePlayer, 'blue'),
-      createElement('div', { className: 'position-row__icon' }, POSITION_NAMES[position]),
+      createElement('div', { className: 'position-row__icon' }, [
+        createElement('img', {
+          className: 'position-row__icon-img',
+          src: POSITION_ICONS[position],
+          alt: POSITION_NAMES[position]
+        })
+      ]),
       this.createPlayerCard(redPlayer, 'red')
     ]);
   }
