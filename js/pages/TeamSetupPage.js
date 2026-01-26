@@ -38,7 +38,22 @@ export class TeamSetupPage {
   createForm(currentState) {
     return createElement('div', { className: 'team-setup__form' }, [
       this.createTeamCard('blue', currentState.blueTeam),
+      this.createSwapButton(),
       this.createTeamCard('red', currentState.redTeam)
+    ]);
+  }
+
+  /**
+   * 진영 교환 버튼 생성
+   * @returns {Element}
+   */
+  createSwapButton() {
+    return createElement('div', { className: 'team-setup__swap' }, [
+      createElement('button', {
+        className: 'btn btn--swap',
+        id: 'btn-swap',
+        title: '진영 교환'
+      }, '⇄')
     ]);
   }
 
@@ -134,6 +149,15 @@ export class TeamSetupPage {
         }
       });
     });
+
+    // 진영 교환 버튼
+    const btnSwap = $('#btn-swap');
+    if (btnSwap) {
+      btnSwap.addEventListener('click', () => {
+        state.swapTeams();
+        this.render(document.querySelector('.main'));
+      });
+    }
 
     // 다음 단계 버튼
     const btnNext = $('#btn-next');

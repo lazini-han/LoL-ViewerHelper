@@ -150,6 +150,17 @@ class State {
   }
 
   /**
+   * 두 팀의 진영(데이터) 교환
+   */
+  swapTeams() {
+    const temp = { ...this.data.blueTeam };
+    this.data.blueTeam = { ...this.data.redTeam };
+    this.data.redTeam = temp;
+    this.save();
+    this.notify();
+  }
+
+  /**
    * 상태 초기화
    */
   reset() {
