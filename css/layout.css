@@ -49,6 +49,12 @@
   font-weight: 600;
 }
 
+.nav__divider {
+  color: var(--color-border);
+  font-size: var(--font-size-xs);
+  align-self: center;
+}
+
 /* 메인 콘텐츠 */
 .main {
   flex: 1;

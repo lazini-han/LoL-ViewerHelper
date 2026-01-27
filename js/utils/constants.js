@@ -37,7 +37,9 @@ export const TEAM_RED = 'red';
 export const ROUTES = {
   TEAM_SETUP: 'team-setup',
   CHAMPION_PICK: 'champion-pick',
-  MATCH_VIEW: 'match-view'
+  MATCH_VIEW: 'match-view',
+  OBJECT_DICT: 'object-dict',
+  ITEM_DICT: 'item-dict'
 };
 
 // LocalStorage 키

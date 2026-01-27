@@ -1,0 +1,95 @@
+{
+  "version": "2026 Season 1",
+  "objects": [
+    {
+      "id": "infernal_dragon",
+      "nameKr": "화염 드래곤",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/dragon_circle_fire.png",
+      "category": "드래곤",
+      "effect": "공격력/주문력 6% 증가 (중첩당)",
+      "description": "팀의 전체 화력을 올려주어 한타 승률에 직접적 영향을 주는 공격적인 드래곤. 2026 시즌부터 내구도 15% 증가",
+      "spawnTime": "5분"
+    },
+    {
+      "id": "mountain_dragon",
+      "nameKr": "대지 드래곤",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/dragon_circle_earth.png",
+      "category": "드래곤",
+      "effect": "방어력/마법저항력 9% 증가 (중첩당)",
+      "description": "팀의 전체 방어력을 올려주어 생존력을 높이는 방어적인 드래곤. 2026 시즌부터 내구도 15% 증가",
+      "spawnTime": "5분"
+    },
+    {
+      "id": "ocean_dragon",
+      "nameKr": "바다 드래곤",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/dragon_circle_water.png",
+      "category": "드래곤",
+      "effect": "잃은 체력의 3% 회복 (5초마다, 중첩당)",
+      "description": "지속적인 체력 회복으로 라인전과 장기전에 유리해지는 드래곤. 2026 시즌부터 내구도 15% 증가",
+      "spawnTime": "5분"
+    },
+    {
+      "id": "cloud_dragon",
+      "nameKr": "바람 드래곤",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/dragon_circle_air.png",
+      "category": "드래곤",
+      "effect": "궁극기 재사용 대기시간 7% 감소 (중첩당)",
+      "description": "궁극기를 더 자주 사용할 수 있게 해주어 한타 주도권을 높이는 드래곤. 2026 시즌부터 내구도 15% 증가",
+      "spawnTime": "5분"
+    },
+    {
+      "id": "hextech_dragon",
+      "nameKr": "헥스테크 드래곤",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/dragon_circle_hextech.png",
+      "category": "드래곤",
+      "effect": "공격 속도 7.5%, 스킬 가속 7.5 증가 (중첩당)",
+      "description": "공격 속도와 스킬 가속을 높여 딜러와 마법사 모두에게 유용한 드래곤. 2026 시즌부터 내구도 15% 증가",
+      "spawnTime": "5분"
+    },
+    {
+      "id": "chemtech_dragon",
+      "nameKr": "화학공학 드래곤",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/dragon_circle_chemtech.png",
+      "category": "드래곤",
+      "effect": "체력이 낮을 때 피해량 증가, 받는 피해 감소 (중첩당)",
+      "description": "위기 상황에서 역전 가능성을 높여주는 드래곤. 2026 시즌부터 내구도 15% 증가",
+      "spawnTime": "5분"
+    },
+    {
+      "id": "elder_dragon",
+      "nameKr": "장로 드래곤",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/dragon_circle.png",
+      "category": "드래곤",
+      "effect": "모든 드래곤 버프 강화 + 처형 효과 (20% 이하 체력 적 즉사)",
+      "description": "드래곤 영혼 획득 후 등장하는 가장 강력한 드래곤. 처형 효과로 한타를 일방적으로 유리하게 만듦",
+      "spawnTime": "드래곤 영혼 획득 후"
+    },
+    {
+      "id": "baron",
+      "nameKr": "내셔남작",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/baron_circle.png",
+      "category": "대형몹",
+      "effect": "주변 아군 미니언 강화 (빠른 타워 공략 가능)",
+      "description": "게임의 최강 오브젝트. 미니언을 강화시켜 타워 공략이 쉬워져 게임을 끝낼 수 있는 결정적 버프. 2026 시즌: 더 강력하고 위험해짐, 주변 적 방어력 감소 효과 복귀",
+      "spawnTime": "20분"
+    },
+    {
+      "id": "herald",
+      "nameKr": "전령",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/sruriftherald_circle.png",
+      "category": "대형몹",
+      "effect": "소환하여 타워 공격 (타워에 큰 피해)",
+      "description": "처치 후 아이템을 얻어 원하는 위치에 소환해 타워를 밀 수 있음. 2026 시즌: 눈 쿨다운 6초 고정으로 솔로 처치가 쉬워짐",
+      "spawnTime": "8분"
+    },
+    {
+      "id": "void_grub",
+      "nameKr": "공허 유충",
+      "icon": "https://raw.communitydragon.org/latest/game/assets/ux/announcements/sru_voidgrub_circle.png",
+      "category": "대형몹",
+      "effect": "공허 미니언 소환 (타워 공격 시 추가 피해)",
+      "description": "타워 공략에 도움이 되는 오브젝트. 2026 시즌: 라이너가 혼자 한 마리씩 빠르게 처치 가능, 막타를 친 사람에게만 골드 지급",
+      "spawnTime": "5분"
+    }
+  ]
+}

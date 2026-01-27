@@ -1,0 +1,232 @@
+/* 사전 페이지 공통 스타일 */
+.dictionary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  height: calc(100vh - 120px);
+}
+
+/* 필터 영역 (검색 + 카테고리) */
+.dictionary__filters {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.dictionary__search-input {
+  max-width: 200px;
+}
+
+.dictionary__categories {
+  display: flex;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+}
+
+.dictionary__category-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.dictionary__category-btn:hover {
+  background-color: var(--color-bg-card);
+}
+
+.dictionary__category-btn--active {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* 그리드 영역 */
+.dictionary__grid-container {
+  flex: 1;
+  overflow-y: auto;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+}
+
+.dictionary__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+/* 사전 아이템 */
+.dict-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.dict-item:hover {
+  background-color: var(--color-bg-card);
+}
+
+.dict-item--selected {
+  background-color: var(--color-bg-card);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 8px rgba(252, 163, 17, 0.4);
+}
+
+.dict-item__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  background-color: var(--color-bg-card);
+}
+
+.dict-item__icon--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-accent);
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-accent);
+}
+
+.dict-item__name {
+  font-size: var(--font-size-xs);
+  text-align: center;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* 상세 정보 패널 */
+.dictionary__detail {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  min-height: 120px;
+}
+
+.dictionary__detail--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+/* 상세 패널 내용 */
+.detail-panel {
+  display: flex;
+  gap: var(--spacing-lg);
+  align-items: flex-start;
+}
+
+.detail-panel__icon {
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: var(--color-bg-card);
+}
+
+.detail-panel__icon--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-accent);
+}
+
+.detail-panel__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.detail-panel__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.detail-panel__name {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.detail-panel__category {
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+  border-radius: var(--radius-sm);
+}
+
+.detail-panel__effect {
+  font-size: var(--font-size-sm);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.detail-panel__description {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.detail-panel__meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  opacity: 0.8;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .dictionary__filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dictionary__search-input {
+    max-width: none;
+  }
+
+  /* 상세 패널은 가로 레이아웃 유지 (높이 절약) */
+  .detail-panel__icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .detail-panel__icon--placeholder {
+    font-size: var(--font-size-lg);
+  }
+
+  .detail-panel__name {
+    font-size: var(--font-size-base);
+  }
+
+  .detail-panel__effect,
+  .detail-panel__description {
+    font-size: var(--font-size-xs);
+  }
+}

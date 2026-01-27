@@ -7,6 +7,8 @@ import { ROUTES } from './utils/constants.js';
 import { TeamSetupPage } from './pages/TeamSetupPage.js';
 import { ChampionPickPage } from './pages/ChampionPickPage.js';
 import { MatchViewPage } from './pages/MatchViewPage.js';
+import { ObjectDictPage } from './pages/ObjectDictPage.js';
+import { ItemDictPage } from './pages/ItemDictPage.js';
 
 /**
  * 라우터 클래스
@@ -101,6 +103,8 @@ async function initApp() {
   router.register(ROUTES.TEAM_SETUP, new TeamSetupPage(router));
   router.register(ROUTES.CHAMPION_PICK, new ChampionPickPage(router));
   router.register(ROUTES.MATCH_VIEW, new MatchViewPage(router));
+  router.register(ROUTES.OBJECT_DICT, new ObjectDictPage(router));
+  router.register(ROUTES.ITEM_DICT, new ItemDictPage(router));
 
   // 라우터 시작
   router.start();

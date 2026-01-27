@@ -339,3 +339,9 @@ const POSITIONS = ['TOP', 'JG', 'MID', 'ADC', 'SUP'];
 const BLUE_SLOT_ORDER = ['SUP', 'ADC', 'MID', 'JG', 'TOP']; // 좌→우: 5,4,3,2,1
 const RED_SLOT_ORDER = ['TOP', 'JG', 'MID', 'ADC', 'SUP'];  // 좌→우: 1,2,3,4,5
 ```
+
+---
+
+## 8. 다음 단계
+
+1단계 MVP 완료 후 추가 기능 개발은 [PLAN_PHASE2.md](PLAN_PHASE2.md) 참조
