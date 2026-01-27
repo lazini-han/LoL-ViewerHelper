@@ -13,6 +13,29 @@ class ItemService {
   }
 
   /**
+   * 아이템 등급 분류
+   * @param {Object} item - Data Dragon 아이템 데이터
+   * @returns {string}
+   */
+  _classifyTier(item) {
+    // depth 기반 분류 (Data Dragon 기준)
+    const depth = item.depth || 1;
+
+    // 완성 아이템: depth=3 또는 into가 없고 from이 있는 경우
+    if (depth >= 3 || (!item.into && item.from && item.from.length > 0)) {
+      return '완성';
+    }
+
+    // 중급 아이템: depth=2 또는 from과 into 둘 다 있는 경우
+    if (depth === 2 || (item.from && item.into)) {
+      return '중급';
+    }
+
+    // 기본 아이템: depth=1 또는 from이 없는 경우
+    return '기본';
+  }
+
+  /**
    * 태그를 기반으로 카테고리 분류
    * @param {Array} tags
    * @returns {string}
@@ -86,7 +109,7 @@ class ItemService {
 
       // Data Dragon 형식을 내부 형식으로 변환
       this.items = Object.entries(data.data)
-        .filter(([id, item]) => {
+        .filter(([, item]) => {
           // 구매 가능한 아이템만 필터링 (숨김 아이템 제외)
           return item.gold && item.gold.purchasable && !item.hideFromAll;
         })
@@ -94,6 +117,7 @@ class ItemService {
           id: parseInt(id),
           nameKr: item.name,
           category: this._classifyCategory(item.tags),
+          tier: this._classifyTier(item),
           effect: this._cleanDescription(item.plaintext || ''),
           description: this._cleanDescription(item.description),
           tags: item.tags || [],
@@ -164,6 +188,46 @@ class ItemService {
     const categoryOrder = ['전체', '공격', '마법', '방어', '서포터', '신발', '정글', '소모품', '기타'];
     const existingCategories = new Set(this.items.map(item => item.category));
     return categoryOrder.filter(cat => cat === '전체' || existingCategories.has(cat));
+  }
+
+  /**
+   * 등급별 아이템 가져오기
+   * @param {string} tier
+   * @returns {Array}
+   */
+  getByTier(tier) {
+    if (!tier || tier === '전체') {
+      return this.items;
+    }
+    return this.items.filter(item => item.tier === tier);
+  }
+
+  /**
+   * 모든 등급 목록 가져오기
+   * @returns {Array}
+   */
+  getTiers() {
+    return ['전체', '완성', '중급', '기본'];
+  }
+
+  /**
+   * 카테고리와 등급으로 필터링
+   * @param {string} category
+   * @param {string} tier
+   * @returns {Array}
+   */
+  getFiltered(category, tier) {
+    let items = this.items;
+
+    if (category && category !== '전체') {
+      items = items.filter(item => item.category === category);
+    }
+
+    if (tier && tier !== '전체') {
+      items = items.filter(item => item.tier === tier);
+    }
+
+    return items;
   }
 
   /**

@@ -10,6 +10,7 @@ export class ItemDictPage {
     this.router = router;
     this.selectedItem = null;
     this.currentCategory = '전체';
+    this.currentTier = '전체';
   }
 
   /**
@@ -34,11 +35,12 @@ export class ItemDictPage {
   }
 
   /**
-   * 필터 영역 생성 (검색 + 카테고리)
+   * 필터 영역 생성 (검색 + 카테고리 + 등급)
    * @returns {Element}
    */
   createFilters() {
     const categories = itemService.getCategories();
+    const tiers = itemService.getTiers();
 
     return createElement('div', { className: 'dictionary__filters' }, [
       createElement('input', {
@@ -47,12 +49,24 @@ export class ItemDictPage {
         placeholder: '아이템 검색...',
         id: 'item-search'
       }),
-      createElement('div', { className: 'dictionary__categories', id: 'item-categories' },
-        categories.map(cat => createElement('button', {
-          className: `dictionary__category-btn ${cat === this.currentCategory ? 'dictionary__category-btn--active' : ''}`,
-          dataset: { category: cat }
-        }, cat))
-      )
+      createElement('div', { className: 'dictionary__filter-group' }, [
+        createElement('span', { className: 'dictionary__filter-label' }, '등급'),
+        createElement('div', { className: 'dictionary__tiers', id: 'item-tiers' },
+          tiers.map(tier => createElement('button', {
+            className: `dictionary__category-btn ${tier === this.currentTier ? 'dictionary__category-btn--active' : ''}`,
+            dataset: { tier: tier }
+          }, tier))
+        )
+      ]),
+      createElement('div', { className: 'dictionary__filter-group' }, [
+        createElement('span', { className: 'dictionary__filter-label' }, '유형'),
+        createElement('div', { className: 'dictionary__categories', id: 'item-categories' },
+          categories.map(cat => createElement('button', {
+            className: `dictionary__category-btn ${cat === this.currentCategory ? 'dictionary__category-btn--active' : ''}`,
+            dataset: { category: cat }
+          }, cat))
+        )
+      ])
     ]);
   }
 
@@ -87,7 +101,7 @@ export class ItemDictPage {
 
     clearElement(grid);
 
-    let items = itemService.getByCategory(this.currentCategory);
+    let items = itemService.getFiltered(this.currentCategory, this.currentTier);
     if (searchQuery) {
       items = items.filter(item =>
         item.nameKr.toLowerCase().includes(searchQuery.toLowerCase())
@@ -156,8 +170,10 @@ export class ItemDictPage {
       createElement('div', { className: 'detail-panel__info' }, [
         createElement('div', { className: 'detail-panel__header' }, [
           createElement('span', { className: 'detail-panel__name' }, item.nameKr),
+          createElement('span', { className: 'detail-panel__tier' }, item.tier),
           createElement('span', { className: 'detail-panel__category' }, item.category)
         ]),
+        createElement('p', { className: 'detail-panel__gold' }, `${item.gold} 골드`),
         createElement('p', { className: 'detail-panel__effect' }, item.effect),
         createElement('p', { className: 'detail-panel__description' }, item.description)
       ])
@@ -175,6 +191,25 @@ export class ItemDictPage {
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         this.renderGrid(e.target.value);
+      });
+    }
+
+    // 등급 버튼 이벤트
+    const tiers = $('#item-tiers');
+    if (tiers) {
+      tiers.addEventListener('click', (e) => {
+        const btn = e.target.closest('.dictionary__category-btn');
+        if (btn) {
+          this.currentTier = btn.dataset.tier;
+          // 활성 상태 업데이트
+          tiers.querySelectorAll('.dictionary__category-btn').forEach(b => {
+            b.classList.remove('dictionary__category-btn--active');
+          });
+          btn.classList.add('dictionary__category-btn--active');
+          // 그리드 다시 렌더링
+          const searchInput = $('#item-search');
+          this.renderGrid(searchInput ? searchInput.value : '');
+        }
       });
     }
 
