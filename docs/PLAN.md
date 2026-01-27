@@ -31,7 +31,8 @@ PJ.LoL-ViewerHelper/
 │   ├── components.css         # 공통 컴포넌트
 │   ├── team-setup.css         # 팀 설정 페이지
 │   ├── champion-pick.css      # 챔피언 픽 페이지
-│   └── match-view.css         # 경기 상황 페이지
+│   ├── match-view.css         # 경기 상황 페이지
+│   └── dictionary.css         # 사전 페이지 (오브젝트/아이템)
 │
 ├── js/
 │   ├── app.js                 # 앱 진입점, 라우팅
@@ -40,7 +41,9 @@ PJ.LoL-ViewerHelper/
 │   ├── pages/
 │   │   ├── TeamSetupPage.js   # 팀 설정 페이지
 │   │   ├── ChampionPickPage.js # 챔피언 픽 페이지
-│   │   └── MatchViewPage.js   # 경기 상황 페이지
+│   │   ├── MatchViewPage.js   # 경기 상황 페이지
+│   │   ├── ObjectDictPage.js  # 오브젝트 사전 페이지
+│   │   └── ItemDictPage.js    # 아이템 사전 페이지
 │   │
 │   ├── components/
 │   │   ├── ChampionGrid.js    # 챔피언 그리드 (드래그 소스)
@@ -50,6 +53,8 @@ PJ.LoL-ViewerHelper/
 │   │
 │   ├── services/
 │   │   ├── ChampionService.js # 챔피언 데이터 로딩
+│   │   ├── ObjectService.js   # 오브젝트 데이터 로딩
+│   │   ├── ItemService.js     # 아이템 데이터 로딩
 │   │   └── StorageService.js  # LocalStorage 관리
 │   │
 │   └── utils/
@@ -58,7 +63,9 @@ PJ.LoL-ViewerHelper/
 │       └── constants.js       # 상수 정의
 │
 ├── data/
-│   └── champions.json         # 챔피언 데이터
+│   ├── champions.json         # 챔피언 데이터
+│   ├── objects.json           # 오브젝트 데이터 (드래곤, 바론 등)
+│   └── items.json             # 아이템 데이터
 │
 └── assets/
     └── icons/                 # 포지션 아이콘 등
