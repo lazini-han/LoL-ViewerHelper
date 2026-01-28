@@ -9,8 +9,10 @@ export class ItemDictPage {
   constructor(router) {
     this.router = router;
     this.selectedItem = null;
-    this.currentCategory = '전체';
-    this.currentTier = '전체';
+    // 필터 상태 (디폴트 값 설정)
+    this.currentType = '메인';
+    this.currentTier = '전설급';
+    this.currentRole = '전체';
   }
 
   /**
@@ -35,12 +37,13 @@ export class ItemDictPage {
   }
 
   /**
-   * 필터 영역 생성 (검색 + 카테고리 + 등급)
+   * 필터 영역 생성 (종류 + 등급 + 역할 + 검색)
    * @returns {Element}
    */
   createFilters() {
-    const categories = itemService.getCategories();
+    const types = itemService.getTypes();
     const tiers = itemService.getTiers();
+    const roles = itemService.getRoles();
 
     return createElement('div', { className: 'dictionary__filters' }, [
       createElement('input', {
@@ -50,8 +53,17 @@ export class ItemDictPage {
         id: 'item-search'
       }),
       createElement('div', { className: 'dictionary__filter-group' }, [
+        createElement('span', { className: 'dictionary__filter-label' }, '종류'),
+        createElement('div', { className: 'dictionary__filter-buttons', id: 'item-types' },
+          types.map(type => createElement('button', {
+            className: `dictionary__category-btn ${type === this.currentType ? 'dictionary__category-btn--active' : ''}`,
+            dataset: { type: type }
+          }, type))
+        )
+      ]),
+      createElement('div', { className: 'dictionary__filter-group' }, [
         createElement('span', { className: 'dictionary__filter-label' }, '등급'),
-        createElement('div', { className: 'dictionary__tiers', id: 'item-tiers' },
+        createElement('div', { className: 'dictionary__filter-buttons', id: 'item-tiers' },
           tiers.map(tier => createElement('button', {
             className: `dictionary__category-btn ${tier === this.currentTier ? 'dictionary__category-btn--active' : ''}`,
             dataset: { tier: tier }
@@ -59,12 +71,12 @@ export class ItemDictPage {
         )
       ]),
       createElement('div', { className: 'dictionary__filter-group' }, [
-        createElement('span', { className: 'dictionary__filter-label' }, '유형'),
-        createElement('div', { className: 'dictionary__categories', id: 'item-categories' },
-          categories.map(cat => createElement('button', {
-            className: `dictionary__category-btn ${cat === this.currentCategory ? 'dictionary__category-btn--active' : ''}`,
-            dataset: { category: cat }
-          }, cat))
+        createElement('span', { className: 'dictionary__filter-label' }, '역할'),
+        createElement('div', { className: 'dictionary__filter-buttons', id: 'item-roles' },
+          roles.map(role => createElement('button', {
+            className: `dictionary__category-btn ${role === this.currentRole ? 'dictionary__category-btn--active' : ''}`,
+            dataset: { role: role }
+          }, role))
         )
       ])
     ]);
@@ -101,7 +113,12 @@ export class ItemDictPage {
 
     clearElement(grid);
 
-    let items = itemService.getFiltered(this.currentCategory, this.currentTier);
+    let items = itemService.getFiltered({
+      type: this.currentType,
+      tier: this.currentTier,
+      role: this.currentRole
+    });
+
     if (searchQuery) {
       items = items.filter(item =>
         item.nameKr.toLowerCase().includes(searchQuery.toLowerCase())
@@ -118,7 +135,6 @@ export class ItemDictPage {
         alt: item.nameKr,
         loading: 'lazy'
       });
-      // 이미지 로드 실패 시 이름 첫 글자로 대체
       imgEl.onerror = () => {
         imgEl.style.display = 'none';
         const placeholder = createElement('div', {
@@ -171,7 +187,7 @@ export class ItemDictPage {
         createElement('div', { className: 'detail-panel__header' }, [
           createElement('span', { className: 'detail-panel__name' }, item.nameKr),
           createElement('span', { className: 'detail-panel__tier' }, item.tier),
-          createElement('span', { className: 'detail-panel__category' }, item.category)
+          createElement('span', { className: 'detail-panel__role' }, item.role)
         ]),
         createElement('p', { className: 'detail-panel__gold' }, `${item.gold} 골드`),
         createElement('p', { className: 'detail-panel__effect' }, item.effect),
@@ -194,38 +210,51 @@ export class ItemDictPage {
       });
     }
 
-    // 등급 버튼 이벤트
-    const tiers = $('#item-tiers');
-    if (tiers) {
-      tiers.addEventListener('click', (e) => {
+    // 종류 필터 이벤트
+    const types = $('#item-types');
+    if (types) {
+      types.addEventListener('click', (e) => {
         const btn = e.target.closest('.dictionary__category-btn');
         if (btn) {
-          this.currentTier = btn.dataset.tier;
-          // 활성 상태 업데이트
-          tiers.querySelectorAll('.dictionary__category-btn').forEach(b => {
+          this.currentType = btn.dataset.type;
+          types.querySelectorAll('.dictionary__category-btn').forEach(b => {
             b.classList.remove('dictionary__category-btn--active');
           });
           btn.classList.add('dictionary__category-btn--active');
-          // 그리드 다시 렌더링
           const searchInput = $('#item-search');
           this.renderGrid(searchInput ? searchInput.value : '');
         }
       });
     }
 
-    // 카테고리 버튼 이벤트
-    const categories = $('#item-categories');
-    if (categories) {
-      categories.addEventListener('click', (e) => {
+    // 등급 필터 이벤트
+    const tiers = $('#item-tiers');
+    if (tiers) {
+      tiers.addEventListener('click', (e) => {
         const btn = e.target.closest('.dictionary__category-btn');
         if (btn) {
-          this.currentCategory = btn.dataset.category;
-          // 활성 상태 업데이트
-          categories.querySelectorAll('.dictionary__category-btn').forEach(b => {
+          this.currentTier = btn.dataset.tier;
+          tiers.querySelectorAll('.dictionary__category-btn').forEach(b => {
             b.classList.remove('dictionary__category-btn--active');
           });
           btn.classList.add('dictionary__category-btn--active');
-          // 그리드 다시 렌더링
+          const searchInput = $('#item-search');
+          this.renderGrid(searchInput ? searchInput.value : '');
+        }
+      });
+    }
+
+    // 역할 필터 이벤트
+    const roles = $('#item-roles');
+    if (roles) {
+      roles.addEventListener('click', (e) => {
+        const btn = e.target.closest('.dictionary__category-btn');
+        if (btn) {
+          this.currentRole = btn.dataset.role;
+          roles.querySelectorAll('.dictionary__category-btn').forEach(b => {
+            b.classList.remove('dictionary__category-btn--active');
+          });
+          btn.classList.add('dictionary__category-btn--active');
           const searchInput = $('#item-search');
           this.renderGrid(searchInput ? searchInput.value : '');
         }
