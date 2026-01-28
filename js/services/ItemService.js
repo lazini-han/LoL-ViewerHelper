@@ -108,10 +108,22 @@ class ItemService {
       const data = await response.json();
 
       // Data Dragon 형식을 내부 형식으로 변환
-      this.items = Object.entries(data.data)
-        .filter(([, item]) => {
+      const allItems = Object.entries(data.data)
+        .filter(([id, item]) => {
+          const itemId = parseInt(id);
           // 구매 가능한 아이템만 필터링 (숨김 아이템 제외)
-          return item.gold && item.gold.purchasable && !item.hideFromAll;
+          if (!item.gold || !item.gold.purchasable || item.hideFromAll) {
+            return false;
+          }
+          // 특수 모드 아이템 제외 (ID 200000 이상: TFT, 오른 업그레이드 등)
+          if (itemId >= 200000) {
+            return false;
+          }
+          // 소환사의 협곡(맵 ID 11)에서 사용 불가능한 아이템 제외
+          if (item.maps && item.maps['11'] === false) {
+            return false;
+          }
+          return true;
         })
         .map(([id, item]) => ({
           id: parseInt(id),
@@ -123,7 +135,19 @@ class ItemService {
           tags: item.tags || [],
           gold: item.gold ? item.gold.total : 0,
           stats: item.stats || {}
-        }))
+        }));
+
+      // 같은 이름의 중복 아이템 제거 (낮은 ID 우선)
+      const seenNames = new Map();
+      this.items = allItems
+        .sort((a, b) => a.id - b.id) // ID 오름차순 정렬
+        .filter(item => {
+          if (seenNames.has(item.nameKr)) {
+            return false; // 이미 같은 이름의 아이템이 있으면 제외
+          }
+          seenNames.set(item.nameKr, true);
+          return true;
+        })
         .sort((a, b) => a.gold - b.gold); // 가격순 정렬
 
       this.loaded = true;
