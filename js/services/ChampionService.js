@@ -2,10 +2,14 @@
  * 챔피언 데이터 서비스
  */
 
+const DDRAGON_VERSION = '14.24.1';
+const DDRAGON_BASE = `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}`;
+
 class ChampionService {
   constructor() {
     this.champions = [];
     this.loaded = false;
+    this.detailCache = new Map(); // 챔피언 상세 정보 캐시
   }
 
   /**
@@ -74,6 +78,84 @@ class ChampionService {
    */
   getImageUrl(championId, type = 'square') {
     return `https://cdn.communitydragon.org/latest/champion/${championId}/${type}`;
+  }
+
+  /**
+   * 챔피언 상세 정보 가져오기 (Data Dragon API)
+   * @param {string} championNameEn - 영어 이름
+   * @returns {Promise<Object|null>}
+   */
+  async getChampionDetail(championNameEn) {
+    if (!championNameEn) return null;
+
+    // 캐시 확인
+    if (this.detailCache.has(championNameEn)) {
+      return this.detailCache.get(championNameEn);
+    }
+
+    try {
+      const response = await fetch(`${DDRAGON_BASE}/data/ko_KR/champion/${championNameEn}.json`);
+      if (!response.ok) {
+        throw new Error('챔피언 상세 정보를 불러올 수 없습니다.');
+      }
+      const data = await response.json();
+      const champData = data.data[championNameEn];
+      
+      if (champData) {
+        const detail = this.parseChampionDetail(champData);
+        this.detailCache.set(championNameEn, detail);
+        return detail;
+      }
+      return null;
+    } catch (e) {
+      console.error('챔피언 상세 정보 로드 실패:', e);
+      return null;
+    }
+  }
+
+  /**
+   * 챔피언 상세 정보 파싱
+   * @param {Object} champData - Data Dragon 챔피언 데이터
+   * @returns {Object}
+   */
+  parseChampionDetail(champData) {
+    const spells = champData.spells.map((spell, index) => {
+      const keys = ['Q', 'W', 'E', 'R'];
+      return {
+        key: keys[index],
+        name: spell.name,
+        description: this.stripHtml(spell.description),
+        cooldown: spell.cooldownBurn,
+        cost: spell.costBurn,
+        image: `${DDRAGON_BASE}/img/spell/${spell.image.full}`
+      };
+    });
+
+    const passive = {
+      name: champData.passive.name,
+      description: this.stripHtml(champData.passive.description),
+      image: `${DDRAGON_BASE}/img/passive/${champData.passive.image.full}`
+    };
+
+    return {
+      id: champData.key,
+      name: champData.name,
+      title: champData.title,
+      lore: champData.lore,
+      tags: champData.tags, // Fighter, Mage, Tank, etc.
+      info: champData.info, // attack, defense, magic, difficulty
+      passive,
+      spells
+    };
+  }
+
+  /**
+   * HTML 태그 제거
+   * @param {string} html
+   * @returns {string}
+   */
+  stripHtml(html) {
+    return html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
   }
 }
 

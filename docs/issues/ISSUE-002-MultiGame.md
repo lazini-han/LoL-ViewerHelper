@@ -5,6 +5,34 @@
 
 ---
 
+## 구현 완료 내용
+
+### 1. 상태 구조 변경 (`state.js`)
+- `games` 객체: 1~5 게임별 챔피언 정보
+- `currentGame`: 현재 선택된 게임 번호
+- `globalBans`: 블루/레드 각 5개 밴 슬롯
+- 기존 데이터 마이그레이션 로직 포함
+- 새 메서드: `setCurrentGame`, `getCurrentGameChampions`, `getPickedChampionsInOtherGames`, `addGlobalBan`, `removeGlobalBan`, `swapGlobalBans`, `resetCurrentGameAndBans`, `clearTeam`
+
+### 2. 네비게이션 (`index.html`, `layout.css`)
+- 상단 좌측: 기존 네비게이터
+- 상단 우측: 경기 선택 탭 (1~5)
+
+### 3. 챔피언 픽 페이지 (`ChampionPickPage.js`, `champion-pick.css`)
+- 글로벌 밴 영역 (드래그앤드롭 지원)
+- 진영 교환 버튼 (⇄)
+- 초기화 버튼
+- 챔피언 표시 스타일 (현재 픽, 다른 게임 픽, 글로벌 밴)
+
+### 4. 팀 설정 페이지 (`TeamSetupPage.js`, `team-setup.css`)
+- 진영 색깔 제거 (팀 A, 팀 B)
+- 비우기 버튼 추가
+
+### 5. 경기 화면 페이지 (`MatchViewPage.js`)
+- 현재 선택된 게임의 챔피언 정보 표시
+
+---
+
 ## 문제 요약
 
 현재 앱은 단일 경기만 지원합니다. LoL 대회에서는 동일한 두 팀이 진영(블루/레드)을 교대하며 최대 5번까지 경기하는 BO5(Best of 5) 형식이 일반적입니다. 이를 지원하기 위해 다음 기능이 필요합니다:

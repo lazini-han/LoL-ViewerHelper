@@ -1,8 +1,11 @@
 /* 경기 상황 페이지 - 컴팩트 레이아웃 */
 .match-view {
-  max-width: 500px;
+  max-width: 700px;
   margin: 0 auto;
   padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
 }
 
 /* 팀 헤더 */
@@ -131,4 +134,141 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* 클릭 가능한 카드 */
+.player-card--clickable {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.player-card--clickable:hover {
+  opacity: 0.8;
+}
+
+.player-card--clickable:hover .player-card__icon {
+  transform: scale(1.05);
+}
+
+.player-card--selected .player-card__icon {
+  box-shadow: 0 0 0 3px var(--color-accent);
+}
+
+/* 챔피언 상세 정보 영역 */
+.champion-detail {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
+  min-height: 200px;
+}
+
+.champion-detail__placeholder,
+.champion-detail__loading,
+.champion-detail__error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.champion-detail__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+/* 챔피언 헤더 */
+.champion-detail__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.champion-detail__name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0;
+}
+
+.champion-detail__title {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.champion-detail__roles {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+  background-color: var(--color-bg-card);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+/* 스킬 행 */
+.skill-row {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: flex-start;
+}
+
+.skill-row__icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+  background-color: var(--color-bg-card);
+}
+
+.skill-row__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.skill-row__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: 4px;
+  flex-wrap: wrap;
+}
+
+.skill-row__key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-accent);
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+}
+
+.skill-row__name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.skill-row__cooldown {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.skill-row__desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.4;
+  margin: 0;
+  /* 2줄로 제한 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
