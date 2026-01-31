@@ -264,11 +264,7 @@
 .skill-row__desc {
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 0;
-  /* 2줄로 제한 */
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  word-break: keep-all;
 }

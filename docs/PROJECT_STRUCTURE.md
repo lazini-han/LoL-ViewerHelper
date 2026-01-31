@@ -86,18 +86,29 @@ PJ.LoL-ViewerHelper/
 |------|------|
 | `js/state.js` | 전역 상태 관리 싱글톤, LocalStorage 저장/로드 |
 
-**상태 구조**:
+**상태 구조** (v0.5.0 멀티게임 지원):
 
 ```javascript
 {
-  blueTeam: {
-    name: "팀명",
-    players: [
-      { position: "TOP", name: "선수명", champion: { id, nameKr, thumbnail } },
-      // ... 5명
-    ]
+  // 팀 기본 정보 (모든 게임 공통)
+  blueTeam: { name: "팀명", players: [{ position, name }] },
+  redTeam: { name: "팀명", players: [{ position, name }] },
+  
+  // 현재 선택된 게임 번호 (1~5)
+  currentGame: 1,
+  
+  // 게임별 챔피언 픽 정보
+  games: {
+    1: { blueTeam: { TOP: championObj, ... }, redTeam: { ... } },
+    2: { ... },
+    // ... 최대 5게임
   },
-  redTeam: { /* 동일 구조 */ }
+  
+  // 글로벌 밴 (전체 시리즈 공통, 팀당 5개)
+  globalBans: {
+    blue: [championObj, null, null, null, null],
+    red: [championObj, null, null, null, null]
+  }
 }
 ```
 
@@ -105,15 +116,17 @@ PJ.LoL-ViewerHelper/
 
 | 파일 | 역할 | 주요 기능 |
 |------|------|----------|
-| `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력 |
-| `ChampionPickPage.js` | 챔피언 할당 | 드래그앤드롭, 검색 |
-| `MatchViewPage.js` | 경기 정보 표시 | 좁은 가로폭 레이아웃 |
+| `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력, 비우기 버튼 |
+| `ChampionPickPage.js` | 챔피언 할당 | 드래그앤드롭, 검색, 글로벌 밴, 진영 교환, 초기화 |
+| `MatchViewPage.js` | 경기 정보 표시 | 챔피언 클릭 시 상세 정보 (스킬, 쿨타임 등) |
 
 ### 3.4 서비스
 
 | 파일 | 역할 |
 |------|------|
-| `ChampionService.js` | 챔피언 데이터 로딩, 검색, 캐싱 |
+| `ChampionService.js` | 챔피언 데이터 로딩, 검색, 상세 정보 (Data Dragon API), 캐싱 |
+| `ItemService.js` | 아이템 데이터 로딩 |
+| `ObjectService.js` | 오브젝트 데이터 로딩 |
 
 ### 3.5 유틸리티
 
