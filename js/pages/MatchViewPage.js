@@ -138,7 +138,7 @@ export class MatchViewPage {
       id: 'champion-detail' 
     }, [
       createElement('div', { className: 'champion-detail__placeholder' }, [
-        createElement('p', null, '챔피언을 클릭하면 상세 정보가 표시됩니다')
+        createElement('p', {}, '챔피언을 클릭하면 상세 정보가 표시됩니다')
       ])
     ]);
   }
