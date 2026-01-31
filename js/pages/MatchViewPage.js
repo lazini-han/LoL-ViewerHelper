@@ -166,6 +166,21 @@ export class MatchViewPage {
       // 상세 정보 로드 및 표시
       await this.showChampionDetail(championName);
     });
+
+    // 스킬 아이콘 클릭 이벤트 (이벤트 위임)
+    const detailArea = $('#champion-detail');
+    if (detailArea) {
+      detailArea.addEventListener('click', (e) => {
+        const icon = e.target.closest('.skill-row__icon--clickable');
+        if (!icon) return;
+
+        const videoPath = icon.dataset.videoPath;
+        const posterPath = icon.dataset.videoPoster;
+        if (videoPath) {
+          this.playSkillVideo(videoPath, posterPath);
+        }
+      });
+    }
   }
 
   /**
@@ -180,7 +195,15 @@ export class MatchViewPage {
     clearElement(detailArea);
     detailArea.appendChild(createElement('div', { className: 'champion-detail__loading' }, '로딩 중...'));
 
-    const detail = await championService.getChampionDetail(championNameEn);
+    // 챔피언 ID 찾기
+    const champion = championService.search(championNameEn).find(c => c.nameEn === championNameEn);
+    const championId = champion?.id;
+
+    // 병렬로 데이터 로드
+    const [detail, skillVideos] = await Promise.all([
+      championService.getChampionDetail(championNameEn),
+      championId ? championService.getChampionSkillVideos(championId) : null
+    ]);
     
     if (!detail) {
       clearElement(detailArea);
@@ -189,15 +212,16 @@ export class MatchViewPage {
     }
 
     clearElement(detailArea);
-    detailArea.appendChild(this.createChampionDetailContent(detail));
+    detailArea.appendChild(this.createChampionDetailContent(detail, skillVideos));
   }
 
   /**
    * 챔피언 상세 정보 콘텐츠 생성
    * @param {Object} detail
+   * @param {Object|null} skillVideos
    * @returns {Element}
    */
-  createChampionDetailContent(detail) {
+  createChampionDetailContent(detail, skillVideos) {
     const roleMap = {
       'Fighter': '전사',
       'Tank': '탱커',
@@ -209,6 +233,9 @@ export class MatchViewPage {
     
     const roles = detail.tags.map(tag => roleMap[tag] || tag).join(', ');
 
+    // 패시브 비디오 정보
+    const passiveVideo = skillVideos?.passive || null;
+    
     return createElement('div', { className: 'champion-detail__content' }, [
       // 헤더: 이름, 역할
       createElement('div', { className: 'champion-detail__header' }, [
@@ -216,10 +243,15 @@ export class MatchViewPage {
         createElement('span', { className: 'champion-detail__title' }, detail.title),
         createElement('span', { className: 'champion-detail__roles' }, roles)
       ]),
+      // 비디오 플레이어 영역 (처음에는 숨김)
+      createElement('div', { className: 'skill-video-player', id: 'skill-video-player' }),
       // 패시브
-      this.createSkillRow('P', detail.passive),
+      this.createSkillRow('P', detail.passive, passiveVideo),
       // 스킬 Q, W, E, R
-      ...detail.spells.map(spell => this.createSkillRow(spell.key, spell))
+      ...detail.spells.map((spell, index) => {
+        const spellVideo = skillVideos?.spells?.[index] || null;
+        return this.createSkillRow(spell.key, spell, spellVideo);
+      })
     ]);
   }
 
@@ -227,25 +259,86 @@ export class MatchViewPage {
    * 스킬 행 생성
    * @param {string} key - P, Q, W, E, R
    * @param {Object} skill
+   * @param {Object|null} videoInfo - 비디오 정보
    * @returns {Element}
    */
-  createSkillRow(key, skill) {
+  createSkillRow(key, skill, videoInfo = null) {
     const cooldownText = skill.cooldown ? `쿨타임: ${skill.cooldown}초` : '';
+    const hasVideo = !!videoInfo?.videoPath;
+    
+    // 아이콘 (비디오가 있으면 클릭 가능)
+    const iconElement = createElement('img', { 
+      className: `skill-row__icon ${hasVideo ? 'skill-row__icon--clickable' : ''}`,
+      src: skill.image,
+      alt: skill.name,
+      dataset: hasVideo ? { 
+        videoPath: videoInfo.videoPath,
+        videoPoster: videoInfo.videoImagePath || ''
+      } : {}
+    });
     
     return createElement('div', { className: 'skill-row' }, [
-      createElement('img', { 
-        className: 'skill-row__icon',
-        src: skill.image,
-        alt: skill.name
-      }),
+      iconElement,
       createElement('div', { className: 'skill-row__info' }, [
         createElement('div', { className: 'skill-row__header' }, [
           createElement('span', { className: 'skill-row__key' }, key),
           createElement('span', { className: 'skill-row__name' }, skill.name),
+          hasVideo ? createElement('span', { className: 'skill-row__video-badge' }, '▶') : null,
           cooldownText ? createElement('span', { className: 'skill-row__cooldown' }, cooldownText) : null
         ].filter(Boolean)),
         createElement('p', { className: 'skill-row__desc' }, skill.description)
       ])
     ]);
+  }
+
+  /**
+   * 스킬 비디오 재생
+   * @param {string} videoPath
+   * @param {string} posterPath
+   */
+  playSkillVideo(videoPath, posterPath) {
+    const playerArea = $('#skill-video-player');
+    if (!playerArea) return;
+
+    clearElement(playerArea);
+    
+    const video = createElement('video', {
+      className: 'skill-video-player__video',
+      src: videoPath,
+      poster: posterPath,
+      muted: 'true',
+      loop: 'true',
+      playsinline: 'true',
+      autoplay: 'true',
+      controls: 'true'
+    });
+
+    const closeBtn = createElement('button', {
+      className: 'skill-video-player__close',
+      type: 'button'
+    }, '✕');
+
+    closeBtn.addEventListener('click', () => {
+      this.closeSkillVideo();
+    });
+
+    playerArea.appendChild(video);
+    playerArea.appendChild(closeBtn);
+    playerArea.classList.add('skill-video-player--active');
+
+    // 비디오 요소에 muted 속성 설정 (보안상 필요)
+    video.muted = true;
+    video.play().catch(() => {});
+  }
+
+  /**
+   * 스킬 비디오 닫기
+   */
+  closeSkillVideo() {
+    const playerArea = $('#skill-video-player');
+    if (!playerArea) return;
+
+    playerArea.classList.remove('skill-video-player--active');
+    clearElement(playerArea);
   }
 }

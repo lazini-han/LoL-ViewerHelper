@@ -3,7 +3,7 @@
  */
 
 import { $, createElement, clearElement } from '../utils/dom.js';
-import { BLUE_SLOT_ORDER, RED_SLOT_ORDER, POSITION_NAMES, POSITIONS } from '../utils/constants.js';
+import { BLUE_SLOT_ORDER, RED_SLOT_ORDER, POSITION_NAMES, POSITION_ICONS, POSITIONS } from '../utils/constants.js';
 import { state } from '../state.js';
 import { championService } from '../services/ChampionService.js';
 
@@ -27,7 +27,6 @@ export class ChampionPickPage {
 
     const page = createElement('div', { className: 'page champion-pick' }, [
       this.createGlobalBansArea(currentState),
-      this.createSearchArea(),
       this.createChampionGrid(),
       this.createTeamSlots(currentState)
     ]);
@@ -53,8 +52,14 @@ export class ChampionPickPage {
           globalBans.blue.map((champion, index) => this.createBanSlot('blue', index, champion))
         )
       ]),
-      // 중앙 초기화 버튼
+      // 중앙 검색 + 초기화 버튼
       createElement('div', { className: 'global-bans__center' }, [
+        createElement('input', {
+          type: 'text',
+          className: 'input global-bans__search',
+          placeholder: '챔피언 검색',
+          id: 'champion-search'
+        }),
         createElement('button', {
           className: 'btn btn--sm btn--danger reset-game-btn',
           id: 'reset-game-btn',
@@ -92,21 +97,6 @@ export class ChampionPickPage {
         alt: champion.nameKr
       })
     ] : null);
-  }
-
-  /**
-   * 검색 영역 생성
-   * @returns {Element}
-   */
-  createSearchArea() {
-    return createElement('div', { className: 'champion-pick__search' }, [
-      createElement('input', {
-        type: 'text',
-        className: 'input champion-pick__search-input',
-        placeholder: '챔피언 검색 (한글/영문)',
-        id: 'champion-search'
-      })
-    ]);
   }
 
   /**
@@ -231,19 +221,25 @@ export class ChampionPickPage {
     const team = teamKey === 'blueTeam' ? 'blue' : 'red';
     const filledClass = champion ? 'champion-slot--filled' : '';
 
+    // 챔피언이 있으면 챔피언 이미지, 없으면 포지션 아이콘
     const iconArea = champion
       ? createElement('img', {
           src: champion.thumbnail,
-          alt: champion.nameKr
+          alt: champion.nameKr,
+          className: 'champion-slot__champion-icon'
         })
-      : null;
+      : createElement('img', {
+          src: POSITION_ICONS[position],
+          alt: POSITION_NAMES[position],
+          className: 'champion-slot__position-icon'
+        });
 
     return createElement('div', {
       className: `champion-slot champion-slot--${team} ${filledClass}`,
       dataset: { team: teamKey, position: position },
       draggable: champion ? 'true' : 'false'
     }, [
-      createElement('div', { className: 'champion-slot__icon-area' }, iconArea ? [iconArea] : null),
+      createElement('div', { className: 'champion-slot__icon-area' }, [iconArea]),
       createElement('span', { className: 'champion-slot__position' }, POSITION_NAMES[position]),
       createElement('span', { className: 'champion-slot__player' }, player?.name || ''),
       createElement('span', { className: 'champion-slot__champion' }, champion?.nameKr || '')

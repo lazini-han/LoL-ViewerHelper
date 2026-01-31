@@ -2,7 +2,7 @@
 .champion-pick {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-xs);
   height: calc(100vh - 120px);
 }
 
@@ -11,9 +11,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
 }
 
 .global-bans__team {
@@ -41,11 +41,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--spacing-xs);
+}
+
+.global-bans__search {
+  width: 120px;
+  padding: 4px 8px;
+  font-size: var(--font-size-xs);
 }
 
 .reset-game-btn {
   font-size: var(--font-size-xs);
-  padding: var(--spacing-xs) var(--spacing-sm);
+  padding: 4px 8px;
+  white-space: nowrap;
 }
 
 .global-bans__slots {
@@ -55,8 +63,8 @@
 
 /* 밴 슬롯 */
 .ban-slot {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,23 +112,12 @@
   filter: grayscale(50%);
 }
 
-/* 검색 영역 */
-.champion-pick__search {
-  display: flex;
-  gap: var(--spacing-md);
-  align-items: center;
-}
-
-.champion-pick__search-input {
-  max-width: 300px;
-}
-
 /* 챔피언 그리드 영역 */
 .champion-grid-container {
   flex: 1;
   overflow-y: auto;
   background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
   padding: var(--spacing-md);
 }
 
@@ -209,15 +206,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--spacing-lg);
-  padding: var(--spacing-lg);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-md);
 }
 
 .team-slots {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: 4px;
 }
 
 .team-slots--blue {
@@ -233,27 +230,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-sm);
-  padding: 0 var(--spacing-lg);
+  gap: 2px;
+  padding: 0 var(--spacing-sm);
 }
 
 .vs-mark__text {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-lg);
   font-weight: 700;
   color: var(--color-accent);
 }
 
 .vs-mark__teams {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
   text-align: center;
 }
 
 /* 진영 교환 버튼 */
 .swap-teams-btn {
-  font-size: var(--font-size-lg);
-  padding: var(--spacing-xs) var(--spacing-md);
-  min-width: 50px;
+  font-size: var(--font-size-md);
+  padding: 2px var(--spacing-sm);
+  min-width: 40px;
 }
 
 /* 챔피언 슬롯 */
@@ -261,12 +258,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-xs);
-  padding: var(--spacing-sm);
-  width: 90px;
-  min-height: 120px;
+  gap: 2px;
+  padding: var(--spacing-xs);
+  width: 72px;
+  min-height: 90px;
   background-color: var(--color-bg-card);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   border: 2px dashed var(--color-border);
   transition: all var(--transition-fast);
 }
@@ -289,8 +286,8 @@
 }
 
 .champion-slot__icon-area {
-  width: var(--champion-icon-md);
-  height: var(--champion-icon-md);
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -305,22 +302,30 @@
   border-radius: var(--radius-sm);
 }
 
+.champion-slot__position-icon {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain !important;
+  opacity: 0.4;
+}
+
 .champion-slot__position {
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   font-weight: 600;
   color: var(--color-text-secondary);
 }
 
 .champion-slot__player {
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: 500;
   color: var(--color-text);
   text-align: center;
   word-break: keep-all;
+  line-height: 1.1;
 }
 
 .champion-slot__champion {
-  font-size: var(--font-size-xs);
+  font-size: 10px;
   color: var(--color-text-secondary);
   text-align: center;
 }

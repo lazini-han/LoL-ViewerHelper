@@ -74,7 +74,7 @@
 /* 메인 콘텐츠 */
 .main {
   flex: 1;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-sm);
 }
 
 /* 페이지 컨테이너 */

@@ -4,12 +4,15 @@
 
 const DDRAGON_VERSION = '14.24.1';
 const DDRAGON_BASE = `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}`;
+const CDRAGON_BASE = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default';
+const CDRAGON_VIDEO_BASE = 'https://d28xe8vt774jo5.cloudfront.net'; // CDN for videos
 
 class ChampionService {
   constructor() {
     this.champions = [];
     this.loaded = false;
     this.detailCache = new Map(); // 챔피언 상세 정보 캐시
+    this.cdragonCache = new Map(); // Community Dragon 캐시
   }
 
   /**
@@ -156,6 +159,66 @@ class ChampionService {
    */
   stripHtml(html) {
     return html.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+  }
+
+  /**
+   * Community Dragon에서 챔피언 스킬 비디오 정보 가져오기
+   * @param {number} championId - 챔피언 ID
+   * @returns {Promise<Object|null>}
+   */
+  async getChampionSkillVideos(championId) {
+    if (!championId) return null;
+
+    // 캐시 확인
+    if (this.cdragonCache.has(championId)) {
+      return this.cdragonCache.get(championId);
+    }
+
+    try {
+      const response = await fetch(`${CDRAGON_BASE}/v1/champions/${championId}.json`);
+      if (!response.ok) {
+        throw new Error('Community Dragon 데이터를 불러올 수 없습니다.');
+      }
+      const data = await response.json();
+      
+      const skillVideos = this.parseSkillVideos(data);
+      this.cdragonCache.set(championId, skillVideos);
+      return skillVideos;
+    } catch (e) {
+      console.error('Community Dragon 데이터 로드 실패:', e);
+      return null;
+    }
+  }
+
+  /**
+   * 스킬 비디오 정보 파싱
+   * @param {Object} data - Community Dragon 챔피언 데이터
+   * @returns {Object}
+   */
+  parseSkillVideos(data) {
+    const passive = data.passive ? {
+      videoPath: data.passive.abilityVideoPath 
+        ? `${CDRAGON_VIDEO_BASE}/${data.passive.abilityVideoPath}`
+        : null,
+      videoImagePath: data.passive.abilityVideoImagePath
+        ? `${CDRAGON_VIDEO_BASE}/${data.passive.abilityVideoImagePath}`
+        : null
+    } : null;
+
+    const spells = (data.spells || []).map((spell, index) => {
+      const keys = ['Q', 'W', 'E', 'R'];
+      return {
+        key: keys[index],
+        videoPath: spell.abilityVideoPath 
+          ? `${CDRAGON_VIDEO_BASE}/${spell.abilityVideoPath}`
+          : null,
+        videoImagePath: spell.abilityVideoImagePath
+          ? `${CDRAGON_VIDEO_BASE}/${spell.abilityVideoImagePath}`
+          : null
+      };
+    });
+
+    return { passive, spells };
   }
 }
 
