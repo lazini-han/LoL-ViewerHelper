@@ -117,14 +117,14 @@ PJ.LoL-ViewerHelper/
 | 파일 | 역할 | 주요 기능 |
 |------|------|----------|
 | `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력, 비우기 버튼 |
-| `ChampionPickPage.js` | 챔피언 할당 | 드래그앤드롭, 검색, 글로벌 밴, 진영 교환, 초기화 |
-| `MatchViewPage.js` | 경기 정보 표시 | 챔피언 클릭 시 상세 정보 (스킬, 쿨타임 등) |
+| `ChampionPickPage.js` | 챔피언 할당 | 드래그앤드롭, 검색, 글로벌 밴, 진영 교환, 초기화, 포지션 아이콘 |
+| `MatchViewPage.js` | 경기 정보 표시 | 챔피언 클릭 시 상세 정보, 스킬 비디오 재생 |
 
 ### 3.4 서비스
 
 | 파일 | 역할 |
 |------|------|
-| `ChampionService.js` | 챔피언 데이터 로딩, 검색, 상세 정보 (Data Dragon API), 캐싱 |
+| `ChampionService.js` | 챔피언 데이터 로딩, 검색, 상세 정보 (Data Dragon API), 스킬 비디오 (Community Dragon API), 캐싱 |
 | `ItemService.js` | 아이템 데이터 로딩 |
 | `ObjectService.js` | 오브젝트 데이터 로딩 |
 
