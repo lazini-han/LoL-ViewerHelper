@@ -39,6 +39,20 @@
   color: white;
 }
 
+.btn--danger {
+  background-color: #666;
+  color: white;
+}
+
+.btn--danger:hover {
+  background-color: #888;
+}
+
+.btn--sm {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
 .btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;

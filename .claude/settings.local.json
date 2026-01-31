@@ -11,7 +11,11 @@
       "Bash(git commit:*)",
       "Bash(git remote add:*)",
       "Bash(git branch:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "WebFetch(domain:raw.communitydragon.org)",
+      "WebFetch(domain:cdn.communitydragon.org)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:ddragon.leagueoflegends.com)"
     ]
   }
 }

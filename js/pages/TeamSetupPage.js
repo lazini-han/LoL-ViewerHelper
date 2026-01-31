@@ -37,57 +37,48 @@ export class TeamSetupPage {
    */
   createForm(currentState) {
     return createElement('div', { className: 'team-setup__form' }, [
-      this.createTeamCard('blue', currentState.blueTeam),
-      this.createSwapButton(),
-      this.createTeamCard('red', currentState.redTeam)
-    ]);
-  }
-
-  /**
-   * 진영 교환 버튼 생성
-   * @returns {Element}
-   */
-  createSwapButton() {
-    return createElement('div', { className: 'team-setup__swap' }, [
-      createElement('button', {
-        className: 'btn btn--swap',
-        id: 'btn-swap',
-        title: '진영 교환'
-      }, '⇄')
+      this.createTeamCard('left', 'blueTeam', currentState.blueTeam),
+      this.createTeamCard('right', 'redTeam', currentState.redTeam)
     ]);
   }
 
   /**
    * 팀 카드 생성
-   * @param {'blue'|'red'} team
+   * @param {'left'|'right'} side
+   * @param {string} teamKey
    * @param {Object} teamData
    * @returns {Element}
    */
-  createTeamCard(team, teamData) {
-    const teamLabel = team === 'blue' ? '블루팀' : '레드팀';
-    const teamKey = team === 'blue' ? 'blueTeam' : 'redTeam';
+  createTeamCard(side, teamKey, teamData) {
+    const sideLabel = side === 'left' ? '팀 A' : '팀 B';
 
     return createElement('div', {
-      className: `team-card team-card--${team}`,
+      className: `team-card`,
       dataset: { dropTarget: teamKey }
     }, [
-      // 팀 이름 입력
+      // 팀 헤더 (비우기 버튼 포함)
       createElement('div', { className: 'team-card__header' }, [
-        createElement('label', { className: 'team-card__label' }, teamLabel),
-        createElement('div', { className: 'team-card__name-row' }, [
-          createElement('input', {
-            type: 'text',
-            className: 'input team-card__input',
-            placeholder: '팀 이름 입력',
-            value: teamData.name,
-            dataset: { team: teamKey, field: 'name' }
-          }),
-          createElement('button', {
-            className: 'btn btn--save',
-            dataset: { saveTeam: teamKey },
-            title: '팀 저장'
-          }, '💾')
-        ])
+        createElement('label', { className: 'team-card__label' }, sideLabel),
+        createElement('button', {
+          className: 'btn btn--sm btn--danger team-card__clear-btn',
+          dataset: { clearTeam: teamKey },
+          title: '입력 내용 비우기'
+        }, '비우기')
+      ]),
+      // 팀 이름 입력
+      createElement('div', { className: 'team-card__name-row' }, [
+        createElement('input', {
+          type: 'text',
+          className: 'input team-card__input',
+          placeholder: '팀 이름 입력',
+          value: teamData.name,
+          dataset: { team: teamKey, field: 'name' }
+        }),
+        createElement('button', {
+          className: 'btn btn--save',
+          dataset: { saveTeam: teamKey },
+          title: '팀 저장'
+        }, '💾')
       ]),
       // 선수 목록
       createElement('div', { className: 'player-list' },
@@ -196,14 +187,15 @@ export class TeamSetupPage {
       });
     });
 
-    // 진영 교환 버튼
-    const btnSwap = $('#btn-swap');
-    if (btnSwap) {
-      btnSwap.addEventListener('click', () => {
-        state.swapTeams();
+    // 팀 비우기 버튼
+    const clearButtons = document.querySelectorAll('[data-clear-team]');
+    clearButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const teamKey = e.target.dataset.clearTeam;
+        state.clearTeam(teamKey);
         this.render(document.querySelector('.main'));
       });
-    }
+    });
 
     // 팀 저장 버튼
     const saveButtons = document.querySelectorAll('[data-save-team]');

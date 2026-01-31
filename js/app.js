@@ -4,6 +4,7 @@
 
 import { $ } from './utils/dom.js';
 import { ROUTES } from './utils/constants.js';
+import { state } from './state.js';
 import { TeamSetupPage } from './pages/TeamSetupPage.js';
 import { ChampionPickPage } from './pages/ChampionPickPage.js';
 import { MatchViewPage } from './pages/MatchViewPage.js';
@@ -106,8 +107,52 @@ async function initApp() {
   router.register(ROUTES.OBJECT_DICT, new ObjectDictPage(router));
   router.register(ROUTES.ITEM_DICT, new ItemDictPage(router));
 
+  // 게임 탭 이벤트 설정
+  setupGameTabs(router);
+
   // 라우터 시작
   router.start();
+
+  // 초기 게임 탭 상태 업데이트
+  updateGameTabsUI();
+}
+
+/**
+ * 게임 탭 이벤트 설정
+ * @param {Router} router
+ */
+function setupGameTabs(router) {
+  const gameTabs = document.getElementById('game-tabs');
+  if (!gameTabs) return;
+
+  gameTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('.game-tab');
+    if (!tab) return;
+
+    const gameNumber = parseInt(tab.dataset.game);
+    state.setCurrentGame(gameNumber);
+    updateGameTabsUI();
+
+    // 현재 페이지 다시 렌더링
+    router.handleRoute();
+  });
+}
+
+/**
+ * 게임 탭 UI 업데이트
+ */
+function updateGameTabsUI() {
+  const currentGame = state.getCurrentGame();
+  const tabs = document.querySelectorAll('.game-tab');
+  
+  tabs.forEach(tab => {
+    const gameNumber = parseInt(tab.dataset.game);
+    if (gameNumber === currentGame) {
+      tab.classList.add('game-tab--active');
+    } else {
+      tab.classList.remove('game-tab--active');
+    }
+  });
 }
 
 // DOM 로드 완료 후 앱 초기화

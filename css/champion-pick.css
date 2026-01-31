@@ -2,8 +2,106 @@
 .champion-pick {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   height: calc(100vh - 120px);
+}
+
+/* 글로벌 밴 영역 */
+.global-bans {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+}
+
+.global-bans__team {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.global-bans__team--blue {
+  flex-direction: row;
+}
+
+.global-bans__team--red {
+  flex-direction: row;
+}
+
+.global-bans__label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+}
+
+.global-bans__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-game-btn {
+  font-size: var(--font-size-xs);
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.global-bans__slots {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+/* 밴 슬롯 */
+.ban-slot {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-sm);
+  border: 2px dashed var(--color-border);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.ban-slot--blue {
+  border-color: var(--color-blue-team-border);
+}
+
+.ban-slot--red {
+  border-color: var(--color-red-team-border);
+}
+
+.ban-slot--filled {
+  border-style: solid;
+}
+
+.ban-slot--filled::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 45%, rgba(255, 0, 0, 0.6) 45%, rgba(255, 0, 0, 0.6) 55%, transparent 55%);
+  pointer-events: none;
+  border-radius: var(--radius-sm);
+}
+
+.ban-slot--drag-over {
+  background-color: var(--color-bg);
+  border-color: var(--color-accent);
+}
+
+.ban-slot__icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  filter: grayscale(50%);
 }
 
 /* 검색 영역 */
@@ -67,6 +165,28 @@
   opacity: 0.85;
 }
 
+/* 다른 게임에서 픽된 챔피언 */
+.champion-item--picked-other {
+  border: 3px solid #666;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.champion-item--picked-other .champion-item__icon {
+  filter: grayscale(80%);
+}
+
+/* 글로벌 밴된 챔피언 */
+.champion-item--banned {
+  border: 3px solid #8B0000;
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.champion-item--banned .champion-item__icon {
+  filter: grayscale(100%);
+}
+
 .champion-item__icon {
   width: var(--champion-icon-md);
   height: var(--champion-icon-md);
@@ -127,6 +247,13 @@
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   text-align: center;
+}
+
+/* 진영 교환 버튼 */
+.swap-teams-btn {
+  font-size: var(--font-size-lg);
+  padding: var(--spacing-xs) var(--spacing-md);
+  min-width: 50px;
 }
 
 /* 챔피언 슬롯 */
