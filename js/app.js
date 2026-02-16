@@ -10,6 +10,9 @@ import { ChampionPickPage } from './pages/ChampionPickPage.js';
 import { MatchViewPage } from './pages/MatchViewPage.js';
 import { ObjectDictPage } from './pages/ObjectDictPage.js';
 import { ItemDictPage } from './pages/ItemDictPage.js';
+import { authService } from './services/authService.js';
+import { syncService } from './services/syncService.js';
+import { authModal } from './components/AuthModal.js';
 
 /**
  * 라우터 클래스
@@ -86,11 +89,15 @@ class Router {
   }
 }
 
+/** @type {Router|null} */
+let appRouter = null;
+
 /**
  * 앱 초기화
  */
 async function initApp() {
   const router = new Router();
+  appRouter = router;
   const container = $('.main');
 
   if (!container) {
@@ -110,11 +117,90 @@ async function initApp() {
   // 게임 탭 이벤트 설정
   setupGameTabs(router);
 
+  // 인증 UI 설정
+  setupAuth(router);
+
   // 라우터 시작
   router.start();
 
   // 초기 게임 탭 상태 업데이트
   updateGameTabsUI();
+}
+
+/**
+ * 인증 UI 및 상태 감시 설정
+ * @param {Router} router
+ */
+function setupAuth(router) {
+  const loginBtn = document.getElementById('login-btn');
+  if (loginBtn) {
+    loginBtn.addEventListener('click', () => {
+      authModal.open();
+    });
+  }
+
+  // 인증 상태 변경 감시
+  authService.onAuthStateChanged((user) => {
+    if (user) {
+      // 로그인 상태
+      syncService.startSync(user.uid, (cloudData) => {
+        state.loadFromCloud(cloudData);
+        if (appRouter) appRouter.handleRoute();
+      });
+      updateAuthUI(user);
+    } else {
+      // 로그아웃 상태
+      syncService.stopSync();
+      updateAuthUI(null);
+    }
+  });
+}
+
+/**
+ * 헤더 인증 UI 업데이트
+ * @param {Object|null} user
+ */
+function updateAuthUI(user) {
+  const authArea = document.getElementById('auth-area');
+  if (!authArea) return;
+
+  if (user) {
+    const displayName = user.displayName || user.email || '사용자';
+    authArea.innerHTML = `
+      <span class="header__sync-status header__sync-status--active">동기화</span>
+      <span class="header__user-name">${escapeHtml(displayName)}</span>
+      <button class="header__logout-btn" id="logout-btn">로그아웃</button>
+    `;
+
+    const logoutBtn = document.getElementById('logout-btn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', async () => {
+        await authService.signOut();
+      });
+    }
+  } else {
+    authArea.innerHTML = `
+      <button class="header__login-btn" id="login-btn">로그인</button>
+    `;
+
+    const loginBtn = document.getElementById('login-btn');
+    if (loginBtn) {
+      loginBtn.addEventListener('click', () => {
+        authModal.open();
+      });
+    }
+  }
+}
+
+/**
+ * HTML 이스케이프
+ * @param {string} str
+ * @returns {string}
+ */
+function escapeHtml(str) {
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
 }
 
 /**
@@ -144,7 +230,7 @@ function setupGameTabs(router) {
 function updateGameTabsUI() {
   const currentGame = state.getCurrentGame();
   const tabs = document.querySelectorAll('.game-tab');
-  
+
   tabs.forEach(tab => {
     const gameNumber = parseInt(tab.dataset.game);
     if (gameNumber === currentGame) {

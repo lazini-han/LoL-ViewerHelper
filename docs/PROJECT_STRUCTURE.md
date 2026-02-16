@@ -15,7 +15,8 @@
 - Frontend: HTML5, CSS3, JavaScript (ES6+)
 - 모듈 시스템: ES6 Modules
 - 데이터: JSON 파일 + Community Dragon CDN
-- 저장소: LocalStorage
+- 저장소: LocalStorage + Firebase Firestore (클라우드 동기화)
+- 인증: Firebase Authentication (Google, 이메일/비밀번호)
 - 호스팅: GitHub Pages (예정)
 
 ---
@@ -33,7 +34,8 @@ PJ.LoL-ViewerHelper/
 │   ├── components.css            # 공통 컴포넌트 (버튼, 입력 등)
 │   ├── team-setup.css            # 팀 설정 페이지 스타일
 │   ├── champion-pick.css         # 챔피언 픽 페이지 스타일
-│   └── match-view.css            # 경기 상황 페이지 스타일
+│   ├── match-view.css            # 경기 상황 페이지 스타일
+│   └── auth.css                  # 인증 모달/헤더 인증 영역 스타일
 │
 ├── js/                           # JavaScript
 │   ├── app.js                    # 앱 진입점, 라우터
@@ -44,8 +46,14 @@ PJ.LoL-ViewerHelper/
 │   │   ├── ChampionPickPage.js   # 챔피언 픽 페이지
 │   │   └── MatchViewPage.js      # 경기 상황 페이지
 │   │
+│   ├── components/               # 재사용 컴포넌트
+│   │   └── AuthModal.js          # 로그인 모달 (Google/이메일)
+│   │
 │   ├── services/                 # 데이터 서비스
-│   │   └── ChampionService.js    # 챔피언 데이터 로딩/검색
+│   │   ├── ChampionService.js    # 챔피언 데이터 로딩/검색
+│   │   ├── firebaseConfig.js     # Firebase 초기화 설정
+│   │   ├── authService.js        # Firebase 인증 서비스
+│   │   └── syncService.js        # Firestore 실시간 동기화
 │   │
 │   └── utils/                    # 유틸리티
 │       ├── constants.js          # 상수 정의
@@ -84,7 +92,7 @@ PJ.LoL-ViewerHelper/
 
 | 파일 | 역할 |
 |------|------|
-| `js/state.js` | 전역 상태 관리 싱글톤, LocalStorage 저장/로드 |
+| `js/state.js` | 전역 상태 관리 싱글톤, LocalStorage + Firestore 동기화 |
 
 **상태 구조** (v0.5.0 멀티게임 지원):
 
@@ -143,8 +151,10 @@ PJ.LoL-ViewerHelper/
 [사용자 입력]
      ↓
 [페이지 컴포넌트] ←→ [state.js (전역 상태)]
-     ↓                    ↓
-[DOM 업데이트]      [LocalStorage 저장]
+     ↓                    ↓                ↓
+[DOM 업데이트]      [LocalStorage]   [Firestore (로그인 시)]
+                                          ↓
+                                    [다른 기기 실시간 동기화]
 ```
 
 ### 라우팅 흐름
@@ -182,9 +192,10 @@ ROUTES = {
 ## 6. 외부 의존성
 
 | 리소스 | URL | 용도 |
-|--------|-----|------|
+| ------ | --- | ---- |
 | Pretendard 폰트 | jsdelivr CDN | 한글 폰트 |
 | Community Dragon | `cdn.communitydragon.org` | 챔피언 이미지 |
+| Firebase SDK | `gstatic.com/firebasejs` | 인증, Firestore |
 
 ---
 
@@ -232,13 +243,12 @@ npx serve
 - [x] 경기 상황 페이지
 - [x] LocalStorage 저장/복원
 - [x] 챔피언 검색 (한글/영문)
+- [x] Firebase 인증 (Google/이메일)
+- [x] Firestore 실시간 데이터 동기화
 
 ### 미구현 (Phase 2 이후)
 
-- [ ] 챔피언 스킬 정보
-- [ ] 아이템/오브젝트 백과사전
 - [ ] 다크 모드
-- [ ] 팀 프리셋 저장
 
 ---
 
@@ -251,4 +261,4 @@ npx serve
 
 ---
 
-*최종 수정: 2026-01-26*
+*최종 수정: 2026-02-16*

@@ -9,6 +9,7 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: var(--color-bg-secondary);
   padding: var(--spacing-xs) var(--spacing-md);
 }

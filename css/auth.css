@@ -1,0 +1,195 @@
+/* 인증 모달 오버레이 */
+.auth-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 인증 모달 */
+.auth-modal {
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  width: 360px;
+  max-width: 90vw;
+  box-shadow: var(--shadow-lg);
+}
+
+.auth-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.auth-modal__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.auth-modal__close {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+}
+
+.auth-modal__close:hover {
+  color: var(--color-text);
+}
+
+/* 에러 메시지 */
+.auth-modal__error {
+  background-color: rgba(255, 68, 68, 0.15);
+  border: 1px solid rgba(255, 68, 68, 0.4);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+  color: #ff6b6b;
+  font-size: var(--font-size-sm);
+}
+
+/* Google 로그인 버튼 */
+.auth-modal__google-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.auth-modal__google-btn:hover {
+  background-color: #f0f0f0;
+}
+
+.auth-modal__google-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.auth-modal__google-icon {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: #4285f4;
+}
+
+/* 구분선 */
+.auth-modal__divider {
+  display: flex;
+  align-items: center;
+  margin: var(--spacing-md) 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.auth-modal__divider::before,
+.auth-modal__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: var(--color-border);
+}
+
+.auth-modal__divider span {
+  padding: 0 var(--spacing-sm);
+}
+
+/* 이메일 폼 */
+.auth-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.auth-modal__input {
+  font-size: var(--font-size-sm);
+}
+
+.auth-modal__submit {
+  width: 100%;
+  margin-top: var(--spacing-xs);
+}
+
+/* 모드 전환 */
+.auth-modal__toggle {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.auth-modal__toggle-btn {
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.auth-modal__toggle-btn:hover {
+  text-decoration: underline;
+}
+
+/* 헤더 인증 영역 */
+.header__auth {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.header__user-name {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header__sync-status {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.header__sync-status--active {
+  color: #4caf50;
+}
+
+.header__login-btn,
+.header__logout-btn {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: var(--font-size-xs);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.header__login-btn:hover,
+.header__logout-btn:hover {
+  background-color: var(--color-bg-card);
+  color: var(--color-text);
+}

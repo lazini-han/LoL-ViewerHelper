@@ -3,6 +3,7 @@
  */
 
 import { STORAGE_KEY, POSITIONS } from './utils/constants.js';
+import { syncService } from './services/syncService.js';
 
 const SAVED_TEAMS_KEY = 'lol-viewer-helper-saved-teams';
 const MAX_GAMES = 5;
@@ -83,6 +84,7 @@ class State {
     this.data = createDefaultState();
     this.savedTeams = [];
     this.listeners = [];
+    this._isRemoteUpdate = false;
     this.load();
     this.loadSavedTeams();
   }
@@ -142,7 +144,7 @@ class State {
   }
 
   /**
-   * LocalStorage에 상태 저장
+   * LocalStorage에 상태 저장 + 클라우드 동기화
    */
   save() {
     try {
@@ -150,6 +152,41 @@ class State {
     } catch (e) {
       console.warn('상태 저장 실패:', e);
     }
+
+    if (!this._isRemoteUpdate && syncService.isActive()) {
+      syncService.saveToCloud(this.data, this.savedTeams);
+    }
+  }
+
+  /**
+   * 클라우드에서 받은 데이터로 로컬 상태 덮어쓰기
+   * @param {Object} cloudData - Firestore 문서 데이터
+   */
+  loadFromCloud(cloudData) {
+    if (!cloudData) return;
+
+    this._isRemoteUpdate = true;
+
+    if (cloudData.state) {
+      this.data = { ...createDefaultState(), ...cloudData.state };
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
+      } catch (e) {
+        console.warn('상태 저장 실패:', e);
+      }
+    }
+
+    if (cloudData.savedTeams) {
+      this.savedTeams = cloudData.savedTeams;
+      try {
+        localStorage.setItem(SAVED_TEAMS_KEY, JSON.stringify(this.savedTeams));
+      } catch (e) {
+        console.warn('팀 저장 실패:', e);
+      }
+    }
+
+    this.notify();
+    this._isRemoteUpdate = false;
   }
 
   /**
@@ -454,13 +491,17 @@ class State {
   }
 
   /**
-   * 저장된 팀 목록 저장
+   * 저장된 팀 목록 저장 + 클라우드 동기화
    */
   saveSavedTeams() {
     try {
       localStorage.setItem(SAVED_TEAMS_KEY, JSON.stringify(this.savedTeams));
     } catch (e) {
       console.warn('팀 저장 실패:', e);
+    }
+
+    if (!this._isRemoteUpdate && syncService.isActive()) {
+      syncService.saveToCloud(this.data, this.savedTeams);
     }
   }
 
