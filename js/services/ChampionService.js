@@ -7,6 +7,47 @@ import { getDDragonVersion, ddragonBase } from '../utils/ddragon.js';
 const CDRAGON_BASE = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default';
 const CDRAGON_VIDEO_BASE = 'https://d28xe8vt774jo5.cloudfront.net'; // CDN for videos
 
+// 챔피언 특징 태그 (초보자용 설명 포함)
+const CHAMPION_TAGS = {
+  'Crowd Control': { label: '군중 제어', desc: '적을 기절/속박시켜 못 움직이게 합니다' },
+  'Mobile': { label: '기동성', desc: '빠르게 이동하거나 순간이동할 수 있습니다' },
+  'Burst': { label: '폭발 딜', desc: '짧은 순간에 큰 피해를 몰아넣습니다' },
+  'Duelist': { label: '1대1 강함', desc: '일대일 싸움에서 강합니다' },
+  'AoE': { label: '광역 공격', desc: '여러 명을 한 번에 공격합니다' },
+  'Auto-attack': { label: '평타 중심', desc: '스킬보다 기본 공격으로 피해를 냅니다' },
+  'Ally Protection': { label: '아군 보호', desc: '아군에게 보호막이나 회복을 줍니다' },
+  'Dive': { label: '파고들기', desc: '적진 안쪽까지 파고들어 싸웁니다' },
+  'Initiator': { label: '이니시에이팅', desc: '한타를 먼저 여는 역할입니다' },
+  'Durable': { label: '단단함', desc: '체력과 방어력이 높아 잘 죽지 않습니다' },
+  'Hypercarry': { label: '후반 캐리', desc: '아이템이 갖춰지는 후반에 강해집니다' },
+  'Long Range': { label: '긴 사거리', desc: '멀리서 안전하게 공격합니다' },
+  'Self Healing': { label: '자체 회복', desc: '스스로 체력을 회복합니다' },
+  'Sustained Damage': { label: '지속 딜', desc: '오래 싸우면서 꾸준히 피해를 냅니다' },
+  'Stealth': { label: '은신', desc: '모습을 감췄다가 기습합니다' },
+  'Battlecaster': { label: '근접 마법사', desc: '가까이 붙어서 스킬로 싸우는 마법사입니다' },
+  'Summon': { label: '소환수', desc: '따라다니는 소환수를 부립니다' },
+  'Damage-over-Time': { label: '지속 피해', desc: '시간에 걸쳐 서서히 피해를 줍니다' },
+  'Shapeshift': { label: '변신', desc: '형태를 바꿔 다르게 싸웁니다' }
+};
+
+const DIFFICULTY_LABELS = { 1: '쉬움', 2: '보통', 3: '어려움' };
+const DAMAGE_TYPE_LABELS = {
+  kPhysical: '물리 피해',
+  kMagic: '마법 피해',
+  kMixed: '혼합 피해',
+  kTrue: '고정 피해'
+};
+const ATTACK_TYPE_LABELS = { melee: '근접', ranged: '원거리' };
+
+// 능력치 표시 순서와 한글명
+const PLAYSTYLE_STATS = [
+  { key: 'damage', label: '공격력' },
+  { key: 'durability', label: '단단함' },
+  { key: 'crowdControl', label: '군중 제어' },
+  { key: 'mobility', label: '기동성' },
+  { key: 'utility', label: '지원' }
+];
+
 class ChampionService {
   constructor() {
     this.champions = [];
@@ -170,6 +211,16 @@ class ChampionService {
    * @returns {Promise<Object|null>}
    */
   async getChampionSkillVideos(championId) {
+    const data = await this.getCDragonChampion(championId);
+    return data ? this.parseSkillVideos(data) : null;
+  }
+
+  /**
+   * Community Dragon 챔피언 원본 데이터 가져오기 (스킬 비디오/요약 공용, 1회만 요청)
+   * @param {number} championId
+   * @returns {Promise<Object|null>}
+   */
+  async getCDragonChampion(championId) {
     if (!championId) return null;
 
     // 캐시 확인
@@ -183,14 +234,50 @@ class ChampionService {
         throw new Error('Community Dragon 데이터를 불러올 수 없습니다.');
       }
       const data = await response.json();
-      
-      const skillVideos = this.parseSkillVideos(data);
-      this.cdragonCache.set(championId, skillVideos);
-      return skillVideos;
+      this.cdragonCache.set(championId, data);
+      return data;
     } catch (e) {
       console.error('Community Dragon 데이터 로드 실패:', e);
       return null;
     }
+  }
+
+  /**
+   * 초보자용 챔피언 요약 가져오기
+   * 스킬 비디오와 같은 응답을 재사용하므로 추가 요청이 발생하지 않는다.
+   * @param {number} championId
+   * @returns {Promise<Object|null>}
+   */
+  async getChampionSummary(championId) {
+    const data = await this.getCDragonChampion(championId);
+    return data ? this.parseChampionSummary(data) : null;
+  }
+
+  /**
+   * 초보자용 요약 파싱
+   * @param {Object} data - Community Dragon 챔피언 데이터
+   * @returns {Object}
+   */
+  parseChampionSummary(data) {
+    const tactical = data.tacticalInfo || {};
+    const tagInfo = data.championTagInfo || {};
+    const playstyle = data.playstyleInfo || {};
+
+    const tags = [tagInfo.championTagPrimary, tagInfo.championTagSecondary]
+      .filter(Boolean)
+      .map(tag => CHAMPION_TAGS[tag] || { label: tag, desc: '' });
+
+    const stats = PLAYSTYLE_STATS
+      .filter(stat => typeof playstyle[stat.key] === 'number')
+      .map(stat => ({ label: stat.label, value: playstyle[stat.key], max: 3 }));
+
+    return {
+      difficulty: DIFFICULTY_LABELS[tactical.difficulty] || null,
+      damageType: DAMAGE_TYPE_LABELS[tactical.damageType] || null,
+      attackType: ATTACK_TYPE_LABELS[tactical.attackType] || null,
+      tags,
+      stats
+    };
   }
 
   /**

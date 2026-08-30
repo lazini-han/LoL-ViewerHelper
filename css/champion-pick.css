@@ -121,6 +121,50 @@
   padding: var(--spacing-md);
 }
 
+/* 포지션 필터 */
+.position-filter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm);
+}
+
+.position-filter__btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border: 2px solid transparent;
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.position-filter__btn:hover {
+  border-color: var(--color-text-secondary);
+}
+
+.position-filter__btn--active {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+  box-shadow: 0 0 8px rgba(233, 69, 96, 0.4);
+}
+
+.position-filter__icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+.position-filter__btn--active .position-filter__icon {
+  opacity: 1;
+}
+
 .champion-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
@@ -488,6 +532,20 @@
   /* 챔피언 그리드: 컴팩트 */
   .champion-grid-container {
     padding: var(--spacing-xs);
+  }
+
+  .position-filter {
+    gap: 4px;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .position-filter__btn {
+    padding: 3px 6px;
+    border-width: 1px;
+  }
+
+  .position-filter__label {
+    display: none;
   }
 
   .champion-grid {

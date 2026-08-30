@@ -209,6 +209,97 @@
   border-radius: var(--radius-sm);
 }
 
+/* 초보자용 요약 */
+.champion-summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--color-bg-card);
+  border-radius: var(--radius-md);
+}
+
+.champion-summary__title {
+  margin: 0;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.champion-summary__basics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.champion-summary__badge {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-secondary);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.champion-summary__tags {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.champion-summary__tag {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+}
+
+.champion-summary__tag-label {
+  font-weight: 700;
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+
+.champion-summary__tag-desc {
+  color: var(--color-text-secondary);
+}
+
+.champion-summary__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs) var(--spacing-md);
+}
+
+.champion-summary__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.champion-summary__stat-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.champion-summary__bar {
+  display: flex;
+  gap: 2px;
+}
+
+.champion-summary__bar-cell {
+  width: 14px;
+  height: 6px;
+  border-radius: 2px;
+  background-color: var(--color-bg-secondary);
+}
+
+.champion-summary__bar-cell--on {
+  background-color: var(--color-accent);
+}
+
 /* 스킬 행 */
 .skill-row {
   display: flex;

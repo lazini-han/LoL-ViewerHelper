@@ -13,6 +13,7 @@ export class ChampionPickPage {
     this.dragData = null;
     this.tapSelectedChampion = null;
     this._isDragging = false;
+    this.positionFilter = new Set(); // 비어 있으면 전체 표시
   }
 
   /**
@@ -122,8 +123,33 @@ export class ChampionPickPage {
    */
   createChampionGrid() {
     return createElement('div', { className: 'champion-grid-container' }, [
+      this.createPositionFilter(),
       createElement('div', { className: 'champion-grid', id: 'champion-grid' })
     ]);
+  }
+
+  /**
+   * 포지션 필터 바 생성
+   * @returns {Element}
+   */
+  createPositionFilter() {
+    return createElement('div', { className: 'position-filter', id: 'position-filter' },
+      POSITIONS.map(position =>
+        createElement('button', {
+          className: 'position-filter__btn',
+          type: 'button',
+          dataset: { position },
+          title: POSITION_NAMES[position]
+        }, [
+          createElement('img', {
+            className: 'position-filter__icon',
+            src: POSITION_ICONS[position],
+            alt: POSITION_NAMES[position]
+          }),
+          createElement('span', { className: 'position-filter__label' }, POSITION_NAMES[position])
+        ])
+      )
+    );
   }
 
   /**
@@ -142,6 +168,9 @@ export class ChampionPickPage {
     champions.forEach(champion => {
       // 다른 경기에서 픽된 챔피언은 목록에서 완전히 제외 (빈자리 없이 정렬)
       if (pickedInOtherGames.has(champion.id)) return;
+
+      // 포지션 필터 (선택된 포지션이 없으면 전체 표시)
+      if (!this.matchesPositionFilter(champion)) return;
 
       const assignment = state.findChampionAssignment(champion.id);
       const banAssignment = state.findGlobalBanAssignment(champion.id);
@@ -183,6 +212,39 @@ export class ChampionPickPage {
 
       grid.appendChild(item);
     });
+  }
+
+  /**
+   * 챔피언이 현재 포지션 필터에 해당하는지 판정
+   * @param {Object} champion
+   * @returns {boolean}
+   */
+  matchesPositionFilter(champion) {
+    if (this.positionFilter.size === 0) return true;
+    if (!champion.positions || champion.positions.length === 0) return false;
+    return champion.positions.some(position => this.positionFilter.has(position));
+  }
+
+  /**
+   * 포지션 필터 토글
+   * @param {string} position
+   */
+  togglePositionFilter(position) {
+    if (this.positionFilter.has(position)) {
+      this.positionFilter.delete(position);
+    } else {
+      this.positionFilter.add(position);
+    }
+
+    document.querySelectorAll('.position-filter__btn').forEach(btn => {
+      btn.classList.toggle(
+        'position-filter__btn--active',
+        this.positionFilter.has(btn.dataset.position)
+      );
+    });
+
+    this.renderChampions($('#champion-search')?.value || '');
+    this.reapplyTapSelection();
   }
 
   /**
@@ -296,6 +358,15 @@ export class ChampionPickPage {
       });
     }
 
+    // 포지션 필터
+    const positionFilter = $('#position-filter');
+    if (positionFilter) {
+      positionFilter.addEventListener('click', (e) => {
+        const btn = e.target.closest('.position-filter__btn');
+        if (btn) this.togglePositionFilter(btn.dataset.position);
+      });
+    }
+
     // 드래그 앤 드롭 이벤트
     this.attachDragEvents();
 
@@ -340,6 +411,7 @@ export class ChampionPickPage {
       if (e.target.closest('.swap-teams-btn') ||
           e.target.closest('.reset-game-btn') ||
           e.target.closest('#tap-guide-cancel') ||
+          e.target.closest('#position-filter') ||
           e.target.closest('#champion-search')) return;
 
       const slot = e.target.closest('.champion-slot');

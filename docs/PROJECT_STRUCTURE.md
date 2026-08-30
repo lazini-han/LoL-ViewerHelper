@@ -59,6 +59,8 @@ PJ.LoL-ViewerHelper/
 │       ├── constants.js          # 상수 정의
 │       ├── ddragon.js            # Data Dragon 최신 버전 조회/캐시
 │       └── dom.js                # DOM 헬퍼 함수
+├── tools/                        # 데이터 생성 스크립트
+│   └── update-champion-positions.mjs  # 챔피언 포지션 갱신
 │
 ├── data/                         # 데이터 파일
 │   ├── champions.json            # 챔피언 데이터 (172개)
@@ -143,6 +145,12 @@ PJ.LoL-ViewerHelper/
 |------|------|
 | `constants.js` | 포지션 목록, 라우트 경로, 슬롯 순서 |
 | `ddragon.js` | Data Dragon 최신 버전 조회/캐시, CDN 기본 URL 생성 |
+
+### 스크립트 (`tools/`)
+
+| 파일 | 역할 |
+|------|------|
+| `update-champion-positions.mjs` | Riot 룬 추천 데이터로 `champions.json`의 `positions` 갱신 (`node tools/update-champion-positions.mjs`) |
 | `dom.js` | `$`, `$$`, `createElement`, `clearElement` |
 
 ---

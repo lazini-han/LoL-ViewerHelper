@@ -199,10 +199,11 @@ export class MatchViewPage {
     const champion = championService.search(championNameEn).find(c => c.nameEn === championNameEn);
     const championId = champion?.id;
 
-    // 병렬로 데이터 로드
-    const [detail, skillVideos] = await Promise.all([
+    // 병렬로 데이터 로드 (요약은 스킬 비디오와 같은 응답을 재사용)
+    const [detail, skillVideos, summary] = await Promise.all([
       championService.getChampionDetail(championNameEn),
-      championId ? championService.getChampionSkillVideos(championId) : null
+      championId ? championService.getChampionSkillVideos(championId) : null,
+      championId ? championService.getChampionSummary(championId) : null
     ]);
     
     if (!detail) {
@@ -212,16 +213,17 @@ export class MatchViewPage {
     }
 
     clearElement(detailArea);
-    detailArea.appendChild(this.createChampionDetailContent(detail, skillVideos));
+    detailArea.appendChild(this.createChampionDetailContent(detail, skillVideos, summary));
   }
 
   /**
    * 챔피언 상세 정보 콘텐츠 생성
    * @param {Object} detail
    * @param {Object|null} skillVideos
+   * @param {Object|null} summary
    * @returns {Element}
    */
-  createChampionDetailContent(detail, skillVideos) {
+  createChampionDetailContent(detail, skillVideos, summary) {
     const roleMap = {
       'Fighter': '전사',
       'Tank': '탱커',
@@ -243,6 +245,8 @@ export class MatchViewPage {
         createElement('span', { className: 'champion-detail__title' }, detail.title),
         createElement('span', { className: 'champion-detail__roles' }, roles)
       ]),
+      // 초보자용 요약
+      this.createSummary(summary),
       // 비디오 플레이어 영역 (처음에는 숨김)
       createElement('div', { className: 'skill-video-player', id: 'skill-video-player' }),
       // 패시브
@@ -252,7 +256,47 @@ export class MatchViewPage {
         const spellVideo = skillVideos?.spells?.[index] || null;
         return this.createSkillRow(spell.key, spell, spellVideo);
       })
-    ]);
+    ].filter(Boolean));
+  }
+
+  /**
+   * 초보자용 요약 블록 생성
+   * @param {Object|null} summary
+   * @returns {Element|null}
+   */
+  createSummary(summary) {
+    if (!summary) return null;
+
+    const basics = [summary.difficulty ? `난이도 ${summary.difficulty}` : null, summary.attackType, summary.damageType]
+      .filter(Boolean);
+
+    const hasContent = basics.length > 0 || summary.tags.length > 0 || summary.stats.length > 0;
+    if (!hasContent) return null;
+
+    return createElement('div', { className: 'champion-summary' }, [
+      createElement('h4', { className: 'champion-summary__title' }, '한눈에 보기'),
+      basics.length ? createElement('div', { className: 'champion-summary__basics' },
+        basics.map(text => createElement('span', { className: 'champion-summary__badge' }, text))
+      ) : null,
+      summary.tags.length ? createElement('ul', { className: 'champion-summary__tags' },
+        summary.tags.map(tag => createElement('li', { className: 'champion-summary__tag' }, [
+          createElement('span', { className: 'champion-summary__tag-label' }, tag.label),
+          tag.desc ? createElement('span', { className: 'champion-summary__tag-desc' }, tag.desc) : null
+        ].filter(Boolean)))
+      ) : null,
+      summary.stats.length ? createElement('div', { className: 'champion-summary__stats' },
+        summary.stats.map(stat => createElement('div', { className: 'champion-summary__stat' }, [
+          createElement('span', { className: 'champion-summary__stat-label' }, stat.label),
+          createElement('div', { className: 'champion-summary__bar' },
+            Array.from({ length: stat.max }, (_, i) =>
+              createElement('span', {
+                className: `champion-summary__bar-cell ${i < stat.value ? 'champion-summary__bar-cell--on' : ''}`
+              })
+            )
+          )
+        ]))
+      ) : null
+    ].filter(Boolean));
   }
 
   /**
