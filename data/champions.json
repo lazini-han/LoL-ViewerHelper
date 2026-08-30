@@ -182,6 +182,12 @@
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/107/square"
                       },
                       {
+                          "id":  805,
+                          "nameKr":  "로크",
+                          "nameEn":  "Locke",
+                          "thumbnail":  "https://cdn.communitydragon.org/latest/champion/805/square"
+                      },
+                      {
                           "id":  236,
                           "nameKr":  "루시안",
                           "nameEn":  "Lucian",
@@ -1000,7 +1006,7 @@
                       {
                           "id":  9,
                           "nameKr":  "피들스틱",
-                          "nameEn":  "FiddleSticks",
+                          "nameEn":  "Fiddlesticks",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/9/square"
                       },
                       {

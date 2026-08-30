@@ -88,8 +88,8 @@
 }
 
 .player-card__icon {
-  width: 56px;
-  height: 56px;
+  width: 84px;  /* 56px x 1.5 */
+  height: 84px;
   border-radius: var(--radius-md);
   object-fit: cover;
   flex-shrink: 0;
@@ -120,7 +120,7 @@
 }
 
 .player-card__champion {
-  font-size: var(--font-size-sm);
+  font-size: calc(var(--font-size-sm) * 1.5);
   font-weight: 600;
   color: var(--color-text);
   white-space: nowrap;
@@ -129,7 +129,7 @@
 }
 
 .player-card__player {
-  font-size: var(--font-size-xs);
+  font-size: calc(var(--font-size-xs) * 1.5);
   color: var(--color-text-secondary);
   white-space: nowrap;
   overflow: hidden;

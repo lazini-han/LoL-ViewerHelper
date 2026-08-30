@@ -57,6 +57,7 @@ PJ.LoL-ViewerHelper/
 │   │
 │   └── utils/                    # 유틸리티
 │       ├── constants.js          # 상수 정의
+│       ├── ddragon.js            # Data Dragon 최신 버전 조회/캐시
 │       └── dom.js                # DOM 헬퍼 함수
 │
 ├── data/                         # 데이터 파일
@@ -141,6 +142,7 @@ PJ.LoL-ViewerHelper/
 | 파일 | 내용 |
 |------|------|
 | `constants.js` | 포지션 목록, 라우트 경로, 슬롯 순서 |
+| `ddragon.js` | Data Dragon 최신 버전 조회/캐시, CDN 기본 URL 생성 |
 | `dom.js` | `$`, `$$`, `createElement`, `clearElement` |
 
 ---

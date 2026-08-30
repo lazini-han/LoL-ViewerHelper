@@ -162,17 +162,6 @@
   opacity: 0.85;
 }
 
-/* 다른 게임에서 픽된 챔피언 */
-.champion-item--picked-other {
-  border: 3px solid #666;
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.champion-item--picked-other .champion-item__icon {
-  filter: grayscale(80%);
-}
-
 /* 글로벌 밴된 챔피언 */
 .champion-item--banned {
   border: 3px solid #8B0000;
@@ -189,6 +178,11 @@
   height: var(--champion-icon-md);
   border-radius: var(--radius-sm);
   object-fit: cover;
+}
+
+/* 현재 경기에 픽된 챔피언 - 이미지 대신 회색 사각형 */
+.champion-item__icon--masked {
+  background-color: #555;
 }
 
 .champion-item__name {
@@ -328,4 +322,204 @@
   font-size: 10px;
   color: var(--color-text-secondary);
   text-align: center;
+}
+
+/* 탭 선택된 챔피언 하이라이트 */
+.champion-item--tap-selected {
+  background-color: var(--color-bg-card);
+  border: 3px solid var(--color-accent);
+  box-shadow: 0 0 12px rgba(233, 69, 96, 0.6);
+  cursor: pointer;
+}
+
+/* 탭 안내 바 */
+.tap-guide {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--color-accent);
+  color: white;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.tap-guide--visible {
+  display: flex;
+}
+
+.tap-guide__cancel {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+}
+
+.tap-guide__cancel:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 반응형: 모바일 */
+@media (max-width: 768px) {
+  .champion-pick {
+    height: calc(100vh - 100px);
+    gap: 2px;
+  }
+
+  /* 글로벌 밴 영역: 검색을 첫 줄로, 밴 슬롯은 아래로 */
+  .global-bans {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4px;
+    padding: var(--spacing-xs);
+  }
+
+  .global-bans__center {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .global-bans__search {
+    flex: 1;
+    max-width: 200px;
+    width: auto;
+  }
+
+  .global-bans__team {
+    flex: 1;
+    min-width: 0;
+    gap: var(--spacing-xs);
+  }
+
+  .global-bans__team--blue {
+    justify-content: flex-start;
+  }
+
+  .global-bans__team--red {
+    justify-content: flex-end;
+  }
+
+  .ban-slot {
+    width: 28px;
+    height: 28px;
+  }
+
+  .global-bans__label {
+    font-size: 10px;
+  }
+
+  /* 팀 슬롯 영역: 세로 배치 */
+  .team-slots-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2px;
+    padding: var(--spacing-xs);
+  }
+
+  .vs-mark {
+    order: -1;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    gap: var(--spacing-sm);
+  }
+
+  .vs-mark__text {
+    display: none;
+  }
+
+  .vs-mark__teams {
+    font-size: 10px;
+  }
+
+  .swap-teams-btn {
+    font-size: var(--font-size-sm);
+    padding: 2px var(--spacing-xs);
+    min-width: 32px;
+  }
+
+  .team-slots {
+    gap: 2px;
+  }
+
+  .team-slots--blue,
+  .team-slots--red {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .champion-slot {
+    width: 56px;
+    min-height: 70px;
+    padding: 2px;
+    gap: 1px;
+  }
+
+  .champion-slot__icon-area {
+    width: 32px;
+    height: 32px;
+  }
+
+  .champion-slot__position-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .champion-slot__position {
+    font-size: 8px;
+  }
+
+  .champion-slot__player {
+    font-size: 9px;
+  }
+
+  .champion-slot__champion {
+    font-size: 8px;
+  }
+
+  /* 챔피언 그리드: 컴팩트 */
+  .champion-grid-container {
+    padding: var(--spacing-xs);
+  }
+
+  .champion-grid {
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+    gap: var(--spacing-xs);
+  }
+
+  .champion-item {
+    padding: 2px;
+    gap: 1px;
+    border-width: 2px;
+  }
+
+  .champion-item__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .champion-item__name {
+    font-size: 10px;
+  }
+
+  .champion-item--selected-blue,
+  .champion-item--selected-red {
+    border-width: 2px;
+  }
+
+  .champion-item--banned {
+    border-width: 2px;
+  }
+
+  .champion-item--tap-selected {
+    border-width: 2px;
+  }
 }

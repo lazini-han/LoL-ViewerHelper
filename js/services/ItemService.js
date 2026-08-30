@@ -3,8 +3,7 @@
  * Data Dragon API를 사용하여 전체 아이템 데이터를 가져옴
  */
 
-const DDRAGON_VERSION = '14.24.1';
-const DDRAGON_BASE_URL = `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}`;
+import { getDDragonVersion, getCachedDDragonVersion, ddragonBase } from '../utils/ddragon.js';
 
 // 시작 아이템 ID 목록
 const STARTER_ITEM_IDS = [
@@ -174,7 +173,8 @@ class ItemService {
     }
 
     try {
-      const response = await fetch(`${DDRAGON_BASE_URL}/data/ko_KR/item.json`);
+      const version = await getDDragonVersion();
+      const response = await fetch(`${ddragonBase(version)}/data/ko_KR/item.json`);
       if (!response.ok) {
         throw new Error('아이템 데이터를 불러올 수 없습니다.');
       }
@@ -319,7 +319,7 @@ class ItemService {
    * @returns {string}
    */
   getIconUrl(itemId) {
-    return `${DDRAGON_BASE_URL}/img/item/${itemId}.png`;
+    return `${ddragonBase(getCachedDDragonVersion())}/img/item/${itemId}.png`;
   }
 }
 

@@ -2,8 +2,8 @@
  * 챔피언 데이터 서비스
  */
 
-const DDRAGON_VERSION = '14.24.1';
-const DDRAGON_BASE = `https://ddragon.leagueoflegends.com/cdn/${DDRAGON_VERSION}`;
+import { getDDragonVersion, ddragonBase } from '../utils/ddragon.js';
+
 const CDRAGON_BASE = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default';
 const CDRAGON_VIDEO_BASE = 'https://d28xe8vt774jo5.cloudfront.net'; // CDN for videos
 
@@ -97,7 +97,8 @@ class ChampionService {
     }
 
     try {
-      const response = await fetch(`${DDRAGON_BASE}/data/ko_KR/champion/${championNameEn}.json`);
+      const version = await getDDragonVersion();
+      const response = await fetch(`${ddragonBase(version)}/data/ko_KR/champion/${championNameEn}.json`);
       if (!response.ok) {
         throw new Error('챔피언 상세 정보를 불러올 수 없습니다.');
       }
@@ -105,7 +106,7 @@ class ChampionService {
       const champData = data.data[championNameEn];
       
       if (champData) {
-        const detail = this.parseChampionDetail(champData);
+        const detail = this.parseChampionDetail(champData, version);
         this.detailCache.set(championNameEn, detail);
         return detail;
       }
@@ -119,9 +120,11 @@ class ChampionService {
   /**
    * 챔피언 상세 정보 파싱
    * @param {Object} champData - Data Dragon 챔피언 데이터
+   * @param {string} version - Data Dragon 버전
    * @returns {Object}
    */
-  parseChampionDetail(champData) {
+  parseChampionDetail(champData, version) {
+    const base = ddragonBase(version);
     const spells = champData.spells.map((spell, index) => {
       const keys = ['Q', 'W', 'E', 'R'];
       return {
@@ -130,14 +133,14 @@ class ChampionService {
         description: this.stripHtml(spell.description),
         cooldown: spell.cooldownBurn,
         cost: spell.costBurn,
-        image: `${DDRAGON_BASE}/img/spell/${spell.image.full}`
+        image: `${base}/img/spell/${spell.image.full}`
       };
     });
 
     const passive = {
       name: champData.passive.name,
       description: this.stripHtml(champData.passive.description),
-      image: `${DDRAGON_BASE}/img/passive/${champData.passive.image.full}`
+      image: `${base}/img/passive/${champData.passive.image.full}`
     };
 
     return {
