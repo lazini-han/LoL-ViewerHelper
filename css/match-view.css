@@ -136,6 +136,116 @@
   text-overflow: ellipsis;
 }
 
+/* 챔피언 역할 태그 (세로 나열) */
+.player-card__roles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.player-card--blue .player-card__roles {
+  align-items: flex-end;
+}
+
+.player-card--red .player-card__roles {
+  align-items: flex-start;
+}
+
+.player-card__role {
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  white-space: nowrap;
+}
+
+/* 궁극기 요약 호버창 */
+.ult-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  width: 320px;
+  max-width: calc(100vw - 16px);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--shadow-lg);
+  pointer-events: none;
+}
+
+.ult-tooltip--visible {
+  display: block;
+}
+
+.ult-tooltip__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xs);
+}
+
+.ult-tooltip__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.ult-tooltip__title {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.ult-tooltip__key {
+  font-size: var(--font-size-xs);
+  color: var(--color-accent);
+}
+
+.ult-tooltip__name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.ult-tooltip__cooldown {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.ult-tooltip__desc {
+  font-size: var(--font-size-xs);
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.ult-tooltip__note {
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.ult-tooltip__section + .ult-tooltip__section {
+  margin-top: var(--spacing-xs);
+}
+
+.ult-tooltip__label {
+  display: block;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.ult-tooltip__loading {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
 /* 클릭 가능한 카드 */
 .player-card--clickable {
   cursor: pointer;

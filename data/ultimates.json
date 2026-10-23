@@ -1,0 +1,2255 @@
+{
+  "version": "16.21.1",
+  "updated": "2026-10-24",
+  "ultimates": {
+    "1": {
+      "nameKr": "애니",
+      "ultName": "소환: 티버",
+      "image": "AnnieR.png",
+      "cooldown": "130/115/100",
+      "cooldownNote": "",
+      "effect": "곰 티버를 소환해 범위 피해를 입히고, 티버가 주변 적을 불태우며 공격합니다. 적을 기절시키면 티버가 분노합니다.",
+      "when": "기절 효과가 준비된 상태로 여러 적에게 소환해 한타를 시작하거나 마무리할 때 사용합니다.",
+      "how": "기절이 실린 상태로 점멸과 함께 소환하는 콤보가 가장 위협적입니다. 애니의 기절 중첩이 다 찼는지 확인하면 위협도를 알 수 있으며, 재사용으로 티버를 직접 조종합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Annie"
+      ]
+    },
+    "2": {
+      "nameKr": "올라프",
+      "ultName": "라그나로크",
+      "image": "OlafRagnarok.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "챔피언 공격 시 지속시간 연장",
+      "effect": "모든 이동 불가 및 방해 효과를 정화하고 일정 시간 면역이 되며, 공격력과 적 챔피언을 향한 이동 속도가 증가합니다.",
+      "when": "적의 군중 제어를 무시하고 적 딜러에게 달려들어야 할 때나 걸린 군중 제어를 풀어야 할 때 사용합니다.",
+      "how": "기본 공격이나 무모한 강타(E)를 계속 맞혀야 지속시간이 늘어납니다. 군중 제어가 통하지 않으므로 적은 거리를 벌리거나 지속시간이 끝날 때까지 버티는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Olaf"
+      ]
+    },
+    "3": {
+      "nameKr": "갈리오",
+      "ultName": "영웅출현",
+      "image": "GalioR.png",
+      "cooldown": "180/160/140",
+      "cooldownNote": "",
+      "effect": "아군 위치로 날아가 주변 아군에게 마법 보호막을 주고, 착지하며 적들을 공중에 띄웁니다.",
+      "when": "다른 라인 교전에 합류하거나 한타를 여는 이니시에이팅에 주로 사용합니다.",
+      "how": "날아가는 동안은 끊기지 않지만 착지 범위가 보여 피할 수 있습니다. 정의의 주먹 도발까지 이어지면 한타가 크게 기웁니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Galio"
+      ]
+    },
+    "4": {
+      "nameKr": "트위스티드 페이트",
+      "ultName": "운명",
+      "image": "Destiny.png",
+      "cooldown": "170/140/110",
+      "cooldownNote": "",
+      "effect": "몇 초간 맵의 모든 적 챔피언 위치가 보이고, 재사용하면 먼 거리를 순간이동합니다.",
+      "when": "다른 라인에서 싸움이 났을 때 순간이동으로 합류하거나, 사이드 라인 기습과 적 위치 확인에 사용합니다.",
+      "how": "순간이동 후 카드 뽑기의 골드 카드(기절)로 적을 묶는 연계가 핵심입니다. 궁극기를 쓰면 적에게도 경고가 보이므로, 합류 타이밍 싸움을 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Twisted_Fate"
+      ]
+    },
+    "5": {
+      "nameKr": "신 짜오",
+      "ultName": "현월수호",
+      "image": "XinZhaoR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "주변 적에게 현재 체력 비례 피해를 주고 밀어내며, 잠시 동안 멀리 있는 적에게 받는 피해를 막습니다.",
+      "when": "적 진형에 들어간 뒤 원거리 딜을 막고 싶을 때, 또는 적을 밀어내 분리시킬 때 사용합니다.",
+      "how": "도전한 적은 밀려나지 않아 1대1 구도를 만들 수 있습니다. 멀리 있는 적의 피해를 막는 동안 딜러를 잡아내는지가 관건이며, 가까이 붙은 적의 공격은 막지 못합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Xin_Zhao"
+      ]
+    },
+    "6": {
+      "nameKr": "우르곳",
+      "ultName": "불사의 공포",
+      "image": "UrgotR.png",
+      "cooldown": "100/85/70",
+      "cooldownNote": "",
+      "effect": "송곳 섬광탄을 맞힌 챔피언을 둔화시키고, 체력이 25% 아래로 떨어지면 끌어당겨 즉시 처형하며 주변 적에게 공포를 겁니다.",
+      "when": "체력이 깎인 적을 확실히 마무리하거나, 한타에서 탱커·딜러를 처형해 적 진형을 공포로 흩트릴 때 사용합니다.",
+      "how": "먼저 맞혀 둔화를 걸고 체력이 기준선 아래로 내려가는 순간 재사용하는 것이 핵심입니다. 끌려가는 동안 저지 불가라 막을 수 없어 처형 연출을 노리는 장면이 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Urgot"
+      ]
+    },
+    "7": {
+      "nameKr": "르블랑",
+      "ultName": "모방",
+      "image": "LeblancR.png",
+      "cooldown": "45/35/25",
+      "cooldownNote": "",
+      "effect": "가장 최근에 사용한 기본 스킬을 더 강한 피해로 한 번 더 사용합니다.",
+      "when": "적 딜러를 순식간에 암살하거나, 왜곡을 한 번 더 써서 진입·도주할 때 사용합니다.",
+      "how": "악의의 인장이나 환영 사슬을 연달아 써서 폭딜 또는 긴 속박을 노리는 것이 핵심입니다. 어떤 스킬을 복사했는지 보면 노림수를 알 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/LeBlanc"
+      ]
+    },
+    "8": {
+      "nameKr": "블라디미르",
+      "ultName": "혈사병",
+      "image": "VladimirHemoplague.png",
+      "cooldown": "120",
+      "cooldownNote": "",
+      "effect": "지정 지역의 적을 감염시켜 잠시 동안 받는 피해를 늘리고, 몇 초 뒤 마법 피해를 입히며 맞은 챔피언 수만큼 체력을 회복합니다.",
+      "when": "한타에서 여러 적이 뭉쳐 있을 때 진입하며 사용하고, 아군의 피해까지 함께 늘려 줍니다.",
+      "how": "진입 후 피의 웅덩이로 무적 상태가 되며 버티는 연계가 핵심입니다. 감염 피해는 늦게 터지므로 그 사이 아군이 얼마나 피해를 넣는지 보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Vladimir"
+      ]
+    },
+    "9": {
+      "nameKr": "피들스틱",
+      "ultName": "까마귀 폭풍",
+      "image": "FiddleSticksR.png",
+      "cooldown": "140/110/80",
+      "cooldownNote": "",
+      "effect": "잠시 정신을 집중한 뒤 대상 지역으로 순간이동해 주변에 까마귀 떼를 불러내 지속 마법 피해를 입힙니다.",
+      "when": "적이 뭉쳐 있는 한타 시작이나, 부시·시야 밖에서 기습할 때 주로 사용합니다.",
+      "how": "집중 시간 동안 끊기지 않도록 시야 밖에서 시작하는 것이 핵심이며, 순간이동 직후 점멸과 공포를 함께 써서 여러 명을 묶는 장면이 하이라이트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Fiddlesticks"
+      ]
+    },
+    "10": {
+      "nameKr": "케일",
+      "ultName": "신성한 심판",
+      "image": "KayleR.png",
+      "cooldown": "160/120/80",
+      "cooldownNote": "",
+      "effect": "아군 한 명을 잠시 무적 상태로 만들고, 그 주변에 검을 쏟아부어 적들에게 마법 피해를 입힙니다.",
+      "when": "핵심 아군이나 케일 자신이 집중 공격을 받아 쓰러지기 직전에 무적으로 지킬 때 사용합니다.",
+      "how": "무적 타이밍이 핵심이라 적의 큰 기술을 흘려보내는 장면을 주목하세요. 끝난 뒤 적들이 다시 공격해 오는지도 보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kayle"
+      ]
+    },
+    "11": {
+      "nameKr": "마스터 이",
+      "ultName": "최후의 전사",
+      "image": "Highlander.png",
+      "cooldown": "85",
+      "cooldownNote": "처치 관여 시 지속시간 연장",
+      "effect": "이동 속도와 공격 속도가 크게 증가하고 둔화에 면역됩니다. 기본 지속 효과로 처치 관여 시 다른 스킬의 쿨타임이 줄어듭니다.",
+      "when": "한타 중후반에 적 딜러를 추격하거나, 적의 주요 스킬이 빠진 뒤 진입해 연속 처치를 노릴 때 사용합니다.",
+      "how": "처치 관여마다 지속시간이 늘어 연속 처치가 나오면 막기 어렵습니다. 반대로 적의 기절·에어본 같은 군중 제어에는 약해 진입 타이밍이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Master_Yi"
+      ]
+    },
+    "12": {
+      "nameKr": "알리스타",
+      "ultName": "꺾을 수 없는 의지",
+      "image": "FerociousHowl.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "즉시 모든 방해 효과를 없애고 일정 시간 받는 피해가 크게 감소합니다.",
+      "when": "이니시 후 적의 집중 공격을 버틸 때나, 군중 제어에 걸린 상황에서 벗어날 때 사용합니다.",
+      "how": "분쇄(Q)와 박치기(W)로 진입한 뒤 켜서 적 공격을 몸으로 받아 내는 것이 일반적입니다. 켜는 순간 걸려 있던 기절도 풀리므로 적은 지속시간이 끝난 뒤를 노려야 합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Alistar"
+      ]
+    },
+    "13": {
+      "nameKr": "라이즈",
+      "ultName": "공간 왜곡",
+      "image": "RyzeR.png",
+      "cooldown": "180/160/140",
+      "cooldownNote": "",
+      "effect": "근처에 차원문을 열고, 잠시 후 주변 아군을 지정한 위치로 함께 순간이동시킵니다.",
+      "when": "다른 라인 기습, 사이드 압박 후 합류, 포위 공격이나 위험 지역 탈출에 주로 사용합니다.",
+      "how": "팀 전체가 함께 이동하는 기습이 강력하지만 2초 준비 중 끊기면 취소되고 도착 직후 잠시 행동할 수 없어, 도착 지점 선정이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ryze"
+      ]
+    },
+    "14": {
+      "nameKr": "사이온",
+      "ultName": "멈출 수 없는 맹공",
+      "image": "SionR.png",
+      "cooldown": "140/100/60",
+      "cooldownNote": "",
+      "effect": "저지 불가 상태로 먼 거리를 돌진해, 충돌 지점 주변 적에게 피해를 주고 기절시킵니다. 오래 달릴수록 피해와 기절이 강해집니다.",
+      "when": "한타 개시, 멀리서 전장으로 합류할 때, 뒷라인 진입이나 시야 밖 기습에 주로 사용합니다.",
+      "how": "방향을 크게 바꾸기 어려워 직선 경로가 중요합니다. 시야 밖에서 길게 달려와 적 진형에 박히면 큰 성과를 내며, 저지 불가라 적은 군중 제어로 막지 못하고 옆으로 피해야 합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Sion"
+      ]
+    },
+    "15": {
+      "nameKr": "시비르",
+      "ultName": "사냥 개시",
+      "image": "SivirR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "처치 관여 시 지속시간 초기화",
+      "effect": "주변 아군 모두의 이동 속도를 크게 올려줍니다. 지속 중 챔피언을 공격하면 시비르의 기본 스킬 쿨타임이 줄어듭니다.",
+      "when": "한타 진입, 빠른 오브젝트 합류, 적 추격, 불리할 때 후퇴에 사용합니다.",
+      "how": "팀 전체가 빠르게 움직여 적보다 먼저 자리를 잡거나 순식간에 덮칠 수 있습니다. 오브젝트 앞에서 팀 단위 돌격 신호로 쓰이는지 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Sivir"
+      ]
+    },
+    "16": {
+      "nameKr": "소라카",
+      "ultName": "기원",
+      "image": "SorakaR.png",
+      "cooldown": "150/135/120",
+      "cooldownNote": "",
+      "effect": "맵 어디에 있든 자신과 모든 아군 챔피언의 체력을 즉시 회복시킵니다.",
+      "when": "다른 라인 교전에서 아군을 살릴 때, 한타 도중 아군 체력이 위험할 때 사용합니다.",
+      "how": "체력이 많이 깎인 아군은 더 크게 회복됩니다. 다른 라인 아군이 죽기 직전에 맞춰 쓰는 타이밍 판단이 핵심이며, 상대의 치유 감소 효과에 약합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Soraka"
+      ]
+    },
+    "17": {
+      "nameKr": "티모",
+      "ultName": "유독성 함정",
+      "image": "TeemoR.png",
+      "cooldown": "35/30/25",
+      "cooldownNote": "충전형, 최대 3/4/5개 보관 (값은 1개 충전 시간)",
+      "effect": "밟으면 터지는 투명한 버섯 함정을 설치합니다. 밟은 적은 둔화되고 지속 마법 피해를 입으며 위치가 드러납니다.",
+      "when": "적이 지나갈 길목, 부시, 오브젝트 주변에 미리 깔아 시야를 확보하고 추격·도주를 방해할 때 사용합니다.",
+      "how": "버섯 위에 버섯을 던지면 튕겨서 더 멀리 설치됩니다. 적이 제어 와드나 탐지로 버섯을 치우는지, 오브젝트 싸움 전에 버섯 밭을 만드는지 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Teemo"
+      ]
+    },
+    "18": {
+      "nameKr": "트리스타나",
+      "ultName": "대구경 탄환",
+      "image": "TristanaR.png",
+      "cooldown": "100",
+      "cooldownNote": "",
+      "effect": "대포알을 쏴 대상에게 마법 피해를 입히고, 대상과 주변 적을 멀리 밀어내며 잠깐 기절시킵니다.",
+      "when": "달려드는 적을 밀어내 자신을 지키는 용도나, 체력이 낮은 적을 마무리할 때 주로 사용합니다.",
+      "how": "폭발 화약과 함께 터뜨리면 큰 마무리 피해가 나옵니다. 로켓 점프로 들어간 뒤 적을 아군 쪽으로 밀어 넣는 '인섹' 플레이도 자주 보입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Tristana"
+      ]
+    },
+    "19": {
+      "nameKr": "워윅",
+      "ultName": "무한의 구속",
+      "image": "WarwickR.png",
+      "cooldown": "110/90/70",
+      "cooldownNote": "",
+      "effect": "이동 속도에 비례한 거리를 도약해 처음 부딪힌 적 챔피언을 1.5초간 제압하고, 입힌 피해만큼 체력을 회복합니다.",
+      "when": "갱킹으로 상대를 확실히 묶어 잡거나, 한타에서 적 핵심 딜러를 긴 시간 묶어 팀원이 처치하도록 할 때 사용합니다.",
+      "how": "이동 속도가 빠를수록 멀리 날아가므로 피의 사냥 추격 효과를 받은 뒤 쓰면 사거리가 크게 늘어납니다. 수은 계열 아이템으로 제압을 풀면 피해가 들어가지 않으므로 상대 아이템 확인이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Warwick"
+      ]
+    },
+    "20": {
+      "nameKr": "누누와 윌럼프",
+      "ultName": "절대 영도",
+      "image": "NunuR.png",
+      "cooldown": "110/100/90",
+      "cooldownNote": "",
+      "effect": "주변에 눈보라를 만들어 적을 점점 강하게 둔화시키고, 끝날 때 범위 안의 적에게 큰 피해를 줍니다.",
+      "when": "오브젝트 앞 좁은 지역이나 적이 묶인 한타에서 주로 사용합니다.",
+      "how": "정신 집중을 오래 할수록 피해가 커지지만 기절 등에 끊기기 쉬우며, 적이 범위 밖으로 빠져나가는지가 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Nunu_%26_Willump"
+      ]
+    },
+    "21": {
+      "nameKr": "미스 포츈",
+      "ultName": "쌍권총 난사",
+      "image": "MissFortuneBulletTime.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "정면 원뿔 범위에 몇 초 동안 총알을 난사해 범위 안의 적들에게 큰 물리 피해를 입힙니다. 각 탄환에 치명타가 적용됩니다.",
+      "when": "적들이 좁은 길목이나 오브젝트 주변에 뭉쳐 있을 때 한타의 승패를 가르는 용도로 사용합니다.",
+      "how": "정신 집중 중에는 움직일 수 없어 끊기기 쉬우므로, 아군의 광역 군중 제어로 적이 묶였을 때 안전한 거리에서 쓰는 것이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Miss_Fortune"
+      ]
+    },
+    "22": {
+      "nameKr": "애쉬",
+      "ultName": "마법의 수정화살",
+      "image": "EnchantedCrystalArrow.png",
+      "cooldown": "100/80/60",
+      "cooldownNote": "",
+      "effect": "맵 끝까지 날아가는 얼음 화살을 쏴 처음 맞은 챔피언에게 피해를 입히고, 멀리 날아갈수록 오래 기절시킵니다.",
+      "when": "멀리서 한타를 시작하는 이니시, 다른 라인 합류 지원, 도망치는 적 마무리에 사용합니다.",
+      "how": "장거리 화살이 맞으면 바로 아군이 진입하는 신호입니다. 날아오는 화살을 보고 피할 수 있어, 적 시야가 없는 곳에서 쏘거나 다른 군중 제어 뒤에 맞히는 것이 효과적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ashe"
+      ]
+    },
+    "23": {
+      "nameKr": "트린다미어",
+      "ultName": "불사의 분노",
+      "image": "UndyingRage.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "5초 동안 체력이 일정 수치 아래로 내려가지 않아 죽지 않으며, 즉시 분노를 얻습니다.",
+      "when": "적진에 깊게 들어가 싸우다 체력이 바닥났을 때, 또는 포탑 다이브를 할 때 주로 사용합니다.",
+      "how": "지속 시간이 끝나기 전 회복하거나 도망쳐야 합니다. 적은 궁극기가 끝날 때까지 기다렸다가 처치하거나 시선을 피하는 것이 정석입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Tryndamere"
+      ]
+    },
+    "24": {
+      "nameKr": "잭스",
+      "ultName": "무기의 달인",
+      "image": "JaxR.png",
+      "cooldown": "110/100/90",
+      "cooldownNote": "",
+      "effect": "기본 지속 효과로 세 번째 공격마다 추가 피해를 주며, 사용 시 주변에 피해를 주고 맞힌 챔피언 수만큼 방어력과 마법 저항력이 오릅니다.",
+      "when": "적 진형에 뛰어들어 여러 적을 상대하며 오래 버텨야 하는 한타나 1대1 싸움에서 주로 사용합니다.",
+      "how": "도약 공격으로 진입한 뒤 궁극기를 켜면 단단해지고 두 번째 공격마다 추가 피해가 들어갑니다. 반격으로 기본 공격을 막는 타이밍과 함께 보면 잭스의 강함을 알 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Jax"
+      ]
+    },
+    "25": {
+      "nameKr": "모르가나",
+      "ultName": "영혼의 족쇄",
+      "image": "MorganaR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "주변 적 챔피언들을 사슬로 묶어 피해를 주고 둔화시키며, 일정 시간 안에 사슬을 끊지 못한 적은 추가 피해와 함께 기절합니다.",
+      "when": "상대 진영 한가운데로 파고드는 한타 시작이나, 아군에게 달려드는 적들을 묶어 받아치는 상황에 주로 사용합니다.",
+      "how": "점멸이나 존야와 함께 쓰면 끝까지 버티며 기절을 확정하기 좋습니다. 적이 사슬 범위 밖으로 걸어 나가면 끊기므로 맞은 적들이 도망치는지 지켜보면 재미있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Morgana"
+      ]
+    },
+    "26": {
+      "nameKr": "질리언",
+      "ultName": "시간 역행",
+      "image": "ChronoShift.png",
+      "cooldown": "120/90/60",
+      "cooldownNote": "",
+      "effect": "자신이나 아군에게 시간 룬을 걸어, 대상이 죽을 피해를 입으면 잠시 멈춘 뒤 체력을 회복한 채 그 자리에서 부활시킵니다.",
+      "when": "한타에서 집중 공격을 받는 원거리 딜러나 핵심 아군이 쓰러지기 직전에 주로 사용합니다.",
+      "how": "너무 일찍 걸면 적이 대상을 바꾸거나 기다렸다가 부활 직후를 노리므로, 부활 타이밍을 노리는 적의 움직임을 지켜보면 재미있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Zilean"
+      ]
+    },
+    "27": {
+      "nameKr": "신지드",
+      "ultName": "광기의 물약",
+      "image": "InsanityPotion.png",
+      "cooldown": "100",
+      "cooldownNote": "",
+      "effect": "화학 물질을 마셔 잠시 동안 주문력, 방어력, 이동 속도 등 여러 능력치를 올리고, 독 자취에 치유 감소를 더합니다.",
+      "when": "교전 진입 직전, 적을 쫓거나 도망칠 때, 오래 버텨야 하는 싸움에서 사용합니다.",
+      "how": "단단해지고 빨라져 적 사이를 휘저으며 독을 깔기 좋습니다. 던져넘기기(E)로 적을 아군 쪽으로 던지는 연계와, 치유 감소로 회복형 상대를 압박하는 점을 보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Singed"
+      ]
+    },
+    "28": {
+      "nameKr": "이블린",
+      "ultName": "최후의 포옹",
+      "image": "EvelynnR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "잠시 대상으로 지정할 수 없게 된 뒤 전방 범위에 피해를 주고 뒤로 순간이동하며, 체력이 낮은 적에게는 피해가 크게 증가합니다.",
+      "when": "은신 상태로 접근해 체력이 깎인 딜러를 마무리하거나, 암살 후 위험 지역에서 빠져나올 때 사용합니다.",
+      "how": "황홀한 저주로 묶고 증오의 가시와 채찍유린으로 체력을 깎은 뒤 궁극기로 마무리하는 연계가 기본입니다. 뒤로 이동하는 거리가 길어 마무리와 동시에 도주까지 하는 장면이 많습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Evelynn"
+      ]
+    },
+    "29": {
+      "nameKr": "트위치",
+      "ultName": "무차별 난사",
+      "image": "TwitchFullAutomatic.png",
+      "cooldown": "90",
+      "cooldownNote": "",
+      "effect": "몇 초 동안 사거리와 공격력이 늘어나고, 기본 공격이 일직선의 적들을 관통합니다.",
+      "when": "한타 시작에서 적이 일직선으로 뭉쳐 있을 때 주로 사용하며, 은신 후 기습과 함께 쓰는 경우가 많습니다.",
+      "how": "매복 스킬의 은신으로 측면에 숨어 들어간 뒤 궁극기로 여러 적을 한꺼번에 공격하는 장면이 하이라이트입니다. 늘어난 사거리로 안전하게 딜하는지 보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Twitch"
+      ]
+    },
+    "30": {
+      "nameKr": "카서스",
+      "ultName": "진혼곡",
+      "image": "KarthusFallenOne.png",
+      "cooldown": "200/180/160",
+      "cooldownNote": "",
+      "effect": "3초간 정신 집중한 뒤, 거리와 관계없이 모든 적 챔피언에게 마법 피해를 입힙니다.",
+      "when": "다른 라인의 체력이 낮은 적을 처치하거나, 한타 중 적 전체의 체력을 깎을 때 사용합니다. 쓰러진 직후 죽음 극복 상태에서도 쓸 수 있습니다.",
+      "how": "정신 집중이 침묵이나 사망으로 끊길 수 있어 안전한 곳에서 쓰는 것이 중요합니다. 적은 보호막이나 회복으로 버티는 대응을 합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Karthus"
+      ]
+    },
+    "31": {
+      "nameKr": "초가스",
+      "ultName": "포식",
+      "image": "Feast.png",
+      "cooldown": "80/70/60",
+      "cooldownNote": "",
+      "effect": "대상 하나를 먹어치워 큰 고정 피해를 입히고, 처치하면 몸집과 최대 체력이 영구적으로 커집니다.",
+      "when": "체력이 낮은 적 챔피언을 마무리하거나 바론·드래곤 같은 대형 몬스터를 빼앗을 때 주로 사용합니다.",
+      "how": "고정 피해라 방어력과 관계없이 들어갑니다. 오브젝트 싸움에서 강타처럼 몬스터를 먹어 빼앗는 장면을 주목하세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Cho%27Gath"
+      ]
+    },
+    "32": {
+      "nameKr": "아무무",
+      "ultName": "슬픈 미라의 저주",
+      "image": "CurseoftheSadMummy.png",
+      "cooldown": "150/125/100",
+      "cooldownNote": "",
+      "effect": "주변 넓은 범위의 적들을 붕대로 휘감아 피해를 주고 기절시킵니다.",
+      "when": "한타 개시, 오브젝트 싸움에서 적이 뭉쳐 있을 때 주로 사용합니다.",
+      "how": "붕대 던지기(Q)로 붙은 뒤 바로 궁극기를 쓰면 여러 명을 한 번에 묶을 수 있습니다. 좁은 곳에 모인 적 다수를 기절시키면 한타가 바로 기웁니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Amumu"
+      ]
+    },
+    "33": {
+      "nameKr": "람머스",
+      "ultName": "지진 폭격",
+      "image": "Tremors2.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "공중으로 뛰어올라 지정 지점에 착지하며 피해와 둔화를 주고, 대회전 중 쓰면 적을 공중에 띄웁니다.",
+      "when": "먼 거리에서 한타에 진입하거나 적 핵심 딜러를 노리는 이니시에이팅에 주로 사용합니다.",
+      "how": "대회전으로 이동 속도를 높이면 사거리가 늘어나, 대회전 후 바로 쓰는 콤보가 기본이며 이어서 광란의 도발로 묶습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Rammus"
+      ]
+    },
+    "34": {
+      "nameKr": "애니비아",
+      "ultName": "얼음 폭풍",
+      "image": "GlacialStorm.png",
+      "cooldown": "4/3/2",
+      "cooldownNote": "켜고 끄는 지속형, 유지 중 마나 소모",
+      "effect": "켜 두는 동안 점점 커지는 얼음 폭풍으로 범위 안 적에게 지속 피해를 주고 둔화시키며, 최대 크기에서 더 강해집니다.",
+      "when": "라인 정리, 오브젝트 주변 구역 장악, 한타에서 적의 진입로를 막을 때 사용합니다.",
+      "how": "얼음 폭풍으로 냉각된 적에게 동상(E)이 두 배 피해를 주는 연계가 핵심입니다. 결정화(W) 벽으로 적을 가두기도 하며, 적은 폭풍 범위를 피해 돌아가는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Anivia"
+      ]
+    },
+    "35": {
+      "nameKr": "샤코",
+      "ultName": "환각",
+      "image": "HallucinateFull.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "",
+      "effect": "자신과 똑같은 환영을 만들어 적을 속입니다. 환영은 죽으면 폭발하며 작은 깜짝 상자를 남깁니다.",
+      "when": "적 스킬을 피하거나 추격을 따돌릴 때, 교전 중 적의 혼란을 유도할 때 사용합니다.",
+      "how": "사용 순간 잠시 대상으로 지정할 수 없어 위험한 스킬을 피할 수 있습니다. 진짜와 환영을 구분하지 못하게 움직이는 것이 핵심이며, 적이 환영을 쫓는지 보는 재미가 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Shaco"
+      ]
+    },
+    "36": {
+      "nameKr": "문도 박사",
+      "ultName": "최대 투여량",
+      "image": "DrMundoR.png",
+      "cooldown": "120",
+      "cooldownNote": "",
+      "effect": "잃은 체력의 일부를 즉시 회복하고 이동 속도를 얻으며, 10초 동안 최대 체력에 비례해 체력을 크게 재생합니다.",
+      "when": "한타에서 앞장서 피해를 받아낼 때나, 체력이 위험할 때 버티거나 도주하는 용도로 사용합니다.",
+      "how": "체력이 어느 정도 깎인 뒤 쓰면 회복 효과가 커집니다. 상대는 치유 감소 아이템과 점화로 회복량을 줄이는 것이 핵심 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Dr._Mundo"
+      ]
+    },
+    "37": {
+      "nameKr": "소나",
+      "ultName": "크레센도",
+      "image": "SonaR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "",
+      "effect": "앞쪽 넓은 범위에 선율을 날려 맞은 적 챔피언들을 기절시키고 마법 피해를 입힙니다.",
+      "when": "한타 개시나 적의 돌진을 끊어내는 반격, 도망치는 적 추격에 사용합니다.",
+      "how": "범위가 넓어 적이 뭉쳐 있을 때 여러 명을 한 번에 묶을 수 있습니다. 측면에서 쏘거나 적이 진입하는 순간 맞받아치는 타이밍이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Sona"
+      ]
+    },
+    "38": {
+      "nameKr": "카사딘",
+      "ultName": "균열 이동",
+      "image": "RiftWalk.png",
+      "cooldown": "5/3.5/2",
+      "cooldownNote": "연속 사용 시 마나 소모 증가",
+      "effect": "가까운 곳으로 순간이동하며 주변 적에게 피해를 입힙니다. 짧은 시간에 연속으로 쓰면 마나를 더 쓰는 대신 피해가 커집니다.",
+      "when": "후반에 적 후방으로 진입해 딜러를 노리거나, 위험할 때 벽을 넘어 도주할 때 사용합니다.",
+      "how": "쿨타임이 매우 짧아 6레벨 이후, 특히 후반에 기동성이 크게 늘어납니다. 마나 관리와 진입 각을 보는 것이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kassadin"
+      ]
+    },
+    "39": {
+      "nameKr": "이렐리아",
+      "ultName": "선봉진격검",
+      "image": "IreliaR.png",
+      "cooldown": "125/105/85",
+      "cooldownNote": "",
+      "effect": "칼날 다발을 날려 맞은 적에게 피해와 표식을 남기고, 주변에 칼날 벽을 만들어 통과하는 적에게 피해와 둔화를 줍니다.",
+      "when": "교전을 시작하며 여러 적에게 표식을 남기거나, 적의 퇴로를 칼날 벽으로 막아 추격할 때 사용합니다.",
+      "how": "표식이 남은 적에게는 칼날 쇄도가 초기화되므로 궁극기 후 Q로 연속 돌진하는 연계가 핵심입니다. 칼날 벽 안에 적을 가두면 빠져나가려다 둔화에 걸립니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Irelia"
+      ]
+    },
+    "40": {
+      "nameKr": "잔나",
+      "ultName": "계절풍",
+      "image": "ReapTheWhirlwind.png",
+      "cooldown": "130/115/100",
+      "cooldownNote": "",
+      "effect": "주변 적을 뒤로 밀어낸 뒤, 정신을 집중하는 동안 주변 아군의 체력을 지속적으로 회복시킵니다.",
+      "when": "적이 아군 딜러에게 달려들 때 밀쳐내 보호하거나, 한타 후반 아군을 대량으로 회복시킬 때 사용합니다.",
+      "how": "적의 진입 직후 써서 돌진한 적을 떼어내는 것이 핵심입니다. 반대로 적을 아군 쪽으로 밀어 넣는 공격적인 활용도 있으며, 집중이 끊기지 않게 하는 위치 선정이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Janna"
+      ]
+    },
+    "41": {
+      "nameKr": "갱플랭크",
+      "ultName": "포탄 세례",
+      "image": "GangplankR.png",
+      "cooldown": "160/140/120",
+      "cooldownNote": "",
+      "effect": "맵 어디든 지정한 지역에 포탄을 연속으로 떨어뜨려 피해를 주고 이동 속도를 늦춥니다.",
+      "when": "다른 라인 교전 지원, 도주하는 적 추격, 오브젝트 싸움 구역 장악에 주로 사용합니다.",
+      "how": "맵 전체 지원이 가능한 것이 강점이며, 혀어어어업상으로 얻은 은화로 업그레이드하면 포탄 추가, 중앙 고정 피해, 아군 이동 속도 증가가 붙습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Gangplank"
+      ]
+    },
+    "42": {
+      "nameKr": "코르키",
+      "ultName": "미사일 폭격",
+      "image": "MissileBarrage.png",
+      "cooldown": "20",
+      "cooldownNote": "충전형 최대 4회, 연속 사용 간격 2초",
+      "effect": "미사일을 쏘아 처음 맞은 적과 주변에 물리 피해를 줍니다. 세 번째 미사일은 '큰 놈'으로 더 넓고 강합니다.",
+      "when": "라인전 견제, 한타 전 원거리 견제, 도망치는 적 마무리 등 거의 항상 사용합니다.",
+      "how": "충전 횟수가 있어 연달아 쏠 수 있으며, 적 챔피언을 기본 공격하면 충전이 빨라집니다. 미니언에 막히지 않게 각을 보는 것이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Corki"
+      ]
+    },
+    "43": {
+      "nameKr": "카르마",
+      "ultName": "만트라",
+      "image": "KarmaMantra.png",
+      "cooldown": "40/38/36/34",
+      "cooldownNote": "1레벨부터 사용 가능, 적 챔피언을 맞히면 쿨타임 감소",
+      "effect": "다음에 쓰는 스킬 하나를 강화합니다. 내면의 열정은 폭발 장판, 굳은 결의는 회복·추가 속박, 고무는 광역 보호막과 이동 속도를 줍니다.",
+      "when": "라인전 견제, 한타 진입 시 아군 보호, 추격·도주 등 거의 매 교전마다 자주 사용합니다.",
+      "how": "쿨타임이 짧아 자주 돌아옵니다. 공격적으로 내면의 열정을 쓰는지, 아군에게 고무를 거는지에 따라 카르마의 역할이 달라집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Karma"
+      ]
+    },
+    "44": {
+      "nameKr": "타릭",
+      "ultName": "우주의 광휘",
+      "image": "TaricR.png",
+      "cooldown": "180/150/120",
+      "cooldownNote": "",
+      "effect": "잠시 후 타릭과 주변 아군 챔피언이 짧은 시간 동안 무적 상태가 됩니다.",
+      "when": "한타에서 적의 핵심 스킬이 아군에게 쏟아질 때나, 다이브로 적 포탑 아래에 들어갈 때 주로 사용합니다.",
+      "how": "발동까지 지연 시간이 있어 미리 예측해서 써야 합니다. 적이 지연 시간을 보고 물러나 무적이 끝난 뒤 다시 들어오는 심리전이 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Taric"
+      ]
+    },
+    "45": {
+      "nameKr": "베이가",
+      "ultName": "태초의 폭발",
+      "image": "VeigarR.png",
+      "cooldown": "120/90/60",
+      "cooldownNote": "",
+      "effect": "대상 적 챔피언에게 큰 마법 피해를 입히며, 대상의 잃은 체력이 많을수록 피해량이 커지는 마무리 스킬입니다.",
+      "when": "체력이 깎인 적을 처치하는 마무리용으로 주로 사용하며, 성장한 뒤에는 한 방에 딜러를 녹이기도 합니다.",
+      "how": "사건의 지평선으로 가둔 뒤 연계하는 것이 기본입니다. 상대는 발사체를 막는 스킬이나 마법 보호막으로 대응하므로 그런 스킬이 빠졌는지 보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Veigar"
+      ]
+    },
+    "48": {
+      "nameKr": "트런들",
+      "ultName": "진압",
+      "image": "TrundlePain.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "적 챔피언의 최대 체력 비례 피해를 입히고 그만큼 회복하며, 대상의 방어력과 마법 저항력을 빼앗아 자신이 가집니다.",
+      "when": "적 탱커와 싸울 때나 1:1 결투에서 주로 사용하며, 단단한 적을 무력화하는 데 강합니다.",
+      "how": "탱커에게 쓰면 아군이 그 탱커를 쉽게 녹이고 트런들은 단단해집니다. 누구에게 쓰는지(탱커 무력화인지, 딜러 처치인지)를 보면 의도를 알 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Trundle"
+      ]
+    },
+    "50": {
+      "nameKr": "스웨인",
+      "ultName": "악의 승천",
+      "image": "SwainR.png",
+      "cooldown": "120",
+      "cooldownNote": "적 챔피언 처치 관여 시 지속시간 완전 충전",
+      "effect": "악마로 변신해 주변 적의 체력을 계속 흡수합니다. 잠시 후부터 악의 불길로 주변 적에게 큰 피해와 둔화를 줄 수 있습니다.",
+      "when": "한타에서 적진 한가운데로 들어가 버틸 때, 다수의 적과 싸울 때 사용합니다.",
+      "how": "적 챔피언의 체력을 흡수하는 동안 변신이 유지되어 쉽게 죽지 않습니다. 제국의 눈(W)이나 속박명령(E)으로 묶고 들어가는 연계와, 악의 불길을 쓰는 타이밍이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Swain"
+      ]
+    },
+    "51": {
+      "nameKr": "케이틀린",
+      "ultName": "비장의 한 발",
+      "image": "CaitlynR.png",
+      "cooldown": "90",
+      "cooldownNote": "",
+      "effect": "잠시 조준한 뒤 매우 먼 거리의 대상 하나에게 강력한 한 발을 쏩니다. 다른 적 챔피언이 대신 맞아 막을 수 있습니다.",
+      "when": "도망치거나 체력이 낮은 적을 먼 거리에서 마무리할 때 주로 사용합니다.",
+      "how": "조준 중 대상의 위치가 보여 적은 몸으로 막거나 숨는 방식으로 대응합니다. 적 탱커가 대신 맞아주는 장면도 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Caitlyn"
+      ]
+    },
+    "53": {
+      "nameKr": "블리츠크랭크",
+      "ultName": "정전기장",
+      "image": "StaticField.png",
+      "cooldown": "60/40/20",
+      "cooldownNote": "준비 상태에서는 기본 공격에 번개 추가 피해",
+      "effect": "사용하면 주변 적에게 마법 피해를 입히고 짧게 침묵시키며 적의 보호막을 파괴합니다. 준비 상태에서는 기본 공격에 번개 피해가 추가됩니다.",
+      "when": "로켓 손으로 적을 끌어온 직후 연계하거나, 적의 보호막과 스킬 사용을 끊어야 할 때 사용합니다.",
+      "how": "침묵으로 적의 도주기나 스킬을 잠깐 막을 수 있어 그랩 후 연계가 핵심입니다. 재사용 대기시간이 짧아 교전마다 자주 볼 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Blitzcrank"
+      ]
+    },
+    "54": {
+      "nameKr": "말파이트",
+      "ultName": "멈출 수 없는 힘",
+      "image": "UFSlash.png",
+      "cooldown": "130/115/100",
+      "cooldownNote": "",
+      "effect": "지정 위치로 막을 수 없이 돌진해 주변 적에게 피해를 주고 공중에 띄웁니다.",
+      "when": "한타를 여는 이니시에이팅으로 쓰며, 적이 뭉쳐 있을 때 진입해 다수를 띄웁니다.",
+      "how": "적이 좁은 곳에 뭉쳤을 때 플래시와 함께 쓰면 여러 명을 띄울 수 있습니다. 띄운 직후 아군 광역 스킬이 따라 들어가는 연계가 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Malphite"
+      ]
+    },
+    "55": {
+      "nameKr": "카타리나",
+      "ultName": "죽음의 연꽃",
+      "image": "KatarinaR.png",
+      "cooldown": "75/60/45",
+      "cooldownNote": "",
+      "effect": "정신 집중하는 동안 칼날을 돌려 주변 적 챔피언 셋에게 큰 피해와 치유 감소 효과를 입힙니다.",
+      "when": "한타 중 적들이 스킬을 다 쓴 뒤 한가운데로 들어가 여러 명을 공격할 때 사용합니다.",
+      "how": "기절·침묵에 쉽게 끊기므로 적의 군중 제어기가 빠진 뒤 쓰는 것이 핵심입니다. 도중에 순보로 끊고 도망치는 적을 쫓는 장면도 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Katarina"
+      ]
+    },
+    "56": {
+      "nameKr": "녹턴",
+      "ultName": "피해망상",
+      "image": "NocturneParanoia.png",
+      "cooldown": "160/130/100",
+      "cooldownNote": "",
+      "effect": "모든 적의 시야를 좁히고 시야 공유를 끊은 뒤, 재사용하면 적 챔피언에게 날아가 공격합니다.",
+      "when": "정글 갱킹, 다른 라인 합류, 고립된 적 암살을 위해 주로 사용합니다.",
+      "how": "궁극기가 켜지면 적 팀이 서로를 보지 못해 혼란에 빠지며, 날아간 뒤 어둠의 장막으로 상대 스킬을 막는 것이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Nocturne"
+      ]
+    },
+    "57": {
+      "nameKr": "마오카이",
+      "ultName": "대자연의 마수",
+      "image": "MaokaiR.png",
+      "cooldown": "130/110/90",
+      "cooldownNote": "",
+      "effect": "거대한 가시 덩굴 벽을 앞으로 천천히 보내, 닿은 적에게 피해를 주고 이동한 거리에 비례해 오래 속박합니다.",
+      "when": "멀리서 한타를 열거나, 오브젝트 싸움에서 뭉친 적을 묶을 때 사용합니다.",
+      "how": "멀리 날아가서 맞을수록 속박 시간이 길어집니다. 폭이 넓어 여러 명을 맞히기 쉽고, 속박 직후 아군이 진입하는 연계가 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Maokai"
+      ]
+    },
+    "58": {
+      "nameKr": "레넥톤",
+      "ultName": "강신",
+      "image": "RenektonReignOfTheTyrant.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "거대한 형상으로 변해 최대 체력이 늘어나고, 주변 적에게 지속 마법 피해를 주며 분노를 계속 얻습니다.",
+      "when": "상대와 맞다이를 시작할 때나 한타에 돌진하기 직전, 또는 체력이 부족해 버텨야 할 때 사용합니다.",
+      "how": "분노가 빠르게 차서 강화 스킬을 연달아 쓸 수 있습니다. 라인전 초반 강한 시기에 궁극기를 켜고 싸우면 상대가 버티기 어렵습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Renekton"
+      ]
+    },
+    "59": {
+      "nameKr": "자르반 4세",
+      "ultName": "대격변",
+      "image": "JarvanIVCataclysm.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "재사용 시 투기장을 미리 해제할 수 있음",
+      "effect": "적 챔피언에게 뛰어들어 피해를 주고, 주변을 지나갈 수 없는 원형 투기장 벽으로 둘러싸 가둡니다.",
+      "when": "한타를 시작하며 적 핵심 딜러를 가두거나, 도망치는 적을 벽 안에 묶어 처치할 때 사용합니다.",
+      "how": "데마시아의 깃발과 용의 일격 연계로 진입한 뒤 궁극기로 가두는 것이 기본입니다. 아군과 함께 가두면 유리하지만, 실수로 적 여러 명과 갇히면 오히려 위험해집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Jarvan_IV"
+      ]
+    },
+    "60": {
+      "nameKr": "엘리스",
+      "ultName": "거미 형태",
+      "image": "EliseR.png",
+      "cooldown": "3",
+      "cooldownNote": "형태 전환 스킬, 1레벨부터 사용 가능",
+      "effect": "인간 형태와 거미 형태를 오가며 스킬이 바뀝니다. 거미 형태에서는 근접 챔피언이 되고 새끼 거미가 함께 공격합니다.",
+      "when": "인간 형태로 견제와 고치 기절을 노린 뒤, 거미 형태로 변해 돌진하고 마무리할 때 계속 전환합니다.",
+      "how": "인간 형태 고치(E)가 맞은 뒤 거미 형태로 변해 돌진하는 갱킹이 핵심입니다. 거미 형태 줄타기(E)로 스킬을 피하기도 하며, 고치를 피하면 엘리스의 위협이 크게 줄어듭니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Elise"
+      ]
+    },
+    "61": {
+      "nameKr": "오리아나",
+      "ultName": "명령: 충격파",
+      "image": "OrianaDetonateCommand.png",
+      "cooldown": "110/95/80",
+      "cooldownNote": "",
+      "effect": "구체가 충격파를 방출해 주변 적에게 마법 피해를 입히고 잠시 기절시키며 구체 쪽으로 끌어당깁니다.",
+      "when": "적 여러 명이 뭉쳐 있는 한타에서 한꺼번에 묶어 아군이 피해를 쏟아붓게 할 때 사용합니다.",
+      "how": "명령: 보호(E)로 진입하는 아군에게 구체를 붙이고 바로 충격파를 터뜨리는 연계가 핵심입니다. 구체 위치가 곧 위협 범위이므로, 적은 구체 근처에 뭉치지 않는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Orianna"
+      ]
+    },
+    "62": {
+      "nameKr": "오공",
+      "ultName": "회전격",
+      "image": "MonkeyKingSpinToWin.png",
+      "cooldown": "130/110/90",
+      "cooldownNote": "사용 후 짧은 시간 안에 한 번 더 사용 가능",
+      "effect": "여의봉을 휘두르며 이동 속도가 증가하고, 주변 적을 공중에 띄우며 최대 체력 비례 피해를 입힙니다. 한 번 더 사용할 수 있습니다.",
+      "when": "뭉쳐 있는 적 사이로 들어가 여러 명을 띄우는 한타 이니시에 주로 사용합니다.",
+      "how": "분신 전사(W) 은신이나 근두운 급습(E)으로 다가간 뒤 사용해 여러 명을 띄우는 것이 이상적입니다. 두 번 연속 사용으로 에어본 시간을 늘리며, 적은 흩어져 서는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Wukong"
+      ]
+    },
+    "63": {
+      "nameKr": "브랜드",
+      "ultName": "파멸의 불덩이",
+      "image": "BrandR.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "",
+      "effect": "화염 구체를 발사해 적과 브랜드 사이를 최대 5번 튕기며 맞을 때마다 마법 피해를 입히고, 불타는 적을 둔화시킵니다.",
+      "when": "적이 뭉쳐 있는 한타에서 광역 피해를 넣거나, 소수 교전에서 체력이 깎인 적을 마무리하는 용도로 사용합니다.",
+      "how": "적이 여러 명 모여 있으면 화염이 고르게 튕겨 광역 피해가 커지고, 적이 적으면 한 명에게 여러 번 튕깁니다. 상대는 흩어져서 튕김을 줄이는 것이 대응법입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Brand"
+      ]
+    },
+    "64": {
+      "nameKr": "리 신",
+      "ultName": "용의 분노",
+      "image": "LeeSinR.png",
+      "cooldown": "110/85/60",
+      "cooldownNote": "",
+      "effect": "적 챔피언을 강하게 걷어차 뒤로 날려 보내고, 날아간 적과 부딪힌 적들도 피해를 입고 공중에 뜹니다.",
+      "when": "적 핵심 딜러를 아군 쪽으로 차 넣거나, 적 진형을 갈라 놓을 때 사용합니다.",
+      "how": "적 뒤로 돌아가 아군 쪽으로 차는 일명 '인섹킥'이 대표 플레이입니다. 차인 적이 다른 적과 부딪혀 여러 명이 뜨면 대박 장면이 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Lee_Sin"
+      ]
+    },
+    "67": {
+      "nameKr": "베인",
+      "ultName": "결전의 시간",
+      "image": "VayneInquisition.png",
+      "cooldown": "100/85/70",
+      "cooldownNote": "처치 관여 시 지속시간 연장",
+      "effect": "일정 시간 동안 공격력과 이동 속도가 오르고, 구르기 재사용 대기시간이 줄며 구르기 사용 시 잠시 투명 상태가 됩니다.",
+      "when": "한타나 1대1 교전에 본격적으로 뛰어들 때 사용하며, 적을 처치하면 지속시간이 늘어나 연속 처치를 노립니다.",
+      "how": "구르기로 투명해지며 적의 스킬을 피하는 움직임이 핵심입니다. 투명 상태는 공격하면 풀리므로, 상대는 투명 탐지나 광역 군중 제어로 대응합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Vayne"
+      ]
+    },
+    "68": {
+      "nameKr": "럼블",
+      "ultName": "이퀄라이저 미사일",
+      "image": "RumbleCarpetBomb.png",
+      "cooldown": "130/105/80",
+      "cooldownNote": "",
+      "effect": "지정한 방향으로 미사일을 줄지어 떨어뜨려 화염 지대를 만들고, 그 위의 적에게 지속 피해와 둔화를 줍니다.",
+      "when": "한타 시작 시 좁은 길목이나 오브젝트 주변에 뭉친 적에게 깔아 큰 피해를 줍니다.",
+      "how": "적이 빠져나가기 어려운 정글 통로나 용·바론 둥지에 길게 깔아야 효과적입니다. 적이 장판을 피해 흩어지는지가 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Rumble"
+      ]
+    },
+    "69": {
+      "nameKr": "카시오페아",
+      "ultName": "석화의 응시",
+      "image": "CassiopeiaR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "정면 부채꼴로 마법 피해를 주며, 카시오페아를 바라보는 적은 기절시키고 등진 적은 둔화시킵니다.",
+      "when": "한타에서 진입하는 적들을 한꺼번에 멈추거나, 도망치는 적을 붙잡을 때 사용합니다.",
+      "how": "바라보는 적만 기절하므로 적이 다가오는 순간이 가장 좋습니다. 여러 명이 동시에 기절하면 한타가 크게 기웁니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Cassiopeia"
+      ]
+    },
+    "72": {
+      "nameKr": "스카너",
+      "ultName": "꿰뚫기",
+      "image": "SkarnerR.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "꼬리로 앞쪽을 찔러 적 챔피언을 최대 3명까지 제압하고, 그대로 끌고 다닐 수 있습니다.",
+      "when": "갱킹, 한타 개시, 적 딜러를 아군 쪽으로 끌고 올 때 주로 사용합니다.",
+      "how": "적중 시 이동 속도가 빨라져 적을 아군 진영이나 포탑 밑까지 끌고 올 수 있습니다. 이쉬탈의 격돌(E)로 적을 벽에 박은 뒤 꿰뚫기로 이어가는 연계가 대표적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Skarner"
+      ]
+    },
+    "74": {
+      "nameKr": "하이머딩거",
+      "ultName": "업그레이드!!!",
+      "image": "HeimerdingerR.png",
+      "cooldown": "100/85/70",
+      "cooldownNote": "",
+      "effect": "다음에 쓰는 기본 스킬 하나를 크게 강화합니다. 강력한 포탑, 로켓 연사, 세 번 튕기며 넓게 기절시키는 수류탄 중 하나를 고를 수 있습니다.",
+      "when": "한타나 오브젝트 싸움에서 여러 적을 기절시키거나 강한 포탑으로 지역을 장악할 때 사용합니다.",
+      "how": "상황에 맞는 선택이 핵심입니다. 진입을 막을 땐 강화된 CH-2 전자폭풍 수류탄, 순간 피해엔 마법공학 초소형 로켓, 자리를 지킬 땐 H-28 G 진화형 포탑을 고르는지 보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Heimerdinger"
+      ]
+    },
+    "75": {
+      "nameKr": "나서스",
+      "ultName": "사막의 분노",
+      "image": "NasusR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "모래 폭풍을 일으켜 체력과 방어력·마법 저항력이 늘고, 주변 적에게 지속 피해를 줍니다.",
+      "when": "교전 시작 직전 몸을 단단하게 만들며 앞장서거나, 공성할 때 주로 사용합니다.",
+      "how": "지속 시간 동안 흡수의 일격 재사용이 빨라지므로, 궁극기를 켠 나서스에게 오래 맞으면 매우 위험합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Nasus"
+      ]
+    },
+    "76": {
+      "nameKr": "니달리",
+      "ultName": "쿠거의 상",
+      "image": "AspectOfTheCougar.png",
+      "cooldown": "3",
+      "cooldownNote": "인간 형태에서 사냥 표식 적중 시 초기화",
+      "effect": "인간 형태와 쿠거 형태를 오가며 각 형태에 맞는 다른 스킬을 사용할 수 있게 됩니다.",
+      "when": "창 투척 적중 후 쿠거로 변해 돌진하거나, 정글 사냥 속도를 높일 때 수시로 사용합니다.",
+      "how": "창 투척을 맞힌 적에게 쿠거 형태의 급습으로 길게 뛰어드는 콤보가 핵심이며, 창 적중 여부가 플레이의 시작점입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Nidalee"
+      ]
+    },
+    "77": {
+      "nameKr": "우디르",
+      "ultName": "날개 돋친 폭풍",
+      "image": "UdyrR.png",
+      "cooldown": "6",
+      "cooldownNote": "태세 전환 스킬, 각성은 별도 공유 쿨타임",
+      "effect": "얼음 폭풍으로 자신을 감싸 주변 적에게 피해를 주고 둔화시킵니다. 각성 시 적을 따라가며 최대 체력 비례 피해를 주는 폭풍을 풀어놓습니다.",
+      "when": "정글 사냥이나 여러 적에게 지속 피해를 줄 때, 교전 중 둔화로 적을 붙잡을 때 사용합니다.",
+      "how": "우디르는 네 가지 태세를 바꿔 가며 싸우며, 날개 돋친 폭풍은 광역 마법 피해 위주의 태세입니다. 각성은 모든 스킬이 쿨타임을 공유하므로 어떤 태세를 각성했는지 보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Udyr"
+      ]
+    },
+    "78": {
+      "nameKr": "뽀삐",
+      "ultName": "수호자의 심판",
+      "image": "PoppyR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "짧게 누르면 근거리 에어본, 오래 충전하면 멀리 날려버림",
+      "effect": "충전 후 망치를 휘둘러 맞은 적을 적 본진 방향으로 아주 멀리 날려버립니다. 짧게 쓰면 근처 적을 잠시 띄웁니다.",
+      "when": "달려드는 적 탱커나 암살자를 한타에서 멀리 날려 숫자 싸움을 유리하게 만들거나, 오브젝트 싸움에서 적을 떼어 낼 때 사용합니다.",
+      "how": "누구를 날려 보내느냐가 핵심으로, 적 탱커를 날리면 상대 진형이 무너집니다. 날아간 적은 한동안 돌아오지 못해 바론·드래곤 싸움에서 특히 강력합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Poppy"
+      ]
+    },
+    "79": {
+      "nameKr": "그라가스",
+      "ultName": "술통 폭발",
+      "image": "GragasR.png",
+      "cooldown": "100/85/70",
+      "cooldownNote": "",
+      "effect": "술통을 던져 폭발 범위의 적에게 마법 피해를 입히고 폭발 지점 바깥으로 밀어냅니다.",
+      "when": "적 핵심 딜러를 아군 쪽으로 밀어 넣거나, 적 진형을 갈라놓는 한타 개시에 주로 사용합니다.",
+      "how": "적 뒤쪽에 던져 아군 쪽으로 날려 보내는 것이 핵심이며, 몸통 박치기 돌진 후 바로 이어 쓰는 콤보가 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Gragas"
+      ]
+    },
+    "80": {
+      "nameKr": "판테온",
+      "ultName": "거대 유성",
+      "image": "PantheonR.png",
+      "cooldown": "180/165/150",
+      "cooldownNote": "",
+      "effect": "높이 도약한 뒤 먼 지정 위치에 유성처럼 떨어져 일직선상 적에게 피해를 입힙니다. 보유 중에는 방어구 관통력이 증가합니다.",
+      "when": "다른 라인으로 합류해 기습하거나, 적 뒤쪽에 떨어져 퇴로를 막을 때 사용하며 도주용으로도 쓰입니다.",
+      "how": "도약 전 2초간 집중하는 동안 끊기면 실패하고, 착지 지점이 미리 표시되어 적이 피할 수 있습니다. 착지 후 방패 돌격(기절)으로 바로 연계하는지 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Pantheon"
+      ]
+    },
+    "81": {
+      "nameKr": "이즈리얼",
+      "ultName": "정조준 일격",
+      "image": "EzrealR.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "잠시 힘을 모은 뒤 맵 전체를 가로지르는 거대한 에너지 파동을 발사해 관통한 모든 적에게 큰 피해를 줍니다.",
+      "when": "멀리서 도망치는 적을 마무리하거나, 한타 시작 전 뭉친 적에게 견제 피해를 주고, 미니언 웨이브를 정리할 때 사용합니다.",
+      "how": "시전 시간이 있어 적이 움직임을 멈추거나 아군 군중 제어기에 걸렸을 때 쏘는 것이 정확합니다. 다른 라인 교전에 원거리로 피해를 보태는 장면도 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ezreal"
+      ]
+    },
+    "82": {
+      "nameKr": "모데카이저",
+      "ultName": "죽음의 세계",
+      "image": "MordekaiserR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "적 챔피언 한 명을 다른 차원으로 끌고 가 1대1을 강제하고 능력치 일부를 훔칩니다. 처치 시 그 능력치를 계속 유지합니다.",
+      "when": "적 핵심 딜러나 캐리를 아군 지원이 닿지 않는 곳에서 고립시켜 처치할 때 사용합니다.",
+      "how": "적 딜러를 끌고 가면 그동안 적 팀은 4명으로 싸워야 합니다. 끌려간 적은 아군의 도움을 받을 수 없어, 누구를 끌고 가는지가 한타의 승부처입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Mordekaiser"
+      ]
+    },
+    "83": {
+      "nameKr": "요릭",
+      "ultName": "군도의 장송곡",
+      "image": "YorickR.png",
+      "cooldown": "160/130/100",
+      "cooldownNote": "",
+      "effect": "안개 마녀와 안개 망령을 소환합니다. 마녀가 표식을 남긴 적을 요릭이 공격하면 최대 체력 비례 추가 피해를 입힙니다.",
+      "when": "상대와 1대1 싸움을 하거나, 재사용해 마녀를 라인에 보내 사이드에서 포탑을 미는 운영에 사용합니다.",
+      "how": "10초 후 재사용하면 마녀가 홀로 라인을 밀어 압박을 줄 수 있어 스플릿 운영의 핵심입니다. 적은 망령과 마녀를 먼저 처리하거나 요릭과의 1대1을 피하는 것이 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Yorick"
+      ]
+    },
+    "84": {
+      "nameKr": "아칼리",
+      "ultName": "무결처형",
+      "image": "AkaliR.png",
+      "cooldown": "120/90/60",
+      "cooldownNote": "",
+      "effect": "적 챔피언을 뛰어넘으며 피해를 입히고, 잠시 후 재사용하면 다시 돌진해 잃은 체력에 비례한 큰 피해로 마무리합니다.",
+      "when": "체력이 낮은 적을 마무리하거나 적 딜러에게 파고들 때, 또는 두 번의 돌진으로 빠져나갈 때 사용합니다.",
+      "how": "첫 번째 사용으로 진입하고 적의 체력이 깎인 뒤 두 번째 돌진으로 처형하는 흐름이 핵심입니다. 황혼의 장막(W)과 연계해 생존하며, 재사용 전 기절 등 군중 제어에 끊길 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Akali"
+      ]
+    },
+    "85": {
+      "nameKr": "케넨",
+      "ultName": "날카로운 소용돌이",
+      "image": "KennenShurikenStorm.png",
+      "cooldown": "120",
+      "cooldownNote": "",
+      "effect": "주변에 번개 폭풍을 일으켜 범위 안의 적에게 반복해서 마법 피해를 주고, 폭풍의 표식을 쌓아 기절시킵니다. 사용 중 방어력도 오릅니다.",
+      "when": "적 여러 명 사이로 순간이동이나 점멸로 들어가 한타를 시작할 때 주로 사용합니다.",
+      "how": "점멸과 연계해 적 다수를 기절시키는 장면이 핵심입니다. 들어가기 전에 적의 위치가 뭉쳐 있는지를 보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kennen"
+      ]
+    },
+    "86": {
+      "nameKr": "가렌",
+      "ultName": "데마시아의 정의",
+      "image": "GarenR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "대상에게 잃은 체력에 비례한 고정 피해를 입혀 마무리하는 처형 스킬입니다.",
+      "when": "체력이 많이 깎인 적을 확실히 처치하는 마무리 단계에 주로 사용하며, 시전 시 대상이 잠시 드러납니다.",
+      "how": "적 체력이 충분히 낮아졌을 때 써야 효과가 크며, 심판으로 돌다가 결정타로 꽂는 흐름이 일반적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Garen"
+      ]
+    },
+    "89": {
+      "nameKr": "레오나",
+      "ultName": "흑점 폭발",
+      "image": "LeonaSolarFlare.png",
+      "cooldown": "90/75/60",
+      "cooldownNote": "",
+      "effect": "지정한 지점에 태양 빛을 떨어뜨려, 중앙의 적은 기절시키고 외곽의 적은 둔화시키며 피해를 입힙니다.",
+      "when": "멀리서 한타를 여는 이니시에이팅 용도로 주로 쓰며, 도망치는 적을 붙잡을 때도 씁니다.",
+      "how": "궁극기로 기절시킨 뒤 바로 돌진해 추가 군중 제어를 넣는 연계가 핵심입니다. 여러 명을 중앙에 맞히면 한타가 크게 기울어집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Leona"
+      ]
+    },
+    "90": {
+      "nameKr": "말자하",
+      "ultName": "황천의 손아귀",
+      "image": "MalzaharR.png",
+      "cooldown": "140/110/80",
+      "cooldownNote": "",
+      "effect": "적 챔피언 한 명을 몇 초간 제압해 아무것도 못 하게 하고, 주변에 지속 피해 지대를 만듭니다.",
+      "when": "적 핵심 딜러나 돌진해 온 적을 확실하게 묶어 처치할 때 사용합니다.",
+      "how": "제압은 정화 계열 아이템으로만 풀 수 있어 아군과 함께 쓰면 확정 처치가 나옵니다. 말자하가 기절이나 침묵에 걸리면 제압이 끊기므로 시전 순간을 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Malzahar"
+      ]
+    },
+    "91": {
+      "nameKr": "탈론",
+      "ultName": "그림자 공격",
+      "image": "TalonR.png",
+      "cooldown": "100/80/60",
+      "cooldownNote": "",
+      "effect": "사방에 칼날을 던져 피해를 입히고 잠시 투명 상태가 되어 빨라집니다. 투명이 풀리면 칼날이 되돌아오며 다시 피해를 입힙니다.",
+      "when": "혼자 있는 적 딜러를 순식간에 처치하는 암살이나, 위험할 때 투명으로 빠져나가는 도주에 사용합니다.",
+      "how": "투명 상태에서 기본 공격이나 녹서스식 외교로 대상을 치면 칼날이 그 대상에게 모여 피해가 집중됩니다. 칼날이 두 번 맞도록 위치를 잡는 것이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Talon"
+      ]
+    },
+    "92": {
+      "nameKr": "리븐",
+      "ultName": "추방자의 검",
+      "image": "RivenFengShuiEngine.png",
+      "cooldown": "120/90/60",
+      "cooldownNote": "",
+      "effect": "공격력과 사거리가 늘어나고, 지속 중 한 번 잃은 체력에 비례해 피해가 커지는 원거리 검기인 바람 가르기를 쓸 수 있습니다.",
+      "when": "교전 시작 시 켜서 싸우다가 체력이 적은 적을 바람 가르기로 마무리할 때 사용합니다.",
+      "how": "궁극기를 켜고 싸운 뒤 마지막에 바람 가르기로 마무리하는 흐름이 기본입니다. 플래시와 섞어 순간적으로 폭딜을 넣는 연계가 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Riven"
+      ]
+    },
+    "96": {
+      "nameKr": "코그모",
+      "ultName": "살아있는 곡사포",
+      "image": "KogMawLivingArtillery.png",
+      "cooldown": "2/1.5/1",
+      "cooldownNote": "연속 사용 시 마나 소모 증가",
+      "effect": "먼 거리에 산성 포탄을 떨어뜨려 마법 피해를 주고 위치를 드러냅니다. 체력이 낮은 적에게는 피해가 커집니다.",
+      "when": "한타 전 견제로 적 체력을 깎거나, 도망치는 체력 낮은 적을 마무리할 때 사용합니다.",
+      "how": "쿨타임이 짧아 여러 번 쓸 수 있지만 연속으로 쓸수록 마나가 많이 듭니다. 체력이 낮은 적에게 맞히는 것이 효율적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kog%27Maw"
+      ]
+    },
+    "98": {
+      "nameKr": "쉔",
+      "ultName": "단결된 의지",
+      "image": "ShenR.png",
+      "cooldown": "200/180/160",
+      "cooldownNote": "",
+      "effect": "맵 어디에 있는 아군에게든 보호막을 씌우고, 잠시 정신을 집중한 뒤 그 아군 곁으로 순간이동합니다.",
+      "when": "다른 라인 교전 합류, 위험한 아군 구하기, 바텀·오브젝트 싸움 지원에 주로 사용합니다.",
+      "how": "쉔 궁 하나로 2대2 싸움이 3대2로 바뀌는 장면이 자주 나옵니다. 집중 중 끊기면 이동이 취소되므로 적의 방해 여부와, 도착 후 그림자 돌진(E) 도발 연계를 눈여겨보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Shen"
+      ]
+    },
+    "99": {
+      "nameKr": "럭스",
+      "ultName": "최후의 섬광",
+      "image": "LuxR.png",
+      "cooldown": "60/50/40",
+      "cooldownNote": "",
+      "effect": "긴 사거리의 직선 빛 기둥을 발사해 경로 위의 모든 적에게 큰 마법 피해를 입힙니다.",
+      "when": "멀리서 체력이 적은 적을 마무리하거나 한타에서 뭉친 적을 한꺼번에 노릴 때 사용합니다.",
+      "how": "빛의 속박으로 적을 묶은 뒤 쏘면 거의 확정으로 맞습니다. 쿨타임이 짧아 오브젝트 스틸이나 시야 밖 저격도 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Lux"
+      ]
+    },
+    "101": {
+      "nameKr": "제라스",
+      "ultName": "비전 의식",
+      "image": "XerathLocusOfPower2.png",
+      "cooldown": "130/115/100",
+      "cooldownNote": "",
+      "effect": "정신을 집중하며 아주 먼 거리에 여러 발의 마법 포격을 차례로 떨어뜨립니다. 시전 초반에는 움직일 수 없습니다.",
+      "when": "한타 시작 전 원거리에서 체력을 깎거나, 멀리 도망치는 적을 마무리하고 다른 라인 교전을 지원할 때 사용합니다.",
+      "how": "포격은 떨어지기까지 시간이 있어 적이 묶이거나 멈췄을 때 맞히기 쉽습니다. 움직이면 의식이 끊기므로 안전한 위치에서 쓰는 것이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Xerath"
+      ]
+    },
+    "102": {
+      "nameKr": "쉬바나",
+      "ultName": "용의 강림",
+      "image": "ShyvanaR.png",
+      "cooldown": "쿨타임 없음",
+      "cooldownNote": "용의 분노 100을 모아 사용",
+      "effect": "용으로 변신하며 지정 위치로 날아가 경로의 적에게 피해를 주고 겁에 질리게 합니다. 용 형상에서는 기본 스킬이 강화됩니다.",
+      "when": "한타 개시나 적 진형으로 진입할 때, 오브젝트 싸움에서 주로 사용합니다.",
+      "how": "기본 공격과 스킬로 용의 분노를 모아야 해서 분노가 찼는지가 관건입니다. 날아가는 동안 저지 불가라 끊기지 않으며, 여러 적을 공포에 빠뜨리면 한타가 크게 유리해집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Shyvana"
+      ]
+    },
+    "103": {
+      "nameKr": "아리",
+      "ultName": "혼령 질주",
+      "image": "AhriR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "최대 3회 연속 사용, 처치 관여 시 횟수 추가",
+      "effect": "짧은 거리를 최대 세 번까지 돌진하며, 주변 적 챔피언에게 혼령의 정기를 쏘아 피해를 입힙니다.",
+      "when": "적 딜러 암살, 매혹(E) 각을 만들 때, 위험할 때 도주용으로 사용합니다.",
+      "how": "나눠 쓸 수 있어 적 스킬을 피하면서 거리를 좁히는 데 강합니다. 돌진 후 매혹(E)을 맞히는지, 처치 후 늘어난 돌진으로 연속 처치하는지 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ahri"
+      ]
+    },
+    "104": {
+      "nameKr": "그레이브즈",
+      "ultName": "무고한 희생자",
+      "image": "GravesChargeShot.png",
+      "cooldown": "100/80/60",
+      "cooldownNote": "",
+      "effect": "폭발성 탄환을 쏴 처음 맞은 적에게 큰 물리 피해를 주고, 뒤쪽 원뿔 범위에도 피해를 줍니다.",
+      "when": "교전 중 큰 순간 피해로 적을 마무리하거나 체력을 크게 깎을 때 주로 사용합니다.",
+      "how": "사용 시 그레이브즈가 뒤로 밀려나므로 이동 수단으로도 쓰이며, 대시와 함께 쓰면 짧은 순간에 폭발적인 피해가 들어갑니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Graves"
+      ]
+    },
+    "105": {
+      "nameKr": "피즈",
+      "ultName": "미끼 뿌리기",
+      "image": "FizzR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "물고기를 던져 처음 맞은 챔피언에게 붙이고, 잠시 후 상어가 튀어나와 대상을 띄우고 주변 적을 밀어내며 마법 피해를 입힙니다.",
+      "when": "적 딜러를 순식간에 암살할 때나, 한타 시작에서 상어로 여러 적을 묶을 때 사용합니다.",
+      "how": "멀리서 던질수록 상어가 커지고 피해도 커집니다. 장난치기로 공격을 피하며 상어 폭발 타이밍에 맞춰 연계하는 장면을 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Fizz"
+      ]
+    },
+    "106": {
+      "nameKr": "볼리베어",
+      "ultName": "폭풍을 부르는 자",
+      "image": "VolibearR.png",
+      "cooldown": "160/135/110",
+      "cooldownNote": "",
+      "effect": "지정 위치로 도약해 착지 지점의 적에게 피해를 주고 둔화시키며, 추가 체력과 군중 제어 면역을 얻고 근처 포탑을 잠시 비활성화합니다.",
+      "when": "포탑 아래로 다이브해 적을 잡거나, 한타에 뛰어들어 적 후방을 흔드는 용도로 사용합니다.",
+      "how": "포탑을 꺼버리기 때문에 포탑 다이브에 특히 강합니다. 도약 거리가 길어 진입이나 추격, 도주 모두에 쓰이므로 착지 위치를 눈여겨보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Volibear"
+      ]
+    },
+    "107": {
+      "nameKr": "렝가",
+      "ultName": "사냥의 전율",
+      "image": "RengarR.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "",
+      "effect": "위장 상태가 되어 이동 속도가 빨라지고 가까운 적을 드러내며, 수풀이 없어도 적에게 도약해 방어력을 깎습니다.",
+      "when": "홀로 있는 적 딜러를 노려 암살하거나, 한타 중 후방 딜러에게 접근할 때 사용합니다.",
+      "how": "위장 중 접근해 도약 후 순식간에 폭딜을 넣는 것이 핵심입니다. 렝가 궁극기가 켜지면 적 챔피언 머리 위에 경고 표시가 떠 대비할 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Rengar"
+      ]
+    },
+    "110": {
+      "nameKr": "바루스",
+      "ultName": "부패의 사슬",
+      "image": "VarusR.png",
+      "cooldown": "100/80/60",
+      "cooldownNote": "",
+      "effect": "촉수를 날려 처음 맞은 적 챔피언을 속박하고, 촉수가 주변 다른 적 챔피언에게 퍼져 나가 함께 속박합니다.",
+      "when": "교전 시작 시 먼 거리에서 적을 묶어 한타를 열거나, 달려드는 적을 막는 받아치기 용도로 사용합니다.",
+      "how": "적이 뭉쳐 있을수록 속박이 여러 명에게 번집니다. 맞은 뒤 아군의 후속 공격이 이어지는지가 중요하며, 상대는 넓게 흩어져 전염을 막습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Varus"
+      ]
+    },
+    "111": {
+      "nameKr": "노틸러스",
+      "ultName": "폭뢰",
+      "image": "NautilusGrandLine.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "지정한 적 챔피언을 추격하는 충격파를 보내 공중에 띄우고 기절시키며, 지나가는 길의 적도 띄웁니다.",
+      "when": "핵심 딜러를 확실히 묶어 한타를 열거나, 잡아야 할 적을 놓치지 않을 때 주로 사용합니다.",
+      "how": "지정형이라 피하기 어렵고 지나가는 길의 적도 함께 띄워, 뭉친 적 뒤쪽 딜러에게 쓰면 여러 명을 묶을 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Nautilus"
+      ]
+    },
+    "112": {
+      "nameKr": "빅토르",
+      "ultName": "아케인 폭풍",
+      "image": "ViktorR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "지정 지역에 아케인 폭풍을 일으켜 즉시 피해를 주고 정신 집중을 끊으며, 폭풍이 근처 챔피언을 따라다니며 몇 초간 지속 피해를 줍니다.",
+      "when": "한타에서 적이 뭉친 곳이나 정신 집중 스킬을 쓰는 적에게 사용해 광역 피해를 넣습니다.",
+      "how": "재사용으로 폭풍을 원하는 위치나 대상으로 옮길 수 있습니다. 업그레이드 후에는 폭풍 피해를 받은 적이 죽을 때마다 커지고 오래가므로 후반 한타에서 특히 위력적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Viktor"
+      ]
+    },
+    "113": {
+      "nameKr": "세주아니",
+      "ultName": "빙하 감옥",
+      "image": "SejuaniR.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "올가미를 던져 처음 맞은 적 챔피언을 기절시키고, 얼음 폭풍으로 주변 적을 둔화시킵니다.",
+      "when": "한타 개시, 갱킹, 도망치는 적을 붙잡을 때 주로 사용합니다.",
+      "how": "일정 거리 이상 날아가 맞으면 강화되어 기절이 길어지고 주변 적까지 둔화됩니다. 핵심 딜러를 묶은 뒤 아군이 바로 따라 들어오는지가 한타 승패를 가릅니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Sejuani"
+      ]
+    },
+    "114": {
+      "nameKr": "피오라",
+      "ultName": "대결투",
+      "image": "FioraR.png",
+      "cooldown": "110/90/70",
+      "cooldownNote": "",
+      "effect": "적 챔피언의 급소 4곳을 드러내 찌를 때마다 최대 체력 비례 고정 피해를 줍니다. 모두 찌르거나 대상이 죽으면 주변 아군이 회복합니다.",
+      "when": "1:1 결투에서 적을 확실히 처치할 때나, 한타에서 적 탱커·딜러를 상대로 회복 지대를 만들 때 사용합니다.",
+      "how": "급소 위치에 맞춰 돌며 빠르게 4곳을 찌르는 컨트롤이 관전 포인트입니다. 회복 지대가 생기면 한타 흐름이 피오라 쪽으로 기울 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Fiora"
+      ]
+    },
+    "115": {
+      "nameKr": "직스",
+      "ultName": "지옥 화염 폭탄",
+      "image": "ZiggsR.png",
+      "cooldown": "120/95/70",
+      "cooldownNote": "",
+      "effect": "아주 먼 거리에 거대한 폭탄을 던져 넓은 범위에 피해를 주며, 폭발 중심부에 있는 적은 더 큰 피해를 입습니다.",
+      "when": "한타에서 뭉친 적에게 큰 피해를 주거나, 멀리 도망치는 적을 마무리하고 미니언 웨이브를 정리할 때 사용합니다.",
+      "how": "범위가 넓지만 날아가는 시간이 있어 적이 묶였거나 좁은 곳에 몰렸을 때 중심부를 맞히는 것이 핵심입니다. 다른 라인 교전에 원거리로 피해를 보태는 장면도 자주 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ziggs"
+      ]
+    },
+    "117": {
+      "nameKr": "룰루",
+      "ultName": "급성장",
+      "image": "LuluR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "아군 한 명의 몸집을 키워 체력을 크게 올리고, 주변 적을 공중에 띄운 뒤 근처 적을 둔화시킵니다.",
+      "when": "적에게 기습당한 아군 딜러를 살리거나, 돌진하는 아군 전사를 더 튼튼하게 만들 때 사용합니다.",
+      "how": "적의 암살 타이밍에 맞춰 딜러에게 써 주면 폭딜을 버티고 적을 띄워 받아칠 수 있습니다. 써 주는 타이밍이 늦지 않는지가 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Lulu"
+      ]
+    },
+    "119": {
+      "nameKr": "드레이븐",
+      "ultName": "죽음의 소용돌이",
+      "image": "DravenRCast.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "",
+      "effect": "거대한 도끼 두 개를 맵 끝까지 던져 피해를 주며, 체력이 낮은 적은 처형됩니다.",
+      "when": "멀리 도망치는 적을 마무리하거나, 다른 라인 교전에 원거리로 피해를 보탤 때 주로 사용합니다.",
+      "how": "도끼는 왕복하며 두 번 피해를 줄 수 있어, 재사용으로 되돌아오는 타이밍을 조절해 이중 적중을 노리는 것이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Draven"
+      ]
+    },
+    "120": {
+      "nameKr": "헤카림",
+      "ultName": "그림자의 맹습",
+      "image": "HecarimUlt.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "",
+      "effect": "유령 기수들과 함께 앞으로 돌진해 경로의 적에게 마법 피해를 주고, 도착 지점 주변의 적을 공포에 빠뜨려 도망치게 만듭니다. 돌진 중에는 밀려나지 않습니다.",
+      "when": "한타를 여는 진입기로 주로 사용하며, 빠른 이동 속도로 적 딜러에게 파고들 때 쓰입니다.",
+      "how": "멀리 돌진할수록 공포 지속 시간이 깁니다. 파멸의 돌격으로 속도를 올려 다가간 뒤 궁극기로 여러 명을 공포에 빠뜨리고 적을 밀쳐내는 연계가 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Hecarim"
+      ]
+    },
+    "121": {
+      "nameKr": "카직스",
+      "ultName": "공허의 습격",
+      "image": "KhazixR.png",
+      "cooldown": "100/85/70",
+      "cooldownNote": "레벨 업마다 스킬 하나 진화",
+      "effect": "잠시 투명 상태가 되어 이동 속도가 오르고, 짧은 시간 안에 한 번 더 쓸 수 있습니다. 레벨 업 시 스킬 하나를 진화시킵니다.",
+      "when": "고립된 적에게 몰래 접근해 기습하거나, 교전 중 적의 시야에서 사라져 도주·재진입할 때 사용합니다.",
+      "how": "공허의 습격을 진화하면 투명 시간이 늘고 사용 횟수가 늘어납니다. 어떤 스킬을 진화했는지가 플레이 스타일을 결정합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kha%27Zix"
+      ]
+    },
+    "122": {
+      "nameKr": "다리우스",
+      "ultName": "녹서스의 단두대",
+      "image": "DariusExecute.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "처치 시 재사용 가능",
+      "effect": "적 챔피언에게 뛰어올라 고정 피해를 주며, 과다출혈 중첩이 많을수록 피해가 커집니다.",
+      "when": "과다출혈을 쌓은 적을 마무리하는 처형 용도로 주로 사용합니다.",
+      "how": "처치하면 다시 쓸 수 있어 한타에서 연속 처치가 나오는지가 관전 포인트이며, 5중첩 후 쓰면 피해가 가장 강력합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Darius"
+      ]
+    },
+    "126": {
+      "nameKr": "제이스",
+      "ultName": "머큐리 캐논 / 머큐리 해머",
+      "image": "JayceStanceHtG.png",
+      "cooldown": "6",
+      "cooldownNote": "해머·캐논 형태 전환 스킬, 1레벨부터 사용 가능",
+      "effect": "무기를 해머(근거리)와 캐논(원거리) 형태로 전환해 각 형태의 새로운 스킬 세트를 사용합니다.",
+      "when": "캐논으로 멀리서 견제하다가 마무리나 근접 교전 때 해머로 바꿔 파고드는 식으로 수시로 사용합니다.",
+      "how": "캐논 형태에서 가속 관문을 통과한 전격 폭발로 강하게 견제한 뒤, 해머의 하늘로!와 천둥 강타로 마무리하는 연계가 대표적입니다. 두 형태의 스킬을 번갈아 쓰는 흐름이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Jayce"
+      ]
+    },
+    "127": {
+      "nameKr": "리산드라",
+      "ultName": "얼음 무덤",
+      "image": "LissandraR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "적에게 쓰면 얼려 기절시키고, 자신에게 쓰면 잠시 무적이 되며 체력을 회복합니다. 이후 주변에 얼음이 퍼져 적을 둔화시킵니다.",
+      "when": "적 핵심 챔피언에게 진입해 묶을 때나, 위험할 때 자신에게 써서 버틸 때 사용합니다.",
+      "how": "적 진영에 돌진해 딜러를 얼리면 아군이 집중 공격할 수 있습니다. 자신에게 쓰는 경우 적의 집중 공격을 흘려 받는 시간을 법니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Lissandra"
+      ]
+    },
+    "131": {
+      "nameKr": "다이애나",
+      "ultName": "달빛 낙하",
+      "image": "DianaR.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "",
+      "effect": "주변 적을 드러내고 끌어당겨 둔화시킨 뒤, 잠시 후 달빛 폭발로 마법 피해를 줍니다.",
+      "when": "적 진형 한가운데로 파고드는 한타 개시나, 여러 명을 끌어모을 때 주로 사용합니다.",
+      "how": "끌어당긴 챔피언이 많을수록 피해가 커지며, 초승달 검기를 맞힌 뒤 월광 쇄도로 돌진하자마자 쓰는 콤보가 기본입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Diana"
+      ]
+    },
+    "133": {
+      "nameKr": "퀸",
+      "ultName": "후방 지원",
+      "image": "QuinnR.png",
+      "cooldown": "3",
+      "cooldownNote": "",
+      "effect": "2초간 정신 집중한 뒤 발러와 하나가 되어 매우 빠르게 이동합니다. 재사용하거나 공격하면 내려앉으며 주변 적에게 피해를 줍니다.",
+      "when": "빠르게 다른 라인이나 오브젝트 싸움에 합류하거나, 맵을 돌며 적을 기습할 때 사용합니다.",
+      "how": "공격하면 바로 내려앉으므로 주로 합류·이동용으로 씁니다. 챔피언에게 피해를 입으면 속도가 잠시 사라지고, 군중 제어를 맞으면 그대로 끊깁니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Quinn"
+      ]
+    },
+    "134": {
+      "nameKr": "신드라",
+      "ultName": "풀려난 힘",
+      "image": "SyndraR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "어둠 구체를 모아 적 챔피언 한 명에게 집중 포격해 큰 마법 피해를 줍니다. 패시브 초월을 완성하면 체력이 낮은 적을 즉시 처치합니다.",
+      "when": "적 딜러나 체력이 낮은 적을 마무리할 때, 핵심 대상을 순식간에 녹일 때 사용합니다.",
+      "how": "주변에 어둠 구체(Q)가 많을수록 피해가 커지므로 구체를 깔아 둔 뒤 사용합니다. 적은 마법 저항력이나 주문 보호막으로 대응합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Syndra"
+      ]
+    },
+    "136": {
+      "nameKr": "아우렐리온 솔",
+      "ultName": "유성 / 천상 강림",
+      "image": "AurelionSolR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "별가루를 모으면 다음 사용이 천상 강림으로 강화",
+      "effect": "원하는 위치에 별을 떨어뜨려 피해를 주고 기절시킵니다. 별가루를 모으면 더 넓은 범위의 적을 띄우는 천상 강림으로 강화됩니다.",
+      "when": "한타 개시나 아군 스킬과 연계한 광역 군중 제어, 오브젝트 싸움에 사용합니다.",
+      "how": "사거리가 길어 멀리서도 뭉친 적을 노릴 수 있습니다. 천상 강림으로 강화됐는지가 관전 포인트이며, 바깥쪽 충격파까지 넓은 범위에 피해와 둔화를 줍니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Aurelion_Sol"
+      ]
+    },
+    "141": {
+      "nameKr": "케인",
+      "ultName": "그림자의 지배",
+      "image": "KaynR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "피해를 준 적에게만 사용 가능",
+      "effect": "표식이 남은 적에게 파고들어 잠시 지정할 수 없게 된 뒤, 빠져나오면서 큰 피해를 입힙니다.",
+      "when": "적을 마무리하거나 적의 강력한 스킬과 포탑 공격을 피할 때 사용합니다.",
+      "how": "파고든 동안에는 공격받지 않아 회피기로도 쓰입니다. 그림자 암살자와 다르킨 학살자 중 어떤 형태인지에 따라 효과가 달라집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kayn"
+      ]
+    },
+    "142": {
+      "nameKr": "조이",
+      "ultName": "차원 넘기",
+      "image": "ZoeR.png",
+      "cooldown": "11/8/5",
+      "cooldownNote": "쿨타임이 매우 짧아 자주 사용",
+      "effect": "근처 지점으로 순간이동했다가 1초 뒤 원래 위치로 돌아옵니다. 그동안 스킬을 사용할 수 있습니다.",
+      "when": "통통별의 사거리를 늘려 강한 피해를 주거나, 벽 너머로 헤롱헤롱쿨쿨방울을 던질 때 수시로 사용합니다.",
+      "how": "순간이동한 위치에서 통통별을 다시 던지면 이동 거리만큼 피해가 커집니다. 원래 자리로 돌아오므로 도주용은 아니며, 돌아올 위치를 노린 적의 반격에 주의해야 합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Zoe"
+      ]
+    },
+    "143": {
+      "nameKr": "자이라",
+      "ultName": "올가미 덩굴",
+      "image": "ZyraR.png",
+      "cooldown": "110/100/90",
+      "cooldownNote": "",
+      "effect": "목표 위치에 덩굴손을 소환해 피해를 주고, 잠시 후 수축하며 범위 안 적들을 공중에 띄웁니다. 범위 안 식물은 강화됩니다.",
+      "when": "좁은 지형이나 오브젝트 앞에서 뭉친 적에게 한타를 열거나, 아군을 덮친 적들을 한꺼번에 띄워 받아칠 때 사용합니다.",
+      "how": "휘감는 뿌리로 묶은 뒤 궁극기를 쓰면 에어본까지 확실히 연결됩니다. 식물을 미리 깔아둔 곳에 쓰면 피해가 크게 늘어납니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Zyra"
+      ]
+    },
+    "145": {
+      "nameKr": "카이사",
+      "ultName": "사냥본능",
+      "image": "KaisaR.png",
+      "cooldown": "130/100/70",
+      "cooldownNote": "",
+      "effect": "플라즈마 표식이 남은 적 챔피언 근처로 먼 거리를 빠르게 돌진하며 보호막을 얻습니다.",
+      "when": "아군이 적에게 표식을 남겼을 때 합류해 추가 공격을 하거나, 적 스킬을 피해 위치를 다시 잡을 때 사용합니다.",
+      "how": "아군의 군중 제어 뒤에 따라 들어가는 것이 정석입니다. 들어간 뒤 살아남느냐, 돌진 위치 선정이 관건입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kai%27Sa"
+      ]
+    },
+    "147": {
+      "nameKr": "세라핀",
+      "ultName": "앙코르",
+      "image": "SeraphineR.png",
+      "cooldown": "160/140/120",
+      "cooldownNote": "",
+      "effect": "앞으로 노래를 발사해 맞은 적에게 피해를 주고 매혹시킵니다. 챔피언에 닿을 때마다 사거리가 늘어납니다.",
+      "when": "한타 개시나 다가오는 적의 돌진을 막는 반격용으로 사용합니다.",
+      "how": "아군이나 적 챔피언을 통과할 때마다 사거리가 연장되어 멀리 있는 적까지 여러 명 묶을 수 있습니다. 적이 일렬로 모여 있을 때 다수에게 맞히는 것이 이상적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Seraphine"
+      ]
+    },
+    "150": {
+      "nameKr": "나르",
+      "ultName": "나르!",
+      "image": "GnarR.png",
+      "cooldown": "90/60/30",
+      "cooldownNote": "거대화 상태(메가 나르)에서만 사용 가능",
+      "effect": "메가 나르 상태에서 주변 적을 한 방향으로 집어던지며, 벽에 부딪힌 적은 기절합니다.",
+      "when": "분노 게이지가 차서 거대화한 순간 한타를 열거나, 여러 명을 묶을 때 주로 사용합니다.",
+      "how": "적을 벽 쪽으로 던져 여러 명을 동시에 기절시키는 것이 핵심이라, 거대화 타이밍과 벽 근처 위치 선정을 눈여겨보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Gnar"
+      ]
+    },
+    "154": {
+      "nameKr": "자크",
+      "ultName": "바운스!",
+      "image": "ZacR.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "네 번 튀어 오르며 착지할 때마다 주변 적을 밀쳐 띄우고 둔화시키며, 사용 중 이동 속도가 오릅니다.",
+      "when": "새총 발사로 진입한 뒤 적 진형을 흩트리며 한타를 이어가거나, 적 딜러를 아군 쪽으로 밀어낼 때 사용합니다.",
+      "how": "새총 발사로 날아든 직후 궁극기로 이어 적을 연속으로 띄우는 연계가 강력합니다. 튀어 오르는 방향을 조절해 적을 원하는 쪽으로 밀어낼 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Zac"
+      ]
+    },
+    "157": {
+      "nameKr": "야스오",
+      "ultName": "최후의 숨결",
+      "image": "YasuoR.png",
+      "cooldown": "70/50/30",
+      "cooldownNote": "공중에 뜬 적 챔피언이 있어야 사용 가능",
+      "effect": "공중에 뜬 적 챔피언에게 순간이동해 주변의 공중에 뜬 적을 더 오래 붙잡아 두고 물리 피해를 입힙니다.",
+      "when": "자신이나 아군의 에어본 스킬로 적이 떠올랐을 때 연계해 한타를 시작하거나 마무리합니다.",
+      "how": "강철 폭풍(Q) 세 번째 회오리나 아군의 에어본 스킬과 연계합니다. 여러 명을 띄울수록 강력하며, 사용 후 치명타가 방어력을 크게 무시해 이어지는 공격도 위협적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Yasuo"
+      ]
+    },
+    "161": {
+      "nameKr": "벨코즈",
+      "ultName": "생물 분해 광선",
+      "image": "VelkozR.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "",
+      "effect": "몇 초 동안 커서를 따라 움직이는 광선을 쏘아 적들에게 지속 피해와 둔화를 줍니다. 유기물 분해 연구가 완료된 적에게는 고정 피해를 줍니다.",
+      "when": "적이 군중 제어에 묶였거나 좁은 곳에 모였을 때 한타에서 큰 광역 피해를 넣는 용도로 사용합니다.",
+      "how": "정신 집중 중에는 움직일 수 없어 안전한 거리 확보가 중요합니다. 상대는 기절이나 에어본 등으로 광선을 끊으려 하므로 적 돌진 스킬이 빠졌는지가 관건입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Vel'Koz"
+      ]
+    },
+    "163": {
+      "nameKr": "탈리야",
+      "ultName": "바위술사의 벽",
+      "image": "TaliyahR.png",
+      "cooldown": "180/150/120",
+      "cooldownNote": "최근 챔피언·구조물에게 피해를 받으면 사용 불가",
+      "effect": "아주 긴 흙벽을 세우고, 다시 사용하면 벽을 타고 빠르게 이동합니다. 벽은 적의 길을 막는 용도로도 쓰입니다.",
+      "when": "먼 라인으로 빠르게 합류해 기습할 때, 또는 벽으로 적의 퇴로를 막아 한타를 열 때 주로 사용합니다.",
+      "how": "벽을 타는 중 이동 명령이나 군중 제어에 맞으면 내려옵니다. 벽으로 적을 가두고 밀쳐내기 쪽으로 밀어붙이는 연계가 인상적인 장면을 만듭니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Taliyah"
+      ]
+    },
+    "164": {
+      "nameKr": "카밀",
+      "ultName": "마법공학 최후통첩",
+      "image": "CamilleR.png",
+      "cooldown": "140/115/90",
+      "cooldownNote": "",
+      "effect": "적 챔피언에게 도약해 일정 시간 동안 빠져나올 수 없는 구역에 가두고, 기본 공격에 추가 피해를 입힙니다.",
+      "when": "원거리 딜러나 마법사 같은 핵심 적을 아군에게서 떼어내 일대일로 잡을 때 사용합니다.",
+      "how": "도약하는 동안 잠시 지정 불가 상태가 되어 적 스킬을 피할 수도 있습니다. 갇힌 대상이 점멸로도 못 나간다는 점이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Camille"
+      ]
+    },
+    "166": {
+      "nameKr": "아크샨",
+      "ultName": "인과응보",
+      "image": "AkshanR.png",
+      "cooldown": "100/85/70",
+      "cooldownNote": "",
+      "effect": "적 챔피언을 조준해 탄환을 모은 뒤 한꺼번에 발사하며, 대상이 잃은 체력이 많을수록 큰 물리 피해를 입힙니다.",
+      "when": "도망치거나 체력이 낮은 적 챔피언을 마무리할 때 주로 사용합니다.",
+      "how": "탄환은 처음 맞는 유닛에 막히므로 미니언이나 다른 챔피언이 대신 맞아 줄 수 있습니다. 오래 충전할수록 강해지며, 적은 대상 앞을 몸으로 막거나 시야 밖으로 피하는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Akshan"
+      ]
+    },
+    "200": {
+      "nameKr": "벨베스",
+      "ultName": "끝없는 연회",
+      "image": "BelvethR.png",
+      "cooldown": "1",
+      "cooldownNote": "쿨타임은 짧지만 처치 관여나 에픽 몬스터 처치로 생기는 공허 산호가 있어야 사용 가능",
+      "effect": "공허 산호를 먹어 주변에 고정 피해를 주고 본모습으로 변신해 최대 체력, 공격 사거리, 공격 속도가 오릅니다.",
+      "when": "적 처치나 드래곤·전령·바론 처치 직후 산호를 먹어 다음 교전을 강하게 이어가는 용도로 사용합니다.",
+      "how": "바론, 전령, 공허 유충의 산호를 먹으면 주변 미니언이 공허 빨판상어가 되어 라인을 밀어줍니다. 산호는 잠시만 남으므로 빠르게 먹는 것이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Bel'Veth"
+      ]
+    },
+    "201": {
+      "nameKr": "브라움",
+      "ultName": "빙하 균열",
+      "image": "BraumRWrapper.png",
+      "cooldown": "130/115/100",
+      "cooldownNote": "",
+      "effect": "지면을 내려쳐 전방 직선상의 적들을 띄워 올리고, 지나간 자리에 균열을 남겨 적을 둔화시킵니다.",
+      "when": "달려드는 적을 받아치거나 일렬로 선 적들에게 한타를 여는 용도로 사용합니다.",
+      "how": "처음 맞은 적이 가장 오래 뜨므로 핵심 대상을 앞에 두는 것이 좋습니다. 불굴로 아군을 지키며 함께 쓰면 받아치기가 강력합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Braum"
+      ]
+    },
+    "202": {
+      "nameKr": "진",
+      "ultName": "커튼 콜",
+      "image": "JhinR.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "제자리에서 저격 자세를 잡고 아주 먼 거리에 강력한 탄환 4발을 쏘며, 맞은 적은 둔화되고 잃은 체력이 많을수록 큰 피해를 입습니다.",
+      "when": "한타 시작 전 안전한 거리에서 적을 견제하거나, 도망치는 적을 원거리에서 마무리할 때 사용합니다.",
+      "how": "4번째 탄환은 항상 치명타라 마지막 발이 가장 위협적입니다. 움직이면 사격이 끊기므로 위치가 중요하며, 앞선 탄환으로 둔화를 걸어 다음 탄환을 맞히는 흐름을 보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Jhin"
+      ]
+    },
+    "203": {
+      "nameKr": "킨드레드",
+      "ultName": "양의 안식처",
+      "image": "KindredR.png",
+      "cooldown": "160/140/120",
+      "cooldownNote": "",
+      "effect": "4초 동안 영역 안의 모든 유닛은 체력이 최대 체력의 10% 아래로 내려가지 않아 죽지 않고, 끝나면 영역 안의 유닛이 체력을 회복합니다. 적도 똑같이 보호됩니다.",
+      "when": "아군이 집중 공격을 받아 죽기 직전일 때나 바론·드래곤 싸움에서 아군을 살려 역전을 노릴 때 주로 사용합니다.",
+      "how": "늦게 쓰면 아군이 죽고, 너무 빨리 쓰면 적도 살려줍니다. 적이 영역 밖으로 나가게 유도하거나, 영역이 끝나는 순간을 노려 마무리하는 장면을 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kindred"
+      ]
+    },
+    "221": {
+      "nameKr": "제리",
+      "ultName": "번개 방출",
+      "image": "ZeriR.png",
+      "cooldown": "80/75/70",
+      "cooldownNote": "",
+      "effect": "주변에 전류를 터뜨린 뒤 과충전 상태가 되어 피해량과 이동 속도가 오르고, 집중 사격이 연쇄 번개를 튀기는 3연발로 바뀝니다.",
+      "when": "한타가 열려 적 챔피언을 계속 맞힐 수 있을 때 켜서 빠르게 움직이며 딜을 넣는 용도로 사용합니다.",
+      "how": "적 챔피언을 맞힐 때마다 이동 속도가 쌓이고 지속시간이 갱신되므로 꾸준히 맞히는 것이 핵심입니다. 스파크 돌진으로 벽을 넘나들며 위치를 바꾸는 움직임이 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Zeri"
+      ]
+    },
+    "222": {
+      "nameKr": "징크스",
+      "ultName": "초강력 초토화 로켓!",
+      "image": "JinxR.png",
+      "cooldown": "85/65/45",
+      "cooldownNote": "",
+      "effect": "맵 전체를 가로지르는 로켓을 쏘아, 맞은 적과 주변 적에게 잃은 체력에 비례한 큰 물리 피해를 입힙니다.",
+      "when": "체력이 낮은 적을 먼 거리에서 마무리하거나, 한타 시작 때 여러 적의 체력을 깎을 때 사용합니다.",
+      "how": "잃은 체력이 많을수록 피해가 커서 도망치는 적을 처치하는 데 강합니다. 앞의 미니언이나 다른 챔피언에 막히는지 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Jinx"
+      ]
+    },
+    "223": {
+      "nameKr": "탐 켄치",
+      "ultName": "집어삼키기",
+      "image": "TahmKenchRWrapper.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "적에게는 절대 미각 3중첩 필요",
+      "effect": "챔피언을 몇 초간 삼킵니다. 적은 삼켜진 동안 행동할 수 없고 내뱉을 때 피해를 입으며, 아군은 삼켜져 보호받고 보호막을 얻습니다.",
+      "when": "위험에 처한 아군 딜러를 삼켜 지켜줄 때나, 적을 삼킨 채 아군 쪽으로 끌고 갈 때 사용합니다.",
+      "how": "아군을 삼키면 적의 집중 공격을 무효화할 수 있습니다. 적을 삼킬 때는 탐 켄치가 느려지므로, 아군 근처에서 쓰거나 점멸과 연계하는지 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Tahm_Kench"
+      ]
+    },
+    "233": {
+      "nameKr": "브라이어",
+      "ultName": "불가항력적 죽음",
+      "image": "BriarR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "아주 먼 거리로 혈석을 차 처음 맞은 챔피언에게 날아가 착지하며, 주변 적을 공포에 빠트리고 대상을 죽을 때까지 쫓는 강화 광분 상태가 됩니다.",
+      "when": "멀리 떨어진 교전에 합류하거나, 도망치는 적 딜러를 쫓아가 처치하는 용도로 사용합니다.",
+      "how": "방어력과 생명력 흡수를 얻지만 대상만 쫓느라 스스로 멈추기 어려워 깊이 들어가 죽기도 합니다. 아군이 함께 따라갈 수 있을 때 쓰는 것이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Briar"
+      ]
+    },
+    "234": {
+      "nameKr": "비에고",
+      "ultName": "심장 파괴자",
+      "image": "ViegoR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "가까운 지정 위치로 순간 이동해 가장 많이 다친 적 챔피언에게 잃은 체력에 비례한 큰 피해를 주고, 주변 적들을 밀쳐냅니다.",
+      "when": "체력이 낮은 적을 처치해 영혼에 빙의하거나, 한타에서 다음 대상으로 옮겨 가는 용도로 사용합니다.",
+      "how": "빙의 상태가 풀릴 때나 위험할 때 순간 이동으로 빠져나오기도 합니다. 처치와 빙의를 이어가는 연속 플레이가 비에고의 핵심 볼거리입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Viego"
+      ]
+    },
+    "235": {
+      "nameKr": "세나",
+      "ultName": "여명의 그림자",
+      "image": "SennaR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "",
+      "effect": "맵 전체를 가로지르는 광선을 쏴 맞은 적 챔피언에게 피해를 주고, 범위 안 아군 챔피언에게 보호막을 씌웁니다.",
+      "when": "다른 라인 교전 지원, 도망치는 적 마무리, 한타 중 아군 보호에 주로 사용합니다.",
+      "how": "멀리서 쏘는 전역 궁극기라 다른 지역 싸움에 개입하는 장면이 자주 나옵니다. 피해는 광선 중앙에만, 보호막은 더 넓은 범위에 적용되므로 정확한 조준이 중요합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Senna"
+      ]
+    },
+    "236": {
+      "nameKr": "루시안",
+      "ultName": "빛의 심판",
+      "image": "LucianR.png",
+      "cooldown": "110/100/90",
+      "cooldownNote": "",
+      "effect": "바라보는 방향으로 몇 초간 총알을 연속 난사해 처음 맞는 적에게 큰 물리 피해를 입힙니다.",
+      "when": "도망치는 적을 마무리하거나 라인전에서 상대를 압박할 때 사용합니다.",
+      "how": "난사 중에도 이동과 끈질긴 추격(돌진)이 가능해 위치를 조정하며 쏩니다. 미니언에 막히므로 적 앞 길이 비어 있을 때 써야 효과적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Lucian"
+      ]
+    },
+    "238": {
+      "nameKr": "제드",
+      "ultName": "죽음의 표식",
+      "image": "ZedR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "대상으로 지정할 수 없는 상태로 적에게 돌진해 표식을 남기고, 3초 뒤 그동안 입힌 피해에 비례한 추가 피해를 터뜨립니다.",
+      "when": "적 딜러를 순식간에 암살하거나, 적 핵심 스킬을 피하면서 파고들 때 사용합니다.",
+      "how": "표식 지속 동안 예리한 표창과 그림자 베기를 최대한 맞혀야 마무리 피해가 커집니다. 재사용하면 남겨둔 그림자와 위치를 바꿔 빠져나오며, 상대는 초시계 등으로 표식을 버티는 것이 대응법입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Zed"
+      ]
+    },
+    "240": {
+      "nameKr": "클레드",
+      "ultName": "돌겨어어억!!!",
+      "image": "KledR.png",
+      "cooldown": "140/125/110",
+      "cooldownNote": "",
+      "effect": "보호막을 쓰고 먼 거리를 돌진하며, 경로의 아군에게 이동 속도를 주고 첫 적 챔피언에게 부딪혀 피해를 줍니다.",
+      "when": "먼 거리에서 한타를 열거나 다른 라인에 빠르게 합류할 때 사용합니다.",
+      "how": "스칼에 탄 상태에서만 쓸 수 있습니다. 경로의 아군도 빨라져 팀 전체가 함께 돌진할 수 있고, 멀리서 달려올수록 피해와 보호막이 커집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kled"
+      ]
+    },
+    "245": {
+      "nameKr": "에코",
+      "ultName": "시공간 붕괴",
+      "image": "EkkoR.png",
+      "cooldown": "110/80/50",
+      "cooldownNote": "",
+      "effect": "4초 전 위치로 시간을 되돌아가며 그동안 잃은 체력 일부를 회복하고, 도착 지점 주변 적에게 큰 피해를 입힙니다.",
+      "when": "위기에서 살아 나오거나, 적진에 진입한 뒤 잔상 위치로 돌아가며 피해를 줄 때 사용합니다.",
+      "how": "맵에 보이는 에코의 잔상 위치가 도착 지점이므로, 잔상을 적 사이에 두고 사용하면 피해를 극대화합니다. 적은 잔상 주변을 피하고, 사용 전 군중 제어로 끊는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ekko"
+      ]
+    },
+    "246": {
+      "nameKr": "키아나",
+      "ultName": "여왕의 진가",
+      "image": "QiyanaR.png",
+      "cooldown": "120",
+      "cooldownNote": "",
+      "effect": "충격파를 발사해 적을 밀어내고, 벽·강·수풀에 닿으면 주변이 폭발하며 적을 기절시키고 피해를 입힙니다.",
+      "when": "벽 근처나 정글 수풀 근처에 몰린 적들을 한꺼번에 기절시키며 한타를 시작할 때 사용합니다.",
+      "how": "벽 둘레나 강·수풀을 따라 폭발해 여러 명을 한꺼번에 묶을 수 있습니다. 적이 지형 근처에 모여 있을 때를 노리는 각을 주목하세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Qiyana"
+      ]
+    },
+    "254": {
+      "nameKr": "바이",
+      "ultName": "정지 명령",
+      "image": "ViR.png",
+      "cooldown": "140/115/90",
+      "cooldownNote": "",
+      "effect": "지정한 적 챔피언에게 돌진해 공중에 띄우고 내리찍으며, 지나가는 길의 다른 적들은 옆으로 밀쳐내고 잠시 기절시킵니다.",
+      "when": "적 원거리 딜러나 마법사 같은 핵심 딜러를 확실히 잡거나, 한타를 여는 이니시로 사용합니다.",
+      "how": "돌진 중에는 군중 제어로 밀어내기 어려워 확정적으로 들어가지만, 지정 대상만 노리므로 누구를 찍느냐가 핵심입니다. 상대는 대상 지정 불가 효과로 피할 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Vi"
+      ]
+    },
+    "266": {
+      "nameKr": "아트록스",
+      "ultName": "세계의 종결자",
+      "image": "AatroxR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "처치 관여 시 지속시간 연장",
+      "effect": "악마의 모습으로 변해 일정 시간 공격력과 자신의 체력 회복 효과, 이동 속도가 크게 증가합니다.",
+      "when": "한타나 교전이 시작될 때 켜서 오래 버티며 싸우고, 처치에 관여하며 지속시간을 늘립니다.",
+      "how": "강해진 회복으로 적진 한가운데서 버티는 것이 강점입니다. 적은 치유 감소 아이템과 군중 제어로 대응하며, 궁극기가 끝날 때까지 거리를 벌리는 것이 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Aatrox"
+      ]
+    },
+    "267": {
+      "nameKr": "나미",
+      "ultName": "해일",
+      "image": "NamiR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "거대한 해일을 보내 맞은 적을 공중에 띄우고 둔화시키며, 맞은 아군은 강화 효과를 받습니다.",
+      "when": "한타 개시, 추격, 적의 진입을 끊어내는 역이니시에이팅에 주로 사용합니다.",
+      "how": "멀리서 날아갈수록 둔화 시간이 길어지며, 좁은 정글 길이나 오브젝트 앞처럼 적이 뭉친 곳에서 여러 명을 맞히는 것이 이상적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Nami"
+      ]
+    },
+    "268": {
+      "nameKr": "아지르",
+      "ultName": "황제의 진영",
+      "image": "AzirR.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "병사들을 일렬로 소환해 돌진시켜 적을 밀어내고 피해를 입히며, 병사 벽이 잠시 적의 길을 막습니다.",
+      "when": "적 뒤로 파고들어 적을 아군 쪽으로 밀어 넣는 이니시, 또는 달려드는 적을 떼어 내는 용도로 씁니다.",
+      "how": "일어나라!(W)로 병사를 놓고 신기루(E), 사막의 맹습(Q)으로 적 뒤로 넘어간 뒤 황제의 진영으로 적을 아군 쪽에 밀어 넣는 슈리마 셔플이 핵심 장면입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Azir"
+      ]
+    },
+    "350": {
+      "nameKr": "유미",
+      "ultName": "대단원",
+      "image": "YuumiR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "정신을 집중해 마법 파동을 다섯 번 발사하여 적에게 피해와 점점 강해지는 둔화를 주고, 아군은 회복시킵니다.",
+      "when": "한타 도중 적이 뭉쳐 있을 때 아군을 회복시키며 적의 접근이나 도주를 늦추는 용도로 주로 사용합니다.",
+      "how": "단짝에 붙어 있으면 마우스로 파동 방향을 조종할 수 있어 아군 진입에 맞춰 쓰면 효과적입니다. 파동을 여러 번 맞을수록 둔화가 강해지므로 적을 붙잡는 힘이 커집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Yuumi"
+      ]
+    },
+    "360": {
+      "nameKr": "사미라",
+      "ultName": "지옥불 난사",
+      "image": "SamiraR.png",
+      "cooldown": "5",
+      "cooldownNote": "스타일 S등급일 때만 사용 가능, 사용 시 등급 초기화",
+      "effect": "2초 동안 주변 모든 적에게 총알을 난사해 물리 피해를 입히며, 각 사격에 치명타와 생명력 흡수가 적용됩니다.",
+      "when": "스킬과 공격을 섞어 스타일 등급을 S까지 올린 뒤 적진에 뛰어들어 한타를 휩쓸 때 사용합니다.",
+      "how": "거침없는 질주로 돌진하면서 바로 쓰는 연계가 핵심입니다. 기절 등 군중 제어에 맞으면 끊기므로 상대 군중 제어 스킬이 빠진 뒤 들어가는지 보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Samira"
+      ]
+    },
+    "412": {
+      "nameKr": "쓰레쉬",
+      "ultName": "영혼 감옥",
+      "image": "ThreshRPenta.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "자신 주변에 벽으로 된 감옥을 만들어, 벽을 통과하는 적에게 피해를 주고 크게 둔화시킵니다.",
+      "when": "한타에서 적을 가두거나 아군 딜러를 보호할 때, 사형 선고(Q)로 끌어온 적을 묶을 때 사용합니다.",
+      "how": "처음 부서지는 벽만 피해와 강한 둔화를 주고 나머지 벽은 약해집니다. 적이 몰려오는 길목이나 적 한가운데에서 펼쳐 도주와 진입을 모두 막는 것이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Thresh"
+      ]
+    },
+    "420": {
+      "nameKr": "일라오이",
+      "ultName": "믿음의 도약",
+      "image": "IllaoiR.png",
+      "cooldown": "120/95/70",
+      "cooldownNote": "",
+      "effect": "성상을 내리쳐 주변 적에게 피해를 주고, 맞힌 적 챔피언 수만큼 촉수를 소환하며, 지속 중 촉수가 더 빠르게 공격합니다.",
+      "when": "여러 적이 근처에 모인 한타나 다이브 상황에서 촉수를 대량으로 소환해 맞서 싸울 때 사용합니다.",
+      "how": "지속 중 혹독한 가르침의 재사용 대기시간도 절반으로 줄어듭니다. 촉수 범위 안에서 싸우면 매우 강하므로 적은 거리를 벌려 촉수를 피하는 것이 대응법입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Illaoi"
+      ]
+    },
+    "421": {
+      "nameKr": "렉사이",
+      "ultName": "공허의 돌진",
+      "image": "RekSaiR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "최근 피해를 입힌 적에게 땅속으로 숨었다가 도약해, 최대 체력 비례 물리 피해를 입힙니다. 시전 중 대상으로 지정되지 않습니다.",
+      "when": "체력이 줄어든 적을 마무리하거나 멀리 도망치는 적을 추격할 때 사용합니다.",
+      "how": "먼저 대상에게 피해를 입혀 표식을 남겨야 쓸 수 있습니다. 대상 지정 불가 상태를 이용해 적의 핵심 스킬을 피하는 용도로도 씁니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Rek%27Sai"
+      ]
+    },
+    "427": {
+      "nameKr": "아이번",
+      "ultName": "데이지!",
+      "image": "IvernR.png",
+      "cooldown": "140/130/120",
+      "cooldownNote": "",
+      "effect": "파수꾼 데이지를 소환해 함께 싸웁니다. 데이지가 같은 대상을 세 번 때리면 충격파로 적을 공중에 띄웁니다.",
+      "when": "오브젝트 싸움이나 한타 때 앞라인을 보강하고 시선을 끌기 위해 사용합니다.",
+      "how": "재사용으로 데이지에게 공격 대상을 지정해 에어본을 노립니다. 데이지가 적 스킬을 대신 맞아 주는 효과도 크며, 적은 데이지를 무시하고 아이번 팀 딜러를 노리는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ivern"
+      ]
+    },
+    "429": {
+      "nameKr": "칼리스타",
+      "ultName": "운명의 부름",
+      "image": "KalistaRx.png",
+      "cooldown": "160/140/120",
+      "cooldownNote": "",
+      "effect": "계약을 맺은 아군을 끌어와 잠시 무적으로 붙잡아 둔 뒤, 원하는 곳으로 날려 보내 부딪힌 적들을 띄워 올립니다.",
+      "when": "위험에 처한 아군을 구하거나, 탱커·서포터를 적진 한가운데로 날려 한타를 시작할 때 사용합니다.",
+      "how": "알리스타나 노틸러스처럼 진입 능력이 좋은 서포터와 함께 강력합니다. 계약자는 날아갈지 판단해야 합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Kalista"
+      ]
+    },
+    "432": {
+      "nameKr": "바드",
+      "ultName": "운명의 소용돌이",
+      "image": "BardR.png",
+      "cooldown": "110/95/80",
+      "cooldownNote": "",
+      "effect": "먼 거리의 지정 지역에 있는 모든 유닛을 잠시 시간 정지 상태로 만듭니다. 아군과 적, 포탑, 몬스터 모두 무적 상태로 멈춥니다.",
+      "when": "멀리서 한타를 여는 이니시, 도망치는 적 붙잡기, 포탑 다이브 차단, 드래곤·바론 스틸 방지 등에 사용합니다.",
+      "how": "아군까지 멈추므로 잘못 쓰면 아군을 방해합니다. 정지가 풀리는 순간에 맞춰 아군이 스킬을 겹쳐 넣는 연계를 눈여겨보면 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Bard"
+      ]
+    },
+    "497": {
+      "nameKr": "라칸",
+      "ultName": "매혹의 질주",
+      "image": "RakanR.png",
+      "cooldown": "130/110/90",
+      "cooldownNote": "",
+      "effect": "빠르게 달리며 닿는 적에게 마법 피해를 주고 매혹시킵니다.",
+      "when": "적 진형을 가로지르며 여러 명을 묶는 한타 개시에 주로 사용합니다.",
+      "how": "화려한 등장의 돌진, 점멸과 연계해 순식간에 여러 명을 매혹하는 콤보가 핵심이며, 몇 명을 묶는지가 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Rakan"
+      ]
+    },
+    "498": {
+      "nameKr": "자야",
+      "ultName": "저항의 비상",
+      "image": "XayahR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "",
+      "effect": "공중으로 뛰어올라 잠시 대상으로 지정할 수 없게 된 뒤, 부채꼴로 깃털을 날려 피해를 주고 깃털을 바닥에 남깁니다.",
+      "when": "적의 돌진이나 핵심 스킬을 피하는 생존기로 쓰거나, 한타에서 깃털을 대량으로 깔아 속박을 노릴 때 사용합니다.",
+      "how": "궁극기로 깔린 깃털을 깃부르미로 불러들이면 여러 적을 한꺼번에 속박할 수 있습니다. 적 궁극기를 피하는 타이밍과 이후 속박 연계가 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Xayah"
+      ]
+    },
+    "516": {
+      "nameKr": "오른",
+      "ultName": "대장장이 신의 부름",
+      "image": "OrnnR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "",
+      "effect": "거대한 불의 정령을 소환해 오른 쪽으로 달려오게 하며, 재사용으로 박치기해 정령의 방향을 바꾸면 적을 공중에 띄웁니다.",
+      "when": "멀리서 한타를 시작하는 이니시나, 적이 좁은 통로로 들어올 때 사용합니다.",
+      "how": "정령을 적 뒤쪽에 소환해 한 번 맞히고, 박치기로 되돌려 다시 맞히는 것이 이상적입니다. 불안정 상태가 된 적은 다음 군중 제어에 추가 피해를 받으며, 정령의 경로를 피하는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ornn"
+      ]
+    },
+    "517": {
+      "nameKr": "사일러스",
+      "ultName": "강탈",
+      "image": "SylasR.png",
+      "cooldown": "80/55/30",
+      "cooldownNote": "빼앗은 궁극기는 일정 시간 보관했다가 한 번 사용",
+      "effect": "적 챔피언의 궁극기를 빼앗아 자신이 사용합니다. 빼앗는 대상에 따라 효과가 완전히 달라집니다.",
+      "when": "교전 전에 강력한 궁극기를 가진 적에게 미리 사용해 확보해 두고, 한타에서 그 궁극기로 승부를 겁니다.",
+      "how": "상대 조합의 강한 광역 궁극기(아무무, 말파이트 등)를 가져왔는지가 관전 포인트입니다. 사슬 후려치기(Q)·도주 / 억압(E)과 연계해 빼앗은 궁극기를 기습적으로 쓰는 장면이 하이라이트가 됩니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Sylas"
+      ]
+    },
+    "518": {
+      "nameKr": "니코",
+      "ultName": "만개",
+      "image": "NeekoR.png",
+      "cooldown": "120/105/90",
+      "cooldownNote": "",
+      "effect": "잠시 준비 후 도약해 주변 적을 공중에 띄우고, 착지하며 피해를 주고 기절시킵니다.",
+      "when": "적이 뭉친 한타에서 여러 명을 한꺼번에 묶는 이니시에이팅에 주로 사용합니다.",
+      "how": "다른 챔피언으로 변신한 상태에서는 준비 동작이 보이지 않아, 변신한 채 적 사이로 파고드는 기습이 위협적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Neeko"
+      ]
+    },
+    "523": {
+      "nameKr": "아펠리오스",
+      "ultName": "월광포화",
+      "image": "ApheliosR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "달빛 에너지를 발사해 맞은 주변 적에게 피해를 입히고, 장착한 주 무기에 따라 추가 효과를 적용합니다.",
+      "when": "한타에서 여러 적에게 동시에 피해를 주거나, 무기 효과를 활용해 교전을 유리하게 시작할 때 씁니다.",
+      "how": "주 무기에 따라 효과가 다릅니다. 칼리버는 추가 피해, 세베룸은 회복, 그래비툼은 강한 둔화, 인페르눔은 추가 피해, 크레센덤은 차크람을 모읍니다. 여러 명이 뭉쳤을 때 맞히는 것이 이상적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Aphelios"
+      ]
+    },
+    "526": {
+      "nameKr": "렐",
+      "ultName": "자기 폭풍",
+      "image": "RellR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "자기 폭발로 주변 적들을 렐 쪽으로 끌어당기고, 잠시 동안 계속 끌어당기며 마법 피해를 입힙니다.",
+      "when": "적진에 돌진해 한타를 열 때 적을 한곳에 모으기 위해 사용합니다.",
+      "how": "돌진 스킬로 적 사이에 들어간 직후 써서 여러 명을 묶어두는 것이 핵심입니다. 아군의 광역 스킬과 함께 터지면 위력이 큽니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Rell"
+      ]
+    },
+    "555": {
+      "nameKr": "파이크",
+      "ultName": "깊은 바다의 처형",
+      "image": "PykeR.png",
+      "cooldown": "100/85/70",
+      "cooldownNote": "X 영역 안에서 적 처치 시 재사용 가능",
+      "effect": "X 모양 영역에 피해를 주고, 체력이 기준치보다 낮은 적에게 순간이동해 즉시 처형합니다. 처치 골드를 아군과 나눠 받습니다.",
+      "when": "한타에서 체력이 낮아진 적들을 연속으로 마무리할 때 주로 사용합니다.",
+      "how": "처형에 성공하면 다시 쓸 수 있어 여러 명을 연달아 처치하는 장면이 나옵니다. 적 체력이 처형 기준선 아래로 내려가는 순간을 노리는 타이밍이 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Pyke"
+      ]
+    },
+    "711": {
+      "nameKr": "벡스",
+      "ultName": "그림자 파동",
+      "image": "VexR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "표식 대상 처치 관여 시 재사용 가능",
+      "effect": "먼 거리로 그림자를 날려 처음 맞은 적 챔피언에게 표식을 남기고, 재사용하면 대상에게 돌진해 추가 피해를 입힙니다.",
+      "when": "멀리 떨어진 적에게 순식간에 접근해 처치하거나, 다른 라인 교전에 합류하는 용도로 사용합니다.",
+      "how": "표식이 남은 대상을 처치하면 한 번 더 쓸 수 있어 연속 처치가 가능합니다. 돌진 후 적진 깊숙이 들어가는 타이밍과 이어지는 광역 공포 연계를 주목하세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Vex"
+      ]
+    },
+    "777": {
+      "nameKr": "요네",
+      "ultName": "운명봉인",
+      "image": "YoneR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "일직선으로 강하게 베어 경로의 적에게 물리·마법 피해를 입히고, 마지막 챔피언 뒤로 순간이동하며 적을 끌어당겨 띄웁니다.",
+      "when": "여러 적이 일직선에 있을 때 한타를 시작하거나, 도망치는 적을 붙잡을 때 사용합니다.",
+      "how": "여러 명을 한 번에 띄우면 이어지는 공격으로 큰 피해를 줍니다. 영혼해방(E) 상태에서 사용하면 진입 후 원래 위치로 돌아올 수 있으며, 적은 일렬로 서지 않는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Yone"
+      ]
+    },
+    "799": {
+      "nameKr": "암베사",
+      "ultName": "공개 처형",
+      "image": "AmbessaR.png",
+      "cooldown": "130/115/100",
+      "cooldownNote": "",
+      "effect": "저지 불가 상태로 일직선상 가장 멀리 있는 적 챔피언에게 순간이동해 제압한 뒤 내리쳐 피해를 입히고 기절시킵니다.",
+      "when": "적 후방의 딜러를 노려 진입하거나, 도망치는 적을 붙잡아 처치할 때 사용합니다.",
+      "how": "경로상 가장 멀리 있는 적이 대상이 되므로 방향 조준이 중요합니다. 기본 지속 효과로 방어구 관통력과 회복도 얻으며, 적은 딜러 곁에 아군을 붙여 진입을 받아치는 것이 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Ambessa"
+      ]
+    },
+    "800": {
+      "nameKr": "멜",
+      "ultName": "황금 일식",
+      "image": "MelR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "압도 상태의 적 챔피언이 있어야 사용 가능",
+      "effect": "압도 중첩이 쌓인 모든 적에게 거리와 상관없이 마법 피해를 입히며, 중첩이 많을수록 피해가 커집니다.",
+      "when": "교전 중 여러 적에게 압도를 쌓은 뒤 한꺼번에 피해를 주거나, 멀리 도망간 적을 마무리할 때 사용합니다.",
+      "how": "빛의 세례 등 스킬과 기본 공격으로 압도 중첩을 최대한 쌓은 뒤 쓰는 것이 핵심입니다. 사거리 제한이 없어 시야 밖 적의 마무리 장면도 나옵니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Mel"
+      ]
+    },
+    "804": {
+      "nameKr": "유나라",
+      "ultName": "자기 초월",
+      "image": "YunaraR.png",
+      "cooldown": "100/90/80",
+      "cooldownNote": "15초 동안 기본 스킬 강화 상태 유지",
+      "effect": "15초간 초월 상태가 되어 Q가 자동 활성화되고, W는 강한 둔화를 주는 광선으로, E는 짧은 돌진으로 바뀌어 강화됩니다.",
+      "when": "한타가 본격적으로 열리거나 확실한 교전 각이 섰을 때 켜서 딜을 쏟아붓고, 돌진으로 위치를 잡으며 싸울 때 사용합니다.",
+      "how": "켜고 끌 때 강화 E가 초기화되고 W 재사용 대기시간이 줄어 돌진과 광선을 여러 번 쓸 수 있습니다. 돌진 중 광선을 쏘는 연계와 안전한 거리 유지가 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Yunara"
+      ]
+    },
+    "805": {
+      "nameKr": "로크",
+      "ultName": "연옥",
+      "image": "LockeR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "봉인 성공 후 유물을 주우면 재사용 대기시간 일부 반환",
+      "effect": "유물을 던져 범위 내 적에게 피해와 강한 둔화를 주고 표식을 남기며, 표식이 남은 적의 체력이 일정 이하가 되면 처형합니다.",
+      "when": "교전 중 체력이 줄어든 적들을 한꺼번에 마무리하거나 도망가는 적을 붙잡을 때 사용합니다.",
+      "how": "처형에 성공하면 떨어진 유물을 주워 재사용 대기시간을 돌려받고 처형 기준치도 영구히 높아집니다. 여러 명에게 표식을 남기는 것이 관건입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Locke"
+      ]
+    },
+    "875": {
+      "nameKr": "세트",
+      "ultName": "대미 장식",
+      "image": "SettR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "적 챔피언 하나를 붙잡아 도약한 뒤 내리꽂아, 착지 지점 주변 적에게 피해를 주고 둔화시킵니다.",
+      "when": "적 딜러를 아군 쪽으로 끌고 올 때, 또는 적 진형 한가운데로 내리꽂아 한타를 열 때 사용합니다.",
+      "how": "붙잡은 적의 추가 체력이 높을수록 주변 피해가 커져, 탱커를 잡아 적 딜러 위에 떨어뜨리는 것이 이상적입니다. 이어서 강펀치(W)로 마무리하는지 주목하세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Sett"
+      ]
+    },
+    "876": {
+      "nameKr": "릴리아",
+      "ultName": "감미로운 자장가",
+      "image": "LilliaR.png",
+      "cooldown": "150/130/110",
+      "cooldownNote": "",
+      "effect": "꿈가루가 묻은 모든 적을 졸음 상태로 만든 뒤 잠재우며, 잠든 적이 피해를 입어 깨어나면 추가 피해를 입습니다.",
+      "when": "한타에서 여러 적에게 꿈가루를 묻힌 뒤 한꺼번에 재워 싸움을 유리하게 만들 때 사용합니다.",
+      "how": "먼저 스킬로 최대한 많은 적에게 꿈가루를 묻혀야 합니다. 거리 제한이 없어 멀리서도 쓸 수 있으며, 잠든 적을 아군이 강한 공격으로 깨우는 것이 좋습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Lillia"
+      ]
+    },
+    "887": {
+      "nameKr": "그웬",
+      "ultName": "바느질",
+      "image": "GwenR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "바늘을 최대 세 번까지 던져 마법 피해와 둔화를 주며, 던질수록 바늘 수와 피해가 늘어납니다.",
+      "when": "교전 중 적을 붙잡아 두거나 도망치는 적을 추격해 마무리할 때 주로 사용합니다.",
+      "how": "세 번 모두 맞히는 것이 중요하며, 신성한 안개로 원거리 공격을 막으면서 싸우는 동안 함께 쓰는 경우가 많습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Gwen"
+      ]
+    },
+    "888": {
+      "nameKr": "레나타 글라스크",
+      "ultName": "적대적 인수",
+      "image": "RenataR.png",
+      "cooldown": "150/130/110",
+      "cooldownNote": "",
+      "effect": "화학 물질 파도를 내보내 맞은 적을 광란 상태로 만들어, 가장 가까운 대상을 아군·적군 가리지 않고 공격하게 합니다.",
+      "when": "적이 뭉쳐 돌진해 올 때나 한타를 여는 순간 적 진영을 무너뜨리기 위해 사용합니다.",
+      "how": "공격력이 높은 적 원거리 딜러나 돌진한 적 무리를 맞히면 적끼리 서로 때리게 됩니다. 넓게 퍼지는 파도라 적 다수를 맞혔는지가 핵심입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Renata_Glasc"
+      ]
+    },
+    "893": {
+      "nameKr": "오로라",
+      "ultName": "세계의 경계",
+      "image": "AuroraR.png",
+      "cooldown": "140/120/100",
+      "cooldownNote": "",
+      "effect": "지정한 방향으로 뛰어올라 충격파로 피해와 둔화를 주고, 경계 영역을 만들어 오로라만 반대편으로 넘나들 수 있게 합니다.",
+      "when": "교전 시작 시 적을 영역에 가두거나, 싸움 중 영역을 넘나들며 적의 공격을 피할 때 사용합니다.",
+      "how": "오로라는 영역 경계를 건너는 동안 대상으로 지정할 수 없어 스킬을 피할 수 있습니다. 적은 경계에 닿으면 크게 둔화되므로 영역 안에 갇히지 않도록 피하는 것이 대응입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Aurora"
+      ]
+    },
+    "895": {
+      "nameKr": "닐라",
+      "ultName": "환희",
+      "image": "NilahR.png",
+      "cooldown": "110/95/80",
+      "cooldownNote": "",
+      "effect": "칼날 채찍을 휘둘러 주변 적에게 피해를 주고 가까이 끌어당기며, 입힌 피해만큼 자신과 아군을 회복시킵니다.",
+      "when": "적에게 파고든 뒤 여러 명을 끌어모으는 한타 중반 진입에 주로 사용합니다.",
+      "how": "급류로 적에게 파고들고 승리의 장막으로 버티며 쓰는 것이 일반적이며, 회복과 보호막이 아군에게도 들어가 근접 교전에서 강합니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Nilah"
+      ]
+    },
+    "897": {
+      "nameKr": "크산테",
+      "ultName": "총공세",
+      "image": "KSanteR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "적 챔피언을 밀어내며 벽을 뚫고 날려 보낸 뒤 따라가 총공세 상태가 되어, 방어는 줄지만 공격력과 회복이 늘어납니다.",
+      "when": "적 핵심 딜러를 아군 쪽이나 적 진형 밖으로 날려 고립시키고 처치할 때 사용합니다.",
+      "how": "적 딜러를 벽 너머로 날려 아군에게서 떼어내는 장면이 핵심입니다. 총공세 중에는 발놀림으로 벽도 넘지만, 단단함이 줄어 집중 공격에 약해집니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/K%27Sante"
+      ]
+    },
+    "901": {
+      "nameKr": "스몰더",
+      "ultName": "엄마아아아!",
+      "image": "SmolderR.png",
+      "cooldown": "120/110/100",
+      "cooldownNote": "",
+      "effect": "스몰더의 어미가 긴 직선으로 불을 뿜어 넓은 범위에 피해를 주고, 중앙에 맞은 적은 더 큰 피해와 둔화를 받습니다.",
+      "when": "한타 중 광역 피해, 멀리서 도망치는 적 마무리, 다른 라인 지원에 사용합니다.",
+      "how": "사거리가 매우 길어 먼 거리의 적을 마무리하는 장면이 자주 나옵니다. 화염 중앙에 맞히는 것이 중요하며, 자신에게 닿도록 쏘면 체력을 회복할 수 있습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Smolder"
+      ]
+    },
+    "902": {
+      "nameKr": "밀리오",
+      "ultName": "생명의 온기",
+      "image": "MilioR.png",
+      "cooldown": "160/145/130",
+      "cooldownNote": "",
+      "effect": "자신과 주변 아군 챔피언의 체력을 회복시키고, 에어본을 제외한 군중 제어 효과를 해제하며 잠시 강인함을 부여합니다.",
+      "when": "한타 중 아군 원거리 딜러나 핵심 딜러가 기절, 속박 등에 걸렸을 때 풀어주며 전세를 뒤집는 용도로 사용합니다.",
+      "how": "적의 핵심 군중 제어가 들어간 직후에 써야 가치가 큽니다. 범위가 밀리오 주변이라 아군 가까이 있어야 하며, 침묵에 걸리면 쓸 수 없습니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Milio"
+      ]
+    },
+    "904": {
+      "nameKr": "자헨",
+      "ultName": "단호한 판결",
+      "image": "ZaahenR.png",
+      "cooldown": "110/95/80",
+      "cooldownNote": "기본 지속 효과로 방어구 관통력 증가",
+      "effect": "하늘로 날아올라 목표 지점에 내려찍으며 주변 적에게 물리 피해를 주고, 맞힌 챔피언 수에 따라 체력을 회복합니다.",
+      "when": "적 진형 한가운데로 뛰어들어 한타를 열거나, 적 군중 제어기를 피하면서 교전에 합류할 때 사용합니다.",
+      "how": "시전 중 군중 제어기에 면역이고 받는 피해가 크게 줄어 진입이 안정적입니다. 여러 명을 맞힐수록 회복량이 커지므로 적이 뭉친 곳에 떨어지는 것이 이상적입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Zaahen"
+      ]
+    },
+    "910": {
+      "nameKr": "흐웨이",
+      "ultName": "절망의 소용돌이",
+      "image": "HweiR.png",
+      "cooldown": "120/100/80",
+      "cooldownNote": "",
+      "effect": "절망의 환상을 날려 처음 맞은 적 챔피언에게 붙이고, 3초간 커지며 주변 적을 점점 강하게 둔화시키고 피해를 준 뒤 마지막에 폭발합니다.",
+      "when": "한타에서 적 핵심 챔피언을 묶어두거나, 뭉친 적들에게 범위 피해를 줄 때 사용합니다.",
+      "how": "환상이 붙은 적 주변의 다른 적들도 둔화되어 함께 피해를 입습니다. 둔화로 묶인 적에게 다른 스킬을 맞히는 연계를 지켜보세요.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Hwei"
+      ]
+    },
+    "950": {
+      "nameKr": "나피리",
+      "ultName": "사냥개의 추적",
+      "image": "NaafiriW.png",
+      "cooldown": "110/95/80",
+      "cooldownNote": "처치 관여 시 한 번 재사용 가능",
+      "effect": "나피리와 사냥개 무리가 적 챔피언에게 돌진해 물리 피해를 줍니다. 처치 관여 시 한 번 더 사용할 수 있습니다.",
+      "when": "체력이 낮은 적에게 진입해 순식간에 처치하는 암살과 마무리에 주로 사용합니다.",
+      "how": "처치에 성공하면 주변 적이 드러나고 한 번 더 돌진할 수 있어, 연속 처치로 이어지는지가 관전 포인트입니다.",
+      "sources": [
+        "https://wiki.leagueoflegends.com/en-us/Naafiri"
+      ]
+    }
+  }
+}

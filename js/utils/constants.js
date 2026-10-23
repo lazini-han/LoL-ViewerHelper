@@ -23,6 +23,16 @@ export const POSITION_ICONS = {
   SUP: 'assets/icons/Support.webp'
 };
 
+// 챔피언 역할 한글명 (Data Dragon tags)
+export const ROLE_NAMES = {
+  Fighter: '전사',
+  Tank: '탱커',
+  Mage: '마법사',
+  Assassin: '암살자',
+  Marksman: '원거리 딜러',
+  Support: '서포터'
+};
+
 // 챔피언 픽 페이지의 슬롯 순서
 // 블루팀: 왼쪽부터 SUP(5), ADC(4), MID(3), JG(2), TOP(1)
 export const BLUE_SLOT_ORDER = ['SUP', 'ADC', 'MID', 'JG', 'TOP'];

@@ -91,6 +91,27 @@
   background-color: var(--color-bg-card);
 }
 
+.dict-item__icon-wrap {
+  position: relative;
+}
+
+/* 드래곤 스코어보드 아이콘 (우측 하단 배지) */
+.dict-item__badge {
+  position: absolute;
+  right: -6px;
+  bottom: -6px;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.detail-panel__badge {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-right: calc(var(--spacing-sm) - var(--spacing-md)); /* 이름과 붙여 표시 */
+}
+
 .dict-item__icon--placeholder {
   display: flex;
   align-items: center;

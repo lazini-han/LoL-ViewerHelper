@@ -111,11 +111,22 @@ export class ObjectDictPage {
         imgEl.parentNode.insertBefore(placeholder, imgEl);
       };
 
+      // 드래곤은 경기 상단 스코어보드 아이콘을 우측 하단에 함께 표시
+      const iconWrap = createElement('div', { className: 'dict-item__icon-wrap' }, [
+        imgEl,
+        obj.scoreboardIcon ? createElement('img', {
+          className: 'dict-item__badge',
+          src: obj.scoreboardIcon,
+          alt: '',
+          loading: 'lazy'
+        }) : null
+      ]);
+
       const item = createElement('div', {
         className: `dict-item ${isSelected ? 'dict-item--selected' : ''}`,
         dataset: { objectId: obj.id }
       }, [
-        imgEl,
+        iconWrap,
         createElement('span', { className: 'dict-item__name' }, obj.nameKr)
       ]);
 
@@ -151,6 +162,12 @@ export class ObjectDictPage {
       detailImg,
       createElement('div', { className: 'detail-panel__info' }, [
         createElement('div', { className: 'detail-panel__header' }, [
+          obj.scoreboardIcon ? createElement('img', {
+            className: 'detail-panel__badge',
+            src: obj.scoreboardIcon,
+            alt: '',
+            title: '경기 상단 스코어보드 아이콘'
+          }) : null,
           createElement('span', { className: 'detail-panel__name' }, obj.nameKr),
           createElement('span', { className: 'detail-panel__category' }, obj.category)
         ]),

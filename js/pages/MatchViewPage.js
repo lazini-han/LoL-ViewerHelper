@@ -3,7 +3,7 @@
  */
 
 import { $, createElement, clearElement } from '../utils/dom.js';
-import { POSITIONS, POSITION_NAMES, POSITION_ICONS } from '../utils/constants.js';
+import { POSITIONS, POSITION_NAMES, POSITION_ICONS, ROLE_NAMES } from '../utils/constants.js';
 import { state } from '../state.js';
 import { championService } from '../services/ChampionService.js';
 
@@ -29,7 +29,8 @@ export class MatchViewPage {
     const page = createElement('div', { className: 'page match-view' }, [
       this.createHeader(currentState),
       this.createPositionRows(currentState, gameChampions),
-      this.createChampionDetailArea()
+      this.createChampionDetailArea(),
+      createElement('div', { className: 'ult-tooltip', id: 'ult-tooltip' })
     ]);
 
     container.appendChild(page);
@@ -119,12 +120,21 @@ export class MatchViewPage {
       createElement('span', { className: 'player-card__player' }, player?.name || '-')
     ]);
 
-    return createElement('div', { 
+    // 픽 당시 저장된 객체에는 roles 가 없을 수 있으므로 최신 챔피언 데이터에서 조회
+    const roles = champion ? (championService.getById(champion.id)?.roles || []) : [];
+    const rolesEl = roles.length
+      ? createElement('ul', { className: 'player-card__roles' },
+          roles.map(role => createElement('li', { className: 'player-card__role' }, ROLE_NAMES[role] || role))
+        )
+      : null;
+
+    return createElement('div', {
       className: `player-card player-card--${team} ${clickableClass}`,
       dataset: champion ? { championId: champion.id, championName: champion.nameEn } : {}
     }, [
       iconEl,
-      infoEl
+      infoEl,
+      rolesEl
     ]);
   }
 
@@ -167,6 +177,20 @@ export class MatchViewPage {
       await this.showChampionDetail(championName);
     });
 
+    // 챔피언 초상화 호버 시 궁극기 요약 표시
+    positionRows.addEventListener('mouseover', (e) => {
+      const icon = e.target.closest('.player-card--clickable .player-card__icon');
+      if (!icon || icon.contains(e.relatedTarget)) return;
+      const card = icon.closest('.player-card');
+      this.showUltTooltip(icon, Number(card.dataset.championId), card.dataset.championName);
+    });
+
+    positionRows.addEventListener('mouseout', (e) => {
+      const icon = e.target.closest('.player-card__icon');
+      if (!icon || icon.contains(e.relatedTarget)) return;
+      this.hideUltTooltip();
+    });
+
     // 스킬 아이콘 클릭 이벤트 (이벤트 위임)
     const detailArea = $('#champion-detail');
     if (detailArea) {
@@ -181,6 +205,110 @@ export class MatchViewPage {
         }
       });
     }
+  }
+
+  /**
+   * 궁극기 요약 호버창 표시
+   * 요약 문서(data/ultimates.json)를 우선 사용하고, 없으면 Data Dragon 공식 설명으로 대체
+   * @param {Element} icon - 기준 초상화
+   * @param {number} championId
+   * @param {string} championNameEn
+   */
+  async showUltTooltip(icon, championId, championNameEn) {
+    const tooltip = $('#ult-tooltip');
+    if (!tooltip || !championId) return;
+
+    // 로드 중 다른 챔피언으로 옮겨간 경우를 구분하기 위한 토큰
+    const token = Symbol();
+    this.ultTooltipToken = token;
+
+    clearElement(tooltip);
+    tooltip.appendChild(createElement('div', { className: 'ult-tooltip__loading' }, '궁극기 정보 로딩 중...'));
+    tooltip.classList.add('ult-tooltip--visible');
+    this.positionUltTooltip(tooltip, icon);
+
+    const summary = await championService.getUltimateSummary(championId);
+    // 요약이 없는 챔피언은 상세 정보와 같은 응답(캐시)의 공식 설명으로 대체
+    const fallback = summary ? null
+      : (await championService.getChampionDetail(championNameEn))?.spells.find(spell => spell.key === 'R');
+    if (this.ultTooltipToken !== token) return;
+
+    clearElement(tooltip);
+
+    if (summary) {
+      tooltip.appendChild(this.createUltTooltipHeader(summary.image, summary.ultName, summary.cooldown));
+      if (summary.cooldownNote) {
+        tooltip.appendChild(createElement('p', { className: 'ult-tooltip__note' }, summary.cooldownNote));
+      }
+      [['효과', summary.effect], ['사용 상황', summary.when], ['활용 팁', summary.how]]
+        .filter(([, text]) => text)
+        .forEach(([label, text]) => {
+          tooltip.appendChild(createElement('div', { className: 'ult-tooltip__section' }, [
+            createElement('span', { className: 'ult-tooltip__label' }, label),
+            createElement('p', { className: 'ult-tooltip__desc' }, text)
+          ]));
+        });
+    } else if (fallback) {
+      tooltip.appendChild(this.createUltTooltipHeader(fallback.image, fallback.name, fallback.cooldown));
+      tooltip.appendChild(createElement('p', { className: 'ult-tooltip__desc' }, fallback.description));
+    } else {
+      tooltip.appendChild(createElement('div', { className: 'ult-tooltip__loading' }, '정보를 불러올 수 없습니다'));
+    }
+
+    this.positionUltTooltip(tooltip, icon);
+  }
+
+  /**
+   * 호버창 헤더 (아이콘, 궁극기 이름, 쿨타임)
+   * @param {string} image
+   * @param {string} name
+   * @param {string} cooldown
+   * @returns {Element}
+   */
+  createUltTooltipHeader(image, name, cooldown) {
+    // "120/100/80" 처럼 숫자일 때만 초 단위 표기
+    const cooldownText = /^[\d./]+$/.test(cooldown || '') ? `쿨타임 ${cooldown}초` : cooldown;
+
+    return createElement('div', { className: 'ult-tooltip__header' }, [
+      createElement('img', { className: 'ult-tooltip__icon', src: image, alt: name }),
+      createElement('div', { className: 'ult-tooltip__title' }, [
+        createElement('span', { className: 'ult-tooltip__key' }, '궁극기 (R)'),
+        createElement('span', { className: 'ult-tooltip__name' }, name)
+      ]),
+      cooldownText ? createElement('span', { className: 'ult-tooltip__cooldown' }, cooldownText) : null
+    ]);
+  }
+
+  /**
+   * 호버창 위치 지정 (초상화 아래, 화면 밖으로 나가지 않게 보정)
+   * @param {Element} tooltip
+   * @param {Element} icon
+   */
+  positionUltTooltip(tooltip, icon) {
+    const rect = icon.getBoundingClientRect();
+    const margin = 8;
+    const width = tooltip.offsetWidth;
+    const height = tooltip.offsetHeight;
+
+    let left = rect.left + rect.width / 2 - width / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - width - margin));
+
+    let top = rect.bottom + margin;
+    if (top + height > window.innerHeight - margin) {
+      top = rect.top - height - margin; // 아래 공간이 부족하면 위로
+    }
+
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${Math.max(margin, top)}px`;
+  }
+
+  /**
+   * 궁극기 요약 호버창 숨김
+   */
+  hideUltTooltip() {
+    this.ultTooltipToken = null;
+    const tooltip = $('#ult-tooltip');
+    if (tooltip) tooltip.classList.remove('ult-tooltip--visible');
   }
 
   /**
@@ -224,16 +352,7 @@ export class MatchViewPage {
    * @returns {Element}
    */
   createChampionDetailContent(detail, skillVideos, summary) {
-    const roleMap = {
-      'Fighter': '전사',
-      'Tank': '탱커',
-      'Mage': '마법사',
-      'Assassin': '암살자',
-      'Marksman': '원거리 딜러',
-      'Support': '서포터'
-    };
-    
-    const roles = detail.tags.map(tag => roleMap[tag] || tag).join(', ');
+    const roles = detail.tags.map(tag => ROLE_NAMES[tag] || tag).join(', ');
 
     // 패시브 비디오 정보
     const passiveVideo = skillVideos?.passive || null;

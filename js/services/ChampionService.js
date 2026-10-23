@@ -54,6 +54,7 @@ class ChampionService {
     this.loaded = false;
     this.detailCache = new Map(); // 챔피언 상세 정보 캐시
     this.cdragonCache = new Map(); // Community Dragon 캐시
+    this.ultimatesPromise = null; // 궁극기 요약 로드 (1회)
   }
 
   /**
@@ -78,6 +79,35 @@ class ChampionService {
       console.error('챔피언 데이터 로드 실패:', e);
       return [];
     }
+  }
+
+  /**
+   * 궁극기 요약 가져오기 (data/ultimates.json, 최초 1회만 로드)
+   * @param {number} championId
+   * @returns {Promise<Object|null>}
+   */
+  async getUltimateSummary(championId) {
+    if (!this.ultimatesPromise) {
+      this.ultimatesPromise = fetch('./data/ultimates.json')
+        .then(response => {
+          if (!response.ok) throw new Error('궁극기 요약을 불러올 수 없습니다.');
+          return response.json();
+        })
+        .catch(e => {
+          console.error('궁극기 요약 로드 실패:', e);
+          this.ultimatesPromise = null; // 다음 호출에서 재시도
+          return null;
+        });
+    }
+
+    const data = await this.ultimatesPromise;
+    const ult = data?.ultimates?.[championId];
+    if (!ult) return null;
+
+    return {
+      ...ult,
+      image: `${ddragonBase(data.version)}/img/spell/${ult.image}`
+    };
   }
 
   /**
