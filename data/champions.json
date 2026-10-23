@@ -62,7 +62,7 @@
                           "nameKr":  "나서스",
                           "nameEn":  "Nasus",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/75/square",
-                          "positions":  ["TOP", "JG", "MID"]
+                          "positions":  ["TOP", "MID"]
                       },
                       {
                           "id":  950,
@@ -118,7 +118,7 @@
                           "nameKr":  "다리우스",
                           "nameEn":  "Darius",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/122/square",
-                          "positions":  ["TOP", "JG"]
+                          "positions":  ["TOP"]
                       },
                       {
                           "id":  131,
@@ -391,7 +391,7 @@
                           "nameKr":  "벨코즈",
                           "nameEn":  "Velkoz",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/161/square",
-                          "positions":  ["MID", "ADC", "SUP"]
+                          "positions":  ["MID", "SUP"]
                       },
                       {
                           "id":  106,
@@ -475,7 +475,7 @@
                           "nameKr":  "사일러스",
                           "nameEn":  "Sylas",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/517/square",
-                          "positions":  ["JG", "MID", "SUP"]
+                          "positions":  ["JG", "MID"]
                       },
                       {
                           "id":  35,
@@ -489,14 +489,14 @@
                           "nameKr":  "세나",
                           "nameEn":  "Senna",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/235/square",
-                          "positions":  ["ADC", "SUP"]
+                          "positions":  ["SUP"]
                       },
                       {
                           "id":  147,
                           "nameKr":  "세라핀",
                           "nameEn":  "Seraphine",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/147/square",
-                          "positions":  ["ADC", "SUP"]
+                          "positions":  ["SUP"]
                       },
                       {
                           "id":  113,
@@ -853,7 +853,7 @@
                           "nameKr":  "자크",
                           "nameEn":  "Zac",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/154/square",
-                          "positions":  ["TOP", "JG", "SUP"]
+                          "positions":  ["TOP", "JG"]
                       },
                       {
                           "id":  904,
@@ -888,7 +888,7 @@
                           "nameKr":  "제라스",
                           "nameEn":  "Xerath",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/101/square",
-                          "positions":  ["MID", "ADC", "SUP"]
+                          "positions":  ["MID", "SUP"]
                       },
                       {
                           "id":  221,
@@ -916,7 +916,7 @@
                           "nameKr":  "직스",
                           "nameEn":  "Ziggs",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/115/square",
-                          "positions":  ["MID", "ADC"]
+                          "positions":  ["MID", "ADC", "SUP"]
                       },
                       {
                           "id":  202,
@@ -972,7 +972,7 @@
                           "nameKr":  "카서스",
                           "nameEn":  "Karthus",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/30/square",
-                          "positions":  ["JG", "MID", "ADC"]
+                          "positions":  ["JG", "ADC"]
                       },
                       {
                           "id":  69,
@@ -1000,7 +1000,7 @@
                           "nameKr":  "카타리나",
                           "nameEn":  "Katarina",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/55/square",
-                          "positions":  ["MID", "ADC"]
+                          "positions":  ["MID"]
                       },
                       {
                           "id":  429,
@@ -1126,7 +1126,7 @@
                           "nameKr":  "트리스타나",
                           "nameEn":  "Tristana",
                           "thumbnail":  "https://cdn.communitydragon.org/latest/champion/18/square",
-                          "positions":  ["MID", "ADC"]
+                          "positions":  ["ADC"]
                       },
                       {
                           "id":  23,

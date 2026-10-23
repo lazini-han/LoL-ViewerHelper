@@ -239,6 +239,21 @@
   max-width: 100%;
 }
 
+/* 챔피언 포지션 아이콘 (포지션 필터 미사용 시) */
+.champion-item__positions {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-top: -2px;
+}
+
+.champion-item__position-icon {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  opacity: 0.8;
+}
+
 /* 팀 슬롯 영역 */
 .team-slots-container {
   display: flex;
@@ -566,6 +581,11 @@
 
   .champion-item__name {
     font-size: 10px;
+  }
+
+  .champion-item__position-icon {
+    width: 11px;
+    height: 11px;
   }
 
   .champion-item--selected-blue,

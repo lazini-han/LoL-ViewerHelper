@@ -476,6 +476,16 @@ class State {
   }
 
   /**
+   * 1~5경기 전체 픽과 글로벌 밴 모두 초기화 (팀/선수 정보는 유지)
+   */
+  resetAllGamesAndBans() {
+    this.data.games = createDefaultGames();
+    this.data.globalBans = createDefaultGlobalBans();
+    this.save();
+    this.notify();
+  }
+
+  /**
    * 저장된 팀 목록 로드
    */
   loadSavedTeams() {

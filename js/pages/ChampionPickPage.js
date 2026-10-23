@@ -68,7 +68,12 @@ export class ChampionPickPage {
           className: 'btn btn--sm btn--danger reset-game-btn',
           id: 'reset-game-btn',
           title: '이번 경기 모든 픽/밴 초기화'
-        }, '초기화')
+        }, '초기화'),
+        createElement('button', {
+          className: 'btn btn--sm btn--danger reset-game-btn',
+          id: 'reset-all-btn',
+          title: '1~5경기 모든 픽/밴 초기화'
+        }, '전체 초기화')
       ]),
       // 레드팀 밴
       createElement('div', { className: 'global-bans__team global-bans__team--red' }, [
@@ -164,6 +169,8 @@ export class ChampionPickPage {
 
     const champions = championService.search(query);
     const pickedInOtherGames = state.getPickedChampionsInOtherGames();
+    // 포지션 필터를 쓰지 않을 때만 챔피언별 포지션 아이콘 표시
+    const showPositions = this.positionFilter.size === 0;
 
     champions.forEach(champion => {
       // 다른 경기에서 픽된 챔피언은 목록에서 완전히 제외 (빈자리 없이 정렬)
@@ -207,11 +214,30 @@ export class ChampionPickPage {
         }
       }, [
         iconEl,
-        createElement('span', { className: 'champion-item__name' }, champion.nameKr)
+        createElement('span', { className: 'champion-item__name' }, champion.nameKr),
+        showPositions ? this.createChampionPositions(champion) : null
       ]);
 
       grid.appendChild(item);
     });
+  }
+
+  /**
+   * 챔피언 포지션 아이콘 목록 생성
+   * @param {Object} champion
+   * @returns {Element}
+   */
+  createChampionPositions(champion) {
+    return createElement('div', { className: 'champion-item__positions' },
+      (champion.positions || []).map(position =>
+        createElement('img', {
+          className: 'champion-item__position-icon',
+          src: POSITION_ICONS[position],
+          alt: POSITION_NAMES[position],
+          title: POSITION_NAMES[position]
+        })
+      )
+    );
   }
 
   /**
@@ -352,6 +378,18 @@ export class ChampionPickPage {
       resetBtn.addEventListener('click', () => {
         if (confirm('이번 경기의 모든 픽과 글로벌 밴을 초기화하시겠습니까?')) {
           state.resetCurrentGameAndBans();
+          this.clearTapSelection();
+          this.refreshAll();
+        }
+      });
+    }
+
+    // 전체 초기화 버튼 (1~5경기)
+    const resetAllBtn = $('#reset-all-btn');
+    if (resetAllBtn) {
+      resetAllBtn.addEventListener('click', () => {
+        if (confirm('1~5경기의 모든 픽과 글로벌 밴을 초기화하시겠습니까?')) {
+          state.resetAllGamesAndBans();
           this.clearTapSelection();
           this.refreshAll();
         }
