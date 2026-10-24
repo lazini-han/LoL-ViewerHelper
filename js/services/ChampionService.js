@@ -55,6 +55,7 @@ class ChampionService {
     this.detailCache = new Map(); // 챔피언 상세 정보 캐시
     this.cdragonCache = new Map(); // Community Dragon 캐시
     this.ultimatesPromise = null; // 궁극기 요약 로드 (1회)
+    this.coreItemsPromise = null; // 코어 아이템 로드 (1회)
   }
 
   /**
@@ -108,6 +109,43 @@ class ChampionService {
       ...ult,
       image: `${ddragonBase(data.version)}/img/spell/${ult.image}`
     };
+  }
+
+  /**
+   * 코어 아이템 가져오기 (data/core-items.json, 최초 1회만 로드)
+   * @param {number} championId
+   * @returns {Promise<Array|null>} [{ position, items: [{id, name, icon}], boots, note }]
+   */
+  async getCoreItems(championId) {
+    if (!this.coreItemsPromise) {
+      this.coreItemsPromise = fetch('./data/core-items.json')
+        .then(response => {
+          if (!response.ok) throw new Error('코어 아이템을 불러올 수 없습니다.');
+          return response.json();
+        })
+        .catch(e => {
+          console.error('코어 아이템 로드 실패:', e);
+          this.coreItemsPromise = null; // 다음 호출에서 재시도
+          return null;
+        });
+    }
+
+    const data = await this.coreItemsPromise;
+    const entry = data?.champions?.[championId];
+    if (!entry) return null;
+
+    const toItem = id => ({
+      id,
+      name: data.items[id] || '',
+      icon: `${ddragonBase(data.version)}/img/item/${id}.png`
+    });
+
+    return entry.builds.map(build => ({
+      position: build.position,
+      items: build.items.map(toItem),
+      boots: build.boots ? toItem(build.boots) : null,
+      note: build.note || ''
+    }));
   }
 
   /**

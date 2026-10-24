@@ -328,10 +328,11 @@ export class MatchViewPage {
     const championId = champion?.id;
 
     // 병렬로 데이터 로드 (요약은 스킬 비디오와 같은 응답을 재사용)
-    const [detail, skillVideos, summary] = await Promise.all([
+    const [detail, skillVideos, summary, coreBuilds] = await Promise.all([
       championService.getChampionDetail(championNameEn),
       championId ? championService.getChampionSkillVideos(championId) : null,
-      championId ? championService.getChampionSummary(championId) : null
+      championId ? championService.getChampionSummary(championId) : null,
+      championId ? championService.getCoreItems(championId) : null
     ]);
     
     if (!detail) {
@@ -341,7 +342,7 @@ export class MatchViewPage {
     }
 
     clearElement(detailArea);
-    detailArea.appendChild(this.createChampionDetailContent(detail, skillVideos, summary));
+    detailArea.appendChild(this.createChampionDetailContent(detail, skillVideos, summary, coreBuilds));
   }
 
   /**
@@ -349,9 +350,10 @@ export class MatchViewPage {
    * @param {Object} detail
    * @param {Object|null} skillVideos
    * @param {Object|null} summary
+   * @param {Array|null} coreBuilds
    * @returns {Element}
    */
-  createChampionDetailContent(detail, skillVideos, summary) {
+  createChampionDetailContent(detail, skillVideos, summary, coreBuilds) {
     const roles = detail.tags.map(tag => ROLE_NAMES[tag] || tag).join(', ');
 
     // 패시브 비디오 정보
@@ -374,8 +376,44 @@ export class MatchViewPage {
       ...detail.spells.map((spell, index) => {
         const spellVideo = skillVideos?.spells?.[index] || null;
         return this.createSkillRow(spell.key, spell, spellVideo);
-      })
+      }),
+      // 코어 아이템
+      this.createCoreItems(coreBuilds)
     ].filter(Boolean));
+  }
+
+  /**
+   * 코어 아이템 블록 생성 (포지션별 한 줄)
+   * @param {Array|null} builds
+   * @returns {Element|null}
+   */
+  createCoreItems(builds) {
+    if (!builds || builds.length === 0) return null;
+
+    const createItem = item => createElement('div', { className: 'core-items__item', title: item.name }, [
+      createElement('img', { className: 'core-items__icon', src: item.icon, alt: item.name, loading: 'lazy' }),
+      createElement('span', { className: 'core-items__name' }, item.name)
+    ]);
+
+    return createElement('div', { className: 'core-items' }, [
+      createElement('h4', { className: 'core-items__title' }, '코어 아이템'),
+      ...builds.map(build => createElement('div', { className: 'core-items__build' }, [
+        createElement('div', { className: 'core-items__position' }, [
+          createElement('img', {
+            className: 'core-items__position-icon',
+            src: POSITION_ICONS[build.position],
+            alt: POSITION_NAMES[build.position]
+          }),
+          createElement('span', {}, POSITION_NAMES[build.position])
+        ]),
+        createElement('div', { className: 'core-items__list' }, [
+          ...build.items.map(createItem),
+          build.boots ? createElement('span', { className: 'core-items__plus' }, '+') : null,
+          build.boots ? createItem(build.boots) : null
+        ]),
+        build.note ? createElement('p', { className: 'core-items__note' }, build.note) : null
+      ]))
+    ]);
   }
 
   /**

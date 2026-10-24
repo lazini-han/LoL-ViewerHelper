@@ -9,7 +9,7 @@ import { TeamSetupPage } from './pages/TeamSetupPage.js';
 import { ChampionPickPage } from './pages/ChampionPickPage.js';
 import { MatchViewPage } from './pages/MatchViewPage.js';
 import { ObjectDictPage } from './pages/ObjectDictPage.js';
-import { ItemDictPage } from './pages/ItemDictPage.js';
+import { EtcPage } from './pages/EtcPage.js';
 import { authService } from './services/authService.js';
 import { syncService } from './services/syncService.js';
 import { authModal } from './components/AuthModal.js';
@@ -112,7 +112,7 @@ async function initApp() {
   router.register(ROUTES.CHAMPION_PICK, new ChampionPickPage(router));
   router.register(ROUTES.MATCH_VIEW, new MatchViewPage(router));
   router.register(ROUTES.OBJECT_DICT, new ObjectDictPage(router));
-  router.register(ROUTES.ITEM_DICT, new ItemDictPage(router));
+  router.register(ROUTES.ETC, new EtcPage(router)); // 아이템 + 스택 요소 탭
 
   // 게임 탭 이벤트 설정
   setupGameTabs(router);

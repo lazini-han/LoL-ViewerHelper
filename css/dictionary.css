@@ -251,3 +251,76 @@
     font-size: var(--font-size-xs);
   }
 }
+
+/* 기타 페이지 탭 (아이템 / 스택 요소) */
+.etc-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.etc-tabs {
+  display: flex;
+  gap: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.etc-tabs__btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: none;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.etc-tabs__btn:hover {
+  color: var(--color-text);
+}
+
+.etc-tabs__btn--active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+/* 탭 높이만큼 사전 영역 높이 보정 */
+.etc-page .dictionary {
+  height: calc(100vh - 160px);
+}
+
+/* 스택 요소: 챔피언 이름 (스킬 이름 위) */
+.dict-item__owner {
+  font-size: 10px;
+  color: var(--color-accent);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  margin-bottom: -4px;
+}
+
+/* 스택 요소 상세: 항목별 행 */
+.detail-panel__row {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.detail-panel__row-label {
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+@media (max-width: 600px) {
+  .detail-panel__row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    font-size: var(--font-size-xs);
+  }
+}

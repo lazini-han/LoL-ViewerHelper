@@ -49,7 +49,7 @@ export const ROUTES = {
   CHAMPION_PICK: 'champion-pick',
   MATCH_VIEW: 'match-view',
   OBJECT_DICT: 'object-dict',
-  ITEM_DICT: 'item-dict'
+  ETC: 'etc'
 };
 
 // LocalStorage 키
