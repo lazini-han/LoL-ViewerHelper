@@ -174,7 +174,7 @@ PJ.LoL-ViewerHelper/
 | `update-champion-positions.mjs` | Riot 룬 추천 데이터로 `champions.json`의 `positions` 갱신 (`node tools/update-champion-positions.mjs`) |
 | `update-champion-roles.mjs` | Data Dragon tags 로 `champions.json`의 `roles` 갱신 (포지션 스크립트 이후 실행) |
 | `build-ultimates.mjs` | 조사 결과 + Data Dragon 으로 `ultimates.json/.md` 생성 (`node tools/build-ultimates.mjs <조사 결과 폴더>`) |
-| `build-core-items.mjs` | 조사 결과의 아이템 ID 검증 후 `core-items.json/.md` 생성 |
+| `build-core-items.mjs` | 조사 결과의 아이템 ID 검증, 호버창용 아이템 설명 요약 정리 후 `core-items.json/.md` 생성 |
 | `build-stacks.mjs` | 조사 결과에 공식 이름·아이콘을 채워 `stacks.json/.md` 생성 |
 
 > `dom.js` (유틸리티): `$`, `$$`, `createElement`, `clearElement`

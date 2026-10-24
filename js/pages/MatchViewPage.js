@@ -204,6 +204,19 @@ export class MatchViewPage {
           this.playSkillVideo(videoPath, posterPath);
         }
       });
+
+      // 코어 아이템 호버 시 아이템 설명 요약 표시
+      detailArea.addEventListener('mouseover', (e) => {
+        const item = e.target.closest('.core-items__item');
+        if (!item || item.contains(e.relatedTarget)) return;
+        this.showItemTooltip(item, this.coreItemMap?.get(Number(item.dataset.itemId)));
+      });
+
+      detailArea.addEventListener('mouseout', (e) => {
+        const item = e.target.closest('.core-items__item');
+        if (!item || item.contains(e.relatedTarget)) return;
+        this.hideUltTooltip();
+      });
     }
   }
 
@@ -277,6 +290,48 @@ export class MatchViewPage {
       ]),
       cooldownText ? createElement('span', { className: 'ult-tooltip__cooldown' }, cooldownText) : null
     ]);
+  }
+
+  /**
+   * 코어 아이템 설명 요약 호버창 표시 (궁극기 호버창과 같은 요소를 사용)
+   * @param {Element} anchor - 기준 아이템 요소
+   * @param {Object|undefined} item - { name, icon, gold, summary, stats, effects }
+   */
+  showItemTooltip(anchor, item) {
+    const tooltip = $('#ult-tooltip');
+    if (!tooltip || !item) return;
+
+    this.ultTooltipToken = null; // 로드 중인 궁극기 호버창이 덮어쓰지 않도록
+    clearElement(tooltip);
+
+    tooltip.appendChild(createElement('div', { className: 'ult-tooltip__header' }, [
+      createElement('img', { className: 'ult-tooltip__icon', src: item.icon, alt: item.name }),
+      createElement('div', { className: 'ult-tooltip__title' }, [
+        createElement('span', { className: 'ult-tooltip__key' }, '코어 아이템'),
+        createElement('span', { className: 'ult-tooltip__name' }, item.name)
+      ]),
+      item.gold ? createElement('span', { className: 'ult-tooltip__cooldown' }, `${item.gold.toLocaleString()} 골드`) : null
+    ]));
+
+    if (item.summary) {
+      tooltip.appendChild(createElement('p', { className: 'ult-tooltip__note' }, item.summary));
+    }
+    if (item.stats?.length) {
+      tooltip.appendChild(createElement('div', { className: 'ult-tooltip__section' }, [
+        createElement('span', { className: 'ult-tooltip__label' }, '능력치'),
+        createElement('p', { className: 'ult-tooltip__desc' }, item.stats.join(' · '))
+      ]));
+    }
+    (item.effects || []).forEach(effect => {
+      const kind = effect.type === 'active' ? '사용 효과' : '고유 효과';
+      tooltip.appendChild(createElement('div', { className: 'ult-tooltip__section' }, [
+        createElement('span', { className: 'ult-tooltip__label' }, `${kind} - ${effect.name}`),
+        createElement('p', { className: 'ult-tooltip__desc' }, effect.text)
+      ]));
+    });
+
+    tooltip.classList.add('ult-tooltip--visible');
+    this.positionUltTooltip(tooltip, anchor);
   }
 
   /**
@@ -390,7 +445,11 @@ export class MatchViewPage {
   createCoreItems(builds) {
     if (!builds || builds.length === 0) return null;
 
-    const createItem = item => createElement('div', { className: 'core-items__item', title: item.name }, [
+    // 호버창에서 아이템 설명 요약을 찾기 위한 맵
+    this.coreItemMap = new Map(builds.flatMap(build => [...build.items, build.boots].filter(Boolean))
+      .map(item => [item.id, item]));
+
+    const createItem = item => createElement('div', { className: 'core-items__item', dataset: { itemId: item.id } }, [
       createElement('img', { className: 'core-items__icon', src: item.icon, alt: item.name, loading: 'lazy' }),
       createElement('span', { className: 'core-items__name' }, item.name)
     ]);

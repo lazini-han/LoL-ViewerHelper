@@ -590,6 +590,7 @@
   align-items: center;
   gap: 2px;
   width: 64px;
+  cursor: help; /* 호버 시 아이템 설명 요약 표시 */
 }
 
 .core-items__icon {

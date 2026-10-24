@@ -5,7 +5,7 @@
  *   [{ id, builds: [{ position, items: [아이템 ID x3], boots, note }], sources }]
  *
  * 아이템 ID 는 Data Dragon 최신 버전에 존재하는지 검증하고,
- * 화면 표시용 한글 아이템 이름을 함께 기록한다.
+ * 화면 표시용 한글 아이템 이름과 호버창용 설명 요약(가격, 스탯, 고유 효과)을 함께 기록한다.
  *
  * 사용법: node tools/build-core-items.mjs <조사 결과 디렉터리>
  */
@@ -28,7 +28,49 @@ if (!researchDir) {
   process.exit(1);
 }
 
-async function fetchItemNames() {
+const stripTags = html => html
+  .replace(/<br\s*\/?>/gi, ' ')
+  .replace(/<li>/gi, ' · ')
+  .replace(/<[^>]*>/g, '')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+// Data Dragon 은 레벨/스탯 비례 수치를 0(또는 비정상 값)으로 내보내므로 문장에서 빼낸다
+const dropPlaceholders = text => text
+  .replace(/(?<![\d.])(0|\d{4,})초 동안/g, '일정 시간 동안')
+  .replace(/\((?:0|0\+)\)/g, '')
+  .replace(/(?<![\d.])0\+/g, '')
+  .replace(/(?<![\d.])0(?![\d.%])(의)?\s?/g, '')
+  .replace(/\(적중 시 \)/g, '(적중 시)')
+  .replace(/\s+/g, ' ')
+  .trim();
+
+/**
+ * Data Dragon 아이템 설명(HTML)을 호버창용 요약으로 변환
+ * @returns {{name, gold, summary, stats: string[], effects: {type, name, text}[]}}
+ */
+function summarizeItem(item) {
+  const html = item.description.replace(/<\/?mainText>/g, '');
+  const stats = (html.match(/<stats>([\s\S]*?)<\/stats>/)?.[1] || '')
+    .split(/<br\s*\/?>/i)
+    .map(stripTags)
+    .filter(Boolean);
+
+  // 효과 제목은 "<passive>이름</passive> (쿨타임)<br>" 형태. 문장 속 효과 이름 언급과 구분한다
+  const body = html.replace(/<stats>[\s\S]*?<\/stats>/, '');
+  const headers = [...body.matchAll(/<(passive|active)>([^<]*)<\/\1>\s*(?:\([^)]*\))?\s*<br\s*\/?>/g)];
+  const effects = headers
+    .map((header, i) => ({
+      type: header[1],
+      name: stripTags(header[2]),
+      text: dropPlaceholders(stripTags(body.slice(header.index + header[0].length, headers[i + 1]?.index ?? body.length)))
+    }))
+    .filter(effect => effect.text);
+
+  return { name: item.name, gold: item.gold.total, summary: stripTags(item.plaintext || ''), stats, effects };
+}
+
+async function fetchItems() {
   const versions = await (await fetch(`${DDRAGON}/api/versions.json`)).json();
   const version = versions[0];
   const res = await fetch(`${DDRAGON}/cdn/${version}/data/ko_KR/item.json`);
@@ -36,7 +78,7 @@ async function fetchItemNames() {
     throw new Error(`Data Dragon 아이템 데이터를 불러올 수 없습니다: HTTP ${res.status}`);
   }
   const { data } = await res.json();
-  return { version, names: new Map(Object.entries(data).map(([id, item]) => [Number(id), item.name])) };
+  return { version, itemData: new Map(Object.entries(data).map(([id, item]) => [Number(id), item])) };
 }
 
 function readResearch(dir) {
@@ -51,7 +93,7 @@ function readResearch(dir) {
 
 const champions = JSON.parse(readFileSync(CHAMPIONS_PATH, 'utf8').replace(/^﻿/, '')).champions;
 const research = readResearch(researchDir);
-const { version, names } = await fetchItemNames();
+const { version, itemData } = await fetchItems();
 const today = new Date().toLocaleDateString('sv-SE'); // 로컬 기준 YYYY-MM-DD
 
 const missing = [];
@@ -67,11 +109,11 @@ for (const champ of champions) {
   }
 
   const checkItem = id => {
-    if (!names.has(id)) {
+    if (!itemData.has(id)) {
       invalid.push(`${champ.nameKr}:${id}`);
       return false;
     }
-    usedItems[id] = names.get(id);
+    usedItems[id] = summarizeItem(itemData.get(id));
     return true;
   };
 
@@ -109,8 +151,8 @@ for (const champ of champions) {
   if (!entry) continue;
   lines.push(`## ${champ.nameKr}`, '');
   for (const build of entry.builds) {
-    const items = build.items.map(id => usedItems[id]).join(' → ');
-    const boots = build.boots ? ` + ${usedItems[build.boots]}` : '';
+    const items = build.items.map(id => usedItems[id].name).join(' → ');
+    const boots = build.boots ? ` + ${usedItems[build.boots].name}` : '';
     lines.push(`- **${POSITION_NAMES[build.position]}**: ${items}${boots}${build.note ? ` (${build.note})` : ''}`);
   }
   lines.push(`- 출처: ${entry.sources.join(', ') || '-'}`, '');

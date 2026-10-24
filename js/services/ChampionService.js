@@ -134,9 +134,11 @@ class ChampionService {
     const entry = data?.champions?.[championId];
     if (!entry) return null;
 
+    // 호버창용 설명 요약(gold, summary, stats, effects)을 함께 넘김
     const toItem = id => ({
+      ...data.items[id],
       id,
-      name: data.items[id] || '',
+      name: data.items[id]?.name || '',
       icon: `${ddragonBase(data.version)}/img/item/${id}.png`
     });
 
