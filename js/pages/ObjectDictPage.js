@@ -24,7 +24,7 @@ export class ObjectDictPage {
     // 데이터 로드 (맵 이미지 경로에 쓰는 Data Dragon 버전 포함)
     await Promise.all([objectService.load(), getDDragonVersion()]);
 
-    const page = createElement('div', { className: 'page dictionary' }, [
+    const page = createElement('div', { className: 'page dictionary dictionary--objects' }, [
       this.createFilters(),
       this.createGridContainer(),
       this.createDetailPanel()
@@ -235,6 +235,11 @@ export class ObjectDictPage {
             this.selectedObject = obj;
             this.renderGrid($('#object-search')?.value || '');
             this.updateDetailPanel(obj);
+            // 목록이 길어 상세 패널이 화면 아래에 가려지면 (모바일) 패널로 스크롤
+            const detail = $('#object-detail');
+            if (detail && detail.getBoundingClientRect().top > window.innerHeight - 80) {
+              detail.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
           }
         }
       });
