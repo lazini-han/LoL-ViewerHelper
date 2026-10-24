@@ -5,6 +5,20 @@
 import { $, createElement, clearElement } from '../utils/dom.js';
 import { BLUE_SLOT_ORDER, RED_SLOT_ORDER, POSITION_NAMES, POSITION_ICONS, POSITIONS } from '../utils/constants.js';
 import { state } from '../state.js';
+
+// 한글 초성 (쌍자음은 기본 자음 인덱스로 묶음)
+const INITIAL_CONSONANTS = ['ㄱ', 'ㄱ', 'ㄴ', 'ㄷ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅂ', 'ㅅ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+
+/**
+ * 이름 첫 글자의 자음 인덱스
+ * @param {string} name
+ * @returns {string} 한글이 아니면 '#'
+ */
+function getConsonantIndex(name) {
+  const code = (name || '').charCodeAt(0) - 0xAC00;
+  if (code < 0 || code > 11171) return '#';
+  return INITIAL_CONSONANTS[Math.floor(code / 588)];
+}
 import { championService } from '../services/ChampionService.js';
 
 export class ChampionPickPage {
@@ -172,8 +186,7 @@ export class ChampionPickPage {
 
     const champions = championService.search(query);
     const pickedInOtherGames = state.getPickedChampionsInOtherGames();
-    // 포지션 필터를 쓰지 않을 때만 챔피언별 포지션 아이콘 표시
-    const showPositions = this.positionFilter.size === 0;
+    let lastIndex = null;
 
     champions.forEach(champion => {
       // 다른 경기에서 픽된 챔피언은 목록에서 완전히 제외 (빈자리 없이 정렬)
@@ -181,6 +194,15 @@ export class ChampionPickPage {
 
       // 포지션 필터 (선택된 포지션이 없으면 전체 표시)
       if (!this.matchesPositionFilter(champion)) return;
+
+      // 자음이 바뀌는 자리에 챔피언 한 칸 크기의 자음 인덱스 삽입
+      const consonant = getConsonantIndex(champion.nameKr);
+      if (consonant !== lastIndex) {
+        grid.appendChild(createElement('div', { className: 'champion-index', 'aria-hidden': 'true' }, [
+          createElement('span', { className: 'champion-index__letter' }, consonant)
+        ]));
+        lastIndex = consonant;
+      }
 
       const assignment = state.findChampionAssignment(champion.id);
       const banAssignment = state.findGlobalBanAssignment(champion.id);
@@ -218,7 +240,7 @@ export class ChampionPickPage {
       }, [
         iconEl,
         createElement('span', { className: 'champion-item__name' }, champion.nameKr),
-        showPositions ? this.createChampionPositions(champion) : null
+        this.createChampionPositions(champion)
       ]);
 
       grid.appendChild(item);

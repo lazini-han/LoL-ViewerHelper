@@ -249,7 +249,31 @@
   max-width: 100%;
 }
 
-/* 챔피언 포지션 아이콘 (포지션 필터 미사용 시) */
+/* 자음 인덱스 (챔피언 한 칸 자리, 이미지 위치에 표시) */
+.champion-index {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-xs);
+  border: 3px solid transparent;
+  pointer-events: none;
+}
+
+.champion-index__letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--champion-icon-md);
+  height: var(--champion-icon-md);
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--color-accent);
+  background-color: var(--color-bg);
+  color: var(--color-accent);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* 챔피언 포지션 아이콘 */
 .champion-item__positions {
   display: flex;
   justify-content: center;
@@ -605,6 +629,17 @@
   .champion-item__icon {
     width: 40px;
     height: 40px;
+  }
+
+  .champion-index {
+    padding: 2px;
+    border-width: 2px;
+  }
+
+  .champion-index__letter {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
   }
 
   .champion-item__name {
