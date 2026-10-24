@@ -72,7 +72,9 @@ function createDefaultState() {
     },
     currentGame: 1,
     games: createDefaultGames(),
-    globalBans: createDefaultGlobalBans()
+    globalBans: createDefaultGlobalBans(),
+    // 챔피언 선택 화면의 팀별 포지션 순서 뒤집기 여부
+    slotOrderReversed: { blue: false, red: false }
   };
 }
 
@@ -440,6 +442,18 @@ class State {
     this.data.globalBans.blue = [...this.data.globalBans.red];
     this.data.globalBans.red = tempBans;
     
+    this.save();
+    this.notify();
+  }
+
+  /**
+   * 챔피언 선택 화면의 팀 포지션 순서 뒤집기 토글
+   * @param {'blue'|'red'} team
+   */
+  toggleSlotOrder(team) {
+    const reversed = { blue: false, red: false, ...this.data.slotOrderReversed };
+    reversed[team] = !reversed[team];
+    this.data.slotOrderReversed = reversed;
     this.save();
     this.notify();
   }

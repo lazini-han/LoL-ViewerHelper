@@ -115,14 +115,24 @@
 /* 챔피언 그리드 영역 */
 .champion-grid-container {
   flex: 1;
-  overflow-y: auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
 }
 
+/* 포지션 필터는 고정, 챔피언 목록만 스크롤 */
+.champion-grid-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 /* 포지션 필터 */
 .position-filter {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,6 +304,10 @@
 }
 
 .vs-mark__teams {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
   text-align: center;
@@ -304,6 +318,18 @@
   font-size: var(--font-size-md);
   padding: 2px var(--spacing-sm);
   min-width: 40px;
+}
+
+/* 팀별 포지션 순서 뒤집기 버튼 */
+.reverse-order-btn {
+  padding: 1px var(--spacing-xs);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.reverse-order-btn--active {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 /* 챔피언 슬롯 */
@@ -496,6 +522,8 @@
   }
 
   .vs-mark__teams {
+    flex-direction: row;
+    gap: var(--spacing-xs);
     font-size: 10px;
   }
 

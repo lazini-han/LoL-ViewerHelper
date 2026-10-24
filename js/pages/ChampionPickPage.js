@@ -13,7 +13,7 @@ export class ChampionPickPage {
     this.dragData = null;
     this.tapSelectedChampion = null;
     this._isDragging = false;
-    this.positionFilter = new Set(); // 비어 있으면 전체 표시
+    this.positionFilter = new Set(); // 비어 있으면 전체 표시 (한 번에 하나의 포지션만 선택)
   }
 
   /**
@@ -127,9 +127,12 @@ export class ChampionPickPage {
    * @returns {Element}
    */
   createChampionGrid() {
+    // 포지션 필터는 고정하고 챔피언 목록만 스크롤
     return createElement('div', { className: 'champion-grid-container' }, [
       this.createPositionFilter(),
-      createElement('div', { className: 'champion-grid', id: 'champion-grid' })
+      createElement('div', { className: 'champion-grid-scroll' }, [
+        createElement('div', { className: 'champion-grid', id: 'champion-grid' })
+      ])
     ]);
   }
 
@@ -252,13 +255,13 @@ export class ChampionPickPage {
   }
 
   /**
-   * 포지션 필터 토글
+   * 포지션 필터 선택 (단일 선택: 다른 포지션을 누르면 교체, 선택된 포지션을 다시 누르면 해제)
    * @param {string} position
    */
   togglePositionFilter(position) {
-    if (this.positionFilter.has(position)) {
-      this.positionFilter.delete(position);
-    } else {
+    const wasSelected = this.positionFilter.has(position);
+    this.positionFilter.clear();
+    if (!wasSelected) {
       this.positionFilter.add(position);
     }
 
@@ -271,6 +274,10 @@ export class ChampionPickPage {
 
     this.renderChampions($('#champion-search')?.value || '');
     this.reapplyTapSelection();
+
+    // 포지션이 바뀌면 목록을 처음부터 보여줌
+    const scrollArea = $('.champion-grid-scroll');
+    if (scrollArea) scrollArea.scrollTop = 0;
   }
 
   /**
@@ -284,7 +291,7 @@ export class ChampionPickPage {
     return createElement('div', { className: 'team-slots-container' }, [
       // 블루팀 슬롯
       createElement('div', { className: 'team-slots team-slots--blue', id: 'blue-slots' },
-        BLUE_SLOT_ORDER.map(position =>
+        this.getSlotOrder('blue').map(position =>
           this.createSlot('blueTeam', position, currentState.blueTeam, gameChampions)
         )
       ),
@@ -292,6 +299,7 @@ export class ChampionPickPage {
       createElement('div', { className: 'vs-mark' }, [
         createElement('div', { className: 'vs-mark__teams' }, [
           createElement('span', { className: 'match-view__team-name--blue' }, currentState.blueTeam.name || '블루팀'),
+          this.createReverseOrderButton('blue')
         ]),
         createElement('button', {
           className: 'btn btn--sm swap-teams-btn',
@@ -300,15 +308,40 @@ export class ChampionPickPage {
         }, '⇄'),
         createElement('div', { className: 'vs-mark__teams' }, [
           createElement('span', { className: 'match-view__team-name--red' }, currentState.redTeam.name || '레드팀'),
+          this.createReverseOrderButton('red')
         ])
       ]),
       // 레드팀 슬롯
       createElement('div', { className: 'team-slots team-slots--red', id: 'red-slots' },
-        RED_SLOT_ORDER.map(position =>
+        this.getSlotOrder('red').map(position =>
           this.createSlot('redTeam', position, currentState.redTeam, gameChampions)
         )
       )
     ]);
+  }
+
+  /**
+   * 팀 슬롯의 포지션 순서 (뒤집기 설정 반영)
+   * @param {'blue'|'red'} team
+   * @returns {Array<string>}
+   */
+  getSlotOrder(team) {
+    const order = team === 'blue' ? BLUE_SLOT_ORDER : RED_SLOT_ORDER;
+    return state.get().slotOrderReversed?.[team] ? [...order].reverse() : order;
+  }
+
+  /**
+   * 팀 포지션 순서 뒤집기 버튼 생성
+   * @param {'blue'|'red'} team
+   * @returns {Element}
+   */
+  createReverseOrderButton(team) {
+    const teamName = team === 'blue' ? '블루팀' : '레드팀';
+    return createElement('button', {
+      className: `btn btn--sm reverse-order-btn ${state.get().slotOrderReversed?.[team] ? 'reverse-order-btn--active' : ''}`,
+      dataset: { team },
+      title: `${teamName} 포지션 순서 뒤집기`
+    }, '↔ 순서');
   }
 
   /**
@@ -371,6 +404,16 @@ export class ChampionPickPage {
         this.refreshAll();
       });
     }
+
+    // 팀별 포지션 순서 뒤집기 버튼
+    document.querySelectorAll('.reverse-order-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.toggleSlotOrder(btn.dataset.team);
+        btn.classList.toggle('reverse-order-btn--active', state.get().slotOrderReversed[btn.dataset.team]);
+        this.clearTapSelection();
+        this.refreshSlots();
+      });
+    });
 
     // 초기화 버튼
     const resetBtn = $('#reset-game-btn');
@@ -773,7 +816,7 @@ export class ChampionPickPage {
     const blueSlots = $('#blue-slots');
     if (blueSlots) {
       clearElement(blueSlots);
-      BLUE_SLOT_ORDER.forEach(position => {
+      this.getSlotOrder('blue').forEach(position => {
         blueSlots.appendChild(this.createSlot('blueTeam', position, currentState.blueTeam, gameChampions));
       });
     }
@@ -782,7 +825,7 @@ export class ChampionPickPage {
     const redSlots = $('#red-slots');
     if (redSlots) {
       clearElement(redSlots);
-      RED_SLOT_ORDER.forEach(position => {
+      this.getSlotOrder('red').forEach(position => {
         redSlots.appendChild(this.createSlot('redTeam', position, currentState.redTeam, gameChampions));
       });
     }
