@@ -54,3 +54,4 @@ export const ROUTES = {
 
 // LocalStorage 키
 export const STORAGE_KEY = 'lol-viewer-helper-state';
+export const TOOLTIP_SETTING_KEY = 'lol-viewer-helper-tooltips'; // 호버창 켜기/끄기 (기기별 설정)

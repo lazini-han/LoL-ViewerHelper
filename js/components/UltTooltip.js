@@ -5,6 +5,42 @@
 
 import { createElement, clearElement } from '../utils/dom.js';
 import { championService } from '../services/ChampionService.js';
+import { TOOLTIP_SETTING_KEY } from '../utils/constants.js';
+
+// 호버창 사용 여부 (상단바 토글, 모든 페이지 공통). 저장값이 없으면 켜짐
+let tooltipsEnabled = loadTooltipSetting();
+
+function loadTooltipSetting() {
+  try {
+    return localStorage.getItem(TOOLTIP_SETTING_KEY) !== 'off';
+  } catch {
+    return true;
+  }
+}
+
+/**
+ * @returns {boolean} 호버창 사용 여부
+ */
+export function isTooltipEnabled() {
+  return tooltipsEnabled;
+}
+
+/**
+ * 호버창 사용 여부 변경 (끄면 떠 있는 호버창도 바로 숨김)
+ * @param {boolean} enabled
+ */
+export function setTooltipEnabled(enabled) {
+  tooltipsEnabled = enabled;
+  try {
+    localStorage.setItem(TOOLTIP_SETTING_KEY, enabled ? 'on' : 'off');
+  } catch {
+    // 저장 실패 시 이번 세션에만 적용
+  }
+  if (!enabled) {
+    document.querySelectorAll('.ult-tooltip--visible')
+      .forEach(tooltip => tooltip.classList.remove('ult-tooltip--visible'));
+  }
+}
 
 export class UltTooltip {
   /**
@@ -25,7 +61,7 @@ export class UltTooltip {
    */
   async showUltimate(anchor, championId, championNameEn, championNameKr = '') {
     const tooltip = this.element;
-    if (!tooltip || !championId) return;
+    if (!tooltip || !championId || !tooltipsEnabled) return;
 
     // 로드 중 다른 챔피언으로 옮겨간 경우를 구분하기 위한 토큰
     const token = Symbol();
@@ -40,7 +76,7 @@ export class UltTooltip {
     // 요약이 없는 챔피언은 상세 정보와 같은 응답(캐시)의 공식 설명으로 대체
     const fallback = summary ? null
       : (await championService.getChampionDetail(championNameEn))?.spells.find(spell => spell.key === 'R');
-    if (this.token !== token) return;
+    if (this.token !== token || !tooltipsEnabled) return;
 
     clearElement(tooltip);
     const keyLabel = championNameKr ? `${championNameKr} · 궁극기 (R)` : '궁극기 (R)';
@@ -70,7 +106,7 @@ export class UltTooltip {
    */
   showItem(anchor, item) {
     const tooltip = this.element;
-    if (!tooltip || !item) return;
+    if (!tooltip || !item || !tooltipsEnabled) return;
 
     this.token = null; // 로드 중인 궁극기 호버창이 덮어쓰지 않도록
     clearElement(tooltip);

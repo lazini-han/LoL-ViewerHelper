@@ -13,6 +13,7 @@ import { EtcPage } from './pages/EtcPage.js';
 import { authService } from './services/authService.js';
 import { syncService } from './services/syncService.js';
 import { authModal } from './components/AuthModal.js';
+import { isTooltipEnabled, setTooltipEnabled } from './components/UltTooltip.js';
 
 /**
  * 라우터 클래스
@@ -117,6 +118,9 @@ async function initApp() {
   // 게임 탭 이벤트 설정
   setupGameTabs(router);
 
+  // 호버창 켜기/끄기 토글 설정
+  setupTooltipToggle();
+
   // 인증 UI 설정
   setupAuth(router);
 
@@ -125,6 +129,27 @@ async function initApp() {
 
   // 초기 게임 탭 상태 업데이트
   updateGameTabsUI();
+}
+
+/**
+ * 상단바 호버창 토글 설정 (챔피언 선택·경기 화면 공통)
+ */
+function setupTooltipToggle() {
+  const button = document.getElementById('tooltip-toggle');
+  if (!button) return;
+
+  const render = () => {
+    const enabled = isTooltipEnabled();
+    button.textContent = enabled ? '호버창 ON' : '호버창 OFF';
+    button.classList.toggle('header__toggle--on', enabled);
+    button.setAttribute('aria-pressed', String(enabled));
+  };
+
+  button.addEventListener('click', () => {
+    setTooltipEnabled(!isTooltipEnabled());
+    render();
+  });
+  render();
 }
 
 /**
