@@ -139,21 +139,59 @@ function setupAuth(router) {
     });
   }
 
+  // 이번 접속에서 로그아웃 상태를 거쳤는지 (새로 로그인한 경우와 저장된 세션 복원을 구분)
+  let wasLoggedOut = false;
+
   // 인증 상태 변경 감시
   authService.onAuthStateChanged((user) => {
     if (user) {
       // 로그인 상태
-      syncService.startSync(user.uid, (cloudData) => {
-        state.loadFromCloud(cloudData);
-        if (appRouter) appRouter.handleRoute();
-      });
+      const isFreshLogin = wasLoggedOut;
+      syncService.startSync(
+        user.uid,
+        (cloudData) => {
+          state.loadFromCloud(cloudData);
+          if (appRouter) appRouter.handleRoute();
+        },
+        (cloudData) => handleFirstSync(cloudData, isFreshLogin)
+      );
       updateAuthUI(user);
     } else {
       // 로그아웃 상태
+      wasLoggedOut = true;
       syncService.stopSync();
       updateAuthUI(null);
     }
   });
+}
+
+/**
+ * 로그인 후 첫 동기화: 로그인 전 데이터와 클라우드 데이터 중 무엇을 쓸지 결정
+ * @param {Object|null} cloudData - 클라우드 문서 (없으면 null)
+ * @param {boolean} isFreshLogin - 이번 접속에서 새로 로그인했는지
+ */
+function handleFirstSync(cloudData, isFreshLogin) {
+  let keepLocal = false;
+
+  if (!cloudData) {
+    // 클라우드에 데이터가 없으면 로컬 데이터를 그대로 올림
+    keepLocal = true;
+  } else if (isFreshLogin && state.hasUserData() && !state.isSameAsCloud(cloudData)) {
+    keepLocal = confirm(
+      '로그인 전에 입력한 데이터가 클라우드에 저장된 데이터와 다릅니다.\n\n' +
+      '[확인] 로그인 전 데이터 유지 (클라우드 데이터를 덮어씀)\n' +
+      '[취소] 클라우드 데이터 불러오기 (로그인 전 데이터는 사라짐)'
+    );
+  }
+
+  syncService.markReady();
+
+  if (keepLocal) {
+    state.uploadToCloud();
+  } else {
+    state.loadFromCloud(cloudData);
+    if (appRouter) appRouter.handleRoute();
+  }
 }
 
 /**

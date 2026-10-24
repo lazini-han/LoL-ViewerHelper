@@ -79,6 +79,19 @@ function createDefaultState() {
 }
 
 /**
+ * 키 순서와 무관하게 비교하기 위한 직렬화 (Firestore 는 키 순서를 보장하지 않음)
+ * @param {*} value
+ * @returns {string}
+ */
+function stableStringify(value) {
+  if (Array.isArray(value)) return `[${value.map(stableStringify).join(',')}]`;
+  if (value && typeof value === 'object') {
+    return `{${Object.keys(value).sort().map(key => `${JSON.stringify(key)}:${stableStringify(value[key])}`).join(',')}}`;
+  }
+  return JSON.stringify(value ?? null);
+}
+
+/**
  * 상태 관리 클래스
  */
 class State {
@@ -189,6 +202,40 @@ class State {
 
     this.notify();
     this._isRemoteUpdate = false;
+  }
+
+  /**
+   * 사용자가 입력한 데이터가 있는지 (팀/선수 이름, 픽, 밴, 저장된 팀)
+   * @returns {boolean}
+   */
+  hasUserData() {
+    const { blueTeam, redTeam, games, globalBans } = this.data;
+    const hasTeamInfo = [blueTeam, redTeam].some(team =>
+      team?.name?.trim() || team?.players?.some(player => player.name?.trim())
+    );
+    const hasPicks = Object.values(games || {}).some(game =>
+      ['blueTeam', 'redTeam'].some(teamKey => Object.values(game?.[teamKey] || {}).some(Boolean))
+    );
+    const hasBans = Object.values(globalBans || {}).some(bans => bans?.some(Boolean));
+    return Boolean(hasTeamInfo || hasPicks || hasBans || this.savedTeams.length > 0);
+  }
+
+  /**
+   * 현재 로컬 데이터가 클라우드 데이터와 같은지
+   * @param {Object} cloudData - Firestore 문서 데이터
+   * @returns {boolean}
+   */
+  isSameAsCloud(cloudData) {
+    const cloudState = { ...createDefaultState(), ...cloudData?.state };
+    return stableStringify(cloudState) === stableStringify(this.data)
+      && stableStringify(cloudData?.savedTeams || []) === stableStringify(this.savedTeams);
+  }
+
+  /**
+   * 현재 로컬 데이터를 클라우드에 업로드 (로그인 시 로컬 데이터 유지 선택)
+   */
+  uploadToCloud() {
+    syncService.saveToCloud(this.data, this.savedTeams);
   }
 
   /**

@@ -17,21 +17,32 @@ class SyncService {
     this.debounceTimer = null;
     this.onRemoteUpdate = null;
     this._isSaving = false;
+    // 첫 스냅샷 처리(로컬/클라우드 데이터 선택)가 끝나기 전에는 로컬 변경을 업로드하지 않음
+    this.ready = false;
   }
 
   /**
    * 실시간 동기화 시작
    * @param {string} userId
    * @param {Function} onRemoteUpdate - 원격 데이터 변경 시 콜백
+   * @param {Function} onFirstSnapshot - 첫 스냅샷 콜백 (클라우드 데이터, 문서가 없으면 null).
+   *   처리가 끝나면 markReady() 를 호출해야 업로드가 시작됨
    */
-  startSync(userId, onRemoteUpdate) {
+  startSync(userId, onRemoteUpdate, onFirstSnapshot) {
     this.stopSync();
     this.userId = userId;
     this.onRemoteUpdate = onRemoteUpdate;
 
     const docRef = doc(db, 'users', userId);
+    let isFirst = true;
 
     this.unsubscribe = onSnapshot(docRef, (snapshot) => {
+      if (isFirst) {
+        isFirst = false;
+        onFirstSnapshot(snapshot.exists() ? snapshot.data() : null);
+        return;
+      }
+
       if (this._isSaving) return;
 
       if (snapshot.exists()) {
@@ -59,6 +70,14 @@ class SyncService {
     }
     this.userId = null;
     this.onRemoteUpdate = null;
+    this.ready = false;
+  }
+
+  /**
+   * 첫 스냅샷 처리 완료 - 이후 로컬 변경을 클라우드에 업로드
+   */
+  markReady() {
+    this.ready = true;
   }
 
   /**
@@ -67,7 +86,7 @@ class SyncService {
    * @param {Array} savedTeams - 저장된 팀 목록
    */
   saveToCloud(stateData, savedTeams) {
-    if (!this.userId) return;
+    if (!this.userId || !this.ready) return;
 
     if (this.debounceTimer) {
       clearTimeout(this.debounceTimer);
@@ -97,7 +116,7 @@ class SyncService {
    * @returns {boolean}
    */
   isActive() {
-    return this.userId !== null && this.unsubscribe !== null;
+    return this.userId !== null && this.unsubscribe !== null && this.ready;
   }
 }
 
