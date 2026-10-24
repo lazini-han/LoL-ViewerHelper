@@ -5,6 +5,7 @@
 import { $, createElement, clearElement } from '../utils/dom.js';
 import { BLUE_SLOT_ORDER, RED_SLOT_ORDER, POSITION_NAMES, POSITION_ICONS, POSITIONS } from '../utils/constants.js';
 import { state } from '../state.js';
+import { UltTooltip } from '../components/UltTooltip.js';
 
 // 한글 초성 (쌍자음은 기본 자음 인덱스로 묶음)
 const INITIAL_CONSONANTS = ['ㄱ', 'ㄱ', 'ㄴ', 'ㄷ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅂ', 'ㅅ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
@@ -46,10 +47,12 @@ export class ChampionPickPage {
       this.createGlobalBansArea(currentState),
       this.createTeamSlots(currentState),
       this.createTapGuide(),
-      this.createChampionGrid()
+      this.createChampionGrid(),
+      createElement('div', { className: 'ult-tooltip', id: 'pick-tooltip' })
     ]);
 
     container.appendChild(page);
+    this.tooltip = new UltTooltip($('#pick-tooltip'));
     this.renderChampions();
     this.attachEvents();
   }
@@ -235,7 +238,8 @@ export class ChampionPickPage {
         draggable: !isDisabled ? 'true' : 'false',
         dataset: {
           championId: champion.id,
-          championName: champion.nameKr
+          championName: champion.nameKr,
+          championKey: champion.nameEn
         }
       }, [
         iconEl,
@@ -405,6 +409,32 @@ export class ChampionPickPage {
   }
 
   /**
+   * 챔피언 목록 호버창 이벤트 연결
+   */
+  attachTooltipEvents() {
+    const grid = $('#champion-grid');
+    if (!grid || !window.matchMedia('(hover: hover)').matches) return;
+
+    grid.addEventListener('mouseover', (e) => {
+      const icon = e.target.closest('.champion-item__icon');
+      if (!icon || icon.contains(e.relatedTarget)) return;
+      const item = icon.closest('.champion-item');
+      const { championId, championKey, championName } = item.dataset;
+      this.tooltip.showUltimate(icon, Number(championId), championKey, championName);
+    });
+
+    grid.addEventListener('mouseout', (e) => {
+      const icon = e.target.closest('.champion-item__icon');
+      if (!icon || icon.contains(e.relatedTarget)) return;
+      this.tooltip.hide();
+    });
+
+    // 드래그를 시작하거나 목록을 스크롤하면 숨김
+    grid.addEventListener('dragstart', () => this.tooltip.hide());
+    $('.champion-grid-scroll')?.addEventListener('scroll', () => this.tooltip.hide(), { passive: true });
+  }
+
+  /**
    * 이벤트 연결
    */
   attachEvents() {
@@ -469,6 +499,9 @@ export class ChampionPickPage {
         if (btn) this.togglePositionFilter(btn.dataset.position);
       });
     }
+
+    // 챔피언 초상화 호버 시 궁극기 요약 (마우스 사용 환경만, 터치에서는 탭 배치와 겹치므로 제외)
+    this.attachTooltipEvents();
 
     // 드래그 앤 드롭 이벤트
     this.attachDragEvents();

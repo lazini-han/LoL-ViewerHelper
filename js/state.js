@@ -20,6 +20,36 @@ function createDefaultPlayers() {
 }
 
 /**
+ * 기본 팀 정보 생성 (subs: 후보 선수, region/country: 소속 리그·국가 태그)
+ * @returns {Object}
+ */
+function createDefaultTeam() {
+  return {
+    name: '',
+    players: createDefaultPlayers(),
+    subs: []
+  };
+}
+
+/**
+ * 저장된 팀 데이터를 현재 팀 형식으로 복사
+ * @param {Object} team - { name, players, subs?, region?, country? }
+ * @returns {Object}
+ */
+function toTeamData(team) {
+  return {
+    name: team.name,
+    players: POSITIONS.map(position => ({
+      position,
+      name: team.players?.find(p => p.position === position)?.name || ''
+    })),
+    subs: (team.subs || []).map(sub => ({ position: sub.position, name: sub.name })),
+    ...(team.region ? { region: team.region } : {}),
+    ...(team.country ? { country: team.country } : {})
+  };
+}
+
+/**
  * 기본 게임 챔피언 데이터 생성
  * @returns {Object}
  */
@@ -62,14 +92,8 @@ function createDefaultGlobalBans() {
  */
 function createDefaultState() {
   return {
-    blueTeam: {
-      name: '',
-      players: createDefaultPlayers()
-    },
-    redTeam: {
-      name: '',
-      players: createDefaultPlayers()
-    },
+    blueTeam: createDefaultTeam(),
+    redTeam: createDefaultTeam(),
     currentGame: 1,
     games: createDefaultGames(),
     globalBans: createDefaultGlobalBans(),
@@ -272,12 +296,56 @@ class State {
    * @param {'blueTeam'|'redTeam'} teamKey
    */
   clearTeam(teamKey) {
-    this.data[teamKey] = {
-      name: '',
-      players: createDefaultPlayers()
-    };
+    this.data[teamKey] = createDefaultTeam();
     this.save();
     this.notify();
+  }
+
+  /**
+   * 후보 선수를 같은 포지션 주전과 맞바꿈 (기존 주전은 후보로)
+   * @param {'blueTeam'|'redTeam'} teamKey
+   * @param {number} subIndex
+   */
+  swapWithSub(teamKey, subIndex) {
+    const team = this.data[teamKey];
+    const subs = [...(team.subs || [])];
+    const sub = subs[subIndex];
+    if (!sub) return;
+
+    const players = team.players.map(player => ({ ...player }));
+    const starter = players.find(player => player.position === sub.position);
+    if (!starter) return;
+
+    if (starter.name.trim()) {
+      subs[subIndex] = { position: sub.position, name: starter.name };
+    } else {
+      subs.splice(subIndex, 1); // 빈 자리에 넣는 경우
+    }
+    starter.name = sub.name;
+
+    this.updateTeam(teamKey, { players, subs });
+  }
+
+  /**
+   * 후보 선수 추가
+   * @param {'blueTeam'|'redTeam'} teamKey
+   * @param {string} position
+   * @param {string} name
+   */
+  addSub(teamKey, position, name) {
+    if (!name.trim()) return;
+    const subs = [...(this.data[teamKey].subs || []), { position, name: name.trim() }];
+    this.updateTeam(teamKey, { subs });
+  }
+
+  /**
+   * 후보 선수 삭제
+   * @param {'blueTeam'|'redTeam'} teamKey
+   * @param {number} subIndex
+   */
+  removeSub(teamKey, subIndex) {
+    const subs = (this.data[teamKey].subs || []).filter((_, i) => i !== subIndex);
+    this.updateTeam(teamKey, { subs });
   }
 
   /**
@@ -592,11 +660,7 @@ class State {
     const team = this.data[teamKey];
     if (!team.name.trim()) return false;
 
-    const teamData = {
-      id: Date.now(),
-      name: team.name,
-      players: team.players.map(p => ({ position: p.position, name: p.name }))
-    };
+    const teamData = { id: Date.now(), ...toTeamData(team) };
 
     // 같은 이름의 팀이 있으면 업데이트
     const existingIndex = this.savedTeams.findIndex(t => t.name === team.name);
@@ -629,21 +693,37 @@ class State {
     const savedTeam = this.savedTeams.find(t => t.id === teamId);
     if (!savedTeam) return;
 
-    const players = POSITIONS.map(position => {
-      const savedPlayer = savedTeam.players.find(p => p.position === position);
-      return {
-        position,
-        name: savedPlayer?.name || ''
-      };
-    });
-
-    this.data[targetTeamKey] = {
-      name: savedTeam.name,
-      players
-    };
+    this.data[targetTeamKey] = toTeamData(savedTeam);
 
     this.save();
     this.notify();
+  }
+
+  /**
+   * 외부 팀 데이터(롤드컵 팀 등)를 저장된 팀 목록에 추가
+   * @param {Array} teams - [{ name, players, subs, region, country }]
+   * @param {Set<string>} overwriteNames - 이미 있는 팀 중 덮어쓸 팀 이름
+   * @returns {{added: number, overwritten: number, skipped: number}}
+   */
+  importTeams(teams, overwriteNames = new Set()) {
+    const result = { added: 0, overwritten: 0, skipped: 0 };
+    let nextId = Date.now();
+
+    teams.forEach(team => {
+      const index = this.savedTeams.findIndex(t => t.name === team.name);
+      if (index === -1) {
+        this.savedTeams.push({ id: nextId++, ...toTeamData(team) });
+        result.added++;
+      } else if (overwriteNames.has(team.name)) {
+        this.savedTeams[index] = { id: this.savedTeams[index].id, ...toTeamData(team) };
+        result.overwritten++;
+      } else {
+        result.skipped++;
+      }
+    });
+
+    this.saveSavedTeams();
+    return result;
   }
 
   /**

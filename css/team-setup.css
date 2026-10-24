@@ -178,3 +178,211 @@
 .saved-team-item__delete:hover {
   color: var(--color-red-team);
 }
+
+/* 팀 카드 제목 (팀 A/B + 소속 리그·국가 태그) */
+.team-card__title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+/* 소속 리그·국가 태그 */
+.team-tags {
+  display: inline-flex;
+  gap: 4px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.team-tag {
+  padding: 0 6px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  color: var(--color-text-secondary);
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+/* 후보 선수 */
+.subs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.subs__label {
+  width: 60px;
+  flex-shrink: 0;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+}
+
+.subs__list {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  min-width: 0;
+}
+
+.subs__empty {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.sub-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 4px 2px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
+  font-size: var(--font-size-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sub-chip:hover {
+  border-color: var(--color-accent);
+}
+
+.sub-chip__position {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.sub-chip__remove {
+  padding: 0 4px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1;
+}
+
+.sub-chip__remove:hover {
+  color: var(--color-red-team);
+}
+
+.subs__add {
+  display: flex;
+  gap: var(--spacing-xs);
+  width: 100%;
+  padding-left: calc(60px + var(--spacing-sm));
+}
+
+.subs__add-position {
+  width: 80px;
+  flex-shrink: 0;
+  padding: 2px var(--spacing-xs);
+  font-size: var(--font-size-xs);
+}
+
+.subs__add-input {
+  flex: 1;
+  min-width: 0;
+  padding: 2px var(--spacing-sm);
+  font-size: var(--font-size-xs);
+}
+
+.subs__add-btn {
+  flex-shrink: 0;
+}
+
+/* 저장된 팀 헤더 (제목 + 롤드컵 팀 불러오기) */
+.saved-teams__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.saved-teams__header .saved-teams__title {
+  margin-bottom: 0;
+}
+
+.saved-teams--empty .saved-teams__header {
+  justify-content: center;
+}
+
+/* 같은 이름 팀 덮어쓰기 확인 창 */
+.overwrite-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.overwrite-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: 80vh;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-secondary);
+  box-shadow: var(--shadow-lg);
+}
+
+.overwrite-dialog__title {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+}
+
+.overwrite-dialog__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.overwrite-dialog__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  overflow-y: auto;
+}
+
+.overwrite-dialog__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-card);
+  cursor: pointer;
+}
+
+.overwrite-dialog__name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.overwrite-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-xs);
+}
+
+.overwrite-dialog__actions .btn:first-child {
+  margin-right: auto;
+}
+
+@media (max-width: 768px) {
+  .subs__add {
+    padding-left: 0;
+  }
+}

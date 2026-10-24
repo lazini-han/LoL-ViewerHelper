@@ -1,0 +1,667 @@
+{
+  "event": "2026 Season World Championship",
+  "updated": "2026-10-24",
+  "teams": [
+    {
+      "name": "DK",
+      "fullName": "Dplus Kia",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Siwoo"
+        },
+        {
+          "position": "JG",
+          "name": "Lucid"
+        },
+        {
+          "position": "MID",
+          "name": "ShowMaker"
+        },
+        {
+          "position": "ADC",
+          "name": "Smash"
+        },
+        {
+          "position": "SUP",
+          "name": "Career"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "Gen.G",
+      "fullName": "Gen.G",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Kiin"
+        },
+        {
+          "position": "JG",
+          "name": "Canyon"
+        },
+        {
+          "position": "MID",
+          "name": "Chovy"
+        },
+        {
+          "position": "ADC",
+          "name": "Ruler"
+        },
+        {
+          "position": "SUP",
+          "name": "Duro"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "HLE",
+      "fullName": "Hanwha Life Esports",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Zeus"
+        },
+        {
+          "position": "JG",
+          "name": "Kanavi"
+        },
+        {
+          "position": "MID",
+          "name": "Zeka"
+        },
+        {
+          "position": "ADC",
+          "name": "Gumayusi"
+        },
+        {
+          "position": "SUP",
+          "name": "Delight"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "T1",
+      "fullName": "T1",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Doran"
+        },
+        {
+          "position": "JG",
+          "name": "Oner"
+        },
+        {
+          "position": "MID",
+          "name": "Faker"
+        },
+        {
+          "position": "ADC",
+          "name": "Peyz"
+        },
+        {
+          "position": "SUP",
+          "name": "Keria"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "AL",
+      "fullName": "Anyone's Legend",
+      "region": "LPL",
+      "country": "중국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Breathe"
+        },
+        {
+          "position": "JG",
+          "name": "Tarzan"
+        },
+        {
+          "position": "MID",
+          "name": "Shanks"
+        },
+        {
+          "position": "ADC",
+          "name": "Hope"
+        },
+        {
+          "position": "SUP",
+          "name": "Kael"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "BLG",
+      "fullName": "Bilibili Gaming",
+      "region": "LPL",
+      "country": "중국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Bin"
+        },
+        {
+          "position": "JG",
+          "name": "Xun"
+        },
+        {
+          "position": "MID",
+          "name": "Knight"
+        },
+        {
+          "position": "ADC",
+          "name": "Viper"
+        },
+        {
+          "position": "SUP",
+          "name": "ON"
+        }
+      ],
+      "subs": [
+        {
+          "position": "TOP",
+          "name": "Flandre"
+        },
+        {
+          "position": "TOP",
+          "name": "Wenbo"
+        }
+      ],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "IG",
+      "fullName": "Invictus Gaming",
+      "region": "LPL",
+      "country": "중국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "TheShy"
+        },
+        {
+          "position": "JG",
+          "name": "Wei"
+        },
+        {
+          "position": "MID",
+          "name": "Rookie"
+        },
+        {
+          "position": "ADC",
+          "name": "JiaQi"
+        },
+        {
+          "position": "SUP",
+          "name": "Meiko"
+        }
+      ],
+      "subs": [
+        {
+          "position": "ADC",
+          "name": "Assum"
+        }
+      ],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "TES",
+      "fullName": "Top Esports",
+      "region": "LPL",
+      "country": "중국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "369"
+        },
+        {
+          "position": "JG",
+          "name": "Tian"
+        },
+        {
+          "position": "MID",
+          "name": "Creme"
+        },
+        {
+          "position": "ADC",
+          "name": "JackeyLove"
+        },
+        {
+          "position": "SUP",
+          "name": "Zhuo"
+        }
+      ],
+      "subs": [
+        {
+          "position": "TOP",
+          "name": "ZUIAN"
+        }
+      ],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "G2",
+      "fullName": "G2 Esports",
+      "region": "LEC",
+      "country": "독일",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "BrokenBlade"
+        },
+        {
+          "position": "JG",
+          "name": "SkewMond"
+        },
+        {
+          "position": "MID",
+          "name": "Caps"
+        },
+        {
+          "position": "ADC",
+          "name": "Hans Sama"
+        },
+        {
+          "position": "SUP",
+          "name": "Labrov"
+        }
+      ],
+      "subs": [
+        {
+          "position": "ADC",
+          "name": "Sola"
+        }
+      ],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "KC",
+      "fullName": "Karmine Corp",
+      "region": "LEC",
+      "country": "프랑스",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Canna"
+        },
+        {
+          "position": "JG",
+          "name": "Yike"
+        },
+        {
+          "position": "MID",
+          "name": "kyeahoo"
+        },
+        {
+          "position": "ADC",
+          "name": "Caliste"
+        },
+        {
+          "position": "SUP",
+          "name": "Busio"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "MKOI",
+      "fullName": "Movistar KOI",
+      "region": "LEC",
+      "country": "스페인",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Myrwn"
+        },
+        {
+          "position": "JG",
+          "name": "Elyoya"
+        },
+        {
+          "position": "MID",
+          "name": "Jojopyun"
+        },
+        {
+          "position": "ADC",
+          "name": "Supa"
+        },
+        {
+          "position": "SUP",
+          "name": "Alvaro"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "LYON",
+      "fullName": "LYON",
+      "region": "LCS",
+      "country": "미국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Dhokla"
+        },
+        {
+          "position": "JG",
+          "name": "Inspired"
+        },
+        {
+          "position": "MID",
+          "name": "Saint"
+        },
+        {
+          "position": "ADC",
+          "name": "Berserker"
+        },
+        {
+          "position": "SUP",
+          "name": "Isles"
+        }
+      ],
+      "subs": [
+        {
+          "position": "TOP",
+          "name": "Castle"
+        }
+      ],
+      "lastMatch": "2026-10-24",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "TL",
+      "fullName": "Team Liquid",
+      "region": "LCS",
+      "country": "미국",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Morgan"
+        },
+        {
+          "position": "JG",
+          "name": "Josedeodo"
+        },
+        {
+          "position": "MID",
+          "name": "Quid"
+        },
+        {
+          "position": "ADC",
+          "name": "Yeon"
+        },
+        {
+          "position": "SUP",
+          "name": "CoreJJ"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "LØS",
+      "fullName": "LØS",
+      "region": "CBLOL",
+      "country": "브라질",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Zest"
+        },
+        {
+          "position": "JG",
+          "name": "Curse"
+        },
+        {
+          "position": "MID",
+          "name": "Feisty"
+        },
+        {
+          "position": "ADC",
+          "name": "Duduhh"
+        },
+        {
+          "position": "SUP",
+          "name": "Ackerman"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "CFO",
+      "fullName": "CTBC Flying Oyster",
+      "region": "LCP",
+      "country": "대만",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Rest"
+        },
+        {
+          "position": "JG",
+          "name": "Shad0w"
+        },
+        {
+          "position": "MID",
+          "name": "POUT"
+        },
+        {
+          "position": "ADC",
+          "name": "Doggo"
+        },
+        {
+          "position": "SUP",
+          "name": "Kino"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-23",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "TSW",
+      "fullName": "Team Secret Whales",
+      "region": "LCP",
+      "country": "베트남",
+      "stage": "main",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Pun"
+        },
+        {
+          "position": "JG",
+          "name": "Hizto"
+        },
+        {
+          "position": "MID",
+          "name": "Dire"
+        },
+        {
+          "position": "ADC",
+          "name": "Eddie"
+        },
+        {
+          "position": "SUP",
+          "name": "Bie"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-24",
+      "lastMatchEvent": "2026 Season World Championship/Main Event",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
+    },
+    {
+      "name": "C9",
+      "fullName": "Cloud9",
+      "region": "LCS",
+      "country": "미국",
+      "stage": "playin",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Thanatos"
+        },
+        {
+          "position": "JG",
+          "name": "Blaber"
+        },
+        {
+          "position": "MID",
+          "name": "Loki"
+        },
+        {
+          "position": "ADC",
+          "name": "Tactical"
+        },
+        {
+          "position": "SUP",
+          "name": "Vulcan"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-16",
+      "lastMatchEvent": "2026 Season World Championship/Play-In",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FPlay-In"
+    },
+    {
+      "name": "FURIA",
+      "fullName": "FURIA",
+      "region": "CBLOL",
+      "country": "브라질",
+      "stage": "playin",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Guigo"
+        },
+        {
+          "position": "JG",
+          "name": "Tatu"
+        },
+        {
+          "position": "MID",
+          "name": "Tutsz"
+        },
+        {
+          "position": "ADC",
+          "name": "Ayu"
+        },
+        {
+          "position": "SUP",
+          "name": "JoJo"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-10-17",
+      "lastMatchEvent": "2026 Season World Championship/Play-In",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FPlay-In"
+    },
+    {
+      "name": "MVK",
+      "fullName": "MVK Esports",
+      "region": "LCP",
+      "country": "베트남",
+      "stage": "playin",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Kratos"
+        },
+        {
+          "position": "JG",
+          "name": "Gury"
+        },
+        {
+          "position": "MID",
+          "name": "Chika"
+        },
+        {
+          "position": "ADC",
+          "name": "Harky"
+        },
+        {
+          "position": "SUP",
+          "name": "SiuLoong"
+        }
+      ],
+      "subs": [
+        {
+          "position": "JG",
+          "name": "SanSan"
+        }
+      ],
+      "lastMatch": "2026-10-18",
+      "lastMatchEvent": "2026 Season World Championship/Play-In",
+      "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FPlay-In"
+    }
+  ]
+}
