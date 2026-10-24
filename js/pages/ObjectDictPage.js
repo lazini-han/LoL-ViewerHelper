@@ -4,6 +4,8 @@
 
 import { $, createElement, clearElement } from '../utils/dom.js';
 import { objectService } from '../services/ObjectService.js';
+import { createJungleMap } from '../components/JungleMap.js';
+import { getDDragonVersion } from '../utils/ddragon.js';
 
 export class ObjectDictPage {
   constructor(router) {
@@ -19,8 +21,8 @@ export class ObjectDictPage {
   async render(container) {
     clearElement(container);
 
-    // 데이터 로드
-    await objectService.load();
+    // 데이터 로드 (맵 이미지 경로에 쓰는 Data Dragon 버전 포함)
+    await Promise.all([objectService.load(), getDDragonVersion()]);
 
     const page = createElement('div', { className: 'page dictionary' }, [
       this.createFilters(),
@@ -183,6 +185,11 @@ export class ObjectDictPage {
     ]);
 
     detail.appendChild(panel);
+
+    // 정글 캠프·에픽 몬스터는 하단에 맵 위치 표시
+    if (obj.mapPositions?.length) {
+      detail.appendChild(createJungleMap(obj.mapPositions, obj.nameKr));
+    }
   }
 
   /**

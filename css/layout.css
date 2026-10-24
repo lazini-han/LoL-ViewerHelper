@@ -94,7 +94,8 @@
 }
 
 .nav__divider {
-  color: var(--color-border);
+  color: var(--color-text-secondary);
+  opacity: 0.6;
   font-size: var(--font-size-xs);
   align-self: center;
 }
@@ -170,7 +171,7 @@
 }
 
 .game-tab--active {
-  color: var(--color-bg);
+  color: white;
   background-color: var(--color-accent);
 }
 

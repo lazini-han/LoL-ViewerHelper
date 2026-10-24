@@ -30,6 +30,7 @@ img {
 button {
   font-family: inherit;
   font-size: inherit;
+  color: inherit; /* 브라우저 기본 검은 글자 방지 */
   cursor: pointer;
   border: none;
   background: none;
@@ -39,6 +40,12 @@ input,
 select {
   font-family: inherit;
   font-size: inherit;
+}
+
+/* 드롭다운 목록도 어두운 배경 + 밝은 글자 */
+option {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text);
 }
 
 a {

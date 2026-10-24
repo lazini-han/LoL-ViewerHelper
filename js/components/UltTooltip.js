@@ -40,7 +40,50 @@ export function setTooltipEnabled(enabled) {
     document.querySelectorAll('.ult-tooltip--visible')
       .forEach(tooltip => tooltip.classList.remove('ult-tooltip--visible'));
   }
+  applyTitleTooltips();
 }
+
+// 브라우저 기본 호버창(title 속성)도 함께 끄기: 꺼져 있는 동안 title 을 data-hidden-title 로 옮겨 둠
+const HIDDEN_TITLE_ATTR = 'data-hidden-title';
+let titleObserver = null;
+
+function hideTitles(root) {
+  if (root.nodeType !== Node.ELEMENT_NODE) return;
+  const targets = root.hasAttribute('title') ? [root] : [];
+  targets.push(...root.querySelectorAll('[title]'));
+  targets.forEach(el => {
+    el.setAttribute(HIDDEN_TITLE_ATTR, el.getAttribute('title'));
+    el.removeAttribute('title');
+  });
+}
+
+function applyTitleTooltips() {
+  if (tooltipsEnabled) {
+    titleObserver?.disconnect();
+    titleObserver = null;
+    document.querySelectorAll(`[${HIDDEN_TITLE_ATTR}]`).forEach(el => {
+      el.setAttribute('title', el.getAttribute(HIDDEN_TITLE_ATTR));
+      el.removeAttribute(HIDDEN_TITLE_ATTR);
+    });
+    return;
+  }
+
+  hideTitles(document.body);
+  // 페이지 이동 등으로 새로 그려지는 요소도 처리
+  if (!titleObserver) {
+    titleObserver = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (mutation.type === 'attributes') hideTitles(mutation.target);
+        else mutation.addedNodes.forEach(hideTitles);
+      });
+    });
+    titleObserver.observe(document.body, {
+      childList: true, subtree: true, attributes: true, attributeFilter: ['title']
+    });
+  }
+}
+
+applyTitleTooltips();
 
 export class UltTooltip {
   /**

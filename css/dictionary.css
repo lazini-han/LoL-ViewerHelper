@@ -42,7 +42,7 @@
 .dictionary__category-btn--active {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
-  color: var(--color-bg);
+  color: white;
 }
 
 /* 그리드 영역 */
@@ -199,7 +199,7 @@
   font-size: var(--font-size-xs);
   padding: var(--spacing-xs) var(--spacing-sm);
   background-color: var(--color-accent);
-  color: var(--color-bg);
+  color: white;
   border-radius: var(--radius-sm);
 }
 
@@ -241,6 +241,100 @@
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);
   opacity: 0.8;
+}
+
+/* 맵 위치 (정글 캠프, 에픽 몬스터) */
+.jungle-map {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.jungle-map__title {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.jungle-map__board {
+  position: relative;
+  width: 280px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--color-bg);
+}
+
+.jungle-map__image {
+  width: 100%;
+  height: 100%;
+}
+
+.jungle-map__marker {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.4);
+  animation: jungle-map-pulse 1.4s ease-in-out infinite;
+}
+
+.jungle-map__marker--blue,
+.jungle-map__dot--blue {
+  background-color: var(--color-blue-team);
+}
+
+.jungle-map__marker--red,
+.jungle-map__dot--red {
+  background-color: var(--color-red-team);
+}
+
+.jungle-map__marker--river,
+.jungle-map__dot--river {
+  background-color: #f5c542;
+}
+
+.jungle-map__marker--neutral,
+.jungle-map__dot--neutral {
+  background-color: #b56cff;
+}
+
+.jungle-map__marker--neutral {
+  width: 20px;
+  height: 20px;
+}
+
+@keyframes jungle-map-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.4); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.35); }
+}
+
+.jungle-map__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  font-size: var(--font-size-xs);
+  color: var(--color-text);
+}
+
+.jungle-map__legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.jungle-map__dot {
+  width: 10px;
+  height: 10px;
+  border: 1px solid white;
+  border-radius: 50%;
 }
 
 /* 반응형 */

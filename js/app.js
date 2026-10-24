@@ -132,7 +132,7 @@ async function initApp() {
 }
 
 /**
- * 상단바 호버창 토글 설정 (챔피언 선택·경기 화면 공통)
+ * 상단바 호버창 토글 설정 (모든 페이지 공통, 브라우저 기본 title 호버창 포함)
  */
 function setupTooltipToggle() {
   const button = document.getElementById('tooltip-toggle');
