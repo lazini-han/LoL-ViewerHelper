@@ -8,6 +8,7 @@
       "scoreboardIcon": "https://raw.communitydragon.org/latest/game/assets/ux/scoreboard/_infernaldrake.png",
       "category": "에픽 몬스터",
       "effect": "공격력/주문력 6% 증가 (중첩당)",
+      "soul": "공격·스킬로 피해를 주면 대상 주변에 폭발을 일으켜 추가 적응형 피해 (100 + 추가 공격력 22.5% + 주문력 13.5% + 추가 체력 2.75%, 재사용 대기시간 3초)",
       "description": "팀의 전체 화력을 올려주어 한타 승률에 직접적 영향을 주는 공격적인 드래곤. 2026 시즌부터 내구도 15% 증가",
       "spawnTime": "5분"
     },
@@ -18,6 +19,7 @@
       "scoreboardIcon": "https://raw.communitydragon.org/latest/game/assets/ux/scoreboard/_mountaindrake.png",
       "category": "에픽 몬스터",
       "effect": "방어력/마법저항력 9% 증가 (중첩당)",
+      "soul": "5초 동안 피해를 받지 않으면 보호막 획득 (220 + 추가 공격력 16% + 주문력 12% + 추가 체력 12%)",
       "description": "팀의 전체 방어력을 올려주어 생존력을 높이는 방어적인 드래곤. 2026 시즌부터 내구도 15% 증가",
       "spawnTime": "5분"
     },
@@ -28,6 +30,7 @@
       "scoreboardIcon": "https://raw.communitydragon.org/latest/game/assets/ux/scoreboard/_oceandrake.png",
       "category": "에픽 몬스터",
       "effect": "잃은 체력의 3% 회복 (5초마다, 중첩당)",
+      "soul": "적에게 피해를 주면 4초에 걸쳐 체력 (150 + 추가 공격력 26% + 주문력 17% + 추가 체력 7%) 과 마나 (100 + 최대 마나 3.5%) 회복. 미니언·몬스터 상대로는 효과 감소",
       "description": "지속적인 체력 회복으로 라인전과 장기전에 유리해지는 드래곤. 2026 시즌부터 내구도 15% 증가",
       "spawnTime": "5분"
     },
@@ -38,6 +41,7 @@
       "scoreboardIcon": "https://raw.communitydragon.org/latest/game/assets/ux/scoreboard/_clouddrake.png",
       "category": "에픽 몬스터",
       "effect": "궁극기 재사용 대기시간 7% 감소 (중첩당)",
+      "soul": "이동 속도 15% 증가, 궁극기 사용 후 6초 동안 60% 로 증가 (재사용 대기시간 30초)",
       "description": "궁극기를 더 자주 사용할 수 있게 해주어 한타 주도권을 높이는 드래곤. 2026 시즌부터 내구도 15% 증가",
       "spawnTime": "5분"
     },
@@ -48,6 +52,7 @@
       "scoreboardIcon": "https://raw.communitydragon.org/latest/game/assets/ux/scoreboard/_hextechdrake.png",
       "category": "에픽 몬스터",
       "effect": "공격 속도 7.5%, 스킬 가속 7.5 증가 (중첩당)",
+      "soul": "공격·스킬 적중 시 대상을 감전시켜 고정 피해 (레벨에 따라 25~53) 와 둔화 45% (원거리 35%), 주변 적 최대 3명에게 연쇄 (재사용 대기시간 8초)",
       "description": "공격 속도와 스킬 가속을 높여 딜러와 마법사 모두에게 유용한 드래곤. 2026 시즌부터 내구도 15% 증가",
       "spawnTime": "5분"
     },
@@ -58,6 +63,7 @@
       "scoreboardIcon": "https://raw.communitydragon.org/latest/game/assets/ux/scoreboard/_chemtechdrake.png",
       "category": "에픽 몬스터",
       "effect": "체력이 낮을 때 피해량 증가, 받는 피해 감소 (중첩당)",
+      "soul": "체력이 50% 미만이면 주는 피해 13% 증가, 받는 피해 13% 감소",
       "description": "위기 상황에서 역전 가능성을 높여주는 드래곤. 2026 시즌부터 내구도 15% 증가",
       "spawnTime": "5분"
     },

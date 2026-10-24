@@ -209,6 +209,28 @@
   font-weight: 500;
 }
 
+/* 드래곤 영혼 효과 */
+.detail-panel__soul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-secondary);
+}
+
+.detail-panel__soul-label {
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.detail-panel__soul-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+}
+
 .detail-panel__description {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
@@ -247,6 +269,7 @@
   }
 
   .detail-panel__effect,
+  .detail-panel__soul-text,
   .detail-panel__description {
     font-size: var(--font-size-xs);
   }

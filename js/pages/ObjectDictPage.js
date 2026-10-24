@@ -172,6 +172,11 @@ export class ObjectDictPage {
           createElement('span', { className: 'detail-panel__category' }, obj.category)
         ]),
         createElement('p', { className: 'detail-panel__effect' }, obj.effect),
+        // 원소 드래곤: 한 팀이 4마리를 처치하면 얻는 드래곤 영혼 효과
+        obj.soul ? createElement('div', { className: 'detail-panel__soul' }, [
+          createElement('span', { className: 'detail-panel__soul-label' }, '드래곤 영혼 (4마리 처치 시)'),
+          createElement('p', { className: 'detail-panel__soul-text' }, obj.soul)
+        ]) : null,
         createElement('p', { className: 'detail-panel__description' }, obj.description),
         obj.spawnTime ? createElement('p', { className: 'detail-panel__meta' }, `등장 시간: ${obj.spawnTime}`) : null
       ].filter(Boolean))
