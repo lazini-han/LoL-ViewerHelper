@@ -32,6 +32,16 @@
   outline-offset: -2px;
 }
 
+/* 저장된 팀을 불러온 직후 강조 */
+.team-card--applied {
+  animation: team-card-applied 1.2s ease-out;
+}
+
+@keyframes team-card-applied {
+  0%, 40% { box-shadow: 0 0 0 3px var(--color-accent), var(--shadow-md); }
+  100% { box-shadow: var(--shadow-md); }
+}
+
 .team-card__header {
   display: flex;
   justify-content: space-between;
@@ -163,6 +173,50 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+/* 팀 A/B 적용 버튼 */
+.saved-team-item__apply {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.saved-team-item__apply-btn {
+  min-width: 28px;
+  height: 28px;
+  padding: 0 var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.saved-team-item__apply-btn--a {
+  border-color: var(--color-blue-team);
+}
+
+.saved-team-item__apply-btn--b {
+  border-color: var(--color-red-team);
+}
+
+.saved-team-item__apply-btn--a:hover {
+  background-color: var(--color-blue-team);
+  color: white;
+}
+
+.saved-team-item__apply-btn--b:hover {
+  background-color: var(--color-red-team);
+  color: white;
+}
+
+.saved-teams__hint--list {
+  font-size: var(--font-size-xs);
+  margin-bottom: var(--spacing-sm);
 }
 
 .saved-team-item__delete {
@@ -384,5 +438,20 @@
 @media (max-width: 768px) {
   .subs__add {
     padding-left: 0;
+  }
+
+  /* 좁은 화면: 저장된 팀을 한 줄씩, A/B 버튼은 오른쪽 정렬 */
+  .saved-team-item {
+    flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .saved-team-item__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .saved-team-item__players {
+    max-width: none;
   }
 }

@@ -193,6 +193,8 @@ export class TeamSetupPage {
 
     return createElement('div', { className: 'saved-teams' }, [
       header,
+      createElement('p', { className: 'saved-teams__hint saved-teams__hint--list' },
+        'A·B 버튼을 누르거나 팀 카드로 끌어다 놓으세요'),
       createElement('div', { className: 'saved-teams__list', id: 'saved-teams-list' },
         savedTeams.map(team => this.createSavedTeamItem(team))
       )
@@ -223,6 +225,21 @@ export class TeamSetupPage {
         ]),
         createElement('span', { className: 'saved-team-item__players' },
           (playerNames || '선수 미등록') + (subCount ? ` · 후보 ${subCount}` : ''))
+      ]),
+      // 팀 A/B 적용 버튼 (좁은 화면·터치에서도 드래그 없이 불러오기)
+      createElement('div', { className: 'saved-team-item__apply' }, [
+        createElement('button', {
+          type: 'button',
+          className: 'saved-team-item__apply-btn saved-team-item__apply-btn--a',
+          dataset: { applyTeam: team.id, target: 'blueTeam' },
+          title: '팀 A에 불러오기'
+        }, 'A'),
+        createElement('button', {
+          type: 'button',
+          className: 'saved-team-item__apply-btn saved-team-item__apply-btn--b',
+          dataset: { applyTeam: team.id, target: 'redTeam' },
+          title: '팀 B에 불러오기'
+        }, 'B')
       ]),
       createElement('button', {
         className: 'saved-team-item__delete',
@@ -292,6 +309,13 @@ export class TeamSetupPage {
         const teamId = parseInt(e.target.dataset.deleteTeam);
         state.deleteSavedTeam(teamId);
         this.render(document.querySelector('.main'));
+      });
+    });
+
+    // 저장된 팀 A/B 적용 버튼
+    document.querySelectorAll('[data-apply-team]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        this.applySavedTeam(parseInt(btn.dataset.applyTeam), btn.dataset.target);
       });
     });
 
@@ -411,6 +435,42 @@ export class TeamSetupPage {
   }
 
   /**
+   * 저장된 팀을 팀 카드에 적용하고, 적용된 카드를 강조 표시
+   * @param {number} teamId
+   * @param {string} teamKey - 'blueTeam' | 'redTeam'
+   */
+  applySavedTeam(teamId, teamKey) {
+    if (!teamId || !teamKey) return;
+    state.applySavedTeam(teamId, teamKey);
+    this.render(document.querySelector('.main'));
+
+    const card = document.querySelector(`.team-card[data-drop-target="${teamKey}"]`);
+    if (!card) return;
+    card.classList.add('team-card--applied');
+    card.addEventListener('animationend', () => card.classList.remove('team-card--applied'), { once: true });
+
+    // 좁은 화면에서 카드가 화면 밖이면 카드로 스크롤
+    const rect = card.getBoundingClientRect();
+    if (rect.top < 0 || rect.top > window.innerHeight - 80) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  /**
+   * 드래그 중 화면 위·아래 가장자리에 가까우면 페이지 자동 스크롤
+   * @param {DragEvent} e
+   */
+  autoScrollOnDrag(e) {
+    const EDGE = 60;
+    const STEP = 20;
+    if (e.clientY < EDGE) {
+      window.scrollBy(0, -STEP);
+    } else if (e.clientY > window.innerHeight - EDGE) {
+      window.scrollBy(0, STEP);
+    }
+  }
+
+  /**
    * 드래그앤드롭 이벤트 연결
    */
   attachDragEvents() {
@@ -419,17 +479,21 @@ export class TeamSetupPage {
 
     if (!savedTeamsList) return;
 
+    const onDocumentDragOver = (e) => this.autoScrollOnDrag(e);
+
     // 드래그 시작
     savedTeamsList.addEventListener('dragstart', (e) => {
       const item = e.target.closest('.saved-team-item');
       if (item) {
         e.dataTransfer.setData('text/plain', item.dataset.teamId);
         item.classList.add('dragging');
+        document.addEventListener('dragover', onDocumentDragOver);
       }
     });
 
-    // 드래그 종료
+    // 드래그 종료 (드롭 후 다시 렌더링되어도 dragend 는 원래 요소에서 발생)
     savedTeamsList.addEventListener('dragend', (e) => {
+      document.removeEventListener('dragover', onDocumentDragOver);
       const item = e.target.closest('.saved-team-item');
       if (item) {
         item.classList.remove('dragging');
@@ -452,12 +516,7 @@ export class TeamSetupPage {
         card.classList.remove('team-card--drag-over');
 
         const teamId = parseInt(e.dataTransfer.getData('text/plain'));
-        const targetTeamKey = card.dataset.dropTarget;
-
-        if (teamId && targetTeamKey) {
-          state.applySavedTeam(teamId, targetTeamKey);
-          this.render(document.querySelector('.main'));
-        }
+        this.applySavedTeam(teamId, card.dataset.dropTarget);
       });
     });
   }
