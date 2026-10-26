@@ -402,7 +402,12 @@ export class ChampionPickPage {
 
     return createElement('div', {
       className: `champion-slot champion-slot--${team} ${filledClass}`,
-      dataset: { team: teamKey, position: position },
+      dataset: {
+        team: teamKey,
+        position: position,
+        // 호버창용 챔피언 정보 (목록 아이템과 같은 키)
+        ...(champion ? { championId: champion.id, championKey: champion.nameEn, championName: champion.nameKr } : {})
+      },
       draggable: champion ? 'true' : 'false'
     }, [
       createElement('div', { className: 'champion-slot__icon-area' }, [iconArea]),
@@ -436,6 +441,25 @@ export class ChampionPickPage {
     // 드래그를 시작하거나 목록을 스크롤하면 숨김
     grid.addEventListener('dragstart', () => this.tooltip.hide());
     $('.champion-grid-scroll')?.addEventListener('scroll', () => this.tooltip.hide(), { passive: true });
+
+    // 픽된 챔피언 슬롯 (슬롯은 픽이 바뀔 때마다 다시 그려지므로 바깥 영역에 위임)
+    const slotsArea = $('.team-slots-container');
+    if (!slotsArea) return;
+
+    slotsArea.addEventListener('mouseover', (e) => {
+      const icon = e.target.closest('.champion-slot__champion-icon');
+      if (!icon || icon.contains(e.relatedTarget)) return;
+      const { championId, championKey, championName } = icon.closest('.champion-slot').dataset;
+      this.tooltip.showUltimate(icon, Number(championId), championKey, championName);
+    });
+
+    slotsArea.addEventListener('mouseout', (e) => {
+      const icon = e.target.closest('.champion-slot__champion-icon');
+      if (!icon || icon.contains(e.relatedTarget)) return;
+      this.tooltip.hide();
+    });
+
+    slotsArea.addEventListener('dragstart', () => this.tooltip.hide());
   }
 
   /**
@@ -860,6 +884,8 @@ export class ChampionPickPage {
   refreshAll() {
     this.refreshSlots();
     this.refreshBans();
+    // 슬롯이 다시 그려지면 mouseout 이 오지 않으므로, 떠 있던 호버창을 닫음 (슬롯 클릭으로 픽 해제 등)
+    this.tooltip?.hide();
     this.renderChampions($('#champion-search')?.value || '');
     this.reapplyTapSelection();
   }
