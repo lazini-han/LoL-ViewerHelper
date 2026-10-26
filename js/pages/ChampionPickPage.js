@@ -38,6 +38,9 @@ export class ChampionPickPage {
   async render(container) {
     clearElement(container);
 
+    // 탭 선택은 안내 바와 함께 사라지므로 초기화 (보이지 않는 선택이 슬롯 탭에 적용되지 않도록)
+    this.tapSelectedChampion = null;
+
     // 챔피언 데이터 로드
     await championService.load();
 
@@ -161,7 +164,8 @@ export class ChampionPickPage {
     return createElement('div', { className: 'position-filter', id: 'position-filter' },
       POSITIONS.map(position =>
         createElement('button', {
-          className: 'position-filter__btn',
+          // 다른 페이지에 다녀와도 유지된 필터를 버튼에 그대로 표시
+          className: `position-filter__btn ${this.positionFilter.has(position) ? 'position-filter__btn--active' : ''}`,
           type: 'button',
           dataset: { position },
           title: POSITION_NAMES[position]
