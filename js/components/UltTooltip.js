@@ -1,10 +1,11 @@
 /**
- * 호버창 컴포넌트 - 챔피언 궁극기 요약 / 코어 아이템 설명 요약
+ * 호버창 컴포넌트 - 챔피언 한눈에 보기 + 궁극기 요약 / 코어 아이템 설명 요약
  * 경기 화면과 챔피언 선택 화면에서 함께 사용 (스타일: css/match-view.css 의 .ult-tooltip)
  */
 
 import { createElement, clearElement } from '../utils/dom.js';
 import { championService } from '../services/ChampionService.js';
+import { createChampionSummary } from './ChampionSummary.js';
 import { TOOLTIP_SETTING_KEY } from '../utils/constants.js';
 
 // 호버창 사용 여부 (상단바 토글, 모든 페이지 공통). 저장값이 없으면 켜짐
@@ -111,18 +112,30 @@ export class UltTooltip {
     this.token = token;
 
     clearElement(tooltip);
-    tooltip.appendChild(createElement('div', { className: 'ult-tooltip__loading' }, '궁극기 정보 로딩 중...'));
+    tooltip.appendChild(createElement('div', { className: 'ult-tooltip__loading' }, '챔피언 정보 로딩 중...'));
     tooltip.classList.add('ult-tooltip--visible');
     this.position(anchor);
 
-    const summary = await championService.getUltimateSummary(championId);
+    // 한눈에 보기(챔피언 요약)와 궁극기 요약을 함께 로드
+    const [championSummary, summary] = await Promise.all([
+      championService.getChampionSummary(championId),
+      championService.getUltimateSummary(championId)
+    ]);
     // 요약이 없는 챔피언은 상세 정보와 같은 응답(캐시)의 공식 설명으로 대체
     const fallback = summary ? null
       : (await championService.getChampionDetail(championNameEn))?.spells.find(spell => spell.key === 'R');
     if (this.token !== token || !tooltipsEnabled) return;
 
     clearElement(tooltip);
-    const keyLabel = championNameKr ? `${championNameKr} · 궁극기 (R)` : '궁극기 (R)';
+
+    // 한눈에 보기를 먼저, 그 아래에 궁극기 (챔피언 이름은 한눈에 보기 제목에 표시)
+    const overview = createChampionSummary(championSummary,
+      championNameKr ? `${championNameKr} · 한눈에 보기` : '한눈에 보기');
+    if (overview) {
+      overview.classList.add('ult-tooltip__overview');
+      tooltip.appendChild(overview);
+    }
+    const keyLabel = championNameKr && !overview ? `${championNameKr} · 궁극기 (R)` : '궁극기 (R)';
 
     if (summary) {
       tooltip.appendChild(this.createHeader(summary.image, keyLabel, summary.ultName, summary.cooldown));

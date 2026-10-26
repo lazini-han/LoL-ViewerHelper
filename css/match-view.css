@@ -248,6 +248,11 @@
   color: var(--color-accent);
 }
 
+/* 호버창 상단 한눈에 보기 (아래 궁극기와 간격) */
+.ult-tooltip__overview {
+  margin-bottom: var(--spacing-sm);
+}
+
 .ult-tooltip__loading {
   font-size: var(--font-size-xs);
   color: var(--color-text-secondary);

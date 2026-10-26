@@ -52,8 +52,9 @@ PJ.LoL-ViewerHelper/
 │   │
 │   ├── components/               # 재사용 컴포넌트
 │   │   ├── AuthModal.js          # 로그인 모달 (Google/이메일)
+│   │   ├── ChampionSummary.js    # 챔피언 "한눈에 보기" 요약 블록 (경기 화면 상세, 챔피언 호버창 공용)
 │   │   ├── JungleMap.js          # 오브젝트 사전 맵 위치 (소환사의 협곡 미니맵 + 마커)
-│   │   └── UltTooltip.js         # 궁극기 요약 / 코어 아이템 호버창 (경기 화면, 챔피언 선택), 상단바 ON/OFF 설정
+│   │   └── UltTooltip.js         # 챔피언 한눈에 보기 + 궁극기 요약 / 코어 아이템 호버창 (경기 화면, 챔피언 선택), 상단바 ON/OFF 설정
 │   │
 │   ├── services/                 # 데이터 서비스
 │   │   ├── ChampionService.js    # 챔피언 데이터 로딩/검색, 궁극기 요약, 코어 아이템

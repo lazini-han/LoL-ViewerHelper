@@ -7,6 +7,7 @@ import { POSITIONS, POSITION_NAMES, POSITION_ICONS, ROLE_NAMES } from '../utils/
 import { state } from '../state.js';
 import { championService } from '../services/ChampionService.js';
 import { UltTooltip } from '../components/UltTooltip.js';
+import { createChampionSummary } from '../components/ChampionSummary.js';
 
 export class MatchViewPage {
   constructor(router) {
@@ -278,7 +279,7 @@ export class MatchViewPage {
         createElement('span', { className: 'champion-detail__roles' }, roles)
       ]),
       // 초보자용 요약
-      this.createSummary(summary),
+      createChampionSummary(summary),
       // 비디오 플레이어 영역 (처음에는 숨김)
       createElement('div', { className: 'skill-video-player', id: 'skill-video-player' }),
       // 패시브
@@ -329,46 +330,6 @@ export class MatchViewPage {
         build.note ? createElement('p', { className: 'core-items__note' }, build.note) : null
       ]))
     ]);
-  }
-
-  /**
-   * 초보자용 요약 블록 생성
-   * @param {Object|null} summary
-   * @returns {Element|null}
-   */
-  createSummary(summary) {
-    if (!summary) return null;
-
-    const basics = [summary.difficulty ? `난이도 ${summary.difficulty}` : null, summary.attackType, summary.damageType]
-      .filter(Boolean);
-
-    const hasContent = basics.length > 0 || summary.tags.length > 0 || summary.stats.length > 0;
-    if (!hasContent) return null;
-
-    return createElement('div', { className: 'champion-summary' }, [
-      createElement('h4', { className: 'champion-summary__title' }, '한눈에 보기'),
-      basics.length ? createElement('div', { className: 'champion-summary__basics' },
-        basics.map(text => createElement('span', { className: 'champion-summary__badge' }, text))
-      ) : null,
-      summary.tags.length ? createElement('ul', { className: 'champion-summary__tags' },
-        summary.tags.map(tag => createElement('li', { className: 'champion-summary__tag' }, [
-          createElement('span', { className: 'champion-summary__tag-label' }, tag.label),
-          tag.desc ? createElement('span', { className: 'champion-summary__tag-desc' }, tag.desc) : null
-        ].filter(Boolean)))
-      ) : null,
-      summary.stats.length ? createElement('div', { className: 'champion-summary__stats' },
-        summary.stats.map(stat => createElement('div', { className: 'champion-summary__stat' }, [
-          createElement('span', { className: 'champion-summary__stat-label' }, stat.label),
-          createElement('div', { className: 'champion-summary__bar' },
-            Array.from({ length: stat.max }, (_, i) =>
-              createElement('span', {
-                className: `champion-summary__bar-cell ${i < stat.value ? 'champion-summary__bar-cell--on' : ''}`
-              })
-            )
-          )
-        ]))
-      ) : null
-    ].filter(Boolean));
   }
 
   /**
