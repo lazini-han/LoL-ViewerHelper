@@ -135,6 +135,40 @@
   gap: var(--spacing-sm);
 }
 
+/* 팀 마크 */
+/* 검은색 마크(DK, TSW 등)도 보이도록 옅은 밝은 바탕을 깔고, 흰색 마크(G2 등)도 묻히지 않을 정도로 유지 */
+.team-logo {
+  flex-shrink: 0;
+  object-fit: contain;
+  padding: 2px;
+  border-radius: var(--radius-sm);
+  background-color: rgba(255, 255, 255, 0.28);
+}
+
+.saved-team-item__logo {
+  width: 28px;
+  height: 28px;
+}
+
+.team-card__logo {
+  width: 36px;
+  height: 36px;
+  align-self: center;
+}
+
+/* 팀 풀 네임 (약칭 옆 괄호) */
+.saved-team-item__fullname {
+  margin-left: 4px;
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
+.team-card__fullname {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
 /* 리그별 묶음 */
 .saved-teams__groups {
   display: flex;
@@ -280,6 +314,7 @@
   background-color: var(--color-bg-secondary);
 }
 
+.saved-team-item--inactive .saved-team-item__logo,
 .saved-team-item--inactive .saved-team-item__info,
 .saved-team-item--inactive .saved-team-item__apply {
   opacity: 0.35;

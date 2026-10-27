@@ -153,7 +153,7 @@ PJ.LoL-ViewerHelper/
 
 | 파일 | 역할 | 주요 기능 |
 |------|------|----------|
-| `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력, 비우기, 후보 선수 교체/추가/삭제, 리그·국가 태그, 롤드컵 팀 불러오기 (같은 이름은 팀별로 덮어쓸지 선택), 저장된 팀 A·B 버튼/드래그로 적용 (드래그 중 자동 스크롤), 저장된 팀 리그별 묶음, 국가 국기 아이콘, 저장된 팀 비활성화 토글 |
+| `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력, 비우기, 후보 선수 교체/추가/삭제, 리그·국가 태그, 롤드컵 팀 불러오기 (같은 이름은 팀별로 덮어쓸지 선택), 저장된 팀 A·B 버튼/드래그로 적용 (드래그 중 자동 스크롤), 저장된 팀 리그별 묶음, 국가 국기 아이콘, 저장된 팀 비활성화 토글, 팀 마크·풀 네임 표시 |
 | `ChampionPickPage.js` | 챔피언 할당 | 드래그앤드롭, 검색, 글로벌 밴, 진영 교환, 팀별 포지션 순서 뒤집기, 초기화, 포지션 아이콘, 자음 인덱스, 초상화 호버 시 궁극기 요약 |
 | `MatchViewPage.js` | 경기 정보 표시 | 역할 태그, 초상화 호버 시 궁극기 요약, 챔피언 클릭 시 상세 정보·스킬 비디오·코어 아이템 |
 | `ObjectDictPage.js` | 오브젝트 사전 | 분류 필터, 검색, 드래곤 스코어보드 아이콘 |
@@ -187,7 +187,7 @@ PJ.LoL-ViewerHelper/
 | `build-ultimates.mjs` | 조사 결과 + Data Dragon 으로 `ultimates.json/.md` 생성 (`node tools/build-ultimates.mjs <조사 결과 폴더>`) |
 | `build-core-items.mjs` | 조사 결과의 아이템 ID 검증, 호버창용 아이템 설명 요약 정리 후 `core-items.json/.md` 생성 |
 | `build-stacks.mjs` | 조사 결과에 공식 이름·아이콘을 채워 `stacks.json/.md` 생성 |
-| `build-teams.mjs` | Leaguepedia 에서 대회 로스터·최근 경기 출전 선수·소속 선수·연고 국가를 조회해 `teams.json/.md` 생성 (`node tools/build-teams.mjs [대회명]`) |
+| `build-teams.mjs` | Leaguepedia 에서 대회 로스터·최근 경기 출전 선수·소속 선수·연고 국가·팀 마크를 조회해 `teams.json/.md` 생성 (`node tools/build-teams.mjs [대회명]`) |
 
 > `dom.js` (유틸리티): `$`, `$$`, `createElement`, `clearElement`
 

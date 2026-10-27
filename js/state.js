@@ -33,12 +33,14 @@ function createDefaultTeam() {
 
 /**
  * 저장된 팀 데이터를 현재 팀 형식으로 복사
- * @param {Object} team - { name, players, subs?, region?, country? }
+ * @param {Object} team - { name, players, subs?, fullName?, logo?, region?, country? }
  * @returns {Object}
  */
 function toTeamData(team) {
   return {
     name: team.name,
+    ...(team.fullName ? { fullName: team.fullName } : {}),
+    ...(team.logo ? { logo: team.logo } : {}),
     players: POSITIONS.map(position => ({
       position,
       name: team.players?.find(p => p.position === position)?.name || ''

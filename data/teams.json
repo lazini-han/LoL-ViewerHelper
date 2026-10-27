@@ -5,6 +5,7 @@
     {
       "name": "DK",
       "fullName": "Dplus Kia",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/1/1b/Dplus_Kialogo_square.png/revision/latest/scale-to-width-down/64?cb=20230512050104",
       "region": "LCK",
       "country": "한국",
       "stage": "main",
@@ -38,6 +39,7 @@
     {
       "name": "Gen.G",
       "fullName": "Gen.G",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/e/e3/Gen.Glogo_square.png/revision/latest/scale-to-width-down/64?cb=20260114104755",
       "region": "LCK",
       "country": "한국",
       "stage": "main",
@@ -71,6 +73,7 @@
     {
       "name": "HLE",
       "fullName": "Hanwha Life Esports",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/a/a6/Hanwha_Life_Esportslogo_square.png/revision/latest/scale-to-width-down/64?cb=20211024145058",
       "region": "LCK",
       "country": "한국",
       "stage": "main",
@@ -104,6 +107,7 @@
     {
       "name": "T1",
       "fullName": "T1",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/a/a2/T1logo_square.png/revision/latest/scale-to-width-down/64?cb=20230512040747",
       "region": "LCK",
       "country": "한국",
       "stage": "main",
@@ -137,6 +141,7 @@
     {
       "name": "AL",
       "fullName": "Anyone's Legend",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/2/25/Anyone%27s_Legendlogo_square.png/revision/latest/scale-to-width-down/64?cb=20260313180255",
       "region": "LPL",
       "country": "중국",
       "stage": "main",
@@ -170,6 +175,7 @@
     {
       "name": "BLG",
       "fullName": "Bilibili Gaming",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/9/91/Bilibili_Gaminglogo_square.png/revision/latest/scale-to-width-down/64?cb=20260109092043",
       "region": "LPL",
       "country": "중국",
       "stage": "main",
@@ -212,6 +218,7 @@
     {
       "name": "IG",
       "fullName": "Invictus Gaming",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/e/e4/Invictus_Gaminglogo_square.png/revision/latest/scale-to-width-down/64?cb=20220121030730",
       "region": "LPL",
       "country": "중국",
       "stage": "main",
@@ -250,6 +257,7 @@
     {
       "name": "TES",
       "fullName": "Top Esports",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/4/46/Top_Esportslogo_square.png/revision/latest/scale-to-width-down/64?cb=20260109111428",
       "region": "LPL",
       "country": "중국",
       "stage": "main",
@@ -288,6 +296,7 @@
     {
       "name": "G2",
       "fullName": "G2 Esports",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/7/77/G2_Esportslogo_square.png/revision/latest/scale-to-width-down/64?cb=20210810013355",
       "region": "LEC",
       "country": "독일",
       "stage": "main",
@@ -326,6 +335,7 @@
     {
       "name": "KC",
       "fullName": "Karmine Corp",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/2/2d/Karmine_Corplogo_square.png/revision/latest/scale-to-width-down/64?cb=20260110072726",
       "region": "LEC",
       "country": "프랑스",
       "stage": "main",
@@ -359,6 +369,7 @@
     {
       "name": "MKOI",
       "fullName": "Movistar KOI",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/b/bd/Movistar_KOIlogo_square.png/revision/latest/scale-to-width-down/64?cb=20240528162718",
       "region": "LEC",
       "country": "스페인",
       "stage": "main",
@@ -392,6 +403,7 @@
     {
       "name": "LYON",
       "fullName": "LYON",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/5/54/LYON_%282024_American_Team%29logo_square.png/revision/latest/scale-to-width-down/64?cb=20250109185221",
       "region": "LCS",
       "country": "미국",
       "stage": "main",
@@ -430,6 +442,7 @@
     {
       "name": "TL",
       "fullName": "Team Liquid",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/f/f4/Team_Liquidlogo_square.png/revision/latest/scale-to-width-down/64?cb=20251229063951",
       "region": "LCS",
       "country": "미국",
       "stage": "main",
@@ -463,6 +476,7 @@
     {
       "name": "LØS",
       "fullName": "LØS",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/b/bc/L%C3%98Slogo_square.png/revision/latest/scale-to-width-down/64?cb=20261020181138",
       "region": "CBLOL",
       "country": "브라질",
       "stage": "main",
@@ -496,6 +510,7 @@
     {
       "name": "CFO",
       "fullName": "CTBC Flying Oyster",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/b/bb/CTBC_Flying_Oysterlogo_square.png/revision/latest/scale-to-width-down/64?cb=20221014011338",
       "region": "LCP",
       "country": "대만",
       "stage": "main",
@@ -529,6 +544,7 @@
     {
       "name": "TSW",
       "fullName": "Team Secret Whales",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/a/ac/Team_Secret_Whaleslogo_square.png/revision/latest/scale-to-width-down/64?cb=20260330071358",
       "region": "LCP",
       "country": "베트남",
       "stage": "main",
@@ -562,6 +578,7 @@
     {
       "name": "C9",
       "fullName": "Cloud9",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/8/88/Cloud9logo_square.png/revision/latest/scale-to-width-down/64?cb=20230426052413",
       "region": "LCS",
       "country": "미국",
       "stage": "playin",
@@ -595,6 +612,7 @@
     {
       "name": "FURIA",
       "fullName": "FURIA",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/f/f2/FURIAlogo_square.png/revision/latest/scale-to-width-down/64?cb=20211007041545",
       "region": "CBLOL",
       "country": "브라질",
       "stage": "playin",
@@ -628,6 +646,7 @@
     {
       "name": "MVK",
       "fullName": "MVK Esports",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/1/1f/MVK_Esportslogo_square.png/revision/latest/scale-to-width-down/64?cb=20260114112326",
       "region": "LCP",
       "country": "베트남",
       "stage": "playin",

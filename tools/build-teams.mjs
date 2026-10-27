@@ -6,6 +6,7 @@
  *   - ScoreboardPlayers: 경기별 출전 선수 → 가장 최근 경기 라인업을 주전으로 사용
  *   - Players: 현재 팀 소속 선수 → 주전이 아닌 선수는 후보
  *   - Teams: 팀 연고 국가
+ *   - 팀 마크: MediaWiki API (imageinfo) 로 "<팀>logo square.png" 이미지 주소
  *
  * 사용법: node tools/build-teams.mjs [대회 OverviewPage]
  *   기본값: "2026 Season World Championship"
@@ -117,6 +118,29 @@ const teamInfo = await cargo({
   fields: 'Name,Location,TeamLocation',
   where: `Name IN (${quoteList(teamNames)})`
 });
+// 팀 마크: Leaguepedia "<팀>logo square.png" 파일 (원본이 커서 64px 썸네일 주소로 저장)
+async function fetchLogos(names) {
+  const logos = {};
+  for (let i = 0; i < names.length; i += 40) {
+    const titles = names.slice(i, i + 40).map(name => `File:${name}logo square.png`);
+    const query = new URLSearchParams({ action: 'query', titles: titles.join('|'), prop: 'imageinfo', iiprop: 'url', format: 'json' });
+    const res = await fetch(`https://lol.fandom.com/api.php?${query}`, { headers: { 'User-Agent': 'Mozilla/5.0' } });
+    if (!res.ok) throw new Error(`Leaguepedia 팀 마크 조회 실패: HTTP ${res.status}`);
+    const data = await res.json();
+    // 조회한 제목이 정규화되면(공백 등) normalized 목록으로 원래 이름을 찾음
+    const original = new Map((data.query.normalized || []).map(n => [n.to, n.from]));
+    for (const page of Object.values(data.query.pages)) {
+      const url = page.imageinfo?.[0]?.url;
+      if (!url) continue;
+      const title = original.get(page.title) || page.title;
+      const name = title.replace(/^File:/, '').replace(/logo square\.png$/, '');
+      logos[name] = url.replace('/revision/latest', '/revision/latest/scale-to-width-down/64');
+    }
+  }
+  return logos;
+}
+const logos = await fetchLogos(teamNames);
+
 const countryOf = team => {
   const info = teamInfo.find(t => t.Name === team);
   const country = COUNTRY_OVERRIDES[team] || info?.TeamLocation || info?.Location || '';
@@ -159,6 +183,7 @@ for (const team of teamNames) {
   teams.push({
     name: TEAM_NAMES[team] || team,
     fullName: team.replace(/\s*\(.*\)$/, ''),
+    logo: logos[team] || '',
     region: REGION_NAMES[info.region] || info.region,
     country: countryOf(team),
     stage: info.stage,
@@ -212,6 +237,7 @@ writeFileSync(MD_PATH, lines.join('\n'), 'utf8');
 console.log(`대회: ${EVENT}`);
 console.log(`작성한 팀: ${teams.length}개 (본선 ${teams.filter(t => t.stage === 'main').length})`);
 console.log(`국가 없음: ${teams.filter(t => !t.country).map(t => t.name).join(', ') || '없음'}`);
+console.log(`팀 마크 없음: ${teams.filter(t => !t.logo).map(t => t.name).join(', ') || '없음'}`);
 console.log(`경기 기록 없음: ${missing.join(', ') || '없음'}`);
 console.log(`주전 5명이 아닌 팀: ${invalid.map(t => t.name).join(', ') || '없음'}`);
 console.log(`후보: ${teams.filter(t => t.subs.length).map(t => `${t.name}(${t.subs.map(s => s.name).join(', ')})`).join(' / ') || '없음'}`);

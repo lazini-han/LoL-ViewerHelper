@@ -29,6 +29,48 @@ export class TeamSetupPage {
 
     container.appendChild(page);
     this.attachEvents();
+
+    // 팀 마크·풀 네임이 없는 팀(이전에 저장한 팀 등)은 롤드컵 팀 데이터에서 이름으로 찾아 표시
+    if (!this.proTeams) this.loadProTeams(container);
+  }
+
+  /**
+   * 롤드컵 팀 데이터를 이름별로 불러온 뒤 한 번 다시 그림
+   * @param {Element} container
+   */
+  async loadProTeams(container) {
+    const data = await teamService.load();
+    this.proTeams = new Map((data?.teams || []).map(team => [team.name, team]));
+    if (this.proTeams.size > 0 && container.querySelector('.team-setup')) {
+      this.render(container);
+    }
+  }
+
+  /**
+   * 팀 마크·풀 네임 (팀에 저장된 값 우선)
+   * @param {Object} team
+   * @returns {{ fullName: string, logo: string }}
+   */
+  getTeamIdentity(team) {
+    const pro = this.proTeams?.get(team.name);
+    const fullName = team.fullName || pro?.fullName || '';
+    return {
+      fullName: fullName && fullName !== team.name ? fullName : '', // 약칭과 같으면 생략
+      logo: team.logo || pro?.logo || ''
+    };
+  }
+
+  /**
+   * 팀 마크 이미지 (불러오지 못하면 숨김)
+   * @param {string} logo
+   * @param {string} className
+   * @returns {Element|null}
+   */
+  createTeamLogo(logo, className) {
+    if (!logo) return null;
+    const img = createElement('img', { className: `team-logo ${className}`, src: logo, alt: '', loading: 'lazy' });
+    img.onerror = () => img.remove();
+    return img;
   }
 
   /**
@@ -52,6 +94,7 @@ export class TeamSetupPage {
    */
   createTeamCard(side, teamKey, teamData) {
     const sideLabel = side === 'left' ? '팀 A' : '팀 B';
+    const identity = this.getTeamIdentity(teamData);
 
     return createElement('div', {
       className: `team-card`,
@@ -61,6 +104,7 @@ export class TeamSetupPage {
       createElement('div', { className: 'team-card__header' }, [
         createElement('div', { className: 'team-card__title' }, [
           createElement('label', { className: 'team-card__label' }, sideLabel),
+          identity.fullName ? createElement('span', { className: 'team-card__fullname' }, `(${identity.fullName})`) : null,
           this.createTeamTags(teamData)
         ]),
         createElement('button', {
@@ -71,6 +115,7 @@ export class TeamSetupPage {
       ]),
       // 팀 이름 입력
       createElement('div', { className: 'team-card__name-row' }, [
+        this.createTeamLogo(identity.logo, 'team-card__logo'),
         createElement('input', {
           type: 'text',
           className: 'input team-card__input',
@@ -261,15 +306,18 @@ export class TeamSetupPage {
       .map(p => p.name)
       .join(', ');
     const subCount = team.subs?.length || 0;
+    const identity = this.getTeamIdentity(team);
 
     return createElement('div', {
       className: `saved-team-item ${team.inactive ? 'saved-team-item--inactive' : ''}`,
       draggable: 'true',
       dataset: { teamId: team.id }
     }, [
+      this.createTeamLogo(identity.logo, 'saved-team-item__logo'),
       createElement('div', { className: 'saved-team-item__info' }, [
         createElement('span', { className: 'saved-team-item__name' }, [
           createElement('span', {}, team.name),
+          identity.fullName ? createElement('span', { className: 'saved-team-item__fullname' }, `(${identity.fullName})`) : null,
           this.createTeamTags(team, false) // 리그는 묶음 제목에 표시
         ]),
         createElement('span', { className: 'saved-team-item__players' },
