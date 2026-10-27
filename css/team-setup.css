@@ -151,12 +151,19 @@
 
 .saved-teams__group-title {
   display: flex;
+  flex-wrap: wrap;
   align-items: baseline;
   gap: var(--spacing-xs);
   margin-bottom: var(--spacing-xs);
   font-size: var(--font-size-sm);
   font-weight: 700;
   color: var(--color-accent);
+}
+
+.saved-teams__group-fullname {
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-text);
 }
 
 .saved-teams__group-count {

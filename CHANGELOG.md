@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.14.1] - 2026-10-28
+
+### Changed
+
+- **팀 설정 - 리그 묶음 제목에 리그 풀 네임 표시**: `LCK (League of Legends Champions Korea) 4팀` 형식
+  - 풀 네임은 `LEAGUE_FULL_NAMES` (`js/utils/constants.js`), 등록되지 않은 리그는 약칭만 표시
+
+---
+
 ## [0.14.0] - 2026-10-28
 
 ### Added

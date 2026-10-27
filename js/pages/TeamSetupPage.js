@@ -3,7 +3,7 @@
  */
 
 import { $, createElement, clearElement } from '../utils/dom.js';
-import { POSITIONS, POSITION_NAMES, FLAG_ICON_BASE, COUNTRY_FLAG_CODES, LEAGUE_ORDER } from '../utils/constants.js';
+import { POSITIONS, POSITION_NAMES, FLAG_ICON_BASE, COUNTRY_FLAG_CODES, LEAGUE_ORDER, LEAGUE_FULL_NAMES } from '../utils/constants.js';
 import { state } from '../state.js';
 import { teamService } from '../services/TeamService.js';
 
@@ -237,6 +237,9 @@ export class TeamSetupPage {
         this.groupTeamsByLeague(savedTeams).map(group => createElement('section', { className: 'saved-teams__group' }, [
           createElement('h4', { className: 'saved-teams__group-title' }, [
             createElement('span', {}, group.league || '기타'),
+            LEAGUE_FULL_NAMES[group.league]
+              ? createElement('span', { className: 'saved-teams__group-fullname' }, `(${LEAGUE_FULL_NAMES[group.league]})`)
+              : null,
             createElement('span', { className: 'saved-teams__group-count' }, `${group.teams.length}팀`)
           ]),
           createElement('div', { className: 'saved-teams__list' },

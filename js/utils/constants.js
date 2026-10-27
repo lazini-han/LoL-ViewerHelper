@@ -70,3 +70,19 @@ export const COUNTRY_FLAG_CODES = {
 
 // 저장된 팀 리그별 묶음 순서 (목록에 없는 리그는 그 뒤 이름순, 리그가 없는 팀은 맨 끝)
 export const LEAGUE_ORDER = ['LCK', 'LPL', 'LEC', 'LCS', 'LCP', 'CBLOL'];
+
+// 리그 풀 네임 (리그별 묶음 제목에 괄호로 표시)
+export const LEAGUE_FULL_NAMES = {
+  LCK: 'League of Legends Champions Korea',
+  LPL: 'League of Legends Pro League',
+  LEC: 'League of Legends EMEA Championship',
+  LCS: 'League of Legends Championship Series',
+  LCP: 'League of Legends Championship Pacific',
+  CBLOL: 'Campeonato Brasileiro de League of Legends',
+  LTA: 'League of Legends Championship of The Americas',
+  LJL: 'League of Legends Japan League',
+  VCS: 'Vietnam Championship Series',
+  PCS: 'Pacific Championship Series',
+  LLA: 'Liga Latinoamérica',
+  TCL: 'Turkish Championship League'
+};
