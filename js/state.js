@@ -666,6 +666,7 @@ class State {
     const existingIndex = this.savedTeams.findIndex(t => t.name === team.name);
     if (existingIndex !== -1) {
       teamData.id = this.savedTeams[existingIndex].id;
+      if (this.savedTeams[existingIndex].inactive) teamData.inactive = true; // 비활성 상태 유지
       this.savedTeams[existingIndex] = teamData;
     } else {
       this.savedTeams.push(teamData);
@@ -681,6 +682,22 @@ class State {
    */
   deleteSavedTeam(teamId) {
     this.savedTeams = this.savedTeams.filter(t => t.id !== teamId);
+    this.saveSavedTeams();
+  }
+
+  /**
+   * 저장된 팀 비활성화 켜기/끄기 (탈락 팀 등을 목록에서 어둡게 표시)
+   * @param {number} teamId
+   */
+  toggleSavedTeamInactive(teamId) {
+    const savedTeam = this.savedTeams.find(t => t.id === teamId);
+    if (!savedTeam) return;
+
+    if (savedTeam.inactive) {
+      delete savedTeam.inactive;
+    } else {
+      savedTeam.inactive = true;
+    }
     this.saveSavedTeams();
   }
 
@@ -715,7 +732,11 @@ class State {
         this.savedTeams.push({ id: nextId++, ...toTeamData(team) });
         result.added++;
       } else if (overwriteNames.has(team.name)) {
-        this.savedTeams[index] = { id: this.savedTeams[index].id, ...toTeamData(team) };
+        this.savedTeams[index] = {
+          id: this.savedTeams[index].id,
+          ...toTeamData(team),
+          ...(this.savedTeams[index].inactive ? { inactive: true } : {}) // 비활성 상태 유지
+        };
         result.overwritten++;
       } else {
         result.skipped++;

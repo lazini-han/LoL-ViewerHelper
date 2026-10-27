@@ -263,7 +263,7 @@ export class TeamSetupPage {
     const subCount = team.subs?.length || 0;
 
     return createElement('div', {
-      className: 'saved-team-item',
+      className: `saved-team-item ${team.inactive ? 'saved-team-item--inactive' : ''}`,
       draggable: 'true',
       dataset: { teamId: team.id }
     }, [
@@ -290,6 +290,14 @@ export class TeamSetupPage {
           title: '팀 B에 불러오기'
         }, 'B')
       ]),
+      // 비활성화 토글 (눌린 상태면 팀을 어둡게 표시)
+      createElement('button', {
+        type: 'button',
+        className: `saved-team-item__toggle ${team.inactive ? 'saved-team-item__toggle--on' : ''}`,
+        dataset: { toggleInactive: team.id },
+        'aria-pressed': team.inactive ? 'true' : 'false',
+        title: team.inactive ? '다시 활성화' : '팀 비활성화 (어둡게 표시)'
+      }, '비활성'),
       createElement('button', {
         className: 'saved-team-item__delete',
         dataset: { deleteTeam: team.id },
@@ -365,6 +373,14 @@ export class TeamSetupPage {
     document.querySelectorAll('[data-apply-team]').forEach(btn => {
       btn.addEventListener('click', () => {
         this.applySavedTeam(parseInt(btn.dataset.applyTeam), btn.dataset.target);
+      });
+    });
+
+    // 저장된 팀 비활성화 토글
+    document.querySelectorAll('[data-toggle-inactive]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.toggleSavedTeamInactive(parseInt(btn.dataset.toggleInactive));
+        this.render(document.querySelector('.main'));
       });
     });
 

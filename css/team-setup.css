@@ -251,6 +251,41 @@
   color: white;
 }
 
+/* 비활성화 토글 */
+.saved-team-item__toggle {
+  height: 28px;
+  padding: 0 var(--spacing-xs);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.saved-team-item__toggle:hover {
+  color: var(--color-text);
+}
+
+.saved-team-item__toggle--on {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* 비활성화된 팀: 토글 버튼만 남기고 어둡게 */
+.saved-team-item--inactive {
+  background-color: var(--color-bg-secondary);
+}
+
+.saved-team-item--inactive .saved-team-item__info,
+.saved-team-item--inactive .saved-team-item__apply {
+  opacity: 0.35;
+  filter: grayscale(1);
+}
+
 .saved-teams__hint--list {
   font-size: var(--font-size-xs);
   margin-bottom: var(--spacing-sm);
