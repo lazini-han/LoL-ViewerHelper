@@ -135,6 +135,36 @@
   gap: var(--spacing-sm);
 }
 
+/* 리그별 묶음 */
+.saved-teams__groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.saved-teams__group {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+}
+
+.saved-teams__group-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.saved-teams__group-count {
+  font-size: var(--font-size-xs);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+}
+
 /* 저장된 팀 아이템 */
 .saved-team-item {
   display: flex;
@@ -246,6 +276,19 @@
   gap: 4px;
   margin-left: 6px;
   vertical-align: middle;
+}
+
+.team-tag--country {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.team-tag__flag {
+  width: 14px;
+  height: 10px;
+  border-radius: 1px;
+  object-fit: cover;
 }
 
 .team-tag {

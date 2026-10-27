@@ -3,7 +3,7 @@
  */
 
 import { $, createElement, clearElement } from '../utils/dom.js';
-import { POSITIONS, POSITION_NAMES } from '../utils/constants.js';
+import { POSITIONS, POSITION_NAMES, FLAG_ICON_BASE, COUNTRY_FLAG_CODES, LEAGUE_ORDER } from '../utils/constants.js';
 import { state } from '../state.js';
 import { teamService } from '../services/TeamService.js';
 
@@ -94,16 +94,53 @@ export class TeamSetupPage {
   }
 
   /**
-   * 소속 리그·국가 태그 생성
+   * 소속 리그·국가 태그 생성 (국가는 이름 옆에 국기 표시)
    * @param {Object} team - { region?, country? }
+   * @param {boolean} [showRegion=true] - 리그별 묶음 안에서는 리그 태그 생략
    * @returns {Element|null}
    */
-  createTeamTags(team) {
-    const tags = [team.region, team.country].filter(Boolean);
+  createTeamTags(team, showRegion = true) {
+    const tags = [];
+    if (showRegion && team.region) {
+      tags.push(createElement('span', { className: 'team-tag' }, team.region));
+    }
+    if (team.country) {
+      const flagCode = COUNTRY_FLAG_CODES[team.country];
+      tags.push(createElement('span', { className: 'team-tag team-tag--country' }, [
+        flagCode ? createElement('img', {
+          className: 'team-tag__flag',
+          src: `${FLAG_ICON_BASE}/${flagCode}.svg`,
+          alt: '',
+          loading: 'lazy'
+        }) : null,
+        createElement('span', {}, team.country)
+      ]));
+    }
     if (tags.length === 0) return null;
-    return createElement('span', { className: 'team-tags' },
-      tags.map(tag => createElement('span', { className: 'team-tag' }, tag))
-    );
+    return createElement('span', { className: 'team-tags' }, tags);
+  }
+
+  /**
+   * 저장된 팀을 리그별로 묶기
+   * @param {Array} teams
+   * @returns {Array<{ league: string, teams: Array }>} LEAGUE_ORDER 순, 그 외 리그는 이름순, 리그 없음은 맨 끝
+   */
+  groupTeamsByLeague(teams) {
+    const groups = new Map();
+    teams.forEach(team => {
+      const league = team.region || '';
+      if (!groups.has(league)) groups.set(league, []);
+      groups.get(league).push(team);
+    });
+
+    const rank = league => {
+      if (!league) return Infinity;
+      const index = LEAGUE_ORDER.indexOf(league);
+      return index === -1 ? LEAGUE_ORDER.length : index;
+    };
+    return [...groups.keys()]
+      .sort((a, b) => rank(a) - rank(b) || a.localeCompare(b))
+      .map(league => ({ league, teams: groups.get(league) }));
   }
 
   /**
@@ -195,8 +232,17 @@ export class TeamSetupPage {
       header,
       createElement('p', { className: 'saved-teams__hint saved-teams__hint--list' },
         'A·B 버튼을 누르거나 팀 카드로 끌어다 놓으세요'),
-      createElement('div', { className: 'saved-teams__list', id: 'saved-teams-list' },
-        savedTeams.map(team => this.createSavedTeamItem(team))
+      // 리그별 컨테이너로 묶어 표시
+      createElement('div', { className: 'saved-teams__groups', id: 'saved-teams-list' },
+        this.groupTeamsByLeague(savedTeams).map(group => createElement('section', { className: 'saved-teams__group' }, [
+          createElement('h4', { className: 'saved-teams__group-title' }, [
+            createElement('span', {}, group.league || '기타'),
+            createElement('span', { className: 'saved-teams__group-count' }, `${group.teams.length}팀`)
+          ]),
+          createElement('div', { className: 'saved-teams__list' },
+            group.teams.map(team => this.createSavedTeamItem(team))
+          )
+        ]))
       )
     ]);
   }
@@ -221,7 +267,7 @@ export class TeamSetupPage {
       createElement('div', { className: 'saved-team-item__info' }, [
         createElement('span', { className: 'saved-team-item__name' }, [
           createElement('span', {}, team.name),
-          this.createTeamTags(team)
+          this.createTeamTags(team, false) // 리그는 묶음 제목에 표시
         ]),
         createElement('span', { className: 'saved-team-item__players' },
           (playerNames || '선수 미등록') + (subCount ? ` · 후보 ${subCount}` : ''))
