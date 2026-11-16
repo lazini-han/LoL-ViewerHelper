@@ -1,6 +1,9 @@
 {
   "event": "2026 Season World Championship",
-  "updated": "2026-10-24",
+  "leagueEvents": [
+    "LCK/2026 Season/Rounds 3-4"
+  ],
+  "updated": "2026-11-16",
   "teams": [
     {
       "name": "DK",
@@ -37,7 +40,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-11-06",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -76,7 +79,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-11-14",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -115,7 +118,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-10-31",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -154,7 +157,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-11-09",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -193,7 +196,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-10-26",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -243,7 +246,7 @@
           "nationality": "중국"
         }
       ],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-11-14",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -288,7 +291,7 @@
           "nationality": "중국"
         }
       ],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-11-08",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -333,7 +336,7 @@
           "nationality": "중국"
         }
       ],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-11-04",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -378,7 +381,7 @@
           "nationality": "독일"
         }
       ],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-10-31",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -417,7 +420,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-11-07",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -456,7 +459,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-10-31",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -501,7 +504,7 @@
           "nationality": "한국"
         }
       ],
-      "lastMatch": "2026-10-24",
+      "lastMatch": "2026-11-04",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -540,7 +543,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-10-30",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -579,7 +582,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-10-31",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -618,7 +621,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-23",
+      "lastMatch": "2026-10-29",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -657,7 +660,7 @@
         }
       ],
       "subs": [],
-      "lastMatch": "2026-10-24",
+      "lastMatch": "2026-10-26",
       "lastMatchEvent": "2026 Season World Championship/Main Event",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FMain_Event"
     },
@@ -783,6 +786,257 @@
       "lastMatch": "2026-10-18",
       "lastMatchEvent": "2026 Season World Championship/Play-In",
       "source": "https://lol.fandom.com/wiki/2026_Season_World_Championship%2FPlay-In"
+    },
+    {
+      "name": "BFX",
+      "fullName": "BNK FEARX",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/5/5b/BNK_FEARXlogo_square.png/revision/latest/scale-to-width-down/64?cb=20260102063007",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "league",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Clear",
+          "nationality": "한국"
+        },
+        {
+          "position": "JG",
+          "name": "Raptor",
+          "nationality": "한국"
+        },
+        {
+          "position": "MID",
+          "name": "VicLa",
+          "nationality": "한국"
+        },
+        {
+          "position": "ADC",
+          "name": "Taeyoon",
+          "nationality": "한국"
+        },
+        {
+          "position": "SUP",
+          "name": "Kellin",
+          "nationality": "한국"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-09-03",
+      "lastMatchEvent": "LCK/2026 Season/Season Playoffs",
+      "source": "https://lol.fandom.com/wiki/LCK%2F2026_Season%2FSeason_Playoffs"
+    },
+    {
+      "name": "BRO",
+      "fullName": "HANJIN BRION",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/c/cf/BRIONlogo_square.png/revision/latest/scale-to-width-down/64?cb=20260310010332",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "league",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Casting",
+          "nationality": "한국"
+        },
+        {
+          "position": "JG",
+          "name": "GIDEON",
+          "nationality": "한국"
+        },
+        {
+          "position": "MID",
+          "name": "Roamer",
+          "nationality": "한국"
+        },
+        {
+          "position": "ADC",
+          "name": "Teddy",
+          "nationality": "한국"
+        },
+        {
+          "position": "SUP",
+          "name": "Namgung",
+          "nationality": "한국"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-08-28",
+      "lastMatchEvent": "LCK/2026 Season/Season Play-In",
+      "source": "https://lol.fandom.com/wiki/LCK%2F2026_Season%2FSeason_Play-In"
+    },
+    {
+      "name": "DNS",
+      "fullName": "DN SOOPers",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/8/8c/DN_SOOPerslogo_square.png/revision/latest/scale-to-width-down/64?cb=20251222013110",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "league",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "DuDu",
+          "nationality": "한국"
+        },
+        {
+          "position": "JG",
+          "name": "Sharvel",
+          "nationality": "한국"
+        },
+        {
+          "position": "MID",
+          "name": "Clozer",
+          "nationality": "한국"
+        },
+        {
+          "position": "ADC",
+          "name": "deokdam",
+          "nationality": "한국"
+        },
+        {
+          "position": "SUP",
+          "name": "Peter",
+          "nationality": "한국"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-08-22",
+      "lastMatchEvent": "LCK/2026 Season/Rounds 3-4",
+      "source": "https://lol.fandom.com/wiki/LCK%2F2026_Season%2FRounds_3-4"
+    },
+    {
+      "name": "DRX",
+      "fullName": "Kiwoom DRX",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/a/a0/Kiwoom_DRXlogo_square.png/revision/latest/scale-to-width-down/64?cb=20260327112816",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "league",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Frog",
+          "nationality": "한국"
+        },
+        {
+          "position": "JG",
+          "name": "Willer",
+          "nationality": "한국"
+        },
+        {
+          "position": "MID",
+          "name": "Ucal",
+          "nationality": "한국"
+        },
+        {
+          "position": "ADC",
+          "name": "Aiming",
+          "nationality": "한국"
+        },
+        {
+          "position": "SUP",
+          "name": "Minous",
+          "nationality": "한국"
+        }
+      ],
+      "subs": [
+        {
+          "position": "ADC",
+          "name": "LazyFeel",
+          "nationality": "베트남"
+        },
+        {
+          "position": "SUP",
+          "name": "Andil",
+          "nationality": "한국"
+        }
+      ],
+      "lastMatch": "2026-08-22",
+      "lastMatchEvent": "LCK/2026 Season/Rounds 3-4",
+      "source": "https://lol.fandom.com/wiki/LCK%2F2026_Season%2FRounds_3-4"
+    },
+    {
+      "name": "KT",
+      "fullName": "KT Rolster",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/f/f8/KT_Rolsterlogo_square.png/revision/latest/scale-to-width-down/64?cb=20260120102002",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "league",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "PerfecT",
+          "nationality": "한국"
+        },
+        {
+          "position": "JG",
+          "name": "Cuzz",
+          "nationality": "한국"
+        },
+        {
+          "position": "MID",
+          "name": "Bdd",
+          "nationality": "한국"
+        },
+        {
+          "position": "ADC",
+          "name": "Jiwoo",
+          "nationality": "한국"
+        },
+        {
+          "position": "SUP",
+          "name": "Effort",
+          "nationality": "한국"
+        }
+      ],
+      "subs": [
+        {
+          "position": "ADC",
+          "name": "FenRir",
+          "nationality": "한국"
+        }
+      ],
+      "lastMatch": "2026-09-04",
+      "lastMatchEvent": "LCK/2026 Season/Season Playoffs",
+      "source": "https://lol.fandom.com/wiki/LCK%2F2026_Season%2FSeason_Playoffs"
+    },
+    {
+      "name": "NS",
+      "fullName": "Nongshim RedForce",
+      "logo": "https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/b/b8/Nongshim_RedForcelogo_square.png/revision/latest/scale-to-width-down/64?cb=20260114093156",
+      "region": "LCK",
+      "country": "한국",
+      "stage": "league",
+      "players": [
+        {
+          "position": "TOP",
+          "name": "Kingen",
+          "nationality": "한국"
+        },
+        {
+          "position": "JG",
+          "name": "Sponge",
+          "nationality": "한국"
+        },
+        {
+          "position": "MID",
+          "name": "Scout",
+          "nationality": "한국"
+        },
+        {
+          "position": "ADC",
+          "name": "Diable",
+          "nationality": "한국"
+        },
+        {
+          "position": "SUP",
+          "name": "Lehends",
+          "nationality": "한국"
+        }
+      ],
+      "subs": [],
+      "lastMatch": "2026-08-27",
+      "lastMatchEvent": "LCK/2026 Season/Season Play-In",
+      "source": "https://lol.fandom.com/wiki/LCK%2F2026_Season%2FSeason_Play-In"
     }
   ]
 }

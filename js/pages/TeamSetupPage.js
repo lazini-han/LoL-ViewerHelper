@@ -30,12 +30,12 @@ export class TeamSetupPage {
     container.appendChild(page);
     this.attachEvents();
 
-    // 팀 마크·풀 네임이 없는 팀(이전에 저장한 팀 등)은 롤드컵 팀 데이터에서 이름으로 찾아 표시
+    // 팀 마크·풀 네임이 없는 팀(이전에 저장한 팀 등)은 프로 팀 데이터에서 이름으로 찾아 표시
     if (!this.proTeams) this.loadProTeams(container);
   }
 
   /**
-   * 롤드컵 팀 데이터를 이름별로 불러온 뒤 한 번 다시 그림
+   * 프로 팀 데이터(롤드컵 진출팀 + LCK 팀)를 이름별로 불러온 뒤 한 번 다시 그림
    * @param {Element} container
    */
   async loadProTeams(container) {
@@ -75,7 +75,7 @@ export class TeamSetupPage {
   }
 
   /**
-   * 선수 국적 (롤드컵 팀 데이터에서 같은 팀 선수 우선, 없으면 이름으로 찾음)
+   * 선수 국적 (프로 팀 데이터에서 같은 팀 선수 우선, 없으면 이름으로 찾음)
    * @param {Object} team
    * @param {string} name
    * @returns {string}
@@ -315,8 +315,8 @@ export class TeamSetupPage {
       createElement('button', {
         className: 'btn btn--sm saved-teams__import-btn',
         id: 'import-worlds-btn',
-        title: '롤드컵 진출팀 선수 정보를 저장된 팀에 추가'
-      }, '롤드컵 팀 불러오기')
+        title: '롤드컵 진출팀과 LCK 팀 선수 정보를 저장된 팀에 추가'
+      }, '프로 팀 불러오기')
     ]);
 
     if (savedTeams.length === 0) {
@@ -521,7 +521,7 @@ export class TeamSetupPage {
       });
     });
 
-    // 롤드컵 팀 불러오기
+    // 프로 팀 불러오기
     const importBtn = $('#import-worlds-btn');
     if (importBtn) {
       importBtn.addEventListener('click', () => this.importWorldsTeams(importBtn));
@@ -532,7 +532,7 @@ export class TeamSetupPage {
   }
 
   /**
-   * 롤드컵 팀을 저장된 팀에 추가 (같은 이름이 있으면 덮어쓸지 선택)
+   * 프로 팀(롤드컵 진출팀 + LCK 팀)을 저장된 팀에 추가 (같은 이름이 있으면 덮어쓸지 선택)
    * @param {Element} button
    */
   async importWorldsTeams(button) {
@@ -540,7 +540,7 @@ export class TeamSetupPage {
     const data = await teamService.load();
     button.disabled = false;
     if (!data) {
-      alert('롤드컵 팀 데이터를 불러올 수 없습니다.');
+      alert('프로 팀 데이터를 불러올 수 없습니다.');
       return;
     }
 
@@ -554,7 +554,7 @@ export class TeamSetupPage {
 
     const result = state.importTeams(data.teams, overwriteNames);
     this.render(document.querySelector('.main'));
-    alert(`롤드컵 팀 ${result.added}개 추가` +
+    alert(`프로 팀 ${result.added}개 추가` +
       (result.overwritten ? `, ${result.overwritten}개 덮어씀` : '') +
       (result.skipped ? `, ${result.skipped}개 유지` : ''));
   }

@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.19.0] - 2026-11-16
+
+### Added
+
+- **LCK 전 팀 추가**: 롤드컵에 못 나간 2026 LCK 6개 팀을 프로 팀 데이터에 추가 (LCK 10개 팀 모두 포함)
+  - KT (KT Rolster), BFX (BNK FEARX), NS (Nongshim RedForce), DRX (Kiwoom DRX), BRO (HANJIN BRION), DNS (DN SOOPers)
+  - 주전: 2026 LCK 마지막 공식 경기 출전 선수 / 후보: LCK 2026 Rounds 3-4 등록 선수 중 주전이 아닌 선수 (비시즌 이적 제외)
+  - 팀 마크·풀 네임·선수 국적 포함
+
+### Changed
+
+- 팀 설정 `롤드컵 팀 불러오기` 버튼 이름을 `프로 팀 불러오기` 로 변경 (롤드컵 진출팀 + LCK 팀)
+- `tools/build-teams.mjs`
+  - `LEAGUE_EVENTS` 에 적은 리그 대회의 팀 중 롤드컵에 못 나간 팀도 함께 생성
+  - 주전 판정은 공식 1부 대회 경기만 사용 (데마시아컵·KeSPA컵 등 비시즌 이벤트전, 다음 시즌 승강전 제외)
+  - 선수 국적 조회 때 대소문자 차이(kyeahoo)와 옛 표기 넘겨주기(Thanatos)도 찾음
+- 롤드컵 팀 데이터 갱신: 명단 변화 없음, 마지막 경기 날짜만 롤드컵 종료 기준으로 바뀜
+
+---
+
 ## [0.18.0] - 2026-11-16
 
 ### Added

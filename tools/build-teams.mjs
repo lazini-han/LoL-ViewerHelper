@@ -1,8 +1,8 @@
 /**
- * 롤드컵 진출팀 선수 문서(data/teams.json, data/teams.md)를 생성하는 스크립트
+ * 롤드컵 진출팀 + 리그 팀 선수 문서(data/teams.json, data/teams.md)를 생성하는 스크립트
  *
  * 출처: Leaguepedia Cargo (Special:CargoExport)
- *   - TournamentRosters: 대회 등록 팀 / 코치 구분
+ *   - TournamentRosters: 대회 등록 팀 / 코치 구분, 롤드컵에 못 나간 리그 팀의 후보
  *   - ScoreboardPlayers: 경기별 출전 선수 → 가장 최근 경기 라인업을 주전으로 사용
  *   - Players: 현재 팀 소속 선수 → 주전이 아닌 선수는 후보, 선수 국적
  *   - Teams: 팀 연고 국가
@@ -24,6 +24,11 @@ const CARGO = 'https://lol.fandom.com/wiki/Special:CargoExport';
 const EVENT = process.argv[2] || '2026 Season World Championship';
 // 주전 판정에 쓰는 경기 범위 (대회 직전 지역 리그 포함)
 const RECENT_SINCE = '2026-07-01';
+// 다음 시즌 대회(승강전 등)는 주전 판정에서 제외
+const NEXT_SEASON = '2027 Season';
+// 롤드컵에 못 나간 팀도 넣을 리그 대회 (그 시즌 마지막 정규 스플릿)
+// 비시즌 이적이 섞이지 않도록 이 팀들의 후보는 현재 소속이 아닌 대회 등록 명단에서 고름
+const LEAGUE_EVENTS = ['LCK/2026 Season/Rounds 3-4'];
 
 const ROLE_TO_POSITION = { Top: 'TOP', Jungle: 'JG', Mid: 'MID', Bot: 'ADC', Support: 'SUP' };
 const POSITION_ORDER = ['TOP', 'JG', 'MID', 'ADC', 'SUP'];
@@ -35,6 +40,12 @@ const TEAM_NAMES = {
   'Gen.G': 'Gen.G',
   'Hanwha Life Esports': 'HLE',
   'Dplus Kia': 'DK',
+  'KT Rolster': 'KT',
+  'BNK FEARX': 'BFX',
+  'Nongshim RedForce': 'NS',
+  'Kiwoom DRX': 'DRX',
+  'HANJIN BRION': 'BRO',
+  'DN SOOPers': 'DNS',
   'Bilibili Gaming': 'BLG',
   "Anyone's Legend": 'AL',
   'Top Esports': 'TES',
@@ -83,7 +94,7 @@ async function cargo(params) {
 
 // "Doran (Choi Hyeon-jun)" → "Doran"
 const playerName = link => String(link).replace(/\s*\(.*\)$/, '').trim();
-const quoteList = values => values.map(v => `"${v.replace(/"/g, '\\"')}"`).join(',');
+const quoteList = values => values.map(v => `"${String(v).replace(/"/g, '\\"')}"`).join(',');
 
 const rosters = await cargo({
   tables: 'TournamentRosters',
@@ -106,14 +117,38 @@ for (const roster of rosters) {
     registered.set(roster.Team, { stage, region: roster.Region, staff });
   }
 }
+
+// 롤드컵에 못 나간 리그 팀 (대회 하위 문서인 쇼매치 등은 빠지도록 정확히 일치)
+const leagueRosters = await cargo({
+  tables: 'TournamentRosters',
+  fields: 'Team,OverviewPage,RosterLinks,Roles,Region',
+  where: `OverviewPage IN (${quoteList(LEAGUE_EVENTS)})`
+});
+for (const roster of leagueRosters) {
+  if (registered.has(roster.Team)) continue;
+  const links = String(roster.RosterLinks).split(';;');
+  const roles = String(roster.Roles).split(';;');
+  registered.set(roster.Team, {
+    stage: 'league',
+    region: roster.Region || roster.OverviewPage.split('/')[0],
+    staff: new Set(links.filter((_, i) => !ROLE_TO_POSITION[roles[i]]).map(playerName)),
+    roster: links.flatMap((link, i) => ROLE_TO_POSITION[roles[i]]
+      ? [{ position: ROLE_TO_POSITION[roles[i]], name: playerName(link), link }] : [])
+  });
+}
 const teamNames = [...registered.keys()];
 
+// 공식 1부 대회 경기만 사용 (데마시아컵·KeSPA컵 등 비시즌 이벤트전은 선수 구성이 달라 제외)
 const scoreboard = await cargo({
-  tables: 'ScoreboardPlayers',
-  fields: 'Team,Link,Role,DateTime_UTC,GameId,OverviewPage',
-  where: `Team IN (${quoteList(teamNames)}) AND DateTime_UTC > "${RECENT_SINCE}"`,
-  'order by': 'DateTime_UTC DESC'
+  tables: 'ScoreboardPlayers=SP,Tournaments=T',
+  'join on': 'SP.OverviewPage=T.OverviewPage',
+  fields: 'SP.Team=Team,SP.Link=Link,SP.Role=Role,SP.DateTime_UTC=DateTime_UTC,SP.GameId=GameId,SP.OverviewPage=OverviewPage',
+  where: `SP.Team IN (${quoteList(teamNames)}) AND SP.DateTime_UTC > "${RECENT_SINCE}"`
+    + ` AND T.TournamentLevel="Primary" AND T.IsOfficial="1" AND SP.OverviewPage NOT LIKE "%${NEXT_SEASON}%"`,
+  'order by': 'SP.DateTime_UTC DESC'
 });
+// 별칭을 붙이면 필드 이름이 그대로 와서(DateTime_UTC) 다른 조회와 같은 이름으로 맞춤
+scoreboard.forEach(row => { row['DateTime UTC'] ??= row.DateTime_UTC; });
 
 const members = await cargo({
   tables: 'Players',
@@ -181,14 +216,17 @@ for (const team of teamNames) {
   // 표기 대소문자가 다른 경우가 있어(POUT / Pout) 소문자로 비교
   const starters = new Set(players.map(p => p.name.toLowerCase()));
   const staff = new Set([...info.staff].map(name => name.toLowerCase()));
-  const subs = members
-    .filter(m => m.Team === team)
-    .flatMap(m => {
-      const position = String(m.Role).split(',').map(r => ROLE_TO_POSITION[r.trim()]).find(Boolean);
-      const name = playerName(m.ID);
-      return position && !starters.has(name.toLowerCase()) && !staff.has(name.toLowerCase())
-        ? [{ position, name, nationality: nationalityOf(m) }] : [];
-    })
+  const subs = (info.roster
+    // 리그 팀: 대회 등록 선수 중 주전이 아닌 선수
+    ? info.roster.filter(p => !starters.has(p.name.toLowerCase()))
+    : members
+      .filter(m => m.Team === team)
+      .flatMap(m => {
+        const position = String(m.Role).split(',').map(r => ROLE_TO_POSITION[r.trim()]).find(Boolean);
+        const name = playerName(m.ID);
+        return position && !starters.has(name.toLowerCase()) && !staff.has(name.toLowerCase())
+          ? [{ position, name, nationality: nationalityOf(m) }] : [];
+      }))
     .sort((a, b) => POSITION_ORDER.indexOf(a.position) - POSITION_ORDER.indexOf(b.position));
 
   teams.push({
@@ -206,20 +244,38 @@ for (const team of teamNames) {
   });
 }
 
-// 주전 국적: 경기 기록의 선수 문서 이름(Link)으로 조회 (동명이인 구분)
-const starterLinks = [...new Set(teams.flatMap(t => t.players.map(p => p.link)))];
-const starterRows = await cargo({
+// 주전(과 리그 팀 후보) 국적: 선수 문서 이름(Link)으로 조회 (동명이인 구분)
+const playerLinks = [...new Set(teams.flatMap(t => [...t.players, ...t.subs].map(p => p.link).filter(Boolean)))];
+const linkRows = await cargo({
   tables: 'Players',
   fields: 'OverviewPage,Country,NationalityPrimary',
-  where: `OverviewPage IN (${quoteList(starterLinks)})`
+  where: `OverviewPage IN (${quoteList(playerLinks)})`
 });
-const starterInfo = new Map(starterRows.map(row => [String(row.OverviewPage), row]));
+// 경기 기록과 선수 문서의 대소문자가 다른 경우가 있어(kyeahoo / Kyeahoo) 소문자로 비교
+const linkInfo = new Map(linkRows.map(row => [String(row.OverviewPage).toLowerCase(), row]));
+// 경기 기록의 이름이 옛 표기(넘겨주기 문서)면 실제 선수 문서로 찾아감 (Seung-kyu → Seung-gyu)
+const unresolved = playerLinks.filter(link => !linkInfo.has(String(link).toLowerCase()));
+if (unresolved.length > 0) {
+  const redirects = await cargo({
+    tables: 'PlayerRedirects=PR,Players=P',
+    'join on': 'PR.OverviewPage=P.OverviewPage',
+    fields: 'PR.AllName=AllName,P.Country=Country,P.NationalityPrimary=NationalityPrimary',
+    where: `PR.AllName IN (${quoteList(unresolved)})`
+  });
+  redirects.forEach(row => linkInfo.set(String(row.AllName).toLowerCase(), row));
+}
+const withNationality = ({ link, ...player }) => link
+  ? { ...player, nationality: nationalityOf(linkInfo.get(String(link).toLowerCase())) }
+  : player;
 for (const team of teams) {
-  team.players = team.players.map(({ link, ...player }) => ({ ...player, nationality: nationalityOf(starterInfo.get(link)) }));
+  team.players = team.players.map(withNationality);
+  team.subs = team.subs.map(withNationality);
 }
 
+const STAGE_ORDER = ['main', 'playin', 'league'];
+
 teams.sort((a, b) =>
-  (a.stage === b.stage ? 0 : a.stage === 'main' ? -1 : 1) ||
+  STAGE_ORDER.indexOf(a.stage) - STAGE_ORDER.indexOf(b.stage) ||
   REGION_ORDER.indexOf(a.region) - REGION_ORDER.indexOf(b.region) ||
   a.name.localeCompare(b.name)
 );
@@ -229,23 +285,24 @@ const today = new Date().toLocaleDateString('sv-SE'); // 로컬 기준 YYYY-MM-D
 
 writeFileSync(
   JSON_PATH,
-  JSON.stringify({ event: EVENT, updated: today, teams }, null, 2) + '\n',
+  JSON.stringify({ event: EVENT, leagueEvents: LEAGUE_EVENTS, updated: today, teams }, null, 2) + '\n',
   'utf8'
 );
 
 // 사람이 검토하기 위한 읽기용 문서
 const lines = [
-  `# ${EVENT} 진출팀 선수`,
+  `# ${EVENT} 진출팀 + 리그 팀 선수`,
   '',
   `> 작성일: ${today} / 출처: Leaguepedia (TournamentRosters, ScoreboardPlayers, Players)`,
-  '> 주전: 팀의 가장 최근 공식 경기 출전 선수 / 후보: 현재 소속 선수 중 주전이 아닌 선수',
-  '> 팀 설정 페이지의 `롤드컵 팀 불러오기` 로 저장된 팀에 추가됩니다.',
+  `> 리그 팀: ${LEAGUE_EVENTS.join(', ')} 참가팀 중 롤드컵에 못 나간 팀`,
+  '> 주전: 팀의 가장 최근 공식 경기 출전 선수 / 후보: 현재 소속 선수 중 주전이 아닌 선수 (리그 팀은 대회 등록 선수 중 주전이 아닌 선수)',
+  '> 팀 설정 페이지의 `프로 팀 불러오기` 로 저장된 팀에 추가됩니다.',
   '> 원본 데이터는 `data/teams.json` 이며, 이 문서는 `tools/build-teams.mjs` 로 함께 생성됩니다.',
   ''
 ];
 
 for (const team of teams) {
-  lines.push(`## ${team.name} (${team.fullName}) - ${team.region} / ${team.country || '?'}${team.stage === 'playin' ? ', 플레이인 탈락' : ''}`, '');
+  lines.push(`## ${team.name} (${team.fullName}) - ${team.region} / ${team.country || '?'}${{ playin: ', 플레이인 탈락', league: ', 롤드컵 미진출' }[team.stage] || ''}`, '');
   lines.push('| 포지션 | 주전 | 후보 |', '|--------|------|------|');
   for (const position of POSITION_ORDER) {
     const starter = team.players.find(p => p.position === position)?.name || '-';
@@ -258,7 +315,7 @@ for (const team of teams) {
 writeFileSync(MD_PATH, lines.join('\n'), 'utf8');
 
 console.log(`대회: ${EVENT}`);
-console.log(`작성한 팀: ${teams.length}개 (본선 ${teams.filter(t => t.stage === 'main').length})`);
+console.log(`작성한 팀: ${teams.length}개 (본선 ${teams.filter(t => t.stage === 'main').length}, 리그 ${teams.filter(t => t.stage === 'league').length})`);
 console.log(`국가 없음: ${teams.filter(t => !t.country).map(t => t.name).join(', ') || '없음'}`);
 console.log(`국적 없음: ${teams.flatMap(t => [...t.players, ...t.subs].filter(p => !p.nationality).map(p => `${t.name} ${p.name}`)).join(', ') || '없음'}`);
 console.log(`팀 마크 없음: ${teams.filter(t => !t.logo).map(t => t.name).join(', ') || '없음'}`);

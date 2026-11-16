@@ -61,7 +61,7 @@ PJ.LoL-ViewerHelper/
 │   │   ├── ItemService.js        # 아이템 데이터 로딩
 │   │   ├── ObjectService.js      # 오브젝트 데이터 로딩
 │   │   ├── StackService.js       # 스택 요소 데이터 로딩
-│   │   ├── TeamService.js        # 롤드컵 진출팀 데이터 로딩
+│   │   ├── TeamService.js        # 프로 팀(롤드컵 진출팀 + LCK 팀) 데이터 로딩
 │   │   ├── firebaseConfig.js     # Firebase 초기화 설정
 │   │   ├── authService.js        # Firebase 인증 서비스
 │   │   └── syncService.js        # Firestore 실시간 동기화
@@ -76,7 +76,7 @@ PJ.LoL-ViewerHelper/
 │   ├── build-ultimates.mjs            # 궁극기 요약 문서 생성
 │   ├── build-core-items.mjs           # 코어 아이템 문서 생성
 │   ├── build-stacks.mjs               # 스택 요소 문서 생성
-│   └── build-teams.mjs                # 롤드컵 진출팀 선수 문서 생성 (Leaguepedia)
+│   └── build-teams.mjs                # 프로 팀 선수 문서 생성 (Leaguepedia)
 │
 ├── data/                         # 데이터 파일
 │   ├── champions.json            # 챔피언 데이터 (173개, positions/roles 포함)
@@ -86,7 +86,7 @@ PJ.LoL-ViewerHelper/
 │   ├── ultimates.json / .md      # 궁극기 요약 (앱 데이터 / 검토용)
 │   ├── core-items.json / .md     # 챔피언별 코어 아이템 (앱 데이터 / 검토용)
 │   ├── stacks.json / .md         # 스택 요소 (앱 데이터 / 검토용)
-│   └── teams.json / .md          # 롤드컵 진출팀 주전·후보 (앱 데이터 / 검토용)
+│   └── teams.json / .md          # 롤드컵 진출팀 + LCK 팀 주전·후보 (앱 데이터 / 검토용)
 │
 ├── docs/                         # 문서
 │   └── issues/                   # 이슈별 분석 보고서
@@ -151,7 +151,7 @@ PJ.LoL-ViewerHelper/
 
 | 파일 | 역할 | 주요 기능 |
 |------|------|----------|
-| `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력, 비우기, 후보 선수 교체/추가/삭제, 리그·국가 태그, 롤드컵 팀 불러오기 (같은 이름은 팀별로 덮어쓸지 선택), 저장된 팀 A·B 버튼/드래그로 적용 (드래그 중 자동 스크롤), 저장된 팀 리그별 묶음, 국가 국기 아이콘, 저장된 팀 비활성화 토글, 팀 마크·풀 네임 표시, 선수 국적 국기 (선수 칸·후보·저장된 팀) |
+| `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력, 비우기, 후보 선수 교체/추가/삭제, 리그·국가 태그, 프로 팀 불러오기 (롤드컵 진출팀 + LCK 팀, 같은 이름은 팀별로 덮어쓸지 선택), 저장된 팀 A·B 버튼/드래그로 적용 (드래그 중 자동 스크롤), 저장된 팀 리그별 묶음, 국가 국기 아이콘, 저장된 팀 비활성화 토글, 팀 마크·풀 네임 표시, 선수 국적 국기 (선수 칸·후보·저장된 팀) |
 | `ChampionPickPage.js` | 챔피언 할당 | 드래그앤드롭, 검색, 경기별 밴, 진영 교환, 팀별 포지션 순서 뒤집기, 초기화, 포지션 아이콘, 자음 인덱스, 초상화 호버 시 궁극기 요약, 모바일 목록 스크롤 시 상단바 자동 숨김 |
 | `MatchViewPage.js` | 경기 정보 표시 | 역할 태그, 초상화 호버 시 궁극기 요약, 챔피언 클릭 시 상세 정보·스킬 비디오·코어 아이템 |
 | `ObjectDictPage.js` | 오브젝트 사전 | 분류 필터, 검색, 드래곤 스코어보드 아이콘 |
@@ -167,7 +167,7 @@ PJ.LoL-ViewerHelper/
 | `ItemService.js` | 아이템 데이터 로딩 |
 | `ObjectService.js` | 오브젝트 데이터 로딩 |
 | `StackService.js` | 스택 요소 데이터 로딩, 분류/검색 필터 |
-| `TeamService.js` | 롤드컵 진출팀 데이터(`teams.json`) 지연 로딩 |
+| `TeamService.js` | 프로 팀 데이터(`teams.json`, 롤드컵 진출팀 + LCK 팀) 지연 로딩 |
 
 ### 3.5 유틸리티
 
@@ -185,7 +185,7 @@ PJ.LoL-ViewerHelper/
 | `build-ultimates.mjs` | 조사 결과 + Data Dragon 으로 `ultimates.json/.md` 생성 (`node tools/build-ultimates.mjs <조사 결과 폴더>`) |
 | `build-core-items.mjs` | 조사 결과의 아이템 ID 검증, 호버창용 아이템 설명 요약 정리 후 `core-items.json/.md` 생성 |
 | `build-stacks.mjs` | 조사 결과에 공식 이름·아이콘을 채워 `stacks.json/.md` 생성 |
-| `build-teams.mjs` | Leaguepedia 에서 대회 로스터·최근 경기 출전 선수·소속 선수·선수 국적·연고 국가·팀 마크를 조회해 `teams.json/.md` 생성 (`node tools/build-teams.mjs [대회명]`) |
+| `build-teams.mjs` | Leaguepedia 에서 대회 로스터·최근 공식 1부 경기 출전 선수·소속 선수·선수 국적·연고 국가·팀 마크를 조회해 `teams.json/.md` 생성. 롤드컵에 못 나간 리그 팀(`LEAGUE_EVENTS`, 현재 LCK 2026 Rounds 3-4)도 함께 넣음 (`node tools/build-teams.mjs [대회명]`) |
 
 > `dom.js` (유틸리티): `$`, `$$`, `createElement`, `clearElement`
 

@@ -1,6 +1,6 @@
 /**
  * 프로 팀 데이터 서비스
- * data/teams.json (tools/build-teams.mjs 로 생성한 롤드컵 진출팀 선수 정보) 로드
+ * data/teams.json (tools/build-teams.mjs 로 생성한 롤드컵 진출팀 + LCK 팀 선수 정보) 로드
  */
 
 class TeamService {
