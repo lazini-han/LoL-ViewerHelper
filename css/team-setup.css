@@ -107,6 +107,25 @@
   flex: 1;
 }
 
+/* 선수 국기 (국적을 모르면 빈 자리로 두어 입력칸 줄을 맞춤) */
+.player-row__flag {
+  width: 20px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  margin-right: calc(var(--spacing-sm) - var(--spacing-md));
+}
+
+.player-flag {
+  display: inline-block;
+  width: 18px;
+  height: 13px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
 /* 저장된 팀 섹션 */
 .saved-teams {
   background-color: var(--color-bg-secondary);
@@ -244,6 +263,18 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.saved-team-item__player + .saved-team-item__player::before {
+  content: ', ';
+}
+
+.saved-team-item__player .player-flag {
+  width: 12px;
+  height: 9px;
+  margin-right: 2px;
+  border-radius: 1px;
+  vertical-align: -1px;
 }
 
 /* 팀 A/B 적용 버튼 */
@@ -433,6 +464,12 @@
 .sub-chip__position {
   color: var(--color-accent);
   font-weight: 600;
+}
+
+.sub-chip .player-flag {
+  width: 14px;
+  height: 10px;
+  border-radius: 1px;
 }
 
 .sub-chip__remove {

@@ -52,7 +52,7 @@ function toTeamData(team) {
 }
 
 /**
- * 기본 게임 챔피언 데이터 생성
+ * 기본 게임 데이터 생성 (팀별 픽 + 그 경기의 밴)
  * @returns {Object}
  */
 function createDefaultGameChampions() {
@@ -62,7 +62,8 @@ function createDefaultGameChampions() {
   });
   return {
     blueTeam: { ...teamChampions },
-    redTeam: { ...teamChampions }
+    redTeam: { ...teamChampions },
+    bans: createDefaultBans()
   };
 }
 
@@ -79,10 +80,10 @@ function createDefaultGames() {
 }
 
 /**
- * 기본 글로벌 밴 생성
+ * 기본 밴 생성 (경기마다 따로 가짐)
  * @returns {Object}
  */
-function createDefaultGlobalBans() {
+function createDefaultBans() {
   return {
     blue: [null, null, null, null, null],
     red: [null, null, null, null, null]
@@ -98,10 +99,39 @@ function createDefaultState() {
     redTeam: createDefaultTeam(),
     currentGame: 1,
     games: createDefaultGames(),
-    globalBans: createDefaultGlobalBans(),
     // 챔피언 선택 화면의 팀별 포지션 순서 뒤집기 여부
     slotOrderReversed: { blue: false, red: false }
   };
+}
+
+/**
+ * 저장된 상태를 현재 구조로 맞춤
+ * - 예전 globalBans(1~5경기 공통 밴)는 당시 보던 경기의 밴으로 옮김
+ * - 밴이 없는 경기에는 빈 밴을 채움
+ * @param {Object} saved
+ * @returns {Object}
+ */
+function normalizeState(saved) {
+  const data = { ...createDefaultState(), ...saved };
+  const games = {};
+  for (let i = 1; i <= MAX_GAMES; i++) {
+    const game = data.games?.[i] || createDefaultGameChampions();
+    games[i] = { ...game, bans: game.bans || createDefaultBans() };
+  }
+  data.games = games;
+
+  if (data.globalBans) {
+    const hasOldBans = ['blue', 'red'].some(team => data.globalBans[team]?.some(Boolean));
+    const game = games[data.currentGame] || games[1];
+    if (hasOldBans && !['blue', 'red'].some(team => game.bans[team].some(Boolean))) {
+      game.bans = {
+        blue: [...(data.globalBans.blue || createDefaultBans().blue)],
+        red: [...(data.globalBans.red || createDefaultBans().red)]
+      };
+    }
+    delete data.globalBans;
+  }
+  return data;
 }
 
 /**
@@ -176,7 +206,7 @@ class State {
             redTeam: parsed.redTeam || defaultState.redTeam
           };
         } else {
-          this.data = { ...createDefaultState(), ...parsed };
+          this.data = normalizeState(parsed);
         }
       }
     } catch (e) {
@@ -209,7 +239,7 @@ class State {
     this._isRemoteUpdate = true;
 
     if (cloudData.state) {
-      this.data = { ...createDefaultState(), ...cloudData.state };
+      this.data = normalizeState(cloudData.state);
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(this.data));
       } catch (e) {
@@ -235,14 +265,16 @@ class State {
    * @returns {boolean}
    */
   hasUserData() {
-    const { blueTeam, redTeam, games, globalBans } = this.data;
+    const { blueTeam, redTeam, games } = this.data;
     const hasTeamInfo = [blueTeam, redTeam].some(team =>
       team?.name?.trim() || team?.players?.some(player => player.name?.trim())
     );
     const hasPicks = Object.values(games || {}).some(game =>
       ['blueTeam', 'redTeam'].some(teamKey => Object.values(game?.[teamKey] || {}).some(Boolean))
     );
-    const hasBans = Object.values(globalBans || {}).some(bans => bans?.some(Boolean));
+    const hasBans = Object.values(games || {}).some(game =>
+      Object.values(game?.bans || {}).some(bans => bans?.some(Boolean))
+    );
     return Boolean(hasTeamInfo || hasPicks || hasBans || this.savedTeams.length > 0);
   }
 
@@ -252,7 +284,7 @@ class State {
    * @returns {boolean}
    */
   isSameAsCloud(cloudData) {
-    const cloudState = { ...createDefaultState(), ...cloudData?.state };
+    const cloudState = normalizeState(cloudData?.state);
     return stableStringify(cloudState) === stableStringify(this.data)
       && stableStringify(cloudData?.savedTeams || []) === stableStringify(this.savedTeams);
   }
@@ -462,75 +494,67 @@ class State {
   }
 
   /**
-   * 글로벌 밴된 챔피언 ID 목록 가져오기
-   * @returns {Set<number>}
+   * 현재 경기의 밴 (경기마다 따로)
+   * @returns {{ blue: Array, red: Array }}
    */
-  getGlobalBannedChampionIds() {
-    const bannedIds = new Set();
-    const { globalBans } = this.data;
-    
-    [...globalBans.blue, ...globalBans.red].forEach(champion => {
-      if (champion) {
-        bannedIds.add(champion.id);
-      }
-    });
-    
-    return bannedIds;
+  getCurrentGameBans() {
+    return this.getCurrentGameChampions().bans;
   }
 
   /**
-   * 글로벌 밴 추가
+   * 현재 경기 밴 추가
    * @param {'blue'|'red'} team
    * @param {number} index
    * @param {Object} champion
    */
-  addGlobalBan(team, index, champion) {
+  addBan(team, index, champion) {
     if (index >= 0 && index < 5) {
-      this.data.globalBans[team][index] = champion;
+      this.getCurrentGameBans()[team][index] = champion;
       this.save();
       this.notify();
     }
   }
 
   /**
-   * 글로벌 밴 제거
+   * 현재 경기 밴 제거
    * @param {'blue'|'red'} team
    * @param {number} index
    */
-  removeGlobalBan(team, index) {
+  removeBan(team, index) {
     if (index >= 0 && index < 5) {
-      this.data.globalBans[team][index] = null;
+      this.getCurrentGameBans()[team][index] = null;
       this.save();
       this.notify();
     }
   }
 
   /**
-   * 글로벌 밴 슬롯 교환
+   * 현재 경기 밴 슬롯 교환
    * @param {'blue'|'red'} team1
    * @param {number} index1
    * @param {'blue'|'red'} team2
    * @param {number} index2
    */
-  swapGlobalBans(team1, index1, team2, index2) {
-    const temp = this.data.globalBans[team1][index1];
-    this.data.globalBans[team1][index1] = this.data.globalBans[team2][index2];
-    this.data.globalBans[team2][index2] = temp;
+  swapBans(team1, index1, team2, index2) {
+    const bans = this.getCurrentGameBans();
+    const temp = bans[team1][index1];
+    bans[team1][index1] = bans[team2][index2];
+    bans[team2][index2] = temp;
     this.save();
     this.notify();
   }
 
   /**
-   * 글로벌 밴에서 특정 챔피언 위치 찾기
+   * 현재 경기 밴에서 특정 챔피언 위치 찾기
    * @param {number} championId
    * @returns {{team: string, index: number}|null}
    */
-  findGlobalBanAssignment(championId) {
-    const { globalBans } = this.data;
-    
+  findBanAssignment(championId) {
+    const bans = this.getCurrentGameBans();
+
     for (const team of ['blue', 'red']) {
       for (let i = 0; i < 5; i++) {
-        if (globalBans[team][i]?.id === championId) {
+        if (bans[team][i]?.id === championId) {
           return { team, index: i };
         }
       }
@@ -554,10 +578,8 @@ class State {
     game.blueTeam = { ...game.redTeam };
     game.redTeam = tempChampions;
     
-    // 글로벌 밴도 교환
-    const tempBans = [...this.data.globalBans.blue];
-    this.data.globalBans.blue = [...this.data.globalBans.red];
-    this.data.globalBans.red = tempBans;
+    // 현재 경기 밴도 교환
+    game.bans = { blue: [...game.bans.red], red: [...game.bans.blue] };
     
     this.save();
     this.notify();
@@ -597,21 +619,20 @@ class State {
   }
 
   /**
-   * 현재 게임 픽과 글로벌 밴 모두 초기화
+   * 현재 경기 픽과 밴 초기화
    */
   resetCurrentGameAndBans() {
     this.data.games[this.data.currentGame] = createDefaultGameChampions();
-    this.data.globalBans = createDefaultGlobalBans();
     this.save();
     this.notify();
   }
 
   /**
-   * 1~5경기 전체 픽과 글로벌 밴 모두 초기화 (팀/선수 정보는 유지)
+   * 1~5경기 전체 픽과 밴 초기화 후 1경기로 이동 (팀/선수 정보는 유지)
    */
   resetAllGamesAndBans() {
     this.data.games = createDefaultGames();
-    this.data.globalBans = createDefaultGlobalBans();
+    this.data.currentGame = 1;
     this.save();
     this.notify();
   }

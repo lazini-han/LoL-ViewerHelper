@@ -476,8 +476,25 @@
 
 /* 반응형: 모바일 */
 @media (max-width: 768px) {
+  /* 화면 높이를 꽉 채우고, 상단바가 접히면 그만큼 목록이 늘어남 */
+  body[data-route="champion-pick"] #app {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  body[data-route="champion-pick"] .main {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
   .champion-pick {
-    height: calc(100vh - 100px);
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    height: auto;
     gap: 2px;
   }
 

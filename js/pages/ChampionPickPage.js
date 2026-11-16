@@ -47,7 +47,7 @@ export class ChampionPickPage {
     const currentState = state.get();
 
     const page = createElement('div', { className: 'page champion-pick' }, [
-      this.createGlobalBansArea(currentState),
+      this.createGlobalBansArea(),
       this.createTeamSlots(currentState),
       this.createTapGuide(),
       this.createChampionGrid(),
@@ -61,19 +61,18 @@ export class ChampionPickPage {
   }
 
   /**
-   * 글로벌 밴 영역 생성
-   * @param {Object} currentState
+   * 밴 영역 생성 (밴은 경기마다 따로)
    * @returns {Element}
    */
-  createGlobalBansArea(currentState) {
-    const { globalBans } = currentState;
+  createGlobalBansArea() {
+    const bans = state.getCurrentGameBans();
 
     return createElement('div', { className: 'global-bans', id: 'global-bans' }, [
       // 블루팀 밴
       createElement('div', { className: 'global-bans__team global-bans__team--blue' }, [
         createElement('span', { className: 'global-bans__label' }, '밴'),
         createElement('div', { className: 'global-bans__slots', id: 'blue-bans' },
-          globalBans.blue.map((champion, index) => this.createBanSlot('blue', index, champion))
+          bans.blue.map((champion, index) => this.createBanSlot('blue', index, champion))
         )
       ]),
       // 중앙 검색 + 초기화 버튼
@@ -98,7 +97,7 @@ export class ChampionPickPage {
       // 레드팀 밴
       createElement('div', { className: 'global-bans__team global-bans__team--red' }, [
         createElement('div', { className: 'global-bans__slots', id: 'red-bans' },
-          globalBans.red.map((champion, index) => this.createBanSlot('red', index, champion))
+          bans.red.map((champion, index) => this.createBanSlot('red', index, champion))
         ),
         createElement('span', { className: 'global-bans__label' }, '밴')
       ])
@@ -212,7 +211,7 @@ export class ChampionPickPage {
       }
 
       const assignment = state.findChampionAssignment(champion.id);
-      const banAssignment = state.findGlobalBanAssignment(champion.id);
+      const banAssignment = state.findBanAssignment(champion.id);
 
       let selectedClass = '';
       let isDisabled = false;
@@ -463,6 +462,49 @@ export class ChampionPickPage {
   }
 
   /**
+   * 모바일에서 챔피언 목록을 내리면 상단바(헤더·메뉴)를 접고, 올리면 다시 펼침
+   */
+  attachTopBarAutoHide() {
+    const scrollArea = $('.champion-grid-scroll');
+    if (!scrollArea) return;
+
+    const mobile = window.matchMedia('(max-width: 768px)');
+    const THRESHOLD = 24; // 이 거리만큼 같은 방향으로 움직여야 전환 (손떨림 무시)
+    const LOCK_MS = 350;  // 전환 직후 목록 높이가 바뀌며 생기는 스크롤은 무시
+    let lastTop = scrollArea.scrollTop;
+    let travel = 0;
+    let lockedUntil = 0;
+
+    const setHidden = (hidden) => {
+      if (document.body.classList.contains('top-bar-hidden') === hidden) return;
+      document.body.classList.toggle('top-bar-hidden', hidden);
+      lockedUntil = performance.now() + LOCK_MS;
+    };
+
+    scrollArea.addEventListener('scroll', () => {
+      const top = scrollArea.scrollTop;
+      const delta = top - lastTop;
+      lastTop = top;
+
+      if (!mobile.matches) {
+        setHidden(false);
+        return;
+      }
+      if (top <= 0) {
+        travel = 0;
+        setHidden(false);
+        return;
+      }
+      if (performance.now() < lockedUntil) return;
+
+      // 방향이 바뀌면 이동 거리를 새로 셈
+      travel = (Math.sign(delta) === Math.sign(travel)) ? travel + delta : delta;
+      if (travel > THRESHOLD) setHidden(true);
+      else if (travel < -THRESHOLD) setHidden(false);
+    }, { passive: true });
+  }
+
+  /**
    * 이벤트 연결
    */
   attachEvents() {
@@ -499,7 +541,7 @@ export class ChampionPickPage {
     const resetBtn = $('#reset-game-btn');
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        if (confirm('이번 경기의 모든 픽과 글로벌 밴을 초기화하시겠습니까?')) {
+        if (confirm('이번 경기의 모든 픽과 밴을 초기화하시겠습니까?')) {
           state.resetCurrentGameAndBans();
           this.clearTapSelection();
           this.refreshAll();
@@ -511,7 +553,7 @@ export class ChampionPickPage {
     const resetAllBtn = $('#reset-all-btn');
     if (resetAllBtn) {
       resetAllBtn.addEventListener('click', () => {
-        if (confirm('1~5경기의 모든 픽과 글로벌 밴을 초기화하시겠습니까?')) {
+        if (confirm('1~5경기의 모든 픽과 밴을 초기화하고 1경기로 이동하시겠습니까?')) {
           state.resetAllGamesAndBans();
           this.clearTapSelection();
           this.refreshAll();
@@ -530,6 +572,9 @@ export class ChampionPickPage {
 
     // 챔피언 초상화 호버 시 궁극기 요약 (마우스 사용 환경만, 터치에서는 탭 배치와 겹치므로 제외)
     this.attachTooltipEvents();
+
+    // 모바일: 챔피언 목록 스크롤에 따라 상단바 접기/펼치기
+    this.attachTopBarAutoHide();
 
     // 드래그 앤 드롭 이벤트
     this.attachDragEvents();
@@ -629,12 +674,12 @@ export class ChampionPickPage {
     if (this.tapSelectedChampion) {
       const champion = championService.getById(this.tapSelectedChampion.id);
       if (champion) {
-        state.addGlobalBan(targetTeam, targetIndex, champion);
+        state.addBan(targetTeam, targetIndex, champion);
         this.clearTapSelection();
         this.refreshAll();
       }
     } else if (banSlot.classList.contains('ban-slot--filled')) {
-      state.removeGlobalBan(targetTeam, targetIndex);
+      state.removeBan(targetTeam, targetIndex);
       this.refreshAll();
     }
   }
@@ -814,7 +859,7 @@ export class ChampionPickPage {
         state.assignChampion(this.dragData.team, this.dragData.position, null);
         this.refreshAll();
       } else if (this.dragData && this.dragData.type === 'ban') {
-        state.removeGlobalBan(this.dragData.banTeam, this.dragData.banIndex);
+        state.removeBan(this.dragData.banTeam, this.dragData.banIndex);
         this.refreshAll();
       }
     });
@@ -862,7 +907,7 @@ export class ChampionPickPage {
     if (this.dragData.type === 'champion') {
       const champion = championService.getById(this.dragData.championId);
       if (champion) {
-        state.addGlobalBan(targetTeam, targetIndex, champion);
+        state.addBan(targetTeam, targetIndex, champion);
         this.refreshAll();
       }
     } else if (this.dragData.type === 'ban') {
@@ -870,7 +915,7 @@ export class ChampionPickPage {
       const sourceIndex = this.dragData.banIndex;
 
       if (sourceTeam !== targetTeam || sourceIndex !== targetIndex) {
-        state.swapGlobalBans(sourceTeam, sourceIndex, targetTeam, targetIndex);
+        state.swapBans(sourceTeam, sourceIndex, targetTeam, targetIndex);
         this.refreshAll();
       }
     }
@@ -927,13 +972,12 @@ export class ChampionPickPage {
    * 밴 슬롯 새로고침
    */
   refreshBans() {
-    const currentState = state.get();
-    const { globalBans } = currentState;
+    const bans = state.getCurrentGameBans();
 
     const blueBans = $('#blue-bans');
     if (blueBans) {
       clearElement(blueBans);
-      globalBans.blue.forEach((champion, index) => {
+      bans.blue.forEach((champion, index) => {
         blueBans.appendChild(this.createBanSlot('blue', index, champion));
       });
     }
@@ -941,7 +985,7 @@ export class ChampionPickPage {
     const redBans = $('#red-bans');
     if (redBans) {
       clearElement(redBans);
-      globalBans.red.forEach((champion, index) => {
+      bans.red.forEach((champion, index) => {
         redBans.appendChild(this.createBanSlot('red', index, champion));
       });
     }

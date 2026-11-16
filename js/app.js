@@ -57,6 +57,9 @@ class Router {
     const page = this.routes[hash];
 
     if (page && this.container) {
+      // 페이지별 레이아웃(모바일 챔피언 픽 전체 화면 등)용 표시, 접힌 상단바는 페이지를 옮기면 다시 펼침
+      document.body.dataset.route = hash;
+      document.body.classList.remove('top-bar-hidden');
       page.render(this.container);
       this.updateNavigation(hash);
     } else {
@@ -127,8 +130,9 @@ async function initApp() {
   // 라우터 시작
   router.start();
 
-  // 초기 게임 탭 상태 업데이트
+  // 초기 게임 탭 상태 업데이트 (전체 초기화로 1경기로 돌아가는 등 상태가 바뀌면 다시 맞춤)
   updateGameTabsUI();
+  state.subscribe(updateGameTabsUI);
 }
 
 /**

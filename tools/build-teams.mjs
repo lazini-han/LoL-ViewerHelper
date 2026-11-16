@@ -4,7 +4,7 @@
  * 출처: Leaguepedia Cargo (Special:CargoExport)
  *   - TournamentRosters: 대회 등록 팀 / 코치 구분
  *   - ScoreboardPlayers: 경기별 출전 선수 → 가장 최근 경기 라인업을 주전으로 사용
- *   - Players: 현재 팀 소속 선수 → 주전이 아닌 선수는 후보
+ *   - Players: 현재 팀 소속 선수 → 주전이 아닌 선수는 후보, 선수 국적
  *   - Teams: 팀 연고 국가
  *   - 팀 마크: MediaWiki API (imageinfo) 로 "<팀>logo square.png" 이미지 주소
  *
@@ -55,12 +55,20 @@ const TEAM_NAMES = {
 const REGION_NAMES = { KR: 'LCK', CN: 'LPL', EMEA: 'LEC', NA: 'LCS', BR: 'CBLOL', Brazil: 'CBLOL', APAC: 'LCP' };
 const REGION_ORDER = ['LCK', 'LPL', 'LEC', 'LCS', 'CBLOL', 'LCP'];
 
-// Leaguepedia 국가명 → 한글
+// Leaguepedia 국가명 → 한글 (앱의 COUNTRY_FLAG_CODES 와 같은 이름을 써야 국기가 나옴)
 const COUNTRY_NAMES = {
-  'South Korea': '한국', 'China': '중국', 'Taiwan': '대만', 'Vietnam': '베트남', 'Japan': '일본',
-  'United States': '미국', 'Canada': '캐나다', 'Brazil': '브라질', 'Mexico': '멕시코',
-  'Germany': '독일', 'France': '프랑스', 'Spain': '스페인', 'United Kingdom': '영국', 'Netherlands': '네덜란드'
+  'South Korea': '한국', 'China': '중국', 'Taiwan': '대만', 'Hong Kong': '홍콩', 'Vietnam': '베트남', 'Japan': '일본',
+  'Thailand': '태국', 'Philippines': '필리핀', 'Singapore': '싱가포르', 'Malaysia': '말레이시아', 'Indonesia': '인도네시아',
+  'Australia': '호주', 'United States': '미국', 'Canada': '캐나다', 'Brazil': '브라질', 'Mexico': '멕시코',
+  'Argentina': '아르헨티나', 'Chile': '칠레', 'Germany': '독일', 'France': '프랑스', 'Spain': '스페인',
+  'United Kingdom': '영국', 'Italy': '이탈리아', 'Denmark': '덴마크', 'Sweden': '스웨덴', 'Norway': '노르웨이',
+  'Finland': '핀란드', 'Poland': '폴란드', 'Netherlands': '네덜란드', 'Belgium': '벨기에', 'Portugal': '포르투갈',
+  'Czech Republic': '체코', 'Greece': '그리스', 'Turkey': '튀르키예', 'Russia': '러시아', 'Austria': '오스트리아',
+  'Switzerland': '스위스', 'Slovenia': '슬로베니아', 'Croatia': '크로아티아', 'Serbia': '세르비아', 'Bulgaria': '불가리아',
+  'Romania': '루마니아', 'Hungary': '헝가리', 'Slovakia': '슬로바키아', 'Lithuania': '리투아니아', 'Ireland': '아일랜드',
+  'Israel': '이스라엘', 'Peru': '페루', 'Colombia': '콜롬비아', 'Uruguay': '우루과이'
 };
+const countryName = country => COUNTRY_NAMES[country] || country || '';
 // Teams 테이블에 연고지가 없는 팀 보정
 const COUNTRY_OVERRIDES = { 'LYON (2024 American Team)': 'United States' };
 
@@ -109,7 +117,7 @@ const scoreboard = await cargo({
 
 const members = await cargo({
   tables: 'Players',
-  fields: 'ID,Team,Role',
+  fields: 'ID,Team,Role,Country,NationalityPrimary',
   where: `Team IN (${quoteList(teamNames)}) AND IsRetired="0"`
 });
 
@@ -144,8 +152,10 @@ const logos = await fetchLogos(teamNames);
 const countryOf = team => {
   const info = teamInfo.find(t => t.Name === team);
   const country = COUNTRY_OVERRIDES[team] || info?.TeamLocation || info?.Location || '';
-  return COUNTRY_NAMES[country] || country;
+  return countryName(country);
 };
+// 선수 국적 (대표 국적이 있으면 우선)
+const nationalityOf = row => countryName(row?.NationalityPrimary || row?.Country);
 
 const missing = [];
 const teams = [];
@@ -164,7 +174,7 @@ for (const team of teamNames) {
   const last = games[0];
   const players = games
     .filter(row => row.GameId === last.GameId && ROLE_TO_POSITION[row.Role])
-    .map(row => ({ position: ROLE_TO_POSITION[row.Role], name: playerName(row.Link) }))
+    .map(row => ({ position: ROLE_TO_POSITION[row.Role], name: playerName(row.Link), link: row.Link }))
     .sort((a, b) => POSITION_ORDER.indexOf(a.position) - POSITION_ORDER.indexOf(b.position));
 
   // 현재 소속 선수 중 주전이 아닌 선수 = 후보 (코치로 등록된 사람 제외)
@@ -176,7 +186,8 @@ for (const team of teamNames) {
     .flatMap(m => {
       const position = String(m.Role).split(',').map(r => ROLE_TO_POSITION[r.trim()]).find(Boolean);
       const name = playerName(m.ID);
-      return position && !starters.has(name.toLowerCase()) && !staff.has(name.toLowerCase()) ? [{ position, name }] : [];
+      return position && !starters.has(name.toLowerCase()) && !staff.has(name.toLowerCase())
+        ? [{ position, name, nationality: nationalityOf(m) }] : [];
     })
     .sort((a, b) => POSITION_ORDER.indexOf(a.position) - POSITION_ORDER.indexOf(b.position));
 
@@ -193,6 +204,18 @@ for (const team of teamNames) {
     lastMatchEvent: last.OverviewPage,
     source: `https://lol.fandom.com/wiki/${encodeURIComponent(last.OverviewPage.replace(/ /g, '_'))}`
   });
+}
+
+// 주전 국적: 경기 기록의 선수 문서 이름(Link)으로 조회 (동명이인 구분)
+const starterLinks = [...new Set(teams.flatMap(t => t.players.map(p => p.link)))];
+const starterRows = await cargo({
+  tables: 'Players',
+  fields: 'OverviewPage,Country,NationalityPrimary',
+  where: `OverviewPage IN (${quoteList(starterLinks)})`
+});
+const starterInfo = new Map(starterRows.map(row => [String(row.OverviewPage), row]));
+for (const team of teams) {
+  team.players = team.players.map(({ link, ...player }) => ({ ...player, nationality: nationalityOf(starterInfo.get(link)) }));
 }
 
 teams.sort((a, b) =>
@@ -237,6 +260,7 @@ writeFileSync(MD_PATH, lines.join('\n'), 'utf8');
 console.log(`대회: ${EVENT}`);
 console.log(`작성한 팀: ${teams.length}개 (본선 ${teams.filter(t => t.stage === 'main').length})`);
 console.log(`국가 없음: ${teams.filter(t => !t.country).map(t => t.name).join(', ') || '없음'}`);
+console.log(`국적 없음: ${teams.flatMap(t => [...t.players, ...t.subs].filter(p => !p.nationality).map(p => `${t.name} ${p.name}`)).join(', ') || '없음'}`);
 console.log(`팀 마크 없음: ${teams.filter(t => !t.logo).map(t => t.name).join(', ') || '없음'}`);
 console.log(`경기 기록 없음: ${missing.join(', ') || '없음'}`);
 console.log(`주전 5명이 아닌 팀: ${invalid.map(t => t.name).join(', ') || '없음'}`);

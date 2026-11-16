@@ -178,3 +178,49 @@
 .game-tab--active:hover {
   background-color: var(--color-accent);
 }
+
+/* 좁은 화면: 한 줄에 다 들어가지 않으면 메뉴를 두 줄(페이지 메뉴 / 경기 탭)로 나눠 글자가 세로로 쌓이지 않게 */
+@media (max-width: 600px) {
+  .nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 4px;
+  }
+
+  .nav__left,
+  .nav__right {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+
+  .nav__left {
+    justify-content: safe center; /* 넘칠 때 왼쪽이 잘리지 않게 */
+    gap: 2px;
+    /* 아주 좁은 화면에서는 줄바꿈 대신 가로 스크롤 */
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .nav__item {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+/* 모바일 챔피언 픽: 목록을 내리면 상단바(헤더·메뉴) 접기 */
+@media (max-width: 768px) {
+  body[data-route="champion-pick"] .header,
+  body[data-route="champion-pick"] .nav {
+    max-height: 160px;
+    overflow: hidden;
+    transition: max-height var(--transition-normal), padding var(--transition-normal), border-width var(--transition-normal);
+  }
+
+  body.top-bar-hidden .header,
+  body.top-bar-hidden .nav {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-bottom-width: 0;
+  }
+}

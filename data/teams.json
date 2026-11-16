@@ -12,23 +12,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Siwoo"
+          "name": "Siwoo",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Lucid"
+          "name": "Lucid",
+          "nationality": "한국"
         },
         {
           "position": "MID",
-          "name": "ShowMaker"
+          "name": "ShowMaker",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Smash"
+          "name": "Smash",
+          "nationality": "한국"
         },
         {
           "position": "SUP",
-          "name": "Career"
+          "name": "Career",
+          "nationality": "한국"
         }
       ],
       "subs": [],
@@ -46,23 +51,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Kiin"
+          "name": "Kiin",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Canyon"
+          "name": "Canyon",
+          "nationality": "한국"
         },
         {
           "position": "MID",
-          "name": "Chovy"
+          "name": "Chovy",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Ruler"
+          "name": "Ruler",
+          "nationality": "한국"
         },
         {
           "position": "SUP",
-          "name": "Duro"
+          "name": "Duro",
+          "nationality": "한국"
         }
       ],
       "subs": [],
@@ -80,23 +90,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Zeus"
+          "name": "Zeus",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Kanavi"
+          "name": "Kanavi",
+          "nationality": "한국"
         },
         {
           "position": "MID",
-          "name": "Zeka"
+          "name": "Zeka",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Gumayusi"
+          "name": "Gumayusi",
+          "nationality": "한국"
         },
         {
           "position": "SUP",
-          "name": "Delight"
+          "name": "Delight",
+          "nationality": "한국"
         }
       ],
       "subs": [],
@@ -114,23 +129,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Doran"
+          "name": "Doran",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Oner"
+          "name": "Oner",
+          "nationality": "한국"
         },
         {
           "position": "MID",
-          "name": "Faker"
+          "name": "Faker",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Peyz"
+          "name": "Peyz",
+          "nationality": "한국"
         },
         {
           "position": "SUP",
-          "name": "Keria"
+          "name": "Keria",
+          "nationality": "한국"
         }
       ],
       "subs": [],
@@ -148,23 +168,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Breathe"
+          "name": "Breathe",
+          "nationality": "중국"
         },
         {
           "position": "JG",
-          "name": "Tarzan"
+          "name": "Tarzan",
+          "nationality": "한국"
         },
         {
           "position": "MID",
-          "name": "Shanks"
+          "name": "Shanks",
+          "nationality": "중국"
         },
         {
           "position": "ADC",
-          "name": "Hope"
+          "name": "Hope",
+          "nationality": "중국"
         },
         {
           "position": "SUP",
-          "name": "Kael"
+          "name": "Kael",
+          "nationality": "한국"
         }
       ],
       "subs": [],
@@ -182,33 +207,40 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Bin"
+          "name": "Bin",
+          "nationality": "중국"
         },
         {
           "position": "JG",
-          "name": "Xun"
+          "name": "Xun",
+          "nationality": "중국"
         },
         {
           "position": "MID",
-          "name": "Knight"
+          "name": "Knight",
+          "nationality": "중국"
         },
         {
           "position": "ADC",
-          "name": "Viper"
+          "name": "Viper",
+          "nationality": "한국"
         },
         {
           "position": "SUP",
-          "name": "ON"
+          "name": "ON",
+          "nationality": "중국"
         }
       ],
       "subs": [
         {
           "position": "TOP",
-          "name": "Flandre"
+          "name": "Flandre",
+          "nationality": "중국"
         },
         {
           "position": "TOP",
-          "name": "Wenbo"
+          "name": "Wenbo",
+          "nationality": "중국"
         }
       ],
       "lastMatch": "2026-10-23",
@@ -225,29 +257,35 @@
       "players": [
         {
           "position": "TOP",
-          "name": "TheShy"
+          "name": "TheShy",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Wei"
+          "name": "Wei",
+          "nationality": "중국"
         },
         {
           "position": "MID",
-          "name": "Rookie"
+          "name": "Rookie",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "JiaQi"
+          "name": "JiaQi",
+          "nationality": "중국"
         },
         {
           "position": "SUP",
-          "name": "Meiko"
+          "name": "Meiko",
+          "nationality": "중국"
         }
       ],
       "subs": [
         {
           "position": "ADC",
-          "name": "Assum"
+          "name": "Assum",
+          "nationality": "중국"
         }
       ],
       "lastMatch": "2026-10-23",
@@ -264,29 +302,35 @@
       "players": [
         {
           "position": "TOP",
-          "name": "369"
+          "name": "369",
+          "nationality": "중국"
         },
         {
           "position": "JG",
-          "name": "Tian"
+          "name": "Tian",
+          "nationality": "중국"
         },
         {
           "position": "MID",
-          "name": "Creme"
+          "name": "Creme",
+          "nationality": "중국"
         },
         {
           "position": "ADC",
-          "name": "JackeyLove"
+          "name": "JackeyLove",
+          "nationality": "중국"
         },
         {
           "position": "SUP",
-          "name": "Zhuo"
+          "name": "Zhuo",
+          "nationality": "중국"
         }
       ],
       "subs": [
         {
           "position": "TOP",
-          "name": "ZUIAN"
+          "name": "ZUIAN",
+          "nationality": "중국"
         }
       ],
       "lastMatch": "2026-10-23",
@@ -303,29 +347,35 @@
       "players": [
         {
           "position": "TOP",
-          "name": "BrokenBlade"
+          "name": "BrokenBlade",
+          "nationality": "독일"
         },
         {
           "position": "JG",
-          "name": "SkewMond"
+          "name": "SkewMond",
+          "nationality": "프랑스"
         },
         {
           "position": "MID",
-          "name": "Caps"
+          "name": "Caps",
+          "nationality": "덴마크"
         },
         {
           "position": "ADC",
-          "name": "Hans Sama"
+          "name": "Hans Sama",
+          "nationality": "프랑스"
         },
         {
           "position": "SUP",
-          "name": "Labrov"
+          "name": "Labrov",
+          "nationality": "그리스"
         }
       ],
       "subs": [
         {
           "position": "ADC",
-          "name": "Sola"
+          "name": "Sola",
+          "nationality": "독일"
         }
       ],
       "lastMatch": "2026-10-23",
@@ -342,23 +392,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Canna"
+          "name": "Canna",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Yike"
+          "name": "Yike",
+          "nationality": "스웨덴"
         },
         {
           "position": "MID",
-          "name": "kyeahoo"
+          "name": "kyeahoo",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Caliste"
+          "name": "Caliste",
+          "nationality": "프랑스"
         },
         {
           "position": "SUP",
-          "name": "Busio"
+          "name": "Busio",
+          "nationality": "미국"
         }
       ],
       "subs": [],
@@ -376,23 +431,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Myrwn"
+          "name": "Myrwn",
+          "nationality": "스페인"
         },
         {
           "position": "JG",
-          "name": "Elyoya"
+          "name": "Elyoya",
+          "nationality": "스페인"
         },
         {
           "position": "MID",
-          "name": "Jojopyun"
+          "name": "Jojopyun",
+          "nationality": "캐나다"
         },
         {
           "position": "ADC",
-          "name": "Supa"
+          "name": "Supa",
+          "nationality": "스페인"
         },
         {
           "position": "SUP",
-          "name": "Alvaro"
+          "name": "Alvaro",
+          "nationality": "스페인"
         }
       ],
       "subs": [],
@@ -410,29 +470,35 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Dhokla"
+          "name": "Dhokla",
+          "nationality": "미국"
         },
         {
           "position": "JG",
-          "name": "Inspired"
+          "name": "Inspired",
+          "nationality": "폴란드"
         },
         {
           "position": "MID",
-          "name": "Saint"
+          "name": "Saint",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Berserker"
+          "name": "Berserker",
+          "nationality": "한국"
         },
         {
           "position": "SUP",
-          "name": "Isles"
+          "name": "Isles",
+          "nationality": "호주"
         }
       ],
       "subs": [
         {
           "position": "TOP",
-          "name": "Castle"
+          "name": "Castle",
+          "nationality": "한국"
         }
       ],
       "lastMatch": "2026-10-24",
@@ -449,23 +515,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Morgan"
+          "name": "Morgan",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Josedeodo"
+          "name": "Josedeodo",
+          "nationality": "아르헨티나"
         },
         {
           "position": "MID",
-          "name": "Quid"
+          "name": "Quid",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Yeon"
+          "name": "Yeon",
+          "nationality": "미국"
         },
         {
           "position": "SUP",
-          "name": "CoreJJ"
+          "name": "CoreJJ",
+          "nationality": "한국"
         }
       ],
       "subs": [],
@@ -483,23 +554,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Zest"
+          "name": "Zest",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Curse"
+          "name": "Curse",
+          "nationality": "브라질"
         },
         {
           "position": "MID",
-          "name": "Feisty"
+          "name": "Feisty",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Duduhh"
+          "name": "Duduhh",
+          "nationality": "브라질"
         },
         {
           "position": "SUP",
-          "name": "Ackerman"
+          "name": "Ackerman",
+          "nationality": "아르헨티나"
         }
       ],
       "subs": [],
@@ -517,23 +593,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Rest"
+          "name": "Rest",
+          "nationality": "대만"
         },
         {
           "position": "JG",
-          "name": "Shad0w"
+          "name": "Shad0w",
+          "nationality": "이탈리아"
         },
         {
           "position": "MID",
-          "name": "POUT"
+          "name": "POUT",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Doggo"
+          "name": "Doggo",
+          "nationality": "대만"
         },
         {
           "position": "SUP",
-          "name": "Kino"
+          "name": "Kino",
+          "nationality": "대만"
         }
       ],
       "subs": [],
@@ -551,23 +632,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Pun"
+          "name": "Pun",
+          "nationality": "베트남"
         },
         {
           "position": "JG",
-          "name": "Hizto"
+          "name": "Hizto",
+          "nationality": "베트남"
         },
         {
           "position": "MID",
-          "name": "Dire"
+          "name": "Dire",
+          "nationality": "베트남"
         },
         {
           "position": "ADC",
-          "name": "Eddie"
+          "name": "Eddie",
+          "nationality": "베트남"
         },
         {
           "position": "SUP",
-          "name": "Bie"
+          "name": "Bie",
+          "nationality": "베트남"
         }
       ],
       "subs": [],
@@ -585,23 +671,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Thanatos"
+          "name": "Thanatos",
+          "nationality": "한국"
         },
         {
           "position": "JG",
-          "name": "Blaber"
+          "name": "Blaber",
+          "nationality": "미국"
         },
         {
           "position": "MID",
-          "name": "Loki"
+          "name": "Loki",
+          "nationality": "한국"
         },
         {
           "position": "ADC",
-          "name": "Tactical"
+          "name": "Tactical",
+          "nationality": "미국"
         },
         {
           "position": "SUP",
-          "name": "Vulcan"
+          "name": "Vulcan",
+          "nationality": "캐나다"
         }
       ],
       "subs": [],
@@ -619,23 +710,28 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Guigo"
+          "name": "Guigo",
+          "nationality": "브라질"
         },
         {
           "position": "JG",
-          "name": "Tatu"
+          "name": "Tatu",
+          "nationality": "브라질"
         },
         {
           "position": "MID",
-          "name": "Tutsz"
+          "name": "Tutsz",
+          "nationality": "브라질"
         },
         {
           "position": "ADC",
-          "name": "Ayu"
+          "name": "Ayu",
+          "nationality": "브라질"
         },
         {
           "position": "SUP",
-          "name": "JoJo"
+          "name": "JoJo",
+          "nationality": "브라질"
         }
       ],
       "subs": [],
@@ -653,29 +749,35 @@
       "players": [
         {
           "position": "TOP",
-          "name": "Kratos"
+          "name": "Kratos",
+          "nationality": "베트남"
         },
         {
           "position": "JG",
-          "name": "Gury"
+          "name": "Gury",
+          "nationality": "베트남"
         },
         {
           "position": "MID",
-          "name": "Chika"
+          "name": "Chika",
+          "nationality": "베트남"
         },
         {
           "position": "ADC",
-          "name": "Harky"
+          "name": "Harky",
+          "nationality": "베트남"
         },
         {
           "position": "SUP",
-          "name": "SiuLoong"
+          "name": "SiuLoong",
+          "nationality": "베트남"
         }
       ],
       "subs": [
         {
           "position": "JG",
-          "name": "SanSan"
+          "name": "SanSan",
+          "nationality": "베트남"
         }
       ],
       "lastMatch": "2026-10-18",

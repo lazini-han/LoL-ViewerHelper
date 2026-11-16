@@ -41,6 +41,20 @@ export class TeamSetupPage {
   async loadProTeams(container) {
     const data = await teamService.load();
     this.proTeams = new Map((data?.teams || []).map(team => [team.name, team]));
+    // 선수 이름 → 국적 (같은 이름에 국적이 여러 개면 팀으로만 찾도록 제외)
+    this.playerNationalities = new Map();
+    const conflicts = new Set();
+    this.proTeams.forEach(team => [...team.players, ...(team.subs || [])].forEach(player => {
+      const key = player.name.toLowerCase();
+      if (!player.nationality || conflicts.has(key)) return;
+      const known = this.playerNationalities.get(key);
+      if (known && known !== player.nationality) {
+        this.playerNationalities.delete(key);
+        conflicts.add(key);
+      } else {
+        this.playerNationalities.set(key, player.nationality);
+      }
+    }));
     if (this.proTeams.size > 0 && container.querySelector('.team-setup')) {
       this.render(container);
     }
@@ -58,6 +72,39 @@ export class TeamSetupPage {
       fullName: fullName && fullName !== team.name ? fullName : '', // 약칭과 같으면 생략
       logo: team.logo || pro?.logo || ''
     };
+  }
+
+  /**
+   * 선수 국적 (롤드컵 팀 데이터에서 같은 팀 선수 우선, 없으면 이름으로 찾음)
+   * @param {Object} team
+   * @param {string} name
+   * @returns {string}
+   */
+  getPlayerNationality(team, name) {
+    const key = (name || '').trim().toLowerCase();
+    if (!key) return '';
+    const pro = this.proTeams?.get(team.name);
+    const member = pro && [...pro.players, ...(pro.subs || [])].find(p => p.name.toLowerCase() === key);
+    return member?.nationality || this.playerNationalities?.get(key) || '';
+  }
+
+  /**
+   * 선수 국기 (국적을 모르거나 국기를 불러오지 못하면 숨김)
+   * @param {string} nationality
+   * @returns {Element|null}
+   */
+  createPlayerFlag(nationality) {
+    const flagCode = COUNTRY_FLAG_CODES[nationality];
+    if (!flagCode) return null;
+    const img = createElement('img', {
+      className: 'player-flag',
+      src: `${FLAG_ICON_BASE}/${flagCode}.svg`,
+      alt: nationality,
+      title: nationality,
+      loading: 'lazy'
+    });
+    img.onerror = () => img.remove();
+    return img;
   }
 
   /**
@@ -131,10 +178,10 @@ export class TeamSetupPage {
       ]),
       // 선수 목록
       createElement('div', { className: 'player-list' },
-        POSITIONS.map(position => this.createPlayerRow(teamKey, position, teamData.players))
+        POSITIONS.map(position => this.createPlayerRow(teamKey, position, teamData))
       ),
       // 후보 선수
-      this.createSubsSection(teamKey, teamData.subs || [])
+      this.createSubsSection(teamKey, teamData)
     ]);
   }
 
@@ -191,10 +238,11 @@ export class TeamSetupPage {
   /**
    * 후보 선수 영역 생성 (칩을 누르면 같은 포지션 주전과 교체)
    * @param {string} teamKey
-   * @param {Array} subs - [{ position, name }]
+   * @param {Object} teamData - subs: [{ position, name }]
    * @returns {Element}
    */
-  createSubsSection(teamKey, subs) {
+  createSubsSection(teamKey, teamData) {
+    const subs = teamData.subs || [];
     return createElement('div', { className: 'subs' }, [
       createElement('span', { className: 'subs__label' }, '후보'),
       createElement('div', { className: 'subs__list' }, [
@@ -205,6 +253,7 @@ export class TeamSetupPage {
           title: `${POSITION_NAMES[sub.position]} 주전과 교체`
         }, [
           createElement('span', { className: 'sub-chip__position' }, POSITION_NAMES[sub.position]),
+          this.createPlayerFlag(this.getPlayerNationality(teamData, sub.name)),
           createElement('span', { className: 'sub-chip__name' }, sub.name),
           createElement('span', {
             className: 'sub-chip__remove',
@@ -232,14 +281,18 @@ export class TeamSetupPage {
    * 선수 행 생성
    * @param {string} teamKey
    * @param {string} position
-   * @param {Array} players
+   * @param {Object} teamData
    * @returns {Element}
    */
-  createPlayerRow(teamKey, position, players) {
-    const player = players.find(p => p.position === position) || { name: '' };
+  createPlayerRow(teamKey, position, teamData) {
+    const player = teamData.players.find(p => p.position === position) || { name: '' };
 
     return createElement('div', { className: 'player-row' }, [
       createElement('span', { className: 'position-badge player-row__position' }, POSITION_NAMES[position]),
+      // 국기 자리는 비어 있어도 폭을 유지해 입력칸 줄을 맞춤
+      createElement('span', { className: 'player-row__flag' }, [
+        this.createPlayerFlag(this.getPlayerNationality(teamData, player.name))
+      ]),
       createElement('input', {
         type: 'text',
         className: 'input player-row__input',
@@ -301,10 +354,7 @@ export class TeamSetupPage {
    * @returns {Element}
    */
   createSavedTeamItem(team) {
-    const playerNames = team.players
-      .filter(p => p.name)
-      .map(p => p.name)
-      .join(', ');
+    const namedPlayers = team.players.filter(p => p.name);
     const subCount = team.subs?.length || 0;
     const identity = this.getTeamIdentity(team);
 
@@ -320,8 +370,15 @@ export class TeamSetupPage {
           identity.fullName ? createElement('span', { className: 'saved-team-item__fullname' }, `(${identity.fullName})`) : null,
           this.createTeamTags(team, false) // 리그는 묶음 제목에 표시
         ]),
-        createElement('span', { className: 'saved-team-item__players' },
-          (playerNames || '선수 미등록') + (subCount ? ` · 후보 ${subCount}` : ''))
+        createElement('span', { className: 'saved-team-item__players' }, namedPlayers.length
+          ? [
+              ...namedPlayers.map(player => createElement('span', { className: 'saved-team-item__player' }, [
+                this.createPlayerFlag(this.getPlayerNationality(team, player.name)),
+                createElement('span', {}, player.name)
+              ])),
+              subCount ? createElement('span', {}, ` · 후보 ${subCount}`) : null
+            ]
+          : '선수 미등록' + (subCount ? ` · 후보 ${subCount}` : ''))
       ]),
       // 팀 A/B 적용 버튼 (좁은 화면·터치에서도 드래그 없이 불러오기)
       createElement('div', { className: 'saved-team-item__apply' }, [
@@ -379,6 +436,14 @@ export class TeamSetupPage {
         if (playerIndex !== -1) {
           players[playerIndex] = { ...players[playerIndex], name: e.target.value };
           state.updateTeam(teamKey, { players });
+        }
+
+        // 이름이 바뀌면 국기도 다시 찾음
+        const flagSlot = e.target.closest('.player-row')?.querySelector('.player-row__flag');
+        if (flagSlot) {
+          clearElement(flagSlot);
+          const flag = this.createPlayerFlag(this.getPlayerNationality(state.get()[teamKey], e.target.value));
+          if (flag) flagSlot.appendChild(flag);
         }
       });
     });
