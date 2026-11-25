@@ -121,7 +121,7 @@ python -m http.server 8080
   - 데이터: `lol.fandom.com`, `static.wikia.nocookie.net`, `ddragon.leagueoflegends.com`, `raw.communitydragon.org`, `cdn.communitydragon.org`, `d28xe8vt774jo5.cloudfront.net`
   - 앱: `cdn.jsdelivr.net`, `www.gstatic.com`, `*.googleapis.com`
 - 확인하지 못한 항목은 완료 보고에 그대로 적음
-- 작업 브랜치 → PR → `main` 병합 순서로 반영. `main` 에 들어가면 GitHub Pages 에 바로 배포됨
+- 별도 브랜치·PR 없이 `main` 에서 바로 작업하고 커밋·푸시. 푸시하면 GitHub Pages 에 바로 배포되고, 개발자가 테스트 후 문제가 있으면 되돌림
 - `tools/build-core-items.mjs`, `build-stacks.mjs`, `build-ultimates.mjs` 에 넘기는 조사 결과 JSON 은 세션이 끝나면 사라지므로 `tools/research/` 에 함께 커밋
 
 ### 테스트 체크리스트
