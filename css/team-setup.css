@@ -21,6 +21,30 @@
   transform: translateY(-50%);
 }
 
+/* 저장된 팀 선수 이름 표시 토글 (제목 왼쪽) */
+.team-setup__players-toggle {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+}
+
+.team-setup__players-toggle:hover {
+  color: var(--color-text);
+}
+
+.team-setup__players-toggle--on {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.saved-teams--hide-players .saved-team-item__players {
+  display: none;
+}
+
 .team-setup__form {
   display: grid;
   grid-template-columns: 1fr 1fr;

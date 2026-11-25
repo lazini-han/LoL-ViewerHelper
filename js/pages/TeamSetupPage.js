@@ -7,9 +7,29 @@ import { POSITIONS, POSITION_NAMES, FLAG_ICON_BASE, COUNTRY_FLAG_CODES, LEAGUE_O
 import { state } from '../state.js';
 import { teamService } from '../services/TeamService.js';
 
+// 저장된 팀 목록에 선수 이름을 보일지 (브라우저별 설정, 기본은 숨김)
+const SHOW_PLAYERS_KEY = 'lol-viewer-helper:saved-teams-show-players';
+
 export class TeamSetupPage {
   constructor(router) {
     this.router = router;
+    this.showPlayers = this.loadShowPlayers();
+  }
+
+  loadShowPlayers() {
+    try {
+      return localStorage.getItem(SHOW_PLAYERS_KEY) === 'true';
+    } catch {
+      return false;
+    }
+  }
+
+  saveShowPlayers() {
+    try {
+      localStorage.setItem(SHOW_PLAYERS_KEY, String(this.showPlayers));
+    } catch {
+      // 저장할 수 없으면 이번 화면에서만 적용
+    }
   }
 
   /**
@@ -23,6 +43,14 @@ export class TeamSetupPage {
 
     const page = createElement('div', { className: 'page team-setup' }, [
       createElement('div', { className: 'team-setup__header' }, [
+        // 저장된 팀 목록의 선수 이름 표시 토글
+        createElement('button', {
+          type: 'button',
+          className: `btn btn--sm team-setup__players-toggle ${this.showPlayers ? 'team-setup__players-toggle--on' : ''}`,
+          id: 'team-setup-players-toggle',
+          'aria-pressed': this.showPlayers ? 'true' : 'false',
+          title: '저장된 팀 목록에 선수 이름 표시/숨김'
+        }, '선수 이름 보기'),
         createElement('h2', { className: 'page__title' }, '팀 설정'),
         // 새 시리즈를 시작할 때 챔피언 픽 페이지로 가지 않고도 픽·밴을 비울 수 있게
         createElement('button', {
@@ -334,7 +362,7 @@ export class TeamSetupPage {
       ]);
     }
 
-    return createElement('div', { className: 'saved-teams' }, [
+    return createElement('div', { className: `saved-teams ${this.showPlayers ? '' : 'saved-teams--hide-players'}` }, [
       header,
       createElement('p', { className: 'saved-teams__hint saved-teams__hint--list' },
         'A·B 버튼을 누르거나 팀 카드로 끌어다 놓으세요'),
@@ -527,6 +555,16 @@ export class TeamSetupPage {
         state.addSub(form.dataset.team, form.querySelector('.subs__add-position').value, name);
         this.render(document.querySelector('.main'));
       });
+    });
+
+    // 선수 이름 표시 토글 (다시 그리지 않고 클래스만 바꿈)
+    $('#team-setup-players-toggle')?.addEventListener('click', (e) => {
+      this.showPlayers = !this.showPlayers;
+      this.saveShowPlayers();
+      const btn = e.currentTarget;
+      btn.classList.toggle('team-setup__players-toggle--on', this.showPlayers);
+      btn.setAttribute('aria-pressed', String(this.showPlayers));
+      document.querySelector('.saved-teams')?.classList.toggle('saved-teams--hide-players', !this.showPlayers);
     });
 
     // 전체 초기화 (1~5경기 픽·밴, 1경기로 이동)
