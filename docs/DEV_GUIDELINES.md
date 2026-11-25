@@ -88,6 +88,10 @@ js/
 
 - CSS 변수로 색상/크기 관리
 - BEM 명명법 사용: `.block__element--modifier`
+- **검은색·어두운 글자색 금지**: 어두운 테마라 보이지 않음. `var(--color-text)`, `var(--color-text-secondary)` 또는 흰색 사용
+  - 브라우저 기본 버튼 글자색, 강조색 배경 위 `color: var(--color-bg)` 도 해당
+  - 새 버튼·배지에는 밝은 글자색을 직접 지정
+  - UI 변경 후에는 완료 보고 전에 브라우저에서 전 페이지 글자 대비를 검사
 
 ---
 
@@ -109,6 +113,16 @@ npx serve
 # 방법 3: Python
 python -m http.server 8080
 ```
+
+### 클라우드 세션(Claude Code 웹) 테스트 방법
+
+- 저장소만으로 실행 가능 (설치할 의존성·`.env` 없음). 세션 안에서 `python3 -m http.server 8080` 으로 띄우고 헤드리스 브라우저로 확인
+- 네트워크가 제한되면 아래 도메인 허용 필요
+  - 데이터: `lol.fandom.com`, `static.wikia.nocookie.net`, `ddragon.leagueoflegends.com`, `raw.communitydragon.org`, `cdn.communitydragon.org`, `d28xe8vt774jo5.cloudfront.net`
+  - 앱: `cdn.jsdelivr.net`, `www.gstatic.com`, `*.googleapis.com`
+- 확인하지 못한 항목은 완료 보고에 그대로 적음
+- 작업 브랜치 → PR → `main` 병합 순서로 반영. `main` 에 들어가면 GitHub Pages 에 바로 배포됨
+- `tools/build-core-items.mjs`, `build-stacks.mjs`, `build-ultimates.mjs` 에 넘기는 조사 결과 JSON 은 세션이 끝나면 사라지므로 `tools/research/` 에 함께 커밋
 
 ### 테스트 체크리스트
 
@@ -171,4 +185,4 @@ python -m http.server 8080
 
 ---
 
-*최종 수정: 2026-01-26*
+*최종 수정: 2026-11-25*

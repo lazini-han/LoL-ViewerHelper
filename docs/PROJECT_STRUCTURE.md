@@ -17,7 +17,7 @@
 - 데이터: JSON 파일 + Community Dragon CDN
 - 저장소: LocalStorage + Firebase Firestore (클라우드 동기화)
 - 인증: Firebase Authentication (Google, 이메일/비밀번호)
-- 호스팅: GitHub Pages (예정)
+- 호스팅: GitHub Pages (https://lazini-han.github.io/LoL-ViewerHelper/, `main` push 시 자동 배포)
 
 ---
 

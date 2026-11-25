@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.20.1] - 2026-11-25
+
+### Added
+
+- `.gitattributes`: 저장소 줄바꿈을 LF 로 통일 (Windows 와 클라우드를 오갈 때 불필요한 변경 방지)
+
+### Changed
+
+- **클라우드 작업 환경 준비** (앱 동작 변화 없음)
+  - `DEV_GUIDELINES.md`: 어두운 글자색 금지 규칙, 클라우드 세션 테스트·배포 절차, 조사 원본 보관 위치 추가
+  - `PROJECT_STRUCTURE.md`: 호스팅을 GitHub Pages 운영 주소로 갱신
+
+---
+
 ## [0.20.0] - 2026-11-16
 
 ### Added
