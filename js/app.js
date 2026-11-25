@@ -5,6 +5,7 @@
 import { $ } from './utils/dom.js';
 import { ROUTES } from './utils/constants.js';
 import { state } from './state.js';
+import { SchedulePage } from './pages/SchedulePage.js';
 import { TeamSetupPage } from './pages/TeamSetupPage.js';
 import { ChampionPickPage } from './pages/ChampionPickPage.js';
 import { MatchViewPage } from './pages/MatchViewPage.js';
@@ -112,6 +113,7 @@ async function initApp() {
   router.setContainer(container);
 
   // 페이지 등록
+  router.register(ROUTES.SCHEDULE, new SchedulePage(router));
   router.register(ROUTES.TEAM_SETUP, new TeamSetupPage(router));
   router.register(ROUTES.CHAMPION_PICK, new ChampionPickPage(router));
   router.register(ROUTES.MATCH_VIEW, new MatchViewPage(router));

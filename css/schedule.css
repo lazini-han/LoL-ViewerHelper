@@ -1,0 +1,287 @@
+/* 경기 일정 페이지 */
+.schedule {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.schedule .page__title {
+  margin-bottom: 0;
+}
+
+.schedule__loading {
+  text-align: center;
+  color: var(--color-text-secondary);
+}
+
+.schedule__summary {
+  padding: var(--spacing-md);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-secondary);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.schedule__updated {
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.schedule__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.schedule__section-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.schedule__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.schedule__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: var(--spacing-md);
+}
+
+/* 카드 */
+.schedule-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-card);
+  min-width: 0;
+}
+
+.schedule-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.schedule-card__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px var(--spacing-sm);
+  min-width: 0;
+}
+
+.schedule-card__name {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.schedule-card__subname {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.schedule-card__flags {
+  display: inline-flex;
+  gap: 3px;
+  align-self: center;
+}
+
+.schedule-flag {
+  display: inline-block;
+  width: 18px;
+  height: 13px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+}
+
+/* 진행 상태 배지 */
+.schedule-status {
+  flex-shrink: 0;
+  padding: 1px 8px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--color-text-secondary);
+}
+
+.schedule-status--scheduled {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.schedule-status--venue {
+  border-color: rgba(255, 193, 7, 0.6);
+  color: #ffd666;
+}
+
+.schedule-status--done {
+  border-color: rgba(76, 175, 80, 0.6);
+  color: #8fd694;
+}
+
+/* 기간 · 장소 */
+.schedule-card__facts {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 4px var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.schedule-card__facts dt {
+  color: var(--color-text-secondary);
+}
+
+.schedule-card__facts dd {
+  min-width: 0;
+}
+
+.schedule-card__period {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.schedule-card__period-note {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.schedule-card__place,
+.schedule-stages__place {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 롤드컵 단계별 개최지 */
+.schedule-stages {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-md);
+  background-color: rgba(255, 255, 255, 0.05);
+  font-size: var(--font-size-sm);
+}
+
+.schedule-stages__item {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.schedule-stages__name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* 정해진 일정 · 지난 시즌 참고 */
+.schedule-events {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: var(--font-size-sm);
+}
+
+.schedule-events__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px var(--spacing-sm);
+}
+
+.schedule-events__name {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.schedule-events__period {
+  color: var(--color-text-secondary);
+}
+
+.schedule-reference {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: var(--spacing-sm);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.schedule-reference__label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.schedule-card__empty {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+/* 메모 · 출처 */
+.schedule-card__notes {
+  list-style: disc;
+  padding-left: 1.1em;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+.schedule-card__sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--spacing-sm);
+  margin-top: auto;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.schedule-card__sources a {
+  color: #8ab4ff;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+
+.schedule-card__sources a:hover {
+  color: var(--color-text);
+}
+
+/* 반응형: 모바일 */
+@media (max-width: 768px) {
+  .schedule__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-card {
+    padding: var(--spacing-sm);
+  }
+
+  .schedule-card__header {
+    flex-direction: column;
+  }
+
+  .schedule-stages__item {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

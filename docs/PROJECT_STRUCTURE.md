@@ -35,13 +35,15 @@ PJ.LoL-ViewerHelper/
 │   ├── team-setup.css            # 팀 설정 페이지 스타일
 │   ├── champion-pick.css         # 챔피언 픽 페이지 스타일
 │   ├── match-view.css            # 경기 상황 페이지 스타일
-│   └── auth.css                  # 인증 모달/헤더 인증 영역 스타일
+│   ├── auth.css                  # 인증 모달/헤더 인증 영역 스타일
+│   └── schedule.css              # 경기 일정 페이지 스타일
 │
 ├── js/                           # JavaScript
 │   ├── app.js                    # 앱 진입점, 라우터
 │   ├── state.js                  # 전역 상태 관리 (LocalStorage 연동)
 │   │
 │   ├── pages/                    # 페이지 컴포넌트
+│   │   ├── SchedulePage.js       # 경기 일정 페이지 (다음 시즌 국제 대회·리그 일정)
 │   │   ├── TeamSetupPage.js      # 팀 설정 페이지
 │   │   ├── ChampionPickPage.js   # 챔피언 픽 페이지
 │   │   ├── MatchViewPage.js      # 경기 상황 페이지
@@ -62,6 +64,7 @@ PJ.LoL-ViewerHelper/
 │   │   ├── ObjectService.js      # 오브젝트 데이터 로딩
 │   │   ├── StackService.js       # 스택 요소 데이터 로딩
 │   │   ├── TeamService.js        # 프로 팀(롤드컵 진출팀 + LCK 팀) 데이터 로딩
+│   │   ├── ScheduleService.js    # 경기 일정 데이터 로딩
 │   │   ├── firebaseConfig.js     # Firebase 초기화 설정
 │   │   ├── authService.js        # Firebase 인증 서비스
 │   │   └── syncService.js        # Firestore 실시간 동기화
@@ -86,7 +89,8 @@ PJ.LoL-ViewerHelper/
 │   ├── ultimates.json / .md      # 궁극기 요약 (앱 데이터 / 검토용)
 │   ├── core-items.json / .md     # 챔피언별 코어 아이템 (앱 데이터 / 검토용)
 │   ├── stacks.json / .md         # 스택 요소 (앱 데이터 / 검토용)
-│   └── teams.json / .md          # 롤드컵 진출팀 + LCK 팀 주전·후보 (앱 데이터 / 검토용)
+│   ├── teams.json / .md          # 롤드컵 진출팀 + LCK 팀 주전·후보 (앱 데이터 / 검토용)
+│   └── schedule.json             # 다음 시즌 경기 일정 (공개된 정보를 손으로 정리, 항목마다 출처·확정 여부)
 │
 ├── docs/                         # 문서
 │   └── issues/                   # 이슈별 분석 보고서
@@ -151,7 +155,8 @@ PJ.LoL-ViewerHelper/
 
 | 파일 | 역할 | 주요 기능 |
 |------|------|----------|
-| `TeamSetupPage.js` | 팀/선수 설정 | 팀명, 선수명 입력, 비우기, 후보 선수 교체/추가/삭제, 리그·국가 태그, 프로 팀 불러오기 (롤드컵 진출팀 + LCK 팀, 같은 이름은 팀별로 덮어쓸지 선택), 저장된 팀 A·B 버튼/드래그로 적용 (드래그 중 자동 스크롤), 저장된 팀 리그별 묶음, 국가 국기 아이콘, 저장된 팀 비활성화 토글, 팀 마크·풀 네임 표시, 선수 국적 국기 (선수 칸·후보·저장된 팀) |
+| `SchedulePage.js` | 경기 일정 | 다음 시즌 국제 대회(기간·개최지·단계별 장소)와 리그별 일정, 진행 상태 배지(일정 확정 / 개최지 확정·날짜 미정 / 일정 미공개 / 종료), 지난 시즌 참고 일정, 출처 링크 |
+| `TeamSetupPage.js` | 팀/선수 설정 | 전체 초기화(1~5경기 픽·밴, 1경기로 이동), 팀명, 선수명 입력, 비우기, 후보 선수 교체/추가/삭제, 리그·국가 태그, 프로 팀 불러오기 (롤드컵 진출팀 + LCK 팀, 같은 이름은 팀별로 덮어쓸지 선택), 저장된 팀 A·B 버튼/드래그로 적용 (드래그 중 자동 스크롤), 저장된 팀 리그별 묶음, 국가 국기 아이콘, 저장된 팀 비활성화 토글, 팀 마크·풀 네임 표시, 선수 국적 국기 (선수 칸·후보·저장된 팀) |
 | `ChampionPickPage.js` | 챔피언 할당 | 드래그앤드롭, 검색, 경기별 밴, 진영 교환, 팀별 포지션 순서 뒤집기, 초기화, 포지션 아이콘, 자음 인덱스, 초상화 호버 시 궁극기 요약, 모바일 목록 스크롤 시 상단바 자동 숨김 |
 | `MatchViewPage.js` | 경기 정보 표시 | 역할 태그, 초상화 호버 시 궁극기 요약, 챔피언 클릭 시 상세 정보·스킬 비디오·코어 아이템 |
 | `ObjectDictPage.js` | 오브젝트 사전 | 분류 필터, 검색, 드래곤 스코어보드 아이콘 |
@@ -168,6 +173,7 @@ PJ.LoL-ViewerHelper/
 | `ObjectService.js` | 오브젝트 데이터 로딩 |
 | `StackService.js` | 스택 요소 데이터 로딩, 분류/검색 필터 |
 | `TeamService.js` | 프로 팀 데이터(`teams.json`, 롤드컵 진출팀 + LCK 팀) 지연 로딩 |
+| `ScheduleService.js` | 경기 일정 데이터(`schedule.json`) 지연 로딩 |
 
 ### 3.5 유틸리티
 

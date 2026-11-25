@@ -1,0 +1,143 @@
+{
+  "season": 2027,
+  "updated": "2026-11-16",
+  "summary": "2026년 11월 13일 Riot 발표 기준으로 국제 대회 개최지는 확정됐지만, 날짜는 아직 발표되지 않았습니다. 리그별 2027 일정도 '곧 발표' 예정입니다.",
+  "international": [
+    {
+      "name": "First Stand: All In 2027",
+      "nameKr": "퍼스트 스탠드: 올인",
+      "status": "venue",
+      "period": "날짜 미정",
+      "periodNote": "형식·출전 방식은 2027년 1월 발표 예정",
+      "location": "중국",
+      "flags": ["cn"],
+      "notes": [
+        "2027년 한 번만 여는 확대판 대회로, Riot 역대 최대 규모",
+        "원래 동남아 개최 예정이었으나 중국으로 변경 (동남아는 2028년 개최)",
+        "롤드컵 플레이인 스테이지를 대체할지 검토 중 (결정되지 않음)"
+      ],
+      "sources": [
+        { "label": "LoL Esports (2026-11-13)", "url": "https://lolesports.com/en-US/news/lol-esports-2027-and-beyond" }
+      ]
+    },
+    {
+      "name": "MSI 2027",
+      "nameKr": "미드 시즌 인비테이셔널",
+      "status": "venue",
+      "period": "날짜 미정",
+      "periodNote": "날짜·티켓은 몇 달 안에 발표 예정",
+      "location": "스페인 발렌시아 · Feria Valencia",
+      "flags": ["es"],
+      "notes": [
+        "스페인에서 처음 열리는 MSI"
+      ],
+      "sources": [
+        { "label": "LoL Esports (2026-11-13)", "url": "https://lolesports.com/en-US/news/lol-esports-2027-and-beyond" }
+      ]
+    },
+    {
+      "name": "Worlds 2027",
+      "nameKr": "롤드컵 (월드 챔피언십)",
+      "status": "venue",
+      "period": "2027년 10월 ~ 11월 (예상)",
+      "periodNote": "KeSPA 잠정 일정 10월 15일(금) ~ 11월 14일(일) (2026년 3월 보도, Riot 미확정)",
+      "location": "일본 · 한국",
+      "flags": ["jp", "kr"],
+      "stages": [
+        { "name": "스위스 스테이지", "place": "일본 나고야 (경기장 미정)", "flag": "jp" },
+        { "name": "8강 · 4강", "place": "수원컨벤션센터", "flag": "kr" },
+        { "name": "결승", "place": "서울아레나 (서울 창동, 2027년 6월 개장 예정)", "flag": "kr" }
+      ],
+      "notes": [
+        "일본에서 처음 열리는 LoL 국제 대회",
+        "한국은 2014 · 2018 · 2023년에 이어 네 번째 개최"
+      ],
+      "sources": [
+        { "label": "LoL Esports (2026-11-13)", "url": "https://lolesports.com/en-US/news/lol-esports-2027-and-beyond" },
+        { "label": "Insider Gaming (2026-03-12, KeSPA 잠정 일정)", "url": "https://insider-gaming.com/lol-worlds-2027-tentative-dates-shared-by-kespa-as-host-city-search-begins/" }
+      ]
+    }
+  ],
+  "leagues": [
+    {
+      "league": "LCK",
+      "flags": ["kr"],
+      "status": "tbd",
+      "notes": [],
+      "reference": {
+        "label": "2026 시즌 일정 (참고)",
+        "events": [
+          { "name": "LCK컵", "period": "1월 14일 ~ 3월 1일" },
+          { "name": "정규 시즌 1·2라운드", "period": "4월 1일 ~ 5월 31일" },
+          { "name": "Road to MSI", "period": "6월 6일 ~ 6월 14일" },
+          { "name": "정규 시즌 3·4라운드", "period": "7월 29일 ~ 8월 23일" },
+          { "name": "플레이인 · 플레이오프", "period": "8월 26일 ~ 9월 13일" }
+        ]
+      },
+      "sources": [
+        { "label": "Leaguepedia (2026 LCK)", "url": "https://lol.fandom.com/wiki/LCK/2026_Season" }
+      ]
+    },
+    {
+      "league": "LPL",
+      "flags": ["cn"],
+      "status": "tbd",
+      "notes": [],
+      "sources": []
+    },
+    {
+      "league": "LEC",
+      "flags": ["eu"],
+      "status": "tbd",
+      "notes": [
+        "2027년에는 LEC Versus를 열지 않고, 겨울 시즌을 원래의 10팀 체제로 되돌림",
+        "지역 리그(ERL) 팀 참가는 현재 계획 없음",
+        "LEC 커미셔너 발언 (2026년 9월 보도)"
+      ],
+      "sources": [
+        { "label": "esports.gg", "url": "https://esports.gg/news/league-of-legends/no-lec-versus-2027/" }
+      ]
+    },
+    {
+      "league": "LCS",
+      "flags": ["us"],
+      "status": "tbd",
+      "notes": [],
+      "events": [
+        { "name": "LCS 2027 승강전", "period": "2026년 10월 5일 ~ 10월 12일", "place": "멕시코", "status": "done" }
+      ],
+      "sources": [
+        { "label": "Leaguepedia", "url": "https://lol.fandom.com/wiki/LCS/2027_Season/Promotion" }
+      ]
+    },
+    {
+      "league": "LCP",
+      "flags": ["tw", "vn", "jp"],
+      "status": "tbd",
+      "notes": [
+        "2027년부터 모든 팀이 각 스플릿을 국내 리그(PCS · VCS · LJL)에서 시작하고, 상위 팀이 LCP(브래킷 스테이지)에 진출",
+        "LCP는 계속 APAC 팀이 국제 대회에 나가는 유일한 길이며, 와일드카드 지역의 진출 경로도 유지",
+        "팀이 타이베이로 옮겨 오지 않아도 됨. 슬롯 배분·형식은 추후 발표"
+      ],
+      "events": [
+        { "name": "LCP 2027 승강전", "period": "2026년 11월 10일 ~ 11월 13일", "place": "베트남", "status": "done" }
+      ],
+      "sources": [
+        { "label": "LoL Esports (2026-09-21)", "url": "https://lolesports.com/en-PH/news/a-more-open-lcp-ecosystem-in-2027" },
+        { "label": "Leaguepedia", "url": "https://lol.fandom.com/wiki/LCP/2027_Season/Promotion" }
+      ]
+    },
+    {
+      "league": "CBLOL",
+      "flags": ["br"],
+      "status": "tbd",
+      "notes": [],
+      "events": [
+        { "name": "CBLOL 2027 승강전", "period": "2026년 9월 28일 ~ 10월 12일", "place": "브라질", "status": "done" }
+      ],
+      "sources": [
+        { "label": "Leaguepedia", "url": "https://lol.fandom.com/wiki/CBLOL/2027_Season/Promotion" }
+      ]
+    }
+  ]
+}

@@ -22,7 +22,15 @@ export class TeamSetupPage {
     const currentState = state.get();
 
     const page = createElement('div', { className: 'page team-setup' }, [
-      createElement('h2', { className: 'page__title' }, '팀 설정'),
+      createElement('div', { className: 'team-setup__header' }, [
+        createElement('h2', { className: 'page__title' }, '팀 설정'),
+        // 새 시리즈를 시작할 때 챔피언 픽 페이지로 가지 않고도 픽·밴을 비울 수 있게
+        createElement('button', {
+          className: 'btn btn--sm btn--danger reset-game-btn team-setup__reset-all',
+          id: 'team-setup-reset-all-btn',
+          title: '1~5경기 모든 픽/밴 초기화 (팀·선수 정보는 유지)'
+        }, '전체 초기화')
+      ]),
       this.createForm(currentState),
       this.createSavedTeamsSection()
     ]);
@@ -519,6 +527,13 @@ export class TeamSetupPage {
         state.addSub(form.dataset.team, form.querySelector('.subs__add-position').value, name);
         this.render(document.querySelector('.main'));
       });
+    });
+
+    // 전체 초기화 (1~5경기 픽·밴, 1경기로 이동)
+    $('#team-setup-reset-all-btn')?.addEventListener('click', () => {
+      if (confirm('1~5경기의 모든 픽과 밴을 초기화하고 1경기로 이동하시겠습니까?\n(팀·선수 정보는 유지됩니다)')) {
+        state.resetAllGamesAndBans();
+      }
     });
 
     // 프로 팀 불러오기

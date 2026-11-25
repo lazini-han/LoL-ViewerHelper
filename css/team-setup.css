@@ -5,6 +5,22 @@
   gap: var(--spacing-xl);
 }
 
+/* 제목은 가운데, 전체 초기화 버튼은 오른쪽 */
+.team-setup__header {
+  position: relative;
+}
+
+.team-setup__header .page__title {
+  margin-bottom: 0;
+}
+
+.team-setup__reset-all {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
 .team-setup__form {
   display: grid;
   grid-template-columns: 1fr 1fr;

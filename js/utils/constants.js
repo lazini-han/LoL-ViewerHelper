@@ -45,6 +45,7 @@ export const TEAM_RED = 'red';
 
 // 라우트 경로
 export const ROUTES = {
+  SCHEDULE: 'schedule',
   TEAM_SETUP: 'team-setup',
   CHAMPION_PICK: 'champion-pick',
   MATCH_VIEW: 'match-view',
